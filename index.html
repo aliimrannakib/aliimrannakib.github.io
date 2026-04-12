@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>পান্তা ইলিশ স্টল ১৪৩৩ — ঘোরার গাড়ির লটারি</title>
+<title>পান্তা ইলিশ স্টল ১৪৩৩ — বৈশাখী লটারি</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -14,6 +14,7 @@
   --cream: #FFF8E7;
   --dark: #1A0800;
   --border: rgba(232,184,75,0.25);
+  --green: #1B5E20;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -24,45 +25,61 @@ body {
   font-family: 'Hind Siliguri', sans-serif;
   min-height: 100vh;
   padding: 20px;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
-/* Floating Price Panels */
-.price-float {
+/* Prize Counter Banner */
+.prize-counter {
+  background: rgba(0,0,0,0.7);
+  border-radius: 50px;
+  padding: 8px 16px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  z-index: 15;
+  position: relative;
+}
+.counter-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+}
+.counter-icon { font-size: 1rem; }
+.counter-label { color: rgba(255,255,255,0.6); }
+.counter-value {
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 1px 6px;
+  border-radius: 20px;
+}
+.counter-value.available { background: rgba(76,175,80,0.3); color: #4CAF50; }
+.counter-value.given { background: rgba(244,67,54,0.3); color: #f44336; }
+
+.customer-counter {
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--cream);
-  border-radius: 16px;
-  padding: 15px 12px;
-  width: 85px;
-  text-align: center;
-  z-index: 100;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-  border: 2px solid var(--gold);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.price-float.left { left: 10px; }
-.price-float.right { right: 10px; }
-.price-float:hover { transform: translateY(-50%) scale(1.05); }
-.price-icon { font-size: 2rem; display: block; margin-bottom: 5px; }
-.price-name { font-family: 'Noto Serif Bengali', serif; font-size: 0.75rem; font-weight: 700; color: var(--deep-red); }
-.price-tag { font-size: 1.3rem; font-weight: 800; color: var(--saffron); margin: 3px 0; }
-.price-items { font-size: 0.55rem; color: #555; line-height: 1.3; }
-
-@media (min-width: 768px) {
-  .price-float { width: 100px; padding: 18px 12px; }
-  .price-float.left { left: 20px; }
-  .price-float.right { right: 20px; }
-  .price-icon { font-size: 2.2rem; }
-  .price-tag { font-size: 1.5rem; }
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 30px;
+  padding: 5px 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--gold);
+  z-index: 20;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--gold);
 }
 
 /* Header */
 .page-header {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 45px;
   position: relative;
   z-index: 10;
 }
@@ -102,34 +119,76 @@ body {
 }
 .screen.active { display: flex; }
 
-.steps {
-  display: flex; gap: 10px;
-  justify-content: center;
-  margin: 10px 0;
+/* PRICE CARD PAGE (SCREEN 1) */
+.price-card-full {
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--cream);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 0 3px var(--gold), 0 0 0 6px var(--saffron), 0 30px 60px rgba(0,0,0,0.5);
 }
-.step-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(232,184,75,0.3);
-  transition: all 0.3s;
+.price-header {
+  background: linear-gradient(160deg, var(--deep-red), var(--saffron), var(--gold));
+  padding: 30px 20px;
+  text-align: center;
 }
-.step-dot.active {
-  background: var(--gold);
-  box-shadow: 0 0 8px var(--gold);
-  width: 28px; border-radius: 4px;
+.price-main-title {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
 }
-.step-dot.done { background: rgba(232,184,75,0.5); }
-
-.back-btn {
-  background: rgba(0,0,0,0.5);
-  border: 1px solid var(--border);
-  color: var(--gold);
-  padding: 8px 18px;
+.price-tagline {
+  color: var(--bright-gold);
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+.packages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 20px;
+}
+.pkg {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.pkg-basic .pkg-top { background: linear-gradient(135deg, #D4922A, #E8B84B); padding: 15px; text-align: center; }
+.pkg-shultani .pkg-top { background: linear-gradient(135deg, var(--deep-red), #C41E3A, var(--saffron)); padding: 15px; text-align: center; position: relative; }
+.pkg-shultani .pkg-top::after {
+  content: '★ সেরা বাছাই ★';
+  position: absolute;
+  top: -1px; left: 50%; transform: translateX(-50%);
+  background: var(--bright-gold);
+  color: var(--dark);
+  font-size: 0.55rem;
+  padding: 2px 10px;
+  border-radius: 0 0 8px 8px;
+  white-space: nowrap;
+}
+.pkg-icon { font-size: 1.8rem; }
+.pkg-name { font-family: 'Noto Serif Bengali', serif; font-size: 1rem; font-weight: 800; color: #fff; }
+.pkg-price { font-size: 1.6rem; font-weight: 900; color: #fff; }
+.pkg-body { background: #fff; padding: 12px; }
+.pkg-item { font-size: 0.7rem; color: #555; margin: 3px 0; display: flex; align-items: center; gap: 5px; }
+.pkg-item::before { content: '✓'; color: var(--saffron); font-weight: bold; }
+.enter-lottery-btn {
+  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
+  border: none;
+  width: calc(100% - 40px);
+  margin: 0 20px 20px;
+  padding: 15px;
   border-radius: 50px;
-  font-size: 0.75rem;
+  color: white;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
-  backdrop-filter: blur(8px);
+  transition: transform 0.2s;
 }
-.back-btn:active { background: rgba(232,184,75,0.15); transform: translateX(-3px); }
+.enter-lottery-btn:active { transform: scale(0.97); }
 
 /* Division Wheel */
 .wheel-stage {
@@ -290,6 +349,7 @@ body {
 .prize-title { font-family: 'Noto Serif Bengali', serif; font-size: 1.2rem; font-weight: 900; color: #fff; }
 .prize-msg { font-size: 0.8rem; color: rgba(255,255,255,0.9); }
 .prize-card-bottom { background: var(--cream); padding: 14px 20px; text-align: center; }
+.prize-district-msg { font-size: 0.75rem; color: var(--dark); }
 .prize-cta {
   background: linear-gradient(135deg, var(--deep-red), var(--gold));
   border: none; border-radius: 50px;
@@ -301,17 +361,33 @@ body {
   cursor: pointer;
   margin-top: 10px;
 }
-.reset-btn {
-  position: fixed; bottom: 16px; right: 16px;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid var(--border);
-  color: rgba(232,184,75,0.6);
-  padding: 8px 16px;
+
+/* Buttons */
+.next-customer-btn, .reset-stall-btn {
+  position: fixed;
+  bottom: 16px;
+  padding: 10px 20px;
   border-radius: 40px;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: bold;
   cursor: pointer;
   z-index: 20;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
+.next-customer-btn {
+  left: 16px;
+  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
+  color: white;
+}
+.reset-stall-btn {
+  right: 16px;
+  background: rgba(0,0,0,0.7);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.next-customer-btn:active, .reset-stall-btn:active { transform: scale(0.96); }
+
 .confetti-piece {
   position: fixed;
   animation: cFall ease-in forwards;
@@ -322,32 +398,96 @@ body {
   0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
   100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
 }
+
+.prize-history {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-size: 0.6rem;
+  color: var(--gold);
+  white-space: nowrap;
+  z-index: 15;
+  border: 1px solid var(--border);
+}
+
+.steps {
+  display: flex; gap: 10px;
+  justify-content: center;
+  margin: 10px 0;
+}
+.step-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(232,184,75,0.3);
+  transition: all 0.3s;
+}
+.step-dot.active {
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  width: 28px; border-radius: 4px;
+}
+.step-dot.done { background: rgba(232,184,75,0.5); }
+.back-btn {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+@media (max-width: 550px) {
+  .packages { flex-direction: column; }
+  .prize-counter { gap: 8px; }
+}
 </style>
 </head>
 <body>
 
-<!-- Floating Price Panels -->
-<div class="price-float left">
-  <div class="price-icon">🍚</div>
-  <div class="price-name">সাধারণ সেট</div>
-  <div class="price-tag">€৭</div>
-  <div class="price-items">পান্তা+ইলিশ+ভর্তা</div>
+<!-- Prize Inventory Counter -->
+<div class="prize-counter" id="prizeCounter">
+  <div class="counter-item"><span class="counter-icon">🥇</span><span class="counter-label">ফ্রি আপগ্রেড:</span><span class="counter-value available" id="freeUpgradeLeft">5</span>/<span class="counter-value given" id="freeUpgradeGiven">0</span></div>
+  <div class="counter-item"><span class="counter-icon">🎁</span><span class="counter-label">ভর্তা:</span><span class="counter-value available" id="vortaLeft">10</span>/<span class="counter-value given" id="vortaGiven">0</span></div>
+  <div class="counter-item"><span class="counter-icon">🍫</span><span class="counter-label">চকোলেট:</span><span class="counter-value available" id="chocolateLeft">5</span>/<span class="counter-value given" id="chocolateGiven">0</span></div>
+  <div class="counter-item"><span class="counter-icon">🌸</span><span class="counter-label">শুভেচ্ছা:</span><span class="counter-value available" id="wishLeft">10</span>/<span class="counter-value given" id="wishGiven">0</span></div>
 </div>
-<div class="price-float right">
-  <div class="price-icon">👑</div>
-  <div class="price-name">সুলতানি সেট</div>
-  <div class="price-tag">€১০</div>
-  <div class="price-items">পান্তা+ইলিশ+ভর্তা+চিংড়ি+বোরহানি</div>
-</div>
+<div class="customer-counter" id="customerCounter">👥 গ্রাহক: ১/৩০</div>
 
 <div class="page-header">
   <div class="flowers">🌸🌺🌼🌺🌸</div>
   <h1>পান্তা ইলিশ স্টল ১৪৩৩</h1>
-  <p>আপনার বিভাগ ও জেলা বাছাই করে লটারি জিতুন</p>
+  <p>বাংলাদেশের ৯ বিভাগ · ৬৪ জেলা · বৈশাখী লটারি</p>
 </div>
 
-<!-- SCREEN 1 - DIVISION WHEEL -->
+<!-- SCREEN 1 - PRICE PAGE -->
 <div class="screen active" id="screen1">
+  <div class="price-card-full">
+    <div class="price-header">
+      <div class="price-main-title">পান্তা ইলিশ</div>
+      <div class="price-tagline">ঐতিহ্যের গন্ধ, ভালোবাসার রান্না</div>
+      <div style="font-size:1.5rem; margin-top:5px;">🐟</div>
+    </div>
+    <div class="packages">
+      <div class="pkg pkg-basic">
+        <div class="pkg-top"><div class="pkg-icon">🍚</div><div class="pkg-name">সাধারণ সেট</div><div class="pkg-price">€৭</div></div>
+        <div class="pkg-body"><div class="pkg-item">পান্তা ভাত</div><div class="pkg-item">ইলিশ ভাজা</div><div class="pkg-item">আলু ভর্তা</div><div class="pkg-item">পেঁয়াজ + মরিচ</div></div>
+      </div>
+      <div class="pkg pkg-shultani">
+        <div class="pkg-top"><div class="pkg-icon">👑</div><div class="pkg-name">সুলতানি সেট</div><div class="pkg-price">€১০</div></div>
+        <div class="pkg-body"><div class="pkg-item">পান্তা ভাত</div><div class="pkg-item">ইলিশ ভাজা</div><div class="pkg-item">আলু ভর্তা</div><div class="pkg-item">বেগুন ভাজা</div><div class="pkg-item">শুঁটকি ভর্তা</div><div class="pkg-item">পেঁয়াজ + মরিচ</div></div>
+      </div>
+    </div>
+    <button class="enter-lottery-btn" onclick="startLotteryGame()">🎁 লটারিতে অংশ নিন 🎁</button>
+  </div>
+</div>
+
+<!-- SCREEN 2 - DIVISION WHEEL -->
+<div class="screen" id="screen2">
   <div class="steps"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div>
   <div class="wheel-stage">
     <div class="wheel-pointer">▼</div>
@@ -361,20 +501,20 @@ body {
   <div class="tap-hint">👆 চাকা ধীরে ঘুরছে — আপনার বিভাগ এলে মাঝে চাপুন!</div>
 </div>
 
-<!-- SCREEN 2 - DISTRICTS -->
-<div class="screen" id="screen2">
+<!-- SCREEN 3 - DISTRICTS -->
+<div class="screen" id="screen3">
   <div class="steps"><div class="step-dot done"></div><div class="step-dot active"></div><div class="step-dot"></div></div>
   <div style="display:flex;gap:10px;margin-bottom:15px;">
-    <button class="back-btn" onclick="goToScreen(1)">◀ পিছনে</button>
+    <button class="back-btn" onclick="goToScreen(2)">◀ পিছনে</button>
     <div style="background:rgba(0,0,0,0.5);border-radius:50px;padding:6px 16px;"><span id="s2Icon">🏙️</span> <span id="s2Name">ঢাকা বিভাগ</span></div>
   </div>
   <div class="district-grid" id="districtGrid"></div>
 </div>
 
-<!-- SCREEN 3 - LOTTERY -->
-<div class="screen" id="screen3">
+<!-- SCREEN 4 - LOTTERY -->
+<div class="screen" id="screen4">
   <div class="steps"><div class="step-dot done"></div><div class="step-dot done"></div><div class="step-dot active"></div></div>
-  <div style="width:100%;max-width:400px;margin-bottom:10px;"><button class="back-btn" onclick="goToScreen(2)">◀ পিছনে</button></div>
+  <div style="width:100%;max-width:400px;margin-bottom:10px;"><button class="back-btn" onclick="goToScreen(3)">◀ পিছনে</button></div>
   <div class="selection-banner"><div class="sel-icons" id="selIcons">🏙️🌸</div><div class="sel-name" id="selName">ঢাকা বিভাগ — ঢাকা</div></div>
   <div class="loko-box"><div class="loko-text" id="lokoText"></div><div class="loko-trans" id="lokoTrans"></div></div>
   <div class="lottery-stage">
@@ -390,10 +530,70 @@ body {
   </div>
 </div>
 
-<button class="reset-btn" onclick="hardReset()">↺ নতুন করে শুরু</button>
+<button class="next-customer-btn" id="nextCustomerBtn" onclick="nextCustomer()">👥 পরবর্তী গ্রাহক →</button>
+<button class="reset-stall-btn" onclick="resetStall()">🔄 স্টল রিসেট</button>
+<div class="prize-history" id="prizeHistory">🏆 সর্বশেষ পুরস্কার: -</div>
 
 <script>
-// ============ 9 DIVISIONS with proper IDs ============
+// ============ PRIZE INVENTORY ============
+let prizeInventory = {
+  freeUpgrade: { total: 5, given: 0, icon: "🥇", name: "ফ্রি আপগ্রেড!", msg: "সহজ সেট → সুলতানি সেট বিনামূল্যে! 🎉", top: "linear-gradient(135deg,#7B5800,#D4960A,#F5C842)" },
+  vorta: { total: 10, given: 0, icon: "🎁", name: "ভর্তা ফ্রি!", msg: "অতিরিক্ত আলু বা মাছ ভর্তা বিনামূল্যে! 🥔🐟", top: "linear-gradient(135deg,#7B0000,#C41E3A,#E8506A)" },
+  chocolate: { total: 5, given: 0, icon: "🍫", name: "চকোলেট!", msg: "একটি চকোলেট ফ্রি! 🍫", top: "linear-gradient(135deg,#1E4D2B,#2D6A4F,#52B788)" },
+  wish: { total: 10, given: 0, icon: "🌸", name: "শুভ নববর্ষ!", msg: "পান্তার মতো জীবন শীতল, ইলিশের মতো দুর্দান্ত হোক! 🎊", top: "linear-gradient(135deg,#4a2070,#7b3fb5,#a870e0)" }
+};
+
+let customerNumber = 1;
+let currentPrize = null;
+let hasSpun = false;
+
+function getAvailablePrizesArray() {
+  let available = [];
+  if (prizeInventory.freeUpgrade.given < prizeInventory.freeUpgrade.total) {
+    for (let i = 0; i < (prizeInventory.freeUpgrade.total - prizeInventory.freeUpgrade.given); i++) {
+      available.push({ type: "freeUpgrade", ...prizeInventory.freeUpgrade });
+    }
+  }
+  if (prizeInventory.vorta.given < prizeInventory.vorta.total) {
+    for (let i = 0; i < (prizeInventory.vorta.total - prizeInventory.vorta.given); i++) {
+      available.push({ type: "vorta", ...prizeInventory.vorta });
+    }
+  }
+  if (prizeInventory.chocolate.given < prizeInventory.chocolate.total) {
+    for (let i = 0; i < (prizeInventory.chocolate.total - prizeInventory.chocolate.given); i++) {
+      available.push({ type: "chocolate", ...prizeInventory.chocolate });
+    }
+  }
+  if (prizeInventory.wish.given < prizeInventory.wish.total) {
+    for (let i = 0; i < (prizeInventory.wish.total - prizeInventory.wish.given); i++) {
+      available.push({ type: "wish", ...prizeInventory.wish });
+    }
+  }
+  return available;
+}
+
+function updatePrizeDisplay() {
+  document.getElementById('freeUpgradeLeft').textContent = prizeInventory.freeUpgrade.total - prizeInventory.freeUpgrade.given;
+  document.getElementById('freeUpgradeGiven').textContent = prizeInventory.freeUpgrade.given;
+  document.getElementById('vortaLeft').textContent = prizeInventory.vorta.total - prizeInventory.vorta.given;
+  document.getElementById('vortaGiven').textContent = prizeInventory.vorta.given;
+  document.getElementById('chocolateLeft').textContent = prizeInventory.chocolate.total - prizeInventory.chocolate.given;
+  document.getElementById('chocolateGiven').textContent = prizeInventory.chocolate.given;
+  document.getElementById('wishLeft').textContent = prizeInventory.wish.total - prizeInventory.wish.given;
+  document.getElementById('wishGiven').textContent = prizeInventory.wish.given;
+  document.getElementById('customerCounter').textContent = `👥 গ্রাহক: ${customerNumber}/৩০`;
+}
+
+function getRandomPrize() {
+  const available = getAvailablePrizesArray();
+  if (available.length === 0) {
+    return { icon: "🌸", name: "শুভ নববর্ষ!", msg: "সব পুরস্কার শেষ! শুভ নববর্ষ! 🎊", top: "linear-gradient(135deg,#4a2070,#7b3fb5,#a870e0)" };
+  }
+  const randomIndex = Math.floor(Math.random() * available.length);
+  return available[randomIndex];
+}
+
+// ============ DIVISIONS (9 Divisions including Cumilla) ============
 const divisions = [
   { id:"dhaka", name:"ঢাকা", icon:"🏙️", item:"🍲 ঢাকাইয়া পান্তা", c1:"#C93A08", c2:"#F07B1C" },
   { id:"chattogram", name:"চট্টগ্রাম", icon:"🌊", item:"🐟 মেইজবান ইলিশ", c1:"#004E6E", c2:"#008DB4" },
@@ -406,9 +606,8 @@ const divisions = [
   { id:"mymensingh", name:"ময়মনসিংহ", icon:"🎵", item:"🥛 গীতিকার পান্তা", c1:"#6A1A00", c2:"#B04020" }
 ];
 
-// ============ ALL 64 DISTRICTS with proper division mapping ============
+// ============ ALL 64 DISTRICTS ============
 const districtsData = {
-  // ঢাকা বিভাগ - 13 districts
   dhaka: [
     { name:"ঢাকা", icon:"🏙️", loko:"ঢাকাইয়ারা পান্তা না খাইলে কি বৈশাখ হয় নাকি?", trans:"ঢাকাইয়ারা পান্তা না খেলে কি বৈশাখ হয়?" },
     { name:"গাজীপুর", icon:"🏗️", loko:"গাজীপুরের ভাই! ফ্যাক্টরি ছাইড়া আইসো, একখান পান্তা মারো!", trans:"ফ্যাক্টরি ছেড়ে এসো, একটা পান্তা মারো!" },
@@ -424,7 +623,6 @@ const districtsData = {
     { name:"ফরিদপুর", icon:"🌾", loko:"ফরিদপুরের মানুষ! বড় বড় কথা কম, পান্তা বেশি খাও!", trans:"বড় বড় কথা কম, পান্তা বেশি খাও!" },
     { name:"নরসিংদী", icon:"🌺", loko:"নরসিংদীর ভাই! কাঁঠাল খাও বেশি জানি, আইজ পান্তা খাও একটু!", trans:"কাঁঠাল খাও বেশি জানি, আজ পান্তা খাও একটু!" }
   ],
-  // চট্টগ্রাম বিভাগ - 5 districts (Chattogram city + Cox's Bazar + 3 Hill Tracts)
   chattogram: [
     { name:"চট্টগ্রাম", icon:"🌊", loko:"আঁরার চাটগাঁর মানুষ! ইলিশ মাছর ভাজি দেইখলে পেডে লাথি মারে!", trans:"আমাদের চট্টগ্রামের মানুষ! ইলিশ দেখলে পেটে লাথি মারে!" },
     { name:"কক্সবাজার", icon:"🏖️", loko:"কক্সবাজারের মানুষ! সমুদ্র ছাইড়া আইছো, পান্তায় সমুদ্রের স্বাদ পাইবা!", trans:"সমুদ্র ছেড়ে এসেছ, পান্তায় সমুদ্রের স্বাদ পাবে!" },
@@ -432,7 +630,6 @@ const districtsData = {
     { name:"বান্দরবান", icon:"🏔️", loko:"বান্দরবানের মানুষ! মেঘের উপরে থাকো, পান্তায় মাটির স্বাদ নাও!", trans:"মেঘের উপরে থাকো, পান্তায় মাটির স্বাদ নাও!" },
     { name:"খাগড়াছড়ি", icon:"🌿", loko:"খাগড়াছড়ির মানুষ! পাহাড়ি টেস্ট আলাদা জানি, কিন্তু পান্তা-ইলিশ একবার খাও!", trans:"পাহাড়ি টেস্ট আলাদা জানি, কিন্তু পান্তা-ইলিশ একবার খাও!" }
   ],
-  // কুমিল্লা বিভাগ - 6 districts (NEW DIVISION!)
   cumilla: [
     { name:"কুমিল্লা", icon:"🍮", loko:"কুমিল্লার মানুষ! রসমালাই বিখ্যাত তোমাগো, আইজকা পান্তা ট্রাই দাও!", trans:"রসমালাই বিখ্যাত তোমাদের, আজকে পান্তা ট্রাই দাও!" },
     { name:"ব্রাহ্মণবাড়িয়া", icon:"🎶", loko:"ব্রাহ্মণবাড়িয়ার মানুষ! ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!", trans:"ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!" },
@@ -441,14 +638,12 @@ const districtsData = {
     { name:"ফেনী", icon:"🌸", loko:"ফেনীর মানুষ! ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!", trans:"ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!" },
     { name:"লক্ষ্মীপুর", icon:"⚓", loko:"লক্ষ্মীপুরের মানুষ! মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!", trans:"মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!" }
   ],
-  // সিলেট বিভাগ - 4 districts
   sylhet: [
     { name:"সিলেট", icon:"🍃", loko:"আরে সিলেটি বেডা! চা বাগানের মানুষ, পান্তা না খাইলে বইশাখ নাই!", trans:"চা বাগানের মানুষ, পান্তা না খেলে বৈশাখ নেই!" },
     { name:"মৌলভীবাজার", icon:"🍵", loko:"মৌলভীবাজারের মানুষ! চায়ের দেশ থেকে আইছো — পান্তা খাইয়া রিফ্রেশ হও!", trans:"চায়ের দেশ থেকে এসেছ — পান্তা খেয়ে রিফ্রেশ হও!" },
     { name:"হবিগঞ্জ", icon:"🌲", loko:"হবিগঞ্জের মানুষ! হাওরের কথা মনে পড়তেছে? পান্তায় একটু ভুলো!", trans:"হাওরের কথা মনে পড়ছে? পান্তায় একটু ভুলো!" },
     { name:"সুনামগঞ্জ", icon:"🚣", loko:"সুনামগঞ্জের মানুষ! হাওরে নাও বাইছো সারাজীবন — আইজ পান্তা বাইও!", trans:"হাওরে নৌকা বেয়েছ সারাজীবন — আজ পান্তা বাও!" }
   ],
-  // রাজশাহী বিভাগ - 8 districts
   rajshahi: [
     { name:"রাজশাহী", icon:"🥭", loko:"রাজশাহীর দোস্ত! আম খাইছো সারাজীবন, আইজ পান্তা-ইলিশ খাও!", trans:"আম খেয়েছ সারাজীবন, আজ পান্তা-ইলিশ খাও!" },
     { name:"চাঁপাইনবাবগঞ্জ", icon:"🥭", loko:"চাঁপাইনবাবগঞ্জের মানুষ! আমের রাজধানী থেকে আইছো — পান্তা-ইলিশও রাজকীয়!", trans:"আমের রাজধানী থেকে এসেছ — পান্তা-ইলিশও রাজকীয়!" },
@@ -459,7 +654,6 @@ const districtsData = {
     { name:"সিরাজগঞ্জ", icon:"🧵", loko:"সিরাজগঞ্জের মানুষ! তাঁত বুনো সারাদিন — পান্তা খাও এখন!", trans:"তাঁত বুনো সারাদিন — পান্তা খাও এখন!" },
     { name:"জয়পুরহাট", icon:"⛏️", loko:"জয়পুরহাটের মানুষ! চিনি কলের জেলা তোমাগো — পান্তায় মিষ্টি না থাকলেও হাসি আছে!", trans:"চিনি কলের জেলা — পান্তায় মিষ্টি না থাকলেও হাসি আছে!" }
   ],
-  // খুলনা বিভাগ - 10 districts
   khulna: [
     { name:"খুলনা", icon:"🌿", loko:"খুলনার ভাই! সুন্দরবনের বাঘ তোমাগো পাড়ায় — পান্তায় কোনো ভয় নাই!", trans:"সুন্দরবনের বাঘ তোমাদের পাড়ায় — পান্তায় কোনো ভয় নেই!" },
     { name:"যশোর", icon:"🌹", loko:"যশোরের মানুষ! ফুলের শহর তোমাগো — পান্তা খাইয়া আরো ফুটো!", trans:"ফুলের শহর তোমাদের — পান্তা খেয়ে আরো ফুটো!" },
@@ -472,7 +666,6 @@ const districtsData = {
     { name:"মাগুরা", icon:"🎭", loko:"মাগুরার মানুষ! শান্ত মানুষ তোমরা — পান্তার মতোই ঠান্ডা!", trans:"শান্ত মানুষ তোমরা — পান্তার মতোই ঠান্ডা!" },
     { name:"চুয়াডাঙ্গা", icon:"🌤️", loko:"চুয়াডাঙ্গার মানুষ! সীমান্তের কাছে থাকো — পান্তায় দেশের গন্ধ নাও!", trans:"সীমান্তের কাছে থাকো — পান্তায় দেশের গন্ধ নাও!" }
   ],
-  // বরিশাল বিভাগ - 6 districts
   barisal: [
     { name:"বরিশাল", icon:"⛵", loko:"ওই বরিশাইল্লা! নদীর দেশের মানুষ — ইলিশ তো তোমাগো রক্তে!", trans:"নদীর দেশের মানুষ — ইলিশ তো তোমাদের রক্তে!" },
     { name:"পটুয়াখালী", icon:"🏖️", loko:"পটুয়াখালীর মানুষ! কুয়াকাটার পাশে বড় হইছো — সমুদ্র ছাইড়া পান্তা খাও!", trans:"কুয়াকাটার পাশে বড় হয়েছ — সমুদ্র ছেড়ে পান্তা খাও!" },
@@ -481,7 +674,6 @@ const districtsData = {
     { name:"পিরোজপুর", icon:"🚣", loko:"পিরোজপুরের মানুষ! নদীতে নৌকা বাইছো সারাজীবন — পান্তার নৌকায় চড়ো!", trans:"নদীতে নৌকা বেয়েছ সারাজীবন — পান্তার নৌকায় চড়ো!" },
     { name:"বরগুনা", icon:"🌀", loko:"বরগুনার মানুষ! ঘূর্ণিঝড়ের সাথে যুদ্ধ করো — পান্তা খেতে ভয় পাও না তো?", trans:"ঘূর্ণিঝড়ের সাথে যুদ্ধ করো — পান্তা খেতে ভয় নেই তো?" }
   ],
-  // রংপুর বিভাগ - 8 districts
   rangpur: [
     { name:"রংপুর", icon:"🌾", loko:"রংপুরের মিয়া ভাই! কনে যাও এ্যালা? এককান পান্তা খাইয়া যাও!", trans:"কোথায় যাও এখন? একটা পান্তা খেয়ে যাও!" },
     { name:"দিনাজপুর", icon:"🍚", loko:"দিনাজপুরের মানুষ! কাটারিভোগ চালের দেশ — পান্তার চাল তোমাগো কাছ থেকেই আইছে!", trans:"কাটারিভোগ চালের দেশ — পান্তার চাল তোমাদের কাছ থেকে!" },
@@ -492,7 +684,6 @@ const districtsData = {
     { name:"কুড়িগ্রাম", icon:"🌊", loko:"কুড়িগ্রামের মানুষ! বন্যার সাথে যুদ্ধ করো প্রতিবছর — পান্তা খেতে এত সাহস লাগে না!", trans:"বন্যার সাথে যুদ্ধ করো — পান্তা খেতে এত সাহস লাগে না!" },
     { name:"গাইবান্ধা", icon:"🌾", loko:"গাইবান্ধার মানুষ! ব্রহ্মপুত্রের পাড়ের মানুষ — পান্তাও ব্রহ্মপুত্রের মতো সুন্দর!", trans:"ব্রহ্মপুত্রের পাড়ের মানুষ — পান্তাও ব্রহ্মপুত্রের মতো সুন্দর!" }
   ],
-  // ময়মনসিংহ বিভাগ - 4 districts
   mymensingh: [
     { name:"ময়মনসিংহ", icon:"🎵", loko:"ময়মনসিংহের মানুষ! গীতিকার দেশ তোমাগো — পান্তার গান গাও এখন!", trans:"গীতিকার দেশ তোমাদের — পান্তার গান গাও এখন!" },
     { name:"নেত্রকোণা", icon:"🌧️", loko:"নেত্রকোণার মানুষ! হাওরের বৃষ্টিতে ভিজছো সারাজীবন — পান্তায় আরেকটু ভেজো!", trans:"হাওরের বৃষ্টিতে ভিজেছ সারাজীবন — পান্তায় আরেকটু ভেজো!" },
@@ -500,16 +691,6 @@ const districtsData = {
     { name:"জামালপুর", icon:"🏺", loko:"জামালপুরের মানুষ! যমুনার পাড়ের মানুষ — পান্তায় যমুনার ঢেউ অনুভব করো!", trans:"যমুনার পাড়ের মানুষ — পান্তায় যমুনার ঢেউ অনুভব করো!" }
   ]
 };
-
-// PRIZES
-const prizes = [
-  { icon:"🥇", title:"ফ্রি আপগ্রেড!", msg:"সহজ সেট → সুলতানি সেট বিনামূল্যে! 🎉", top:"linear-gradient(135deg,#7B5800,#D4960A,#F5C842)" },
-  { icon:"🥇", title:"ফ্রি আপগ্রেড!", msg:"সহজ সেট → সুলতানি সেট বিনামূল্যে! 🎉", top:"linear-gradient(135deg,#7B5800,#D4960A,#F5C842)" },
-  { icon:"🎁", title:"আলু ভর্তা ফ্রি!", msg:"অতিরিক্ত আলু ভর্তা বিনামূল্যে! 🥔", top:"linear-gradient(135deg,#7B0000,#C41E3A,#E8506A)" },
-  { icon:"🐟", title:"মাছ ভর্তা ফ্রি!", msg:"অতিরিক্ত মাছ ভর্তা বিনামূল্যে! 🐟", top:"linear-gradient(135deg,#004A5A,#007A8A,#00AAAA)" },
-  { icon:"🍫", title:"চকোলেট!", msg:"একটি চকোলেট ফ্রি! 🍫", top:"linear-gradient(135deg,#1E4D2B,#2D6A4F,#52B788)" },
-  { icon:"🌸", title:"শুভ নববর্ষ!", msg:"পান্তার মতো জীবন শীতল, ইলিশের মতো দুর্দান্ত হোক! 🎊", top:"linear-gradient(135deg,#4a2070,#7b3fb5,#a870e0)" }
-];
 
 let divIndex = 0, divRotation = 0, divAnimId = null;
 let selDiv = null, selDist = null;
@@ -567,49 +748,63 @@ function drawDivWheel() {
   ctx.stroke();
 }
 
-// SLOWER ROTATION - ~10 seconds per full rotation
+// Get current division under pointer (top position)
+function getDivisionUnderPointer() {
+  const pointerAngle = Math.PI/2; // pointer at top (12 o'clock)
+  const slice = (Math.PI * 2) / divisions.length;
+  let idx = Math.floor(((pointerAngle + divRotation) % (Math.PI * 2)) / slice);
+  idx = (divisions.length - idx) % divisions.length;
+  return divisions[idx];
+}
+
+function updateDivisionDisplay() {
+  const currentDiv = getDivisionUnderPointer();
+  divIndex = divisions.findIndex(d => d.id === currentDiv.id);
+  document.getElementById('divPillName').textContent = currentDiv.name;
+  document.getElementById('divPillItem').textContent = currentDiv.icon + ' ' + currentDiv.item;
+}
+
 function startDivRotation() {
   if (divAnimId) cancelAnimationFrame(divAnimId);
-  
   let lastTime = 0;
-  const speed = 0.0012; // Very slow - ~10.5 seconds per full rotation
+  const speed = 0.0012; // Very slow - ~10 seconds per rotation
   
   function animate(now) {
     const dt = lastTime ? Math.min(50, now - lastTime) : 16;
     lastTime = now;
     divRotation += speed * dt;
     divRotation %= Math.PI * 2;
-    
-    const slice = (Math.PI * 2) / divisions.length;
-    const norm = ((Math.PI * 2 - divRotation + Math.PI/2) % (Math.PI * 2));
-    const newIdx = Math.floor(norm / slice) % divisions.length;
-    if (newIdx !== divIndex) {
-      divIndex = newIdx;
-      document.getElementById('divPillName').textContent = divisions[divIndex].name;
-      document.getElementById('divPillItem').textContent = divisions[divIndex].icon + ' ' + divisions[divIndex].item;
-    }
-    
     drawDivWheel();
+    updateDivisionDisplay();
     divAnimId = requestAnimationFrame(animate);
   }
-  
   divAnimId = requestAnimationFrame(animate);
 }
 
 function selectDivision() {
   if (divAnimId) cancelAnimationFrame(divAnimId);
-  selDiv = divisions[divIndex];
+  selDiv = getDivisionUnderPointer();
   document.getElementById('s2Icon').textContent = selDiv.icon;
   document.getElementById('s2Name').textContent = selDiv.name + ' বিভাগ';
-  confettiBurst(50);
+  confettiBurst(30);
+  goToScreen(3);
+}
+
+function startLotteryGame() {
   goToScreen(2);
 }
 
 function goToScreen(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen' + n).classList.add('active');
-  if (n === 2) renderDistricts();
-  if (n === 3) renderLottery();
+  let screenId = '';
+  if (n === 1) screenId = 'screen1';
+  else if (n === 2) screenId = 'screen2';
+  else if (n === 3) screenId = 'screen3';
+  else if (n === 4) screenId = 'screen4';
+  document.getElementById(screenId).classList.add('active');
+  if (n === 2 && !divAnimId) startDivRotation();
+  if (n === 3) renderDistricts();
+  if (n === 4) renderLottery();
 }
 
 function renderDistricts() {
@@ -630,8 +825,8 @@ function renderDistricts() {
 
 function pickDistrict(i) {
   selDist = (districtsData[selDiv.id] || [])[i];
-  confettiBurst(40);
-  goToScreen(3);
+  confettiBurst(30);
+  goToScreen(4);
 }
 
 function renderLottery() {
@@ -643,6 +838,7 @@ function renderLottery() {
   document.getElementById('prizeWrap').classList.remove('show');
   lotteryAngle = 0;
   lotterySpinning = false;
+  hasSpun = false;
   drawLotteryWheel();
 }
 
@@ -651,7 +847,9 @@ function drawLotteryWheel() {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = w/2 - 5;
-  const n = prizes.length, slice = (Math.PI * 2) / n;
+  const available = getAvailablePrizesArray();
+  const n = Math.max(available.length, 6);
+  const slice = (Math.PI * 2) / n;
   
   ctx.clearRect(0, 0, w, h);
   const colors = ['#C93A08', '#7B5800', '#C41E3A', '#1E4D2B', '#4a2070', '#004A5A'];
@@ -659,6 +857,7 @@ function drawLotteryWheel() {
   for (let i = 0; i < n; i++) {
     const sa = lotteryAngle + i * slice - Math.PI/2;
     const ea = sa + slice;
+    const prize = available[i % available.length] || { icon: "🌸" };
     
     ctx.beginPath();
     ctx.moveTo(cx, cy);
@@ -679,7 +878,7 @@ function drawLotteryWheel() {
     ctx.shadowBlur = 4;
     ctx.shadowColor = "rgba(0,0,0,0.4)";
     ctx.fillStyle = "white";
-    ctx.fillText(prizes[i].icon, r * 0.65, 0);
+    ctx.fillText(prize.icon, r * 0.65, 0);
     ctx.restore();
   }
   
@@ -692,6 +891,11 @@ function drawLotteryWheel() {
 
 function spinLottery() {
   if (lotterySpinning) return;
+  if (hasSpun) {
+    alert("আপনি ইতিমধ্যে লটারি করে ফেলেছেন! পরবর্তী গ্রাহকের জন্য 'পরবর্তী গ্রাহক' বাটনে ক্লিক করুন।");
+    return;
+  }
+  
   lotterySpinning = true;
   document.getElementById('prizeWrap').classList.remove('show');
   
@@ -713,28 +917,84 @@ function spinLottery() {
       lotteryAngle %= (Math.PI * 2);
       drawLotteryWheel();
       
-      const slice = (Math.PI * 2) / prizes.length;
-      const norm = ((Math.PI * 2 - lotteryAngle) % (Math.PI * 2));
-      const idx = Math.floor(norm / slice) % prizes.length;
-      const winner = prizes[idx];
+      const winner = getRandomPrize();
+      currentPrize = winner;
       
-      confettiBurst(winner.title.includes('আপগ্রেড') ? 120 : 60);
+      if (winner.type === "freeUpgrade") prizeInventory.freeUpgrade.given++;
+      else if (winner.type === "vorta") prizeInventory.vorta.given++;
+      else if (winner.type === "chocolate") prizeInventory.chocolate.given++;
+      else prizeInventory.wish.given++;
+      
+      updatePrizeDisplay();
+      hasSpun = true;
+      document.getElementById('prizeHistory').innerHTML = `🏆 সর্বশেষ পুরস্কার: ${winner.name} (গ্রাহক ${customerNumber})`;
+      confettiBurst(winner.name.includes('আপগ্রেড') ? 120 : 60);
       showPrize(winner);
       lotterySpinning = false;
     }
   }
-  
   requestAnimationFrame(frame);
 }
 
 function showPrize(prize) {
   const wrap = document.getElementById('prizeWrap');
   document.getElementById('prizeEmoji').innerHTML = prize.icon + ' ✨';
-  document.getElementById('prizeTitle').innerHTML = prize.title;
+  document.getElementById('prizeTitle').innerHTML = prize.name;
   document.getElementById('prizeMsg').innerHTML = prize.msg;
   document.getElementById('prizeTop').style.background = prize.top;
   document.getElementById('prizeDistMsg').innerHTML = `🎊 <strong>${selDist.name}</strong> জেলার জন্য অভিনন্দন! 🎊<br>স্টলে এসে পুরস্কার দেখান`;
   wrap.classList.add('show');
+}
+
+function nextCustomer() {
+  if (customerNumber >= 30) {
+    alert("🎉 ৩০ জন গ্রাহকের লটারি সম্পন্ন হয়েছে! 'স্টল রিসেট' বাটনে ক্লিক করুন নতুন করে শুরু করতে। 🎉");
+    return;
+  }
+  customerNumber++;
+  hasSpun = false;
+  currentPrize = null;
+  selDiv = null;
+  selDist = null;
+  divIndex = 0;
+  divRotation = 0;
+  lotteryAngle = 0;
+  lotterySpinning = false;
+  
+  if (divAnimId) cancelAnimationFrame(divAnimId);
+  startDivRotation();
+  goToScreen(2);
+  document.getElementById('prizeHistory').innerHTML = `🏆 পরবর্তী গ্রাহক ${customerNumber} প্রস্তুত`;
+  setTimeout(() => {
+    if (customerNumber <= 30) document.getElementById('prizeHistory').innerHTML = `🏆 সর্বশেষ পুরস্কার: -`;
+  }, 2000);
+}
+
+function resetStall() {
+  // Reset all prizes
+  prizeInventory.freeUpgrade.given = 0;
+  prizeInventory.vorta.given = 0;
+  prizeInventory.chocolate.given = 0;
+  prizeInventory.wish.given = 0;
+  customerNumber = 1;
+  hasSpun = false;
+  currentPrize = null;
+  selDiv = null;
+  selDist = null;
+  divIndex = 0;
+  divRotation = 0;
+  lotteryAngle = 0;
+  lotterySpinning = false;
+  
+  updatePrizeDisplay();
+  if (divAnimId) cancelAnimationFrame(divAnimId);
+  startDivRotation();
+  goToScreen(1);
+  document.getElementById('prizeHistory').innerHTML = `🏆 স্টল রিসেট করা হয়েছে! নতুন ৩০ জন গ্রাহক প্রস্তুত`;
+  setTimeout(() => {
+    document.getElementById('prizeHistory').innerHTML = `🏆 সর্বশেষ পুরস্কার: -`;
+  }, 3000);
+  confettiBurst(50);
 }
 
 function confettiBurst(count) {
@@ -758,20 +1018,7 @@ function confettiBurst(count) {
   }
 }
 
-function hardReset() {
-  selDiv = null;
-  selDist = null;
-  divIndex = 0;
-  divRotation = 0;
-  lotteryAngle = 0;
-  lotterySpinning = false;
-  if (divAnimId) cancelAnimationFrame(divAnimId);
-  startDivRotation();
-  goToScreen(1);
-}
-
-// START
-startDivRotation();
+updatePrizeDisplay();
 </script>
 </body>
 </html>
