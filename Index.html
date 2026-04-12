@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>পান্তা ইলিশ স্টল ১৪৩২ — ঘোরার গাড়ির লটারি</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700;900&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #0a0500;
+  background-image: radial-gradient(circle at 10% 20%, #2a1500 0%, #0a0500 100%);
+  font-family: 'Hind Siliguri', sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+/* Pohela Boishak Decorations */
+.alpona-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.alpona {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Traditional Banner */
+.banner {
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.banner-border {
+  background: rgba(232,184,75,0.1);
+  border-top: 3px solid #E8B84B;
+  border-bottom: 3px solid #E8B84B;
+  padding: 15px 10px;
+  display: inline-block;
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(5px);
+}
+
+.banner h1 {
+  font-family: 'Noto Serif Bengali', serif;
+  color: #E8B84B;
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  font-weight: 900;
+  text-shadow: 0 0 20px rgba(232,184,75,0.5);
+  letter-spacing: 3px;
+}
+
+.banner p {
+  color: rgba(232,184,75,0.7);
+  font-size: 0.7rem;
+  margin-top: 5px;
+}
+
+/* Back Button */
+.back-btn {
+  background: rgba(232,184,75,0.15);
+  border: 1.5px solid rgba(232,184,75,0.5);
+  color: #E8B84B;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  backdrop-filter: blur(5px);
+}
+
+.back-btn:active {
+  background: rgba(232,184,75,0.3);
+  transform: translateX(-5px);
+}
+
+/* Rotating Wheel Container */
+.wheel-container {
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.rotating-wheel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.wheel-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8B0000, #D4420A, #F07B1C);
+  box-shadow: 0 0 0 8px rgba(232,184,75,0.2), 0 0 0 15px rgba(232,184,75,0.1), 0 20px 40px rgba(0,0,0,0.5);
+  transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.wheel-ring:active {
+  transform: scale(0.97);
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: #FFFAF0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 5px #E8B84B, 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+.wheel-center span {
+  font-size: 2rem;
+}
+
+.wheel-slice {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  transform-origin: 0% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.current-division-display {
+  text-align: center;
+  margin-top: 20px;
+  padding: 12px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 60px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232,184,75,0.3);
+}
+
+.current-division-display .label {
+  font-size: 0.7rem;
+  color: rgba(232,184,75,0.6);
+  letter-spacing: 2px;
+}
+
+.current-division-name {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #E8B84B;
+  margin: 5px 0;
+}
+
+.current-division-item {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.touch-instruction {
+  text-align: center;
+  margin-top: 15px;
+  color: #E8B84B;
+  font-size: 0.8rem;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Timer Bar */
+.timer-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(232,184,75,0.2);
+  border-radius: 2px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.timer-progress {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #E8B84B, #D4420A);
+  border-radius: 2px;
+  animation: shrink 4s linear infinite;
+}
+
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* Grid for districts */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* District Card */
+.district-card {
+  background: #FFFAF0;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  border: 2px solid rgba(232,184,75,0.4);
+}
+
+.district-card:active {
+  transform: scale(0.96);
+}
+
+.district-card-header {
+  background: linear-gradient(135deg, #D4420A, #F07B1C);
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+}
+
+.district-icon {
+  font-size: 2.8rem;
+}
+
+.district-name {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin-top: 8px;
+}
+
+.district-dialogue {
+  padding: 12px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #5a3a2a;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Lottery Wheel Page */
+.lottery-container {
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeInUp 0.5s ease;
+}
+
+.lottery-wheel-wrapper {
+  position: relative;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.ghorar-gari-wheel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.wheel-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(232,184,75,0.3), 0 0 0 15px rgba(232,184,75,0.15), 0 25px 40px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+}
+
+.wheel-canvas:active {
+  transform: scale(0.98);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  z-index: 5;
+}
+
+.wheel-center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: #FFFAF0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px #E8B84B;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 6;
+  transition: all 0.2s;
+}
+
+.wheel-center-button:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.selected-info {
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 15px;
+  margin: 20px 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232,184,75,0.3);
+}
+
+.loko-kotha-box {
+  background: rgba(212,66,10,0.2);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px 0;
+  border-left: 4px solid #E8B84B;
+}
+
+.loko-kotha {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #E8B84B;
+  font-style: italic;
+}
+
+.translation {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 8px;
+}
+
+/* Prize Result */
+.prize-result {
+  margin-top: 20px;
+  display: none;
+}
+
+.prize-result.show {
+  display: block;
+  animation: bounceIn 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  80% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.prize-card {
+  background: #FFFAF0;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  border: 2px solid #E8B84B;
+}
+
+.prize-icon {
+  font-size: 4rem;
+}
+
+.prize-title {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.prize-message {
+  font-size: 0.9rem;
+  color: #5a3a2a;
+  line-height: 1.5;
+}
+
+.spin-again-btn {
+  background: linear-gradient(135deg, #D4420A, #E8B84B);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 25px;
+  color: white;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.2s;
+}
+
+.spin-again-btn:active {
+  transform: scale(0.96);
+}
+
+/* Reset Button */
+.reset-btn {
+  display: block;
+  margin: 30px auto 10px;
+  background: rgba(232,184,75,0.15);
+  border: 1px solid rgba(232,184,75,0.4);
+  color: #E8B84B;
+  padding: 10px 25px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+/* Confetti */
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  animation: confettiFall 1.8s ease-in forwards;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* Floating Elements */
+.floating {
+  position: fixed;
+  font-size: 1rem;
+  animation: floatSlow linear infinite;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.2; }
+  90% { opacity: 0.2; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
+.section-title {
+  text-align: center;
+  margin: 20px 0;
+  color: #E8B84B;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .district-card-header {
+    padding: 15px 8px;
+  }
+  
+  .district-icon {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Floating Pohela Boishak Elements -->
+<div class="floating" style="left:5%;animation-duration:14s;animation-delay:0s">🌾</div>
+<div class="floating" style="left:12%;animation-duration:18s;animation-delay:2s">🐟</div>
+<div class="floating" style="left:20%;animation-duration:12s;animation-delay:4s">🌸</div>
+<div class="floating" style="left:70%;animation-duration:16s;animation-delay:1s">🌺</div>
+<div class="floating" style="left:78%;animation-duration:13s;animation-delay:5s">🍃</div>
+<div class="floating" style="left:88%;animation-duration:15s;animation-delay:3s">🌾</div>
+<div class="floating" style="left:95%;animation-duration:11s;animation-delay:6s">🐟</div>
+
+<div class="banner">
+  <div class="banner-border">
+    <h1>🌸 পান্তা ইলিশ স্টল ১৪৩২ 🌸</h1>
+    <p>ঘোরার গাড়ি — আপনার ভাগ্য নিজেই বাছুন</p>
+  </div>
+</div>
+
+<div id="appContainer">
+  <!-- Dynamic content -->
+</div>
+
+<button class="reset-btn" id="resetBtn" onclick="resetToDivision()">🔄 শুরু থেকে আবার খেলুন</button>
+
+<script>
+// ============ DIVISION DATA ============
+const divisions = [
+  { id: "dhaka", name: "ঢাকা", icon: "🏙️", traditionalItem: "🍲 পান্তা ইলিশ", color1: "#D4420A", color2: "#F07B1C", description: "ঢাকাইয়া পান্তা আর ইলিশ — পুরান ঢাকার ঐতিহ্য" },
+  { id: "chattogram", name: "চট্টগ্রাম", icon: "🌊", traditionalItem: "🐟 মেইজবান", color1: "#006A8E", color2: "#0099B0", description: "মেইজবান ও ইলিশ ভর্তা — নৌকা বাইয়া খাইতে বলেন" },
+  { id: "cumilla", name: "কুমিল্লা", icon: "🍮", traditionalItem: "🍬 রসমালাই", color1: "#C41E3A", color2: "#E8505B", description: "রসমালাই আর পান্তা — মিষ্টি আর টক মিশায় দারুন" },
+  { id: "rajshahi", name: "রাজশাহী", icon: "🥭", traditionalItem: "🥭 আম", color1: "#D4960A", color2: "#F5C842", description: "আমের সাথে ইলিশ — রাজশাহীর স্পেশাল কম্বো" },
+  { id: "khulna", name: "খুলনা", icon: "🌿", traditionalItem: "🦀 চিংড়ি", color1: "#2d6a4f", color2: "#52b788", description: "সুন্দরবনের চিংড়ি ভর্তা — খুলনার গর্ব" },
+  { id: "barisal", name: "বরিশাল", icon: "⛵", traditionalItem: "🍚 বাইন্না চাল", color1: "#006994", color2: "#20B2AA", description: "বাইন্না চালের পান্তা — নদীর দেশের স্বাদ" },
+  { id: "sylhet", name: "সিলেট", icon: "🍃", traditionalItem: "🍵 চা", color1: "#4A7A2A", color2: "#6BAF3A", description: "চা আর পান্তা — সিলেটি ঠান্ডায় অসাধারণ" },
+  { id: "rangpur", name: "রংপুর", icon: "🌾", traditionalItem: "🍚 কাটারিভোগ", color1: "#9A6A00", color2: "#CC8A00", description: "কাটারিভোগ চালের পান্তা — উত্তরের ঐতিহ্য" },
+  { id: "mymensingh", name: "ময়মনসিংহ", icon: "🎵", traditionalItem: "🥛 দই", color1: "#7B3FB5", color2: "#A67BD4", description: "মাটির হাঁড়ির দই আর পান্তা — গ্রাম্য স্বাদ" }
+];
+
+// ============ DISTRICT DATA with Loko Kotha ============
+const districtsData = {
+  dhaka: [
+    { name: "ঢাকা", icon: "🏙️", lokoKotha: "ঢাকাইয়ারা পান্তা না খাইলে কি বৈশাখ হয় নাকি?", translation: "ঢাকাইয়ারা পান্তা না খেলে কি বৈশাখ হয়?" },
+    { name: "গাজীপুর", icon: "🏗️", lokoKotha: "গাজীপুরের ভাই! ফ্যাক্টরি ছাইড়া আইসো, একখান পান্তা মারো!", translation: "গাজীপুরের ভাই! ফ্যাক্টরি ছেড়ে এসো, একটা পান্তা মারো!" },
+    { name: "নারায়ণগঞ্জ", icon: "🏭", lokoKotha: "নারায়ণগঞ্জের মানুষ! কাপড়ের লগে পান্তাও টপ কোয়ালিটি লইবা!", translation: "নারায়ণগঞ্জের মানুষ! কাপড়ের সাথে পান্তাও টপ কোয়ালিটি নেবে!" },
+    { name: "টাঙ্গাইল", icon: "🧵", lokoKotha: "টাঙ্গাইলের মানুষ! শাড়ির মতোই জীবন সুন্দর — পান্তা খাইয়া আরো সুন্দর করো!", translation: "টাঙ্গাইলের মানুষ! শাড়ির মতোই জীবন সুন্দর — পান্তা খেয়ে আরো সুন্দর করো!" }
+  ],
+  chattogram: [
+    { name: "চট্টগ্রাম", icon: "🌊", lokoKotha: "আঁরার চাটগাঁর মানুষ! ইলিশ মাছর ভাজি দেইখলে আঁরার পেডে লাথি মারে!", translation: "আমাদের চট্টগ্রামের মানুষ! ইলিশ মাছের ভাজা দেখলে পেটে লাথি মারে!" },
+    { name: "কক্সবাজার", icon: "🏖️", lokoKotha: "কক্সবাজারের মানুষ! সমুদ্র ছাইড়া আইছো, পান্তায় সমুদ্রের স্বাদ পাইবা!", translation: "কক্সবাজারের মানুষ! সমুদ্র ছেড়ে এসেছ, পান্তায় সমুদ্রের স্বাদ পাবে!" },
+    { name: "রাঙ্গামাটি", icon: "⛰️", lokoKotha: "রাঙ্গামাটির মানুষ! পাহাড় থেকে সমতলে আইছো — পান্তায় স্বাগতম!", translation: "রাঙ্গামাটির মানুষ! পাহাড় থেকে সমতলে এসেছ — পান্তায় স্বাগতম!" }
+  ],
+  cumilla: [
+    { name: "কুমিল্লা", icon: "🍮", lokoKotha: "কুমিল্লার মানুষ! রসমালাই বিখ্যাত তোমাগো, আইজকা পান্তা ট্রাই দাও!", translation: "কুমিল্লার মানুষ! রসমালাই বিখ্যাত তোমাদের, আজকে পান্তা ট্রাই দাও!" },
+    { name: "ব্রাহ্মণবাড়িয়া", icon: "🎶", lokoKotha: "ব্রাহ্মণবাড়িয়ার মানুষ! ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!", translation: "ব্রাহ্মণবাড়িয়ার মানুষ! ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!" },
+    { name: "চাঁদপুর", icon: "🐟", lokoKotha: "চাঁদপুরের মানুষ! ইলিশের রাজধানী থেকে আইছো — আমাগো ইলিশ কেমন দেখো!", translation: "চাঁদপুরের মানুষ! ইলিশের রাজধানী থেকে এসেছ — আমাদের ইলিশ কেমন দেখো!" },
+    { name: "নোয়াখালী", icon: "🌴", lokoKotha: "ওই নোয়াখাইল্যা মিয়া! হগলতে আইয়া পড়ো, পান্তা-ইলিশ মিস কইরো না!", translation: "ওই নোয়াখালীর মিয়া! সবাই এসে পড়ো, পান্তা-ইলিশ মিস করো না!" },
+    { name: "ফেনী", icon: "🌸", lokoKotha: "ফেনীর মানুষ! ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!", translation: "ফেনীর মানুষ! ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!" },
+    { name: "লক্ষ্মীপুর", icon: "⚓", lokoKotha: "লক্ষ্মীপুরের মানুষ! মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!", translation: "লক্ষ্মীপুরের মানুষ! মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!" }
+  ],
+  rajshahi: [
+    { name: "রাজশাহী", icon: "🥭", lokoKotha: "রাজশাহীর দোস্ত! আম খাইছো সারাজীবন, আইজ পান্তা-ইলিশ খাও!", translation: "রাজশাহীর বন্ধু! আম খেয়েছ সারাজীবন, আজ পান্তা-ইলিশ খাও!" },
+    { name: "বগুড়া", icon: "🏺", lokoKotha: "বগুড়ার মানুষ! দইয়ের জেলার মানুষ — পান্তা খাইয়া দই ভুলো!", translation: "বগুড়ার মানুষ! দইয়ের জেলার মানুষ — পান্তা খেয়ে দই ভুলো!" }
+  ],
+  khulna: [
+    { name: "খুলনা", icon: "🌿", lokoKotha: "খুলনার ভাই! সুন্দরবনের বাঘ তোমাগো পাড়ায়, পান্তায় কোনো ভয় নাই!", translation: "খুলনার ভাই! সুন্দরবনের বাঘ তোমাদের পাড়ায়, পান্তায় কোনো ভয় নেই!" },
+    { name: "যশোর", icon: "🌹", lokoKotha: "যশোরের মানুষ! ফুলের শহর তোমাগো — পান্তা খাইয়া আরো ফুটো!", translation: "যশোরের মানুষ! ফুলের শহর তোমাদের — পান্তা খেয়ে আরো ফুটো!" }
+  ],
+  barisal: [
+    { name: "বরিশাল", icon: "⛵", lokoKotha: "ওই বরিশাইল্লা! নদীর দেশের মানুষ — ইলিশ তো তোমাগো রক্তে!", translation: "ওই বরিশালের মানুষ! নদীর দেশের মানুষ — ইলিশ তো তোমাদের রক্তে!" },
+    { name: "পটুয়াখালী", icon: "🏖️", lokoKotha: "পটুয়াখালীর মানুষ! কুয়াকাটার পাশে বড় হইছো — সমুদ্র ছাইড়া পান্তা খাও!", translation: "পটুয়াখালীর মানুষ! কুয়াকাটার পাশে বড় হয়েছ — সমুদ্র ছেড়ে পান্তা খাও!" }
+  ],
+  sylhet: [
+    { name: "সিলেট", icon: "🍃", lokoKotha: "আরে সিলেটি বেডা! চা বাগানের মানুষ, পান্তা না খাইলে বইশাখ নাই!", translation: "আরে সিলেটি বন্ধু! চা বাগানের মানুষ, পান্তা না খেলে বৈশাখ নেই!" },
+    { name: "মৌলভীবাজার", icon: "🍵", lokoKotha: "মৌলভীবাজারের মানুষ! চায়ের দেশ থেকে আইছো — পান্তা খাইয়া রিফ্রেশ হও!", translation: "মৌলভীবাজারের মানুষ! চায়ের দেশ থেকে এসেছ — পান্তা খেয়ে রিফ্রেশ হও!" }
+  ],
+  rangpur: [
+    { name: "রংপুর", icon: "🌾", lokoKotha: "রংপুরের মিয়া ভাই! কনে যাও এ্যালা? এককান পান্তা খাইয়া যাও!", translation: "রংপুরের মিয়া ভাই! কোথায় যাও এখন? একটা পান্তা খেয়ে যাও!" },
+    { name: "দিনাজপুর", icon: "🍚", lokoKotha: "দিনাজপুরের মানুষ! কাটারিভোগ চালের দেশ — পান্তার চাল তোমাগো কাছ থেকেই আইছে!", translation: "দিনাজপুরের মানুষ! কাটারিভোগ চালের দেশ — পান্তার চাল তোমাদের কাছ থেকেই এসেছে!" }
+  ],
+  mymensingh: [
+    { name: "ময়মনসিংহ", icon: "🎵", lokoKotha: "ময়মনসিংহের মানুষ! গীতিকার দেশ তোমাগো — পান্তার গান গাও এখন!", translation: "ময়মনসিংহের মানুষ! গীতিকার দেশ তোমাদের — পান্তার গান গাও এখন!" }
+  ]
+};
+
+// Prize data from lottery paper
+const prizes = [
+  { icon: "🥇", title: "ফ্রি আপগ্রেড!", message: "সহজ সেট → সুলতানি সেট বিনামূল্যে!", bg: "linear-gradient(135deg, #7B5800, #D4960A)" },
+  { icon: "🥇", title: "ফ্রি আপগ্রেড!", message: "সহজ সেট → সুলতানি সেট বিনামূল্যে!", bg: "linear-gradient(135deg, #7B5800, #D4960A)" },
+  { icon: "🥇", title: "ফ্রি আপগ্রেড!", message: "সহজ সেট → সুলতানি সেট বিনামূল্যে!", bg: "linear-gradient(135deg, #7B5800, #D4960A)" },
+  { icon: "🥇", title: "ফ্রি আপগ্রেড!", message: "সহজ সেট → সুলতানি সেট বিনামূল্যে!", bg: "linear-gradient(135deg, #7B5800, #D4960A)" },
+  { icon: "🥇", title: "ফ্রি আপগ্রেড!", message: "সহজ সেট → সুলতানি সেট বিনামূল্যে!", bg: "linear-gradient(135deg, #7B5800, #D4960A)" },
+  { icon: "🎁", title: "অতিরিক্ত ভর্তা!", message: "আলু ভর্তা ফ্রি! 🥔", bg: "linear-gradient(135deg, #8B0000, #C41E3A)" },
+  { icon: "🎁", title: "অতিরিক্ত ভর্তা!", message: "আলু ভর্তা ফ্রি! 🥔", bg: "linear-gradient(135deg, #8B0000, #C41E3A)" },
+  { icon: "🎁", title: "অতিরিক্ত ভর্তা!", message: "মাছ ভর্তা ফ্রি! 🐟", bg: "linear-gradient(135deg, #8B0000, #C41E3A)" },
+  { icon: "🎁", title: "অতিরিক্ত ভর্তা!", message: "মাছ ভর্তা ফ্রি! 🐟", bg: "linear-gradient(135deg, #8B0000, #C41E3A)" },
+  { icon: "🍫", title: "চকোলেট!", message: "একটি চকোলেট ফ্রি! 🍫", bg: "linear-gradient(135deg, #1E4D2B, #2d6a4f)" },
+  { icon: "🍫", title: "চকোলেট!", message: "একটি চকোলেট ফ্রি! 🍫", bg: "linear-gradient(135deg, #1E4D2B, #2d6a4f)" },
+  { icon: "🍫", title: "চকোলেট!", message: "একটি চকোলেট ফ্রি! 🍫", bg: "linear-gradient(135deg, #1E4D2B, #2d6a4f)" },
+  { icon: "🍫", title: "চকোলেট!", message: "একটি চকোলেট ফ্রি! 🍫", bg: "linear-gradient(135deg, #1E4D2B, #2d6a4f)" },
+  { icon: "🍫", title: "চকোলেট!", message: "একটি চকোলেট ফ্রি! 🍫", bg: "linear-gradient(135deg, #1E4D2B, #2d6a4f)" },
+  { icon: "🌸", title: "শুভেচ্ছা বার্তা", message: "শুভ নববর্ষ ১৪৩২ — সুখী থাকুন!", bg: "linear-gradient(135deg, #4a2070, #7b3fb5)" },
+  { icon: "🌸", title: "শুভেচ্ছা বার্তা", message: "নতুন বছর হোক আনন্দময়!", bg: "linear-gradient(135deg, #4a2070, #7b3fb5)" },
+  { icon: "🌸", title: "শুভেচ্ছা বার্তা", message: "বাংলার মাটি, বাংলার জল — মনে থাকুক চিরকাল!", bg: "linear-gradient(135deg, #4a2070, #7b3fb5)" },
+  { icon: "🌸", title: "শুভেচ্ছা বার্তা", message: "পান্তার মতো জীবন হোক শীতল, ইলিশের মতো দুর্দান্ত!", bg: "linear-gradient(135deg, #4a2070, #7b3fb5)" }
+];
+
+let currentStep = 'division';
+let currentDivisionIndex = 0;
+let selectedDivision = null;
+let selectedDistrict = null;
+let rotateInterval;
+let timerInterval;
+
+// Render Division Selection with rotating wheel
+function renderDivisionSelection() {
+  const container = document.getElementById('appContainer');
+  container.innerHTML = `
+    <div class="wheel-container">
+      <div class="rotating-wheel" onclick="selectCurrentDivision()">
+        <div class="wheel-ring" id="wheelRing">
+          ${generateWheelSlices()}
+        </div>
+        <div class="wheel-center">
+          <span>🎡</span>
+        </div>
+      </div>
+      <div class="current-division-display">
+        <div class="label">বর্তমান বিভাগ</div>
+        <div class="current-division-name" id="currentDivisionName">${divisions[0].name}</div>
+        <div class="current-division-item">${divisions[0].traditionalItem}</div>
+      </div>
+      <div class="timer-bar">
+        <div class="timer-progress" id="timerProgress"></div>
+      </div>
+      <div class="touch-instruction">
+        👇 আপনার বিভাগ এলে এখানে টাচ করুন 👇
+      </div>
+    </div>
+  `;
+  
+  startDivisionRotation();
+}
+
+function generateWheelSlices() {
+  const angleStep = 360 / divisions.length;
+  return divisions.map((div, i) => {
+    const angle = i * angleStep;
+    return `
+      <div class="wheel-slice" style="transform: rotate(${angle}deg);">
+        ${div.icon}
+      </div>
+    `;
+  }).join('');
+}
+
+function startDivisionRotation() {
+  if (rotateInterval) clearInterval(rotateInterval);
+  if (timerInterval) clearInterval(timerInterval);
+  
+  let progressBar = document.getElementById('timerProgress');
+  
+  rotateInterval = setInterval(() => {
+    currentDivisionIndex = (currentDivisionIndex + 1) % divisions.length;
+    const currentDiv = divisions[currentDivisionIndex];
+    const nameEl = document.getElementById('currentDivisionName');
+    if (nameEl) nameEl.textContent = currentDiv.name;
+    
+    // Rotate wheel ring
+    const wheelRing = document.getElementById('wheelRing');
+    if (wheelRing) {
+      const angle = (currentDivisionIndex * 360 / divisions.length);
+      wheelRing.style.transform = `rotate(${angle}deg)`;
+    }
+    
+    // Reset progress bar animation
+    if (progressBar) {
+      progressBar.style.animation = 'none';
+      setTimeout(() => {
+        progressBar.style.animation = 'shrink 4s linear infinite';
+      }, 10);
+    }
+  }, 4000);
+}
+
+function selectCurrentDivision() {
+  if (currentStep !== 'division') return;
+  
+  selectedDivision = divisions[currentDivisionIndex];
+  currentStep = 'district';
+  
+  if (rotateInterval) clearInterval(rotateInterval);
+  if (timerInterval) clearInterval(timerInterval);
+  
+  renderDistrictSelection();
+  launchMiniConfetti();
+}
+
+// Render District Selection
+function renderDistrictSelection() {
+  const districts = districtsData[selectedDivision.id] || [];
+  const container = document.getElementById('appContainer');
+  container.innerHTML = `
+    <div style="text-align: center;">
+      <button class="back-btn" onclick="goBackToDivision()">◀ পূর্ববর্তী ধাপ</button>
+    </div>
+    <div class="section-title">
+      🌸 ${selectedDivision.name} বিভাগের জেলা বাছাই করুন 🌸
+      <div style="font-size:0.7rem; opacity:0.7;">${selectedDivision.description}</div>
+    </div>
+    <div class="grid-container">
+      ${districts.map(dist => `
+        <div class="district-card" onclick="selectDistrict('${dist.name}')">
+          <div class="district-card-header" style="background: linear-gradient(135deg, ${selectedDivision.color1}, ${selectedDivision.color2})">
+            <div class="district-icon">${dist.icon}</div>
+            <div class="district-name">${dist.name}</div>
+          </div>
+          <div class="district-dialogue">
+            "${dist.lokoKotha.substring(0, 40)}..."
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function selectDistrict(districtName) {
+  const districts = districtsData[selectedDivision.id];
+  selectedDistrict = districts.find(d => d.name === districtName);
+  currentStep = 'lottery';
+  renderLotteryPage();
+  launchMiniConfetti();
+}
+
+function goBackToDivision() {
+  currentStep = 'division';
+  currentDivisionIndex = 0;
+  renderDivisionSelection();
+}
+
+// Render Lottery Page with Ghorar Gari Wheel
+function renderLotteryPage() {
+  const container = document.getElementById('appContainer');
+  container.innerHTML = `
+    <div style="text-align: center;">
+      <button class="back-btn" onclick="goBackToDistrict()">◀ পূর্ববর্তী ধাপ</button>
+    </div>
+    <div class="lottery-container">
+      <div class="selected-info">
+        <div style="font-size:0.7rem; color:#E8B84B;">আপনার বাছাই করা বিভাগ ও জেলা</div>
+        <div style="font-size:1.2rem; font-weight:700; margin:5px 0;">${selectedDivision.name} বিভাগ — ${selectedDistrict.name}</div>
+      </div>
+      <div class="loko-kotha-box">
+        <div class="loko-kotha">"${selectedDistrict.lokoKotha}"</div>
+        <div class="translation">🔤 ${selectedDistrict.translation}</div>
+      </div>
+      
+      <div class="lottery-wheel-wrapper">
+        <div class="ghorar-gari-wheel">
+          <div class="wheel-pointer">▼</div>
+          <canvas id="wheelCanvas" class="wheel-canvas" width="400" height="400" onclick="spinWheel()"></canvas>
+          <div class="wheel-center-button" onclick="spinWheel()">
+            <span>🎡</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="prize-result" id="prizeResult"></div>
+    </div>
+  `;
+  
+  drawWheel();
+}
+
+let currentAngle = 0;
+let isSpinning = false;
+
+function drawWheel() {
+  const canvas = document.getElementById('wheelCanvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  const size = canvas.width;
+  const centerX = size / 2;
+  const centerY = size / 2;
+  const radius = size / 2 - 5;
+  
+  const sliceAngle = (Math.PI * 2) / prizes.length;
+  
+  ctx.clearRect(0, 0, size, size);
+  
+  for (let i = 0; i < prizes.length; i++) {
+    const startAngle = i * sliceAngle + currentAngle;
+    const endAngle = startAngle + sliceAngle;
+    
+    // Alternate colors
+    const colors = ['#D4420A', '#E8B84B', '#F07B1C', '#C41E3A', '#2d6a4f', '#7b3fb5'];
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+    ctx.lineTo(centerX, centerY);
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+    ctx.strokeStyle = '#FFFAF0';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Draw icon
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.rotate(startAngle + sliceAngle / 2);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = "28px Arial";
+    ctx.fillStyle = "white";
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = "black";
+    ctx.fillText(prizes[i].icon, radius * 0.65, 0);
+    ctx.restore();
+  }
+  
+  // Draw center circle
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, 35, 0, Math.PI * 2);
+  ctx.fillStyle = '#FFFAF0';
+  ctx.fill();
+  ctx.strokeStyle = '#E8B84B';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  
+  ctx.font = "20px Arial";
+  ctx.fillStyle = '#D4420A';
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("🎰", centerX, centerY);
+}
+
+function spinWheel() {
+  if (isSpinning) return;
+  isSpinning = true;
+  
+  const spinAngle = 360 * 5 + Math.random() * 360;
+  const startTime = performance.now();
+  const duration = 2000;
+  const startAngle = currentAngle;
+  
+  function animateSpin(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(1, elapsed / duration);
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    currentAngle = startAngle + (spinAngle * easeOut) * Math.PI / 180;
+    drawWheel();
+    
+    if (progress < 1) {
+      requestAnimationFrame(animateSpin);
+    } else {
+      // Calculate winning prize
+      currentAngle = (startAngle + spinAngle * Math.PI / 180) % (Math.PI * 2);
+      drawWheel();
+      
+      const sliceAngle = (Math.PI * 2) / prizes.length;
+      let winningIndex = Math.floor(((Math.PI * 2 - currentAngle) % (Math.PI * 2)) / sliceAngle);
+      winningIndex = (winningIndex + prizes.length) % prizes.length;
+      const winningPrize = prizes[winningIndex];
+      
+      showPrizeResult(winningPrize);
+      isSpinning = false;
+    }
+  }
+  
+  requestAnimationFrame(animateSpin);
+  launchConfetti();
+}
+
+function showPrizeResult(prize) {
+  const prizeDiv = document.getElementById('prizeResult');
+  prizeDiv.innerHTML = `
+    <div class="prize-card">
+      <div class="prize-icon">${prize.icon} ✨</div>
+      <div class="prize-title" style="background: ${prize.bg}; -webkit-background-clip: text; background-clip: text; color: transparent;">${prize.title}</div>
+      <div class="prize-message">${prize.message}</div>
+      <div class="prize-message" style="margin-top:15px; font-size:0.8rem;">
+        🎊 ${selectedDistrict.name} জেলার জন্য অভিনন্দন! 🎊<br>
+        পান্তা ইলিশ স্টলে এসে পুরস্কার নিন
+      </div>
+      <button class="spin-again-btn" onclick="spinWheel()">🔄 আবার লটারি করুন</button>
+    </div>
+  `;
+  prizeDiv.classList.add('show');
+}
+
+function goBackToDistrict() {
+  currentStep = 'district';
+  renderDistrictSelection();
+}
+
+function resetToDivision() {
+  currentStep = 'division';
+  currentDivisionIndex = 0;
+  selectedDivision = null;
+  selectedDistrict = null;
+  if (rotateInterval) clearInterval(rotateInterval);
+  if (timerInterval) clearInterval(timerInterval);
+  renderDivisionSelection();
+}
+
+function launchMiniConfetti() {
+  const colors = ['#E8B84B', '#D4420A', '#F07B1C'];
+  for (let i = 0; i < 40; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: 0;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${5 + Math.random() * 8}px;
+      height: ${8 + Math.random() * 10}px;
+      animation-delay: ${Math.random() * 0.3}s;
+      animation-duration: ${1 + Math.random() * 1.2}s;
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2000);
+  }
+}
+
+function launchConfetti() {
+  const colors = ['#E8B84B', '#D4420A', '#F07B1C', '#fff', '#52b788', '#7b3fb5'];
+  for (let i = 0; i < 100; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      top: 0;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${6 + Math.random() * 10}px;
+      height: ${10 + Math.random() * 12}px;
+      animation-delay: ${Math.random() * 0.5}s;
+      animation-duration: ${1.5 + Math.random() * 1.8}s;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+
+// Initialize
+renderDivisionSelection();
+</script>
+</body>
+</html>
