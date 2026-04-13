@@ -32,8 +32,37 @@ body {
   font-family: 'Hind Siliguri', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
-  padding: 15px 20px 60px;
+  position: relative;
 }
+
+/* Alpona Background */
+.alpona-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.08;
+}
+.alpona-bg svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Corner Alpona Decorations */
+.alpona-corner {
+  position: fixed;
+  font-size: 2.5rem;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 5;
+}
+.alpona-tl { top: 10px; left: 10px; transform: rotate(-15deg); }
+.alpona-tr { top: 10px; right: 10px; transform: rotate(15deg); }
+.alpona-bl { bottom: 10px; left: 10px; transform: rotate(15deg); }
+.alpona-br { bottom: 10px; right: 10px; transform: rotate(-15deg); }
 
 /* Customer Counter */
 .customer-counter {
@@ -51,17 +80,26 @@ body {
   border: 1px solid var(--gold);
 }
 
-/* Header */
+/* Screen Container */
+.screen {
+  position: relative;
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+  z-index: 10;
+}
+.screen.active { display: block; }
+
+/* Page Header */
 .page-header {
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 5px;
+  margin-bottom: 30px;
   position: relative;
   z-index: 10;
 }
 .page-header h1 {
   font-family: 'Noto Serif Bengali', serif;
-  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 900;
   background: linear-gradient(135deg, var(--bright-gold), var(--saffron), var(--bright-gold));
   -webkit-background-clip: text;
@@ -69,15 +107,15 @@ body {
   background-clip: text;
 }
 .page-header p {
-  color: rgba(255,220,150,0.6);
-  font-size: 0.7rem;
-  margin-top: 4px;
-  letter-spacing: 1px;
+  color: rgba(255,220,150,0.7);
+  font-size: 0.85rem;
+  margin-top: 8px;
+  letter-spacing: 2px;
 }
 .flowers {
-  font-size: 1rem;
-  letter-spacing: 6px;
-  margin-bottom: 5px;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  margin-bottom: 8px;
   animation: sway 3s ease-in-out infinite;
 }
 @keyframes sway {
@@ -85,105 +123,93 @@ body {
   50% { transform: rotate(2deg); }
 }
 
-.screen {
-  position: relative;
-  display: none;
-  min-height: calc(100vh - 100px);
-  padding: 8px 0;
-  z-index: 10;
+/* First Page Layout */
+.price-layout {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
-.screen.active { display: block; }
-
-/* Price Card */
-.price-card-full {
-  max-width: 550px;
-  margin: 0 auto;
-  background: var(--cream);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 0 0 3px var(--gold), 0 0 0 6px var(--saffron), 0 30px 60px rgba(0,0,0,0.5);
-}
-.price-header {
-  background: linear-gradient(160deg, var(--deep-red), var(--saffron), var(--gold));
-  padding: 25px 20px;
+.wheel-section {
+  flex: 1;
+  min-width: 280px;
   text-align: center;
 }
-.price-main-title {
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: 2rem;
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-.price-tagline {
-  color: var(--bright-gold);
-  font-size: 0.8rem;
-  margin-top: 6px;
-  font-style: italic;
-}
 .small-wheel {
-  width: 150px;
-  margin: 20px auto;
-  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
 }
 .small-wheel canvas {
   width: 100%;
   height: auto;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px var(--cardboard), 0 0 0 8px var(--cardboard-dark), 0 10px 25px rgba(0,0,0,0.4);
+  box-shadow: 0 0 0 6px #D4A574, 0 0 0 12px #B8860B, 0 20px 40px rgba(0,0,0,0.4);
+  background: #2a1500;
 }
-.dish-box {
-  background: #fff8f0;
-  margin: 10px 20px 20px;
-  border-radius: 24px;
-  padding: 18px;
-  text-align: center;
-  border: 2px dashed var(--gold);
+.wheel-hint {
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: rgba(232,184,75,0.6);
+}
+.dish-section {
+  flex: 1;
+  min-width: 320px;
+  background: var(--cream);
+  border-radius: 32px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 2px solid var(--gold);
 }
 .dish-name {
   font-family: 'Noto Serif Bengali', serif;
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 900;
   color: var(--deep-red);
+  text-align: center;
 }
 .dish-price {
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 900;
   color: var(--saffron);
-  margin: 5px 0;
+  text-align: center;
+  margin: 10px 0;
+  padding-bottom: 15px;
+  border-bottom: 2px dashed var(--gold);
 }
 .dish-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 .dish-item {
   background: #fff0e0;
-  padding: 4px 12px;
-  border-radius: 30px;
-  font-size: 0.7rem;
+  padding: 10px 12px;
+  border-radius: 40px;
+  font-size: 0.85rem;
   color: #5a3a2a;
-}
-.lottery-btn-container {
   text-align: center;
-  margin: 10px 20px 25px;
+}
+.button-section {
+  text-align: center;
+  margin-top: 20px;
 }
 .lottery-start-btn {
   background: linear-gradient(135deg, var(--deep-red), var(--saffron), var(--gold));
   border: none;
-  padding: 16px 32px;
+  padding: 18px 50px;
   border-radius: 60px;
   color: white;
   font-family: 'Noto Serif Bengali', serif;
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(212,66,10,0.4);
+  box-shadow: 0 8px 25px rgba(212,66,10,0.4);
   animation: zoomPulse 1.2s ease-in-out infinite;
   width: 100%;
-  letter-spacing: 2px;
+  max-width: 400px;
 }
 @keyframes zoomPulse {
   0% { transform: scale(1); }
@@ -195,9 +221,9 @@ body {
 /* Division & District Grids */
 .full-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 .div-card, .dist-card {
   border-radius: 20px;
@@ -210,8 +236,8 @@ body {
 .div-card-head, .dist-card-head { 
   padding: 22px 12px; 
   text-align: center; 
-  position: relative;
   background: linear-gradient(135deg, #C93A08, #F07B1C);
+  position: relative;
 }
 .div-card-head::after, .dist-card-head::after {
   content: ''; 
@@ -243,10 +269,10 @@ body {
   line-height: 1.5;
 }
 
-/* Lottery Page - Landscape Optimized */
+/* Lottery Page Layout */
 .lottery-layout {
   display: flex;
-  gap: 25px;
+  gap: 30px;
   align-items: flex-start;
   min-height: 550px;
 }
@@ -260,10 +286,8 @@ body {
   flex: 5;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
-
-/* Big Wheel for Landscape */
 .large-wheel {
   position: relative;
   width: 100%;
@@ -274,8 +298,9 @@ body {
 #lotteryCanvas {
   width: 100%; height: 100%;
   border-radius: 50%;
-  box-shadow: 0 0 0 10px var(--cardboard), 0 0 0 18px var(--cardboard-dark), 0 25px 50px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 10px #D4A574, 0 0 0 18px #B8860B, 0 25px 50px rgba(0,0,0,0.5);
   cursor: pointer;
+  background: #2a1500;
 }
 .lottery-pointer {
   position: absolute; top: -22px; left: 50%;
@@ -293,25 +318,23 @@ body {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 65px; height: 65px;
-  background: var(--cardboard);
+  background: #D4A574;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 5px var(--cardboard-dark);
+  box-shadow: 0 0 0 5px #B8860B;
   z-index: 7; cursor: pointer;
 }
 .lottery-hub:active { transform: translate(-50%, -50%) scale(0.94); }
 .lottery-hub-icon { font-size: 1.6rem; }
 
-/* Right Panel */
 .big-division-display {
   background: linear-gradient(135deg, #C93A08, #F07B1C);
   border-radius: 20px;
   padding: 18px;
   text-align: center;
   border: 2px solid var(--gold);
-  width: 100%;
 }
 .big-division-icon { font-size: 2.5rem; }
 .big-division-name { font-family: 'Noto Serif Bengali', serif; font-size: 1.3rem; font-weight: 900; color: #fff; }
@@ -322,7 +345,6 @@ body {
   border-left: 5px solid var(--gold);
   border-radius: 16px;
   padding: 15px;
-  width: 100%;
 }
 .loko-text { font-family: 'Noto Serif Bengali', serif; font-size: 0.9rem; color: var(--gold); font-style: italic; line-height: 1.5; }
 .loko-trans { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 8px; }
@@ -370,7 +392,6 @@ body {
   font-weight: bold;
   cursor: pointer;
   width: 100%;
-  margin-top: 5px;
 }
 
 .back-btn {
@@ -467,7 +488,7 @@ body {
 .historical-footer {
   text-align: center;
   padding: 20px;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: rgba(232,184,75,0.4);
   border-top: 1px solid rgba(232,184,75,0.15);
   margin-top: 30px;
@@ -506,31 +527,47 @@ body {
   .lottery-layout { flex-direction: column; }
   .large-wheel { max-width: 320px; }
   .full-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .price-layout { flex-direction: column; gap: 25px; }
 }
 </style>
 </head>
 <body>
 
-<div class="customer-counter" id="customerCounter">👥 গ্রাহক: ১/২৮</div>
-
-<div class="page-header">
-  <div class="flowers">🌸🌺🌼🌺🌸</div>
-  <h1>আকবরের ইলিশ স্টল</h1>
-  <p>ষোল আনা পান্তা · বৈশাখ ১৪৩৩</p>
+<!-- Alpona Background SVG -->
+<div class="alpona-bg">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+    <pattern id="alpona" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M10,0 Q15,5 10,10 Q5,5 10,0Z" fill="#E8B84B" opacity="0.4"/>
+      <path d="M0,10 Q5,15 10,10 Q5,5 0,10Z" fill="#D4420A" opacity="0.3"/>
+      <circle cx="10" cy="10" r="1.5" fill="#FFD000" opacity="0.5"/>
+    </pattern>
+    <rect width="100%" height="100%" fill="url(#alpona)"/>
+  </svg>
 </div>
+
+<!-- Corner Alpona Decorations -->
+<div class="alpona-corner alpona-tl">🌺</div>
+<div class="alpona-corner alpona-tr">🌸</div>
+<div class="alpona-corner alpona-bl">🌼</div>
+<div class="alpona-corner alpona-br">🌿</div>
+
+<div class="customer-counter" id="customerCounter">👥 গ্রাহক: ১/২৮</div>
 
 <!-- SCREEN 1 - PRICE PAGE -->
 <div class="screen active" id="screen1">
-  <div class="price-card-full">
-    <div class="price-header">
-      <div class="price-main-title">ষোল আনা পান্তা</div>
-      <div class="price-tagline">আকবরের আমলের ঐতিহ্য, জার্মানিতে প্রথমবার</div>
-      <div style="font-size:1.2rem; margin-top:5px;">🐟</div>
+  <div class="page-header">
+    <div class="flowers">🌸🌺🌼🌺🌸</div>
+    <h1>আকবরের ইলিশ স্টল</h1>
+    <p>ষোল আনা পান্তা · বৈশাখ ১৪৩৩</p>
+  </div>
+  <div class="price-layout">
+    <div class="wheel-section">
+      <div class="small-wheel">
+        <canvas id="smallWheelCanvas" width="400" height="400"></canvas>
+      </div>
+      <div class="wheel-hint">🎡 সৌভাগ্যের চাকা ঘুরছে 🎡</div>
     </div>
-    <div class="small-wheel">
-      <canvas id="smallWheelCanvas" width="180" height="180"></canvas>
-    </div>
-    <div class="dish-box">
+    <div class="dish-section">
       <div class="dish-name">ষোল আনা পান্তা</div>
       <div class="dish-price">€১২</div>
       <div class="dish-items">
@@ -544,26 +581,44 @@ body {
         <span class="dish-item">শুকনা মরিচ</span>
       </div>
     </div>
-    <div class="lottery-btn-container">
-      <button class="lottery-start-btn" onclick="startLotteryFlow()">🎡 লটারি ঘোরান 🎡</button>
-    </div>
+  </div>
+  <div class="button-section">
+    <button class="lottery-start-btn" onclick="startLotteryFlow()">🎡 লটারি ঘোরান 🎡</button>
+  </div>
+  <div class="historical-footer">
+    ✦ আকবরের আমলের ফসলি সন থেকে ১৪৩৩ পর্যন্ত ✦ চারশো বছর ধরে বাঙালির প্রিয় পান্তা ইলিশ ✦
   </div>
 </div>
 
 <!-- SCREEN 2 - DIVISION -->
 <div class="screen" id="screen2">
+  <div class="page-header">
+    <div class="flowers">🌸🌺🌼🌺🌸</div>
+    <h1>আকবরের ইলিশ স্টল</h1>
+    <p>আপনার বিভাগ নির্বাচন করুন</p>
+  </div>
   <button class="back-btn" onclick="goToScreen(1)">◀ পিছনে</button>
   <div class="full-grid" id="divisionGrid"></div>
 </div>
 
 <!-- SCREEN 3 - DISTRICT -->
 <div class="screen" id="screen3">
+  <div class="page-header">
+    <div class="flowers">🌸🌺🌼🌺🌸</div>
+    <h1>আকবরের ইলিশ স্টল</h1>
+    <p>আপনার জেলা নির্বাচন করুন</p>
+  </div>
   <button class="back-btn" onclick="goToScreen(2)">◀ পিছনে</button>
   <div class="full-grid" id="districtGrid"></div>
 </div>
 
 <!-- SCREEN 4 - LOTTERY WHEEL -->
 <div class="screen" id="screen4">
+  <div class="page-header">
+    <div class="flowers">🌸🌺🌼🌺🌸</div>
+    <h1>আকবরের ইলিশ স্টল</h1>
+    <p>ভাগ্য পরীক্ষার সময়</p>
+  </div>
   <button class="back-btn" onclick="goToScreen(3)">◀ পিছনে</button>
   <div class="lottery-layout">
     <div class="lottery-left">
@@ -589,6 +644,9 @@ body {
       </div>
       <button class="spin-btn" onclick="startSpin()">🎡 চাকা ঘোরান 🎡</button>
     </div>
+  </div>
+  <div class="historical-footer">
+    ✦ আকবরের আমলের ফসলি সন থেকে ১৪৩৩ পর্যন্ত ✦ চারশো বছর ধরে বাঙালির প্রিয় পান্তা ইলিশ ✦
   </div>
 </div>
 
@@ -616,10 +674,6 @@ body {
 <div style="position:fixed; bottom:15px; right:15px; display: flex; gap: 10px; z-index: 20;">
   <button style="background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; cursor:pointer;" onclick="enableSound()">🔊 সাউন্ড</button>
   <button style="background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; cursor:pointer;" onclick="showPasswordModal()">🔒 রিসেট</button>
-</div>
-
-<div class="historical-footer">
-  ✦ আকবরের আমলের ফসলি সন থেকে ১৪৩৩ পর্যন্ত ✦ চারশো বছর ধরে বাঙালির প্রিয় পান্তা ইলিশ ✦ জার্মানিতে প্রথম ষোল আনা পান্তা উৎসব ✦
 </div>
 
 <script>
@@ -699,8 +753,6 @@ let selectedDistrict = null;
 let lotteryAngle = 0, lotterySpinning = false;
 let hasSpun = false;
 let bigWinners = [];
-
-// SPECIAL WINNERS: 9th and 23rd customer win Ilish Head
 const SPECIAL_WINNERS = [9, 23];
 const TOTAL_CUSTOMERS = 28;
 
@@ -818,7 +870,8 @@ function updateWinnersList() {
 }
 
 function addBigWinner(districtName, winnerName) {
-  bigWinners.push({ name: winnerName, district: districtName, timeAgo: 'এইমাত্র' });
+  bigWinners.unshift({ name: winnerName, district: districtName, timeAgo: 'এইমাত্র' });
+  if (bigWinners.length > 5) bigWinners.pop();
   updateWinnersList();
 }
 
@@ -847,21 +900,38 @@ function drawSmallWheel() {
   const canvas = document.getElementById('smallWheelCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = w/2 - 5;
+  const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = w/2 - 8;
   const n = wheelScenes.length, slice = (Math.PI * 2) / n;
   ctx.clearRect(0,0,w,h);
   for(let i=0;i<n;i++){
     const sa = smallAngle + i*slice - Math.PI/2;
     const ea = sa + slice;
     ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,sa,ea); ctx.closePath();
-    ctx.fillStyle = ['#C93A08','#7B5800','#C41E3A','#1E4D2B','#4a2070'][i%5];
+    const colors = ['#C93A08', '#7B5800', '#C41E3A', '#1E4D2B', '#4a2070'];
+    ctx.fillStyle = colors[i % colors.length];
     ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
     ctx.save(); ctx.translate(cx,cy); ctx.rotate(sa+slice/2);
-    ctx.font = `${w*0.1}px "Segoe UI Emoji"`; ctx.textAlign="center"; ctx.textBaseline="middle";
-    ctx.fillStyle="white"; ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
+    ctx.font = `${w*0.12}px "Segoe UI Emoji"`;
+    ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.shadowBlur = 4;
+    ctx.fillStyle="white";
+    ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
     ctx.restore();
   }
-  smallAngle += 0.015;
+  ctx.beginPath(); ctx.arc(cx,cy,35,0,Math.PI*2);
+  ctx.fillStyle = '#D4A574';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(232,184,75,0.6)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.font = `bold ${w*0.06}px "Noto Serif Bengali"`;
+  ctx.fillStyle = "#fff";
+  ctx.shadowBlur = 0;
+  ctx.fillText("🎡", cx, cy);
+  smallAngle += 0.008;
   requestAnimationFrame(drawSmallWheel);
 }
 
@@ -876,17 +946,26 @@ function drawLargeWheel() {
     const sa = lotteryAngle + i*slice - Math.PI/2;
     const ea = sa + slice;
     ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,sa,ea); ctx.closePath();
-    ctx.fillStyle = ['#C93A08','#7B5800','#C41E3A','#1E4D2B','#4a2070'][i%5];
+    const colors = ['#C93A08', '#7B5800', '#C41E3A', '#1E4D2B', '#4a2070'];
+    ctx.fillStyle = colors[i % colors.length];
     ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.2)'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
     ctx.save(); ctx.translate(cx,cy); ctx.rotate(sa+slice/2);
-    ctx.font = `${w*0.12}px "Segoe UI Emoji"`; ctx.textAlign="center"; ctx.textBaseline="middle";
-    ctx.fillStyle="white"; ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
+    ctx.font = `${w*0.12}px "Segoe UI Emoji"`;
+    ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.fillStyle="white";
+    ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
     ctx.font = `bold ${w*0.03}px "Noto Serif Bengali"`;
-    ctx.fillStyle="rgba(255,255,255,0.8)"; ctx.fillText(wheelScenes[i].name, r*0.3, 0);
+    ctx.fillStyle="rgba(255,255,255,0.8)";
+    ctx.fillText(wheelScenes[i].name, r*0.3, 0);
     ctx.restore();
   }
-  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.strokeStyle='rgba(232,184,75,0.5)'; ctx.lineWidth=3; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.strokeStyle='rgba(232,184,75,0.5)';
+  ctx.lineWidth=3;
+  ctx.stroke();
 }
 
 // Navigation
@@ -931,8 +1010,7 @@ function renderDistrictGrid() {
 }
 
 function selectDistrict(districtName) {
-  const district = allDistricts.find(d => d.name === districtName);
-  selectedDistrict = district;
+  selectedDistrict = allDistricts.find(d => d.name === districtName);
   goToScreen(4);
 }
 
@@ -982,7 +1060,6 @@ function performSpin() {
   const duration = 4800;
   const startAngle = lotteryAngle;
   const start = performance.now();
-  
   let tickInterval = setInterval(() => playSpinTick(), 150);
   
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
@@ -997,18 +1074,14 @@ function performSpin() {
     }
     lotteryAngle = startAngle + totalSpin * eased;
     drawLargeWheel();
-    
     if (t < 1) {
       requestAnimationFrame(frame);
     } else {
       clearInterval(tickInterval);
       lotteryAngle %= (Math.PI * 2);
       drawLargeWheel();
-      
       if (navigator.vibrate) navigator.vibrate(200);
-      
       const isSpecial = SPECIAL_WINNERS.includes(customerNumber);
-      
       if (isSpecial) {
         playBigWinSound();
         confettiBurst(150);
@@ -1041,9 +1114,7 @@ function saveWinnerName() {
   lotterySpinning = false;
 }
 
-function skipName() {
-  saveWinnerName();
-}
+function skipName() { saveWinnerName(); }
 
 function resetToPricePage() {
   document.getElementById('prizeFullscreen').classList.remove('active');
