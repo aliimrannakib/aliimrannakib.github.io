@@ -571,14 +571,14 @@ body {
       <div class="dish-name">ষোল আনা পান্তা</div>
       <div class="dish-price">€১২</div>
       <div class="dish-items">
-        <span class="dish-item">পান্তা ভাত</span>
-        <span class="dish-item">ইলিশ ভাজা</span>
-        <span class="dish-item">আলু ভর্তা</span>
-        <span class="dish-item">মাছ ভর্তা</span>
-        <span class="dish-item">বেগুন ভাজা</span>
-        <span class="dish-item">ডালের ভর্তা</span>
-        <span class="dish-item">পেঁয়াজ কুচি</span>
-        <span class="dish-item">শুকনা মরিচ</span>
+        <span class="dish-item">🍚 পান্তা ভাত</span>
+        <span class="dish-item">🐟 ইলিশ ভাজা</span>
+        <span class="dish-item">🥔 আলু ভর্তা</span>
+        <span class="dish-item">🐟 মাছ ভর্তা</span>
+        <span class="dish-item">🍆 বেগুন ভাজা</span>
+        <span class="dish-item">🌾 ডালের ভর্তা</span>
+        <span class="dish-item">🧅 পেঁয়াজ কুচি</span>
+        <span class="dish-item">🌶️ শুকনা মরিচ</span>
       </div>
     </div>
   </div>
@@ -876,20 +876,21 @@ function addBigWinner(districtName, winnerName) {
 }
 
 function getPrizeLoko(district) {
-  return `"${district.loko}" — ${district.trans}`;
+  return `"${district.loko}"`;
 }
 
 function showPrizeFullscreen(isSpecial, district) {
+  const prizeLokoDiv = document.getElementById('prizeLoko');
   if (isSpecial) {
     document.getElementById('prizeEmoji').innerHTML = '🐟✨🐟';
     document.getElementById('prizeTitle').innerHTML = 'ইলিশের মাথা জিতেছেন!';
     document.getElementById('prizeMsg').innerHTML = 'অভিনন্দন! আপনি ১ পিস ইলিশের মাথা পেয়েছেন! 🎉';
-    document.getElementById('prizeLoko').innerHTML = getPrizeLoko(district);
+    prizeLokoDiv.innerHTML = getPrizeLoko(district);
   } else {
     document.getElementById('prizeEmoji').innerHTML = '🌸';
     document.getElementById('prizeTitle').innerHTML = 'শুভ নববর্ষ ১৪৩৩';
     document.getElementById('prizeMsg').innerHTML = 'আপনার জন্য শুভেচ্ছা + ছোট চমক (পেঁয়াজ/শুকনা মরিচ)';
-    document.getElementById('prizeLoko').innerHTML = getPrizeLoko(district);
+    prizeLokoDiv.innerHTML = getPrizeLoko(district);
   }
   document.getElementById('prizeFullscreen').classList.add('active');
 }
@@ -918,7 +919,10 @@ function drawSmallWheel() {
     ctx.textAlign="center"; ctx.textBaseline="middle";
     ctx.shadowBlur = 4;
     ctx.fillStyle="white";
-    ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
+    ctx.fillText(wheelScenes[i].icon, r*0.80, 0);
+    ctx.font = `bold ${w*0.03}px "Noto Serif Bengali"`;
+    ctx.fillStyle="rgba(255,255,255,0.9)";
+    ctx.fillText(wheelScenes[i].name, r*0.40, 0);
     ctx.restore();
   }
   ctx.beginPath(); ctx.arc(cx,cy,35,0,Math.PI*2);
@@ -956,10 +960,10 @@ function drawLargeWheel() {
     ctx.font = `${w*0.12}px "Segoe UI Emoji"`;
     ctx.textAlign="center"; ctx.textBaseline="middle";
     ctx.fillStyle="white";
-    ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
+    ctx.fillText(wheelScenes[i].icon, r*0.80, 0);
     ctx.font = `bold ${w*0.03}px "Noto Serif Bengali"`;
     ctx.fillStyle="rgba(255,255,255,0.8)";
-    ctx.fillText(wheelScenes[i].name, r*0.3, 0);
+    ctx.fillText(wheelScenes[i].name, r*0.40, 0);
     ctx.restore();
   }
   ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
