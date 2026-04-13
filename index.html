@@ -32,18 +32,18 @@ body {
   font-family: 'Hind Siliguri', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-bottom: 50px;
+  padding: 15px 20px 60px;
 }
 
 /* Customer Counter */
 .customer-counter {
   position: fixed;
-  top: 12px;
-  right: 12px;
+  top: 15px;
+  right: 20px;
   background: rgba(0,0,0,0.7);
   border-radius: 40px;
-  padding: 5px 14px;
-  font-size: 0.75rem;
+  padding: 6px 16px;
+  font-size: 0.8rem;
   font-weight: bold;
   color: var(--gold);
   z-index: 20;
@@ -51,51 +51,17 @@ body {
   border: 1px solid var(--gold);
 }
 
-/* Winners Panel */
-.winners-panel {
-  background: rgba(0,0,0,0.5);
-  border-radius: 20px;
-  padding: 15px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(232,184,75,0.3);
-  margin-bottom: 15px;
-}
-.winners-title {
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: 0.8rem;
-  color: var(--gold);
-  text-align: center;
-  margin-bottom: 10px;
-}
-.winners-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.winner-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.7rem;
-  padding: 6px 10px;
-  background: rgba(0,0,0,0.3);
-  border-radius: 30px;
-}
-.winner-icon { font-size: 1rem; }
-.winner-info { flex: 1; color: rgba(255,255,255,0.85); }
-.winner-time { font-size: 0.55rem; color: rgba(232,184,75,0.6); }
-
 /* Header */
 .page-header {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   margin-top: 5px;
   position: relative;
   z-index: 10;
 }
 .page-header h1 {
   font-family: 'Noto Serif Bengali', serif;
-  font-size: clamp(1.3rem, 4.5vw, 2rem);
+  font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 900;
   background: linear-gradient(135deg, var(--bright-gold), var(--saffron), var(--bright-gold));
   -webkit-background-clip: text;
@@ -122,15 +88,15 @@ body {
 .screen {
   position: relative;
   display: none;
-  min-height: calc(100vh - 80px);
-  padding: 8px 15px;
+  min-height: calc(100vh - 100px);
+  padding: 8px 0;
   z-index: 10;
 }
 .screen.active { display: block; }
 
 /* Price Card */
 .price-card-full {
-  max-width: 520px;
+  max-width: 550px;
   margin: 0 auto;
   background: var(--cream);
   border-radius: 28px;
@@ -226,10 +192,10 @@ body {
 }
 .lottery-start-btn:active { transform: scale(0.97); animation: none; }
 
-/* Division & District Grids - SAME BEAUTIFUL DESIGN */
+/* Division & District Grids */
 .full-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 16px;
   margin-top: 15px;
 }
@@ -242,14 +208,10 @@ body {
 }
 .div-card:active, .dist-card:active { transform: scale(0.96); }
 .div-card-head, .dist-card-head { 
-  padding: 25px 12px; 
+  padding: 22px 12px; 
   text-align: center; 
   position: relative;
   background: linear-gradient(135deg, #C93A08, #F07B1C);
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 .div-card-head::after, .dist-card-head::after {
   content: ''; 
@@ -273,51 +235,87 @@ body {
   background: var(--cream); 
   padding: 14px; 
   text-align: center; 
-  min-height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .div-item, .dist-preview { 
-  font-size: 0.65rem; 
+  font-size: 0.7rem; 
   color: #7a4a2a; 
   font-style: italic; 
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* Lottery Page Layout */
+/* Lottery Page - Landscape Optimized */
 .lottery-layout {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 25px;
+  align-items: flex-start;
+  min-height: 550px;
 }
 .lottery-left {
-  flex: 3;
-  min-width: 200px;
-}
-.lottery-center {
-  flex: 5;
+  flex: 4;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 .lottery-right {
-  flex: 3;
-  min-width: 220px;
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+/* Big Wheel for Landscape */
+.large-wheel {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+#lotteryCanvas {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 10px var(--cardboard), 0 0 0 18px var(--cardboard-dark), 0 25px 50px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+.lottery-pointer {
+  position: absolute; top: -22px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  z-index: 6;
+  animation: pointerBounce 1s ease infinite;
+}
+@keyframes pointerBounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.lottery-hub {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65px; height: 65px;
+  background: var(--cardboard);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 5px var(--cardboard-dark);
+  z-index: 7; cursor: pointer;
+}
+.lottery-hub:active { transform: translate(-50%, -50%) scale(0.94); }
+.lottery-hub-icon { font-size: 1.6rem; }
+
+/* Right Panel */
 .big-division-display {
   background: linear-gradient(135deg, #C93A08, #F07B1C);
   border-radius: 20px;
-  padding: 15px;
+  padding: 18px;
   text-align: center;
   border: 2px solid var(--gold);
   width: 100%;
-  margin-bottom: 15px;
 }
-.big-division-icon { font-size: 2.2rem; }
-.big-division-name { font-family: 'Noto Serif Bengali', serif; font-size: 1.1rem; font-weight: 900; color: #fff; }
-.big-division-item { font-size: 0.7rem; color: rgba(255,255,255,0.8); }
+.big-division-icon { font-size: 2.5rem; }
+.big-division-name { font-family: 'Noto Serif Bengali', serif; font-size: 1.3rem; font-weight: 900; color: #fff; }
+.big-division-item { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
 
 .loko-box {
   background: rgba(201,58,8,0.15);
@@ -325,72 +323,63 @@ body {
   border-radius: 16px;
   padding: 15px;
   width: 100%;
-  margin-bottom: 15px;
 }
-.loko-text { font-family: 'Noto Serif Bengali', serif; font-size: 0.85rem; color: var(--gold); font-style: italic; line-height: 1.5; }
-.loko-trans { font-size: 0.65rem; color: rgba(255,255,255,0.5); margin-top: 8px; }
+.loko-text { font-family: 'Noto Serif Bengali', serif; font-size: 0.9rem; color: var(--gold); font-style: italic; line-height: 1.5; }
+.loko-trans { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 8px; }
 
-.large-wheel {
-  position: relative;
-  width: 100%;
-  max-width: 350px;
-  aspect-ratio: 1;
-  margin: 0 auto;
+.winners-panel {
+  background: rgba(0,0,0,0.5);
+  border-radius: 20px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232,184,75,0.3);
 }
-#lotteryCanvas {
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  box-shadow: 0 0 0 8px var(--cardboard), 0 0 0 14px var(--cardboard-dark), 0 20px 40px rgba(0,0,0,0.5);
-  cursor: pointer;
+.winners-title {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 12px;
 }
-.lottery-pointer {
-  position: absolute; top: -18px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
-  z-index: 6;
-  animation: pointerBounce 1s ease infinite;
+.winners-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-@keyframes pointerBounce {
-  0%,100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-6px); }
-}
-.lottery-hub {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 55px; height: 55px;
-  background: var(--cardboard);
-  border-radius: 50%;
+.winner-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 4px var(--cardboard-dark);
-  z-index: 7; cursor: pointer;
+  gap: 10px;
+  font-size: 0.75rem;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 40px;
 }
-.lottery-hub:active { transform: translate(-50%, -50%) scale(0.94); }
-.lottery-hub-icon { font-size: 1.3rem; }
+.winner-icon { font-size: 1.1rem; }
+.winner-info { flex: 1; color: rgba(255,255,255,0.85); }
+.winner-time { font-size: 0.6rem; color: rgba(232,184,75,0.6); }
 
 .spin-btn {
   background: linear-gradient(135deg, var(--deep-red), var(--saffron));
   border: none;
-  padding: 14px 25px;
-  border-radius: 50px;
+  padding: 16px 25px;
+  border-radius: 60px;
   color: white;
   font-family: 'Noto Serif Bengali', serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .back-btn {
   background: rgba(0,0,0,0.5);
   border: 1px solid rgba(232,184,75,0.3);
   color: var(--gold);
-  padding: 6px 15px;
+  padding: 8px 18px;
   border-radius: 40px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   cursor: pointer;
   display: inline-block;
   margin-bottom: 15px;
@@ -415,21 +404,21 @@ body {
 .prize-fullscreen.active { display: flex; }
 .prize-content {
   text-align: center;
-  max-width: 420px;
+  max-width: 450px;
   width: 85%;
   background: var(--cream);
   border-radius: 50px;
-  padding: 35px 30px;
+  padding: 40px 35px;
   border: 4px solid var(--gold);
 }
-.prize-emoji { font-size: 4rem; margin-bottom: 15px; }
-.prize-title { font-family: 'Noto Serif Bengali', serif; font-size: 1.6rem; font-weight: 900; margin-bottom: 10px; }
+.prize-emoji { font-size: 4.5rem; margin-bottom: 15px; }
+.prize-title { font-family: 'Noto Serif Bengali', serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; }
 .prize-message { font-size: 1rem; line-height: 1.5; color: #555; margin-bottom: 20px; }
 .prize-loko {
   background: rgba(201,58,8,0.1);
   border-left: 5px solid var(--gold);
   border-radius: 20px;
-  padding: 15px;
+  padding: 18px;
   margin: 20px 0;
   font-style: italic;
   font-size: 0.9rem;
@@ -437,11 +426,11 @@ body {
 .again-btn {
   background: linear-gradient(135deg, var(--deep-red), var(--saffron));
   border: none;
-  padding: 14px 28px;
+  padding: 15px 30px;
   border-radius: 50px;
   color: white;
   font-family: 'Noto Serif Bengali', serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
@@ -477,11 +466,11 @@ body {
 /* Historical Footer */
 .historical-footer {
   text-align: center;
-  padding: 15px;
-  font-size: 0.6rem;
+  padding: 20px;
+  font-size: 0.65rem;
   color: rgba(232,184,75,0.4);
   border-top: 1px solid rgba(232,184,75,0.15);
-  margin-top: 20px;
+  margin-top: 30px;
   font-family: 'Noto Serif Bengali', serif;
 }
 
@@ -500,23 +489,23 @@ body {
 .modal-content {
   background: var(--cream);
   border-radius: 30px;
-  padding: 25px;
-  max-width: 320px;
+  padding: 30px;
+  max-width: 350px;
   text-align: center;
   border: 3px solid var(--gold);
 }
-.modal-content h3 { font-family: 'Noto Serif Bengali', serif; font-size: 1.1rem; color: var(--deep-red); margin-bottom: 12px; }
-.name-input { padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 200px; text-align: center; font-size: 1rem; }
-.modal-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 15px; }
-.modal-btn { padding: 8px 18px; border-radius: 40px; font-family: 'Noto Serif Bengali', serif; font-weight: bold; cursor: pointer; border: none; }
+.modal-content h3 { font-family: 'Noto Serif Bengali', serif; font-size: 1.2rem; color: var(--deep-red); margin-bottom: 15px; }
+.name-input { padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 220px; text-align: center; font-size: 1rem; }
+.modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
+.modal-btn { padding: 10px 20px; border-radius: 40px; font-family: 'Noto Serif Bengali', serif; font-weight: bold; cursor: pointer; border: none; }
 .modal-btn-confirm { background: #2E7D32; color: white; }
 .modal-btn-cancel { background: #999; color: white; }
-.password-box input { padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 150px; text-align: center; }
+.password-box input { padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 160px; text-align: center; }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
   .lottery-layout { flex-direction: column; }
-  .large-wheel { max-width: 280px; }
-  .full-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .large-wheel { max-width: 320px; }
+  .full-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
 </style>
 </head>
@@ -578,12 +567,13 @@ body {
   <button class="back-btn" onclick="goToScreen(3)">◀ পিছনে</button>
   <div class="lottery-layout">
     <div class="lottery-left">
-      <div class="winners-panel">
-        <div class="winners-title">🏆 সেরা ভাগ্যবান</div>
-        <div class="winners-list" id="winnersList"></div>
+      <div class="large-wheel">
+        <div class="lottery-pointer">▼</div>
+        <canvas id="lotteryCanvas" width="500" height="500"></canvas>
+        <div class="lottery-hub" onclick="startSpin()"><div class="lottery-hub-icon">🎡</div></div>
       </div>
     </div>
-    <div class="lottery-center">
+    <div class="lottery-right">
       <div class="big-division-display" id="bigDivisionDisplay">
         <div class="big-division-icon" id="bigDivIcon">🏙️</div>
         <div class="big-division-name" id="bigDivName">ঢাকা</div>
@@ -593,18 +583,11 @@ body {
         <div class="loko-text" id="lokoText"></div>
         <div class="loko-trans" id="lokoTrans"></div>
       </div>
-      <div class="large-wheel">
-        <div class="lottery-pointer">▼</div>
-        <canvas id="lotteryCanvas" width="500" height="500"></canvas>
-        <div class="lottery-hub" onclick="startSpin()"><div class="lottery-hub-icon">🎡</div></div>
-      </div>
-      <button class="spin-btn" onclick="startSpin()">🎡 চাকা ঘোরান 🎡</button>
-    </div>
-    <div class="lottery-right">
       <div class="winners-panel">
         <div class="winners-title">🏆 ইলিশের মাথা বিজয়ী</div>
-        <div class="winners-list" id="specialWinnersList"></div>
+        <div class="winners-list" id="winnersList"></div>
       </div>
+      <button class="spin-btn" onclick="startSpin()">🎡 চাকা ঘোরান 🎡</button>
     </div>
   </div>
 </div>
@@ -630,8 +613,10 @@ body {
 <div class="name-modal" id="nameModal"><div class="modal-content"><h3>🎉 অভিনন্দন! 🎉</h3><p>আপনার নাম জানিয়ে দিন:</p><input type="text" id="winnerName" class="name-input" placeholder="যেমন: রহিম মিয়া"><div class="modal-buttons"><button class="modal-btn modal-btn-confirm" onclick="saveWinnerName()">নিশ্চিত</button><button class="modal-btn modal-btn-cancel" onclick="skipName()">বাদ দিন</button></div></div></div>
 <div class="password-modal" id="passwordModal"><div class="modal-content"><h3>স্টল রিসেট</h3><p>পাসওয়ার্ড দিন:</p><input type="password" id="resetPassword" placeholder="পাসওয়ার্ড"><div class="modal-buttons"><button class="modal-btn modal-btn-cancel" onclick="closePasswordModal()">বাতিল</button><button class="modal-btn modal-btn-confirm" onclick="verifyReset()">নিশ্চিত</button></div></div></div>
 
-<button style="position:fixed; bottom:15px; right:15px; background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; z-index:20; cursor:pointer;" onclick="showPasswordModal()">🔒 রিসেট</button>
-<button id="soundBtn" style="position:fixed; bottom:15px; left:15px; background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; z-index:20; cursor:pointer;" onclick="enableSound()">🔊 সাউন্ড চালু</button>
+<div style="position:fixed; bottom:15px; right:15px; display: flex; gap: 10px; z-index: 20;">
+  <button style="background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; cursor:pointer;" onclick="enableSound()">🔊 সাউন্ড</button>
+  <button style="background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; cursor:pointer;" onclick="showPasswordModal()">🔒 রিসেট</button>
+</div>
 
 <div class="historical-footer">
   ✦ আকবরের আমলের ফসলি সন থেকে ১৪৩৩ পর্যন্ত ✦ চারশো বছর ধরে বাঙালির প্রিয় পান্তা ইলিশ ✦ জার্মানিতে প্রথম ষোল আনা পান্তা উৎসব ✦
@@ -764,7 +749,7 @@ const allDistricts = [
   { div:"কুমিল্লা", name:"কুমিল্লা", icon:"🍮", loko:"কুমিল্লার মানুষ! রসমালাই বিখ্যাত তোমাগো, আইজকা পান্তা ট্রাই দাও!", trans:"রসমালাই বিখ্যাত তোমাদের, আজকে পান্তা ট্রাই দাও!" },
   { div:"কুমিল্লা", name:"ব্রাহ্মণবাড়িয়া", icon:"🎶", loko:"ব্রাহ্মণবাড়িয়ার মানুষ! ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!", trans:"ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!" },
   { div:"কুমিল্লা", name:"চাঁদপুর", icon:"🐟", loko:"চাঁদপুরের মানুষ! ইলিশের রাজধানী থেকে আইছো — আমাগো ইলিশ কেমন দেখো!", trans:"ইলিশের রাজধানী থেকে এসেছ — আমাদের ইলিশ কেমন দেখো!" },
-  { div:"কুমিল্লा", name:"নোয়াখালী", icon:"🌴", loko:"ওই নোয়াখাইল্যা মিয়া! হগলতে আইয়া পড়ো, পান্তা-ইলিশ মিস কইরো না!", trans:"সবাই এসে পড়ো, পান্তা-ইলিশ মিস করো না!" },
+  { div:"কুমিল্লা", name:"নোয়াখালী", icon:"🌴", loko:"ওই নোয়াখাইল্যা মিয়া! হগলতে আইয়া পড়ো, পান্তা-ইলিশ মিস কইরো না!", trans:"সবাই এসে পড়ো, পান্তা-ইলিশ মিস করো না!" },
   { div:"কুমিল্লা", name:"ফেনী", icon:"🌸", loko:"ফেনীর মানুষ! ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!", trans:"ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!" },
   { div:"কুমিল্লা", name:"লক্ষ্মীপুর", icon:"⚓", loko:"লক্ষ্মীপুরের মানুষ! মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!", trans:"মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!" },
   { div:"সিলেট", name:"সিলেট", icon:"🍃", loko:"আরে সিলেটি বেডা! চা বাগানের মানুষ, পান্তা না খাইলে বইশাখ নাই!", trans:"চা বাগানের মানুষ, পান্তা না খেলে বৈশাখ নেই!" },
@@ -817,26 +802,24 @@ function updateCustomerDisplay() {
 }
 
 function updateWinnersList() {
-  const specialContainer = document.getElementById('specialWinnersList');
-  if (specialContainer) {
-    if (bigWinners.length === 0) {
-      specialContainer.innerHTML = '<div style="text-align:center;color:#888;padding:10px;">এখনও কেউ জিতেনি</div>';
-    } else {
-      specialContainer.innerHTML = bigWinners.map(w => `
-        <div class="winner-item">
-          <span class="winner-icon">🐟</span>
-          <span class="winner-info">${w.name} - ${w.district}</span>
-          <span class="winner-time">${w.timeAgo}</span>
-        </div>
-      `).join('');
-    }
+  const container = document.getElementById('winnersList');
+  if (!container) return;
+  if (bigWinners.length === 0) {
+    container.innerHTML = '<div style="text-align:center;color:#888;padding:10px;">এখনও কেউ জিতেনি</div>';
+  } else {
+    container.innerHTML = bigWinners.map(w => `
+      <div class="winner-item">
+        <span class="winner-icon">🐟</span>
+        <span class="winner-info">${w.name} - ${w.district}</span>
+        <span class="winner-time">${w.timeAgo}</span>
+      </div>
+    `).join('');
   }
 }
 
 function addBigWinner(districtName, winnerName) {
   bigWinners.push({ name: winnerName, district: districtName, timeAgo: 'এইমাত্র' });
   updateWinnersList();
-  setTimeout(() => updateWinnersList(), 1000);
 }
 
 function getPrizeLoko(district) {
@@ -942,14 +925,13 @@ function renderDistrictGrid() {
         <div class="dist-icon">${d.icon}</div>
         <div class="dist-name">${d.name}</div>
       </div>
-      <div class="dist-card-body"><div class="dist-preview">"${d.loko.substring(0,45)}…"</div></div>
+      <div class="dist-card-body"><div class="dist-preview">"${d.loko}"</div></div>
     </div>
   `).join('');
 }
 
 function selectDistrict(districtName) {
   const district = allDistricts.find(d => d.name === districtName);
-  // Noakhali works normally now - no trap
   selectedDistrict = district;
   goToScreen(4);
 }
