@@ -594,6 +594,848 @@ body {
 </style>
 </head>
 <body>
+
+<!-- Floating Fish -->
+<div class="fish-container" id="fishContainer">
+  <div class="fish" style="top: 15%; left: 5%; animation-duration: 12s;">🐟</div>
+  <div class="fish" style="top: 35%; left: 70%; animation-duration: 15s; animation-delay: -2s;">🐟</div>
+  <div class="fish" style="top: 55%; left: 20%; animation-duration: 10s; animation-delay: -4s;">🐟</div>
+  <div class="fish" style="top: 75%; left: 60%; animation-duration: 14s; animation-delay: -6s;">🐟</div>
+  <div class="fish" style="top: 85%; left: 10%; animation-duration: 11s; animation-delay: -1s;">🐟</div>
+  <div class="fish" style="top: 25%; left: 85%; animation-duration: 13s; animation-delay: -3s;">🐟</div>
+</div>
+
+<div class="customer-counter" id="customerCounter">👥 গ্রাহক: ১/৩০</div>
+<button class="sound-btn" id="soundBtn" onclick="enableSound()">🔊 সাউন্ড চালু</button>
+<button class="fullscreen-btn" onclick="requestFullscreen()">⛶ পূর্ণ পর্দা</button>
+<button class="reset-btn" onclick="showPasswordModal()">🔒 রিসেট</button>
+
+<div class="page-header">
+  <div class="flowers">🌸🌺🌼🌺🌸</div>
+  <h1>পান্তা ইলিশ স্টল ১৪৩৩</h1>
+  <p>বাংলাদেশের ৯ বিভাগ · বৈশাখী লটারি</p>
+</div>
+
+<!-- SCREEN 1 - PRICE PAGE -->
+<div class="screen active" id="screen1">
+  <div class="price-page">
+    <div class="centered-wheel">
+      <div class="small-wheel" onclick="selectPackagePrompt()">
+        <canvas id="smallWheelCanvas" width="180" height="180"></canvas>
+      </div>
+      <div class="lottery-text">🎡 লটারি করুন 🎡</div>
+    </div>
+    <div class="packages-row">
+      <div class="pkg pkg-proja" onclick="selectPackage('proja')">
+        <div class="pkg-top"><div class="pkg-icon">🌾</div><div class="pkg-name">মাটির স্বাদ</div><div class="pkg-price">€৮</div></div>
+        <div class="pkg-body">
+          <div class="pkg-item">পান্তা ভাত</div>
+          <div class="pkg-item">ইলিশ ভাজা (১ পিস)</div>
+          <div class="pkg-item">আলু ভর্তা</div>
+          <div class="pkg-item">পেঁয়াজ কুচি + মরিচ</div>
+        </div>
+      </div>
+      <div class="pkg pkg-sultani" onclick="selectPackage('sultani')">
+        <div class="pkg-top"><div class="pkg-icon">👑</div><div class="pkg-name">সুলতানি</div><div class="pkg-price">€১২</div></div>
+        <div class="pkg-body">
+          <div class="pkg-item">মাটির স্বাদ সব</div>
+          <div class="pkg-item">মাছ ভর্তা</div>
+          <div class="pkg-item">বেগুন ভাজা</div>
+          <div class="pkg-item">ডালের ভর্তা</div>
+          <div class="pkg-item">শুকনো মরিচ ভর্তা 🌶️</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2 - DIVISION -->
+<div class="screen" id="screen2">
+  <button class="back-btn" onclick="goToScreen(1)">◀ পিছনে</button>
+  <div class="division-grid" id="divisionGrid"></div>
+</div>
+
+<!-- SCREEN 3 - DISTRICT -->
+<div class="screen" id="screen3">
+  <button class="back-btn" onclick="goToScreen(2)">◀ পিছনে</button>
+  <div class="district-scroll-container" id="districtScrollContainer">
+    <div class="district-scroll" id="districtScroll"></div>
+  </div>
+  <div class="scroll-indicator">◀ ◀ বামে/ডানে সোয়াইপ করে দেখুন ▶ ▶</div>
+</div>
+
+<!-- SCREEN 4 - LOTTERY -->
+<div class="screen" id="screen4">
+  <button class="back-btn" onclick="goToScreen(3)">◀ পিছনে</button>
+  <div class="lottery-layout">
+    <div class="lottery-left">
+      <div class="prize-counter" id="prizeCounter">
+        <div class="counter-item"><span class="counter-icon">👑</span><span class="counter-label">আপগ্রেড:</span><span class="counter-value" id="upgradeWon">০</span></div>
+        <div class="counter-item"><span class="counter-icon">🐟</span><span class="counter-label">ইলিশ:</span><span class="counter-value" id="ilishWon">০</span></div>
+        <div class="counter-item"><span class="counter-icon">💰</span><span class="counter-label">২€ ছাড়:</span><span class="counter-value" id="discountWon">০</span></div>
+        <div class="counter-item"><span class="counter-icon">👨‍🍳</span><span class="counter-label">শেফ ভর্তা:</span><span class="counter-value" id="chefWon">০</span></div>
+        <div class="counter-item"><span class="counter-icon">🥔</span><span class="counter-label">আলু ভর্তা:</span><span class="counter-value" id="alurWon">০</span></div>
+        <div class="counter-item"><span class="counter-icon">🌸</span><span class="counter-label">শুভেচ্ছা:</span><span class="counter-value" id="wishWon">০</span></div>
+        <div id="hotIndicator"></div>
+      </div>
+    </div>
+    <div class="lottery-center">
+      <div class="big-division-display" id="bigDivisionDisplay">
+        <div class="big-division-icon" id="bigDivIcon">🏙️</div>
+        <div class="big-division-name" id="bigDivName">ঢাকা</div>
+        <div class="big-division-item" id="bigDivItem">🍲 ঢাকাইয়া পান্তা</div>
+      </div>
+      <div class="loko-box">
+        <div class="loko-text" id="lokoText"></div>
+        <div class="loko-trans" id="lokoTrans"></div>
+      </div>
+      <div class="large-wheel">
+        <div class="lottery-pointer">▼</div>
+        <canvas id="lotteryCanvas" width="500" height="500"></canvas>
+        <div class="lottery-hub" onclick="startSpin()"><div class="lottery-hub-icon">🎡</div></div>
+      </div>
+      <button class="spin-btn" onclick="startSpin()">🎡 চাকা ঘোরান 🎡</button>
+    </div>
+    <div class="lottery-right">
+      <div class="winners-panel">
+        <div class="winners-title">🏆 সেরা ভাগ্যবান 🏆</div>
+        <div class="winners-list" id="winnersList"></div>
+        <div class="total-winners" id="totalWinners">📊 মোট বিজয়ী: ০ জন</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Prize Fullscreen Popup -->
+<div class="prize-fullscreen" id="prizeFullscreen">
+  <div class="prize-content">
+    <div class="prize-emoji" id="prizeEmoji">🎁</div>
+    <div class="prize-title" id="prizeTitle"></div>
+    <div class="prize-message" id="prizeMsg"></div>
+    <div class="prize-loko" id="prizeLoko"></div>
+    <button class="again-btn" onclick="resetToPricePage()">🔄 আবার লটারি করুন</button>
+  </div>
+</div>
+
+<!-- Fortune Overlay -->
+<div class="fortune-overlay" id="fortuneOverlay">
+  <div>🔮</div>
+  <div class="fortune-text" id="fortuneText">ভাগ্য গণনা করা হচ্ছে...</div>
+</div>
+
+<!-- Modals -->
+<div class="trap-modal" id="trapModal"><div class="modal-content"><h3>⚠️ ভুল বিভাগ!</h3><p>নোয়াখালি জেলা কুমিল্লা বিভাগের অন্তর্গত। দয়া করে আবার নির্বাচন করুন।</p><button class="modal-btn modal-btn-confirm" onclick="closeTrapModal()">ঠিক আছে</button></div></div>
+<div class="name-modal" id="nameModal"><div class="modal-content"><h3>🎉 অভিনন্দন! 🎉</h3><p>আপনার নাম জানিয়ে দিন:</p><input type="text" id="winnerName" class="name-input" placeholder="যেমন: রহিম মিয়া"><div class="modal-buttons"><button class="modal-btn modal-btn-confirm" onclick="saveWinnerName()">নিশ্চিত</button><button class="modal-btn modal-btn-cancel" onclick="skipName()">বাদ দিন</button></div></div></div>
+<div class="password-modal" id="passwordModal"><div class="modal-content"><h3>স্টল রিসেট</h3><p>পাসওয়ার্ড দিন:</p><input type="password" id="resetPassword" placeholder="পাসওয়ার্ড"><div class="modal-buttons"><button class="modal-btn modal-btn-cancel" onclick="closePasswordModal()">বাতিল</button><button class="modal-btn modal-btn-confirm" onclick="verifyReset()">নিশ্চিত</button></div></div></div>
+
+<script>
+// Audio
+let audioEnabled = false, audioCtx = null;
+function enableSound() {
+  if (audioEnabled) { playBeep(); return; }
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  audioCtx.resume().then(() => { audioEnabled = true; document.getElementById('soundBtn').innerHTML = '🔊 অন'; playBeep(); });
+}
+function playBeep() { if(!audioEnabled||!audioCtx) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.frequency.value=800; g.gain.value=0.1; o.start(); g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.2); o.stop(audioCtx.currentTime+0.2); }
+function playSpinTick() { if(!audioEnabled||!audioCtx) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.frequency.value=400+Math.random()*100; g.gain.value=0.05; o.start(); g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.05); o.stop(audioCtx.currentTime+0.05); }
+function playClap() { if(!audioEnabled||!audioCtx) return; for(let i=0;i<3;i++){ const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.frequency.value=900+Math.random()*200; g.gain.value=0.08; o.start(audioCtx.currentTime+i*0.07); g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+i*0.07+0.15); o.stop(audioCtx.currentTime+i*0.07+0.15); } }
+function playDhol() { if(!audioEnabled||!audioCtx) return; for(let i=0;i<8;i++){ setTimeout(()=>{ const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.frequency.value=150; g.gain.value=0.2; o.start(); g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.2); o.stop(audioCtx.currentTime+0.2); }, i*120); } }
+function playFishSplash() { if(!audioEnabled||!audioCtx) return; const g=audioCtx.createGain(); g.connect(audioCtx.destination); g.gain.value=0.1; const b=audioCtx.createBuffer(1,1500,audioCtx.sampleRate), d=b.getChannelData(0); for(let i=0;i<1500;i++) d[i]=Math.random()*0.3-0.15; const s=audioCtx.createBufferSource(); s.buffer=b; s.connect(g); s.start(); g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.3); }
+
+document.querySelectorAll('.fish').forEach(f=>f.addEventListener('click',(e)=>{ e.stopPropagation(); f.classList.add('scared'); playFishSplash(); setTimeout(()=>{ f.classList.remove('scared'); f.style.left=Math.random()*80+'%'; f.style.top=Math.random()*80+'%'; },500); }));
+function requestFullscreen(){ const d=document.documentElement; d.requestFullscreen?.()||d.webkitRequestFullscreen?.(); }
+
+// Prize System
+let totalPrizes={ upgrade:3, ilish:3, discount:7, chefVorta:5, alurVorta:5, wish:10 };
+let prizeGiven={ upgrade:0, ilish:0, discount:0, chefVorta:0, alurVorta:0, wish:0 };
+let customerNumber=1, selectedPackage=null, selectedDivision=null, selectedDistrict=null, lotteryAngle=0, lotterySpinning=false, hasSpun=false, bigWinners=[];
+const wheelScenes=[{icon:"🏝️",name:"সেন্ট মার্টিন"},{icon:"🌊",name:"কক্সবাজার"},{icon:"🐅",name:"সুন্দরবন"},{icon:"🚣",name:"রূপসা নদী"},{icon:"⛰️",name:"সাজেক ভ্যালি"}];
+const divisions=[
+  {id:"dhaka",name:"ঢাকা",icon:"🏙️",item:"🍲 ঢাকাইয়া পান্তা",c1:"#C93A08",c2:"#F07B1C"},
+  {id:"chattogram",name:"চট্টগ্রাম",icon:"🌊",item:"🐟 মেইজবান ইলিশ",c1:"#004E6E",c2:"#008DB4"},
+  {id:"cumilla",name:"কুমিল্লা",icon:"🍮",item:"🍬 রসমালাই পান্তা",c1:"#C41E3A",c2:"#E8505B"},
+  {id:"sylhet",name:"সিলেট",icon:"🍃",item:"🍵 চা-পান্তা",c1:"#1A5C1A",c2:"#3A9A3A"},
+  {id:"rajshahi",name:"রাজশাহী",icon:"🥭",item:"🥭 আমের পান্তা",c1:"#8B4500",c2:"#D48000"},
+  {id:"khulna",name:"খুলনা",icon:"🌿",item:"🦀 সুন্দরবন পান্তা",c1:"#1E5C2E",c2:"#3A9A52"},
+  {id:"barisal",name:"বরিশাল",icon:"⛵",item:"🚣 নদীর পান্তা",c1:"#003A7A",c2:"#1870D0"},
+  {id:"rangpur",name:"রংপুর",icon:"🌾",item:"🍚 কাটারিভোগ পান্তা",c1:"#7A5200",c2:"#C89A00"},
+  {id:"mymensingh",name:"ময়মনসিংহ",icon:"🎵",item:"🥛 গীতিকার পান্তা",c1:"#6A1A00",c2:"#B04020"}
+];
+
+// ALL 64 DISTRICTS
+const allDistricts = [
+  {div:"ঢাকা",name:"ঢাকা",icon:"🏙️",loko:"ঢাকাইয়ারা পান্তা না খাইলে কি বৈশাখ হয় নাকি?",trans:"ঢাকাইয়ারা পান্তা না খেলে কি বৈশাখ হয়?"},
+  {div:"ঢাকা",name:"গাজীপুর",icon:"🏗️",loko:"গাজীপুরের ভাই! ফ্যাক্টরি ছাইড়া আইসো, একখান পান্তা মারো!",trans:"ফ্যাক্টরি ছেড়ে এসো, একটা পান্তা মারো!"},
+  {div:"ঢাকা",name:"নারায়ণগঞ্জ",icon:"🏭",loko:"নারায়ণগঞ্জের মানুষ! কাপড়ের লগে পান্তাও টপ কোয়ালিটি লইবা!",trans:"কাপড়ের সাথে পান্তাও টপ কোয়ালিটি নেবে!"},
+  {div:"ঢাকা",name:"টাঙ্গাইল",icon:"🧵",loko:"টাঙ্গাইলের মানুষ! শাড়ির মতোই জীবন সুন্দর — পান্তা খাইয়া আরো সুন্দর করো!",trans:"শাড়ির মতোই জীবন সুন্দর — পান্তা খেয়ে আরো সুন্দর করো!"},
+  {div:"ঢাকা",name:"কিশোরগঞ্জ",icon:"🎵",loko:"কিশোরগঞ্জের মানুষ! হাওরের মাছ খাইছো অনেক, আইজ পান্তা-ইলিশ চেইখো!",trans:"হাওরের মাছ খেয়েছ অনেক, আজ পান্তা-ইলিশ চেখে দেখো!"},
+  {div:"ঢাকা",name:"মানিকগঞ্জ",icon:"🌊",loko:"মানিকগঞ্জের মানুষ! পদ্মার পাড়ের মানুষ ইলিশ চেনে সবচেয়ে বেশি!",trans:"পদ্মার পাড়ের মানুষ ইলিশ চেনে সবচেয়ে বেশি!"},
+  {div:"ঢাকা",name:"মুন্সীগঞ্জ",icon:"🎓",loko:"মুন্সীগঞ্জের আলু বিখ্যাত, কিন্তু আইজকা পান্তা-ইলিশ আরো বিখ্যাত!",trans:"আলু বিখ্যাত, কিন্তু আজকে পান্তা-ইলিশ আরো বিখ্যাত!"},
+  {div:"ঢাকা",name:"রাজবাড়ী",icon:"🏰",loko:"রাজবাড়ীর মানুষ! রাজার মতোই পান্তা খাইবা — সুলতানি সেট নিবা!",trans:"রাজার মতোই পান্তা খাবে — সুলতানি সেট নেবে!"},
+  {div:"ঢাকা",name:"মাদারীপুর",icon:"🌿",loko:"মাদারীপুরের ভাই! ইলিশ ভাজার গন্ধে মনে পড়তেছে না দেশের কথা?",trans:"ইলিশ ভাজার গন্ধে মনে পড়ছে না দেশের কথা?"},
+  {div:"ঢাকা",name:"শরীয়তপুর",icon:"🕌",loko:"শরীয়তপুরের মানুষ! পদ্মার ইলিশ আর আমাগো পান্তা — পারফেক্ট কম্বো!",trans:"পদ্মার ইলিশ আর আমাদের পান্তা — পারফেক্ট কম্বো!"},
+  {div:"ঢাকা",name:"গোপালগঞ্জ",icon:"⭐",loko:"গোপালগঞ্জের মানুষ! বঙ্গবন্ধুর জেলা — পান্তা খান, গর্বিত হন!",trans:"বঙ্গবন্ধুর জেলা — পান্তা খান, গর্বিত হন!"},
+  {div:"ঢাকা",name:"ফরিদপুর",icon:"🌾",loko:"ফরিদপুরের মানুষ! বড় বড় কথা কম, পান্তা বেশি খাও!",trans:"বড় বড় কথা কম, পান্তা বেশি খাও!"},
+  {div:"ঢাকা",name:"নরসিংদী",icon:"🌺",loko:"নরসিংদীর ভাই! কাঁঠাল খাও বেশি জানি, আইজ পান্তা খাও একটু!",trans:"কাঁঠাল খাও বেশি জানি, আজ পান্তা খাও একটু!"},
+  {div:"চট্টগ্রাম",name:"চট্টগ্রাম",icon:"🌊",loko:"আঁরার চাটগাঁর মানুষ! ইলিশ মাছর ভাজি দেইখলে পেডে লাথি মারে!",trans:"আমাদের চট্টগ্রামের মানুষ! ইলিশ দেখলে পেটে লাথি মারে!"},
+  {div:"চট্টগ্রাম",name:"কক্সবাজার",icon:"🏖️",loko:"কক্সবাজারের মানুষ! সমুদ্র ছাইড়া আইছো, পান্তায় সমুদ্রের স্বাদ পাইবা!",trans:"সমুদ্র ছেড়ে এসেছ, পান্তায় সমুদ্রের স্বাদ পাবে!"},
+  {div:"চট্টগ্রাম",name:"রাঙ্গামাটি",icon:"⛰️",loko:"রাঙ্গামাটির মানুষ! পাহাড় থেকে সমতলে আইছো — পান্তায় স্বাগতম!",trans:"পাহাড় থেকে সমতলে এসেছ — পান্তায় স্বাগতম!"},
+  {div:"চট্টগ্রাম",name:"বান্দরবান",icon:"🏔️",loko:"বান্দরবানের মানুষ! মেঘের উপরে থাকো, পান্তায় মাটির স্বাদ নাও!",trans:"মেঘের উপরে থাকো, পান্তায় মাটির স্বাদ নাও!"},
+  {div:"চট্টগ্রাম",name:"খাগড়াছড়ি",icon:"🌿",loko:"খাগড়াছড়ির মানুষ! পাহাড়ি টেস্ট আলাদা জানি, কিন্তু পান্তা-ইলিশ একবার খাও!",trans:"পাহাড়ি টেস্ট আলাদা জানি, কিন্তু পান্তা-ইলিশ একবার খাও!"},
+  {div:"কুমিল্লা",name:"কুমিল্লা",icon:"🍮",loko:"কুমিল্লার মানুষ! রসমালাই বিখ্যাত তোমাগো, আইজকা পান্তা ট্রাই দাও!",trans:"রসমালাই বিখ্যাত তোমাদের, আজকে পান্তা ট্রাই দাও!"},
+  {div:"কুমিল্লা",name:"ব্রাহ্মণবাড়িয়া",icon:"🎶",loko:"ব্রাহ্মণবাড়িয়ার মানুষ! ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!",trans:"ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!"},
+  {div:"কুমিল্লা",name:"চাঁদপুর",icon:"🐟",loko:"চাঁদপুরের মানুষ! ইলিশের রাজধানী থেকে আইছো — আমাগো ইলিশ কেমন দেখো!",trans:"ইলিশের রাজধানী থেকে এসেছ — আমাদের ইলিশ কেমন দেখো!"},
+  {div:"কুমিল্লা",name:"নোয়াখালী",icon:"🌴",loko:"ওই নোয়াখাইল্যা মিয়া! হগলতে আইয়া পড়ো, পান্তা-ইলিশ মিস কইরো না!",trans:"সবাই এসে পড়ো, পান্তা-ইলিশ মিস করো না!"},
+  {div:"কুমিল্লা",name:"ফেনী",icon:"🌸",loko:"ফেনীর মানুষ! ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!",trans:"ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!"},
+  {div:"কুমিল্লা",name:"লক্ষ্মীপুর",icon:"⚓",loko:"লক্ষ্মীপুরের মানুষ! মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!",trans:"মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!"},
+  {div:"সিলেট",name:"সিলেট",icon:"🍃",loko:"আরে সিলেটি বেডা! চা বাগানের মানুষ, পান্তা না খাইলে বইশাখ নাই!",trans:"চা বাগানের মানুষ, পান্তা না খেলে বৈশাখ নেই!"},
+  {div:"সিলেট",name:"মৌলভীবাজার",icon:"🍵",loko:"মৌলভীবাজারের মানুষ! চায়ের দেশ থেকে আইছো — পান্তা খাইয়া রিফ্রেশ হও!",trans:"চায়ের দেশ থেকে এসেছ — পান্তা খেয়ে রিফ্রেশ হও!"},
+  {div:"সিলেট",name:"হবিগঞ্জ",icon:"🌲",loko:"হবিগঞ্জের মানুষ! হাওরের কথা মনে পড়তেছে? পান্তায় একটু ভুলো!",trans:"হাওরের কথা মনে পড়ছে? পান্তায় একটু ভুলো!"},
+  {div:"সিলেট",name:"সুনামগঞ্জ",icon:"🚣",loko:"সুনামগঞ্জের মানুষ! হাওরে নাও বাইছো সারাজীবন — আইজ পান্তা বাইও!",trans:"হাওরে নৌকা বেয়েছ সারাজীবন — আজ পান্তা বাও!"},
+  {div:"রাজশাহী",name:"রাজশাহী",icon:"🥭",loko:"রাজশাহীর দোস্ত! আম খাইছো সারাজীবন, আইজ পান্তা-ইলিশ খাও!",trans:"আম খেয়েছ সারাজীবন, আজ পান্তা-ইলিশ খাও!"},
+  {div:"রাজশাহী",name:"চাঁপাইনবাবগঞ্জ",icon:"🥭",loko:"চাঁপাইনবাবগঞ্জের মানুষ! আমের রাজধানী থেকে আইছো — পান্তা-ইলিশও রাজকীয়!",trans:"আমের রাজধানী থেকে এসেছ — পান্তা-ইলিশও রাজকীয়!"},
+  {div:"রাজশাহী",name:"নওগাঁ",icon:"🌾",loko:"নওগাঁর মানুষ! ধানের জেলা তোমাগো — পান্তার চাল তোমাগো অবদান!",trans:"ধানের জেলা তোমাদের — পান্তার চাল তোমাদের অবদান!"},
+  {div:"রাজশাহী",name:"নাটোর",icon:"🍬",loko:"নাটোরের মানুষ! কাঁচাগোল্লার জেলা — পান্তাও মিষ্টি মনে হবে!",trans:"কাঁচাগোল্লার জেলা — পান্তাও মিষ্টি মনে হবে!"},
+  {div:"রাজশাহী",name:"পাবনা",icon:"🥛",loko:"পাবনার মানুষ! দুধের জেলা তোমাগো — পান্তায় দুধ নাই কিন্তু ইলিশ আছে!",trans:"দুধের জেলা তোমাদের — পান্তায় দুধ নেই কিন্তু ইলিশ আছে!"},
+  {div:"রাজশাহী",name:"বগুড়া",icon:"🏺",loko:"বগুড়ার মানুষ! দইয়ের জেলার মানুষ — পান্তা খাইয়া দই ভুলো!",trans:"দইয়ের জেলার মানুষ — পান্তা খেয়ে দই ভুলো!"},
+  {div:"রাজশাহী",name:"সিরাজগঞ্জ",icon:"🧵",loko:"সিরাজগঞ্জের মানুষ! তাঁত বুনো সারাদিন — পান্তা খাও এখন!",trans:"তাঁত বুনো সারাদিন — পান্তা খাও এখন!"},
+  {div:"রাজশাহী",name:"জয়পুরহাট",icon:"⛏️",loko:"জয়পুরহাটের মানুষ! চিনি কলের জেলা তোমাগো — পান্তায় মিষ্টি না থাকলেও হাসি আছে!",trans:"চিনি কলের জেলা — পান্তায় মিষ্টি না থাকলেও হাসি আছে!"},
+  {div:"খুলনা",name:"খুলনা",icon:"🌿",loko:"খুলনার ভাই! সুন্দরবনের বাঘ তোমাগো পাড়ায় — পান্তায় কোনো ভয় নাই!",trans:"সুন্দরবনের বাঘ তোমাদের পাড়ায় — পান্তায় কোনো ভয় নেই!"},
+  {div:"খুলনা",name:"যশোর",icon:"🌹",loko:"যশোরের মানুষ! ফুলের শহর তোমাগো — পান্তা খাইয়া আরো ফুটো!",trans:"ফুলের শহর তোমাদের — পান্তা খেয়ে আরো ফুটো!"},
+  {div:"খুলনা",name:"সাতক্ষীরা",icon:"🍯",loko:"সাতক্ষীরার মানুষ! চিংড়ির দেশ থেকে আইছো — ইলিশও কিন্তু কম যায় না!",trans:"চিংড়ির দেশ থেকে এসেছ — ইলিশও কম যায় না!"},
+  {div:"খুলনা",name:"বাগেরহাট",icon:"🦌",loko:"বাগেরহাটের মানুষ! ষাট গম্বুজের পাশে বড় হইছো — মহৎ মানুষ মহৎ পান্তা খাও!",trans:"ষাট গম্বুজের পাশে বড় হয়েছ — মহৎ মানুষ মহৎ পান্তা খাও!"},
+  {div:"খুলনা",name:"কুষ্টিয়া",icon:"🎸",loko:"কুষ্টিয়ার মানুষ! লালনের দেশ তোমাগো — পান্তায় দেহতত্ত্ব খোঁজো!",trans:"লালনের দেশ তোমাদের — পান্তায় দেহতত্ত্ব খোঁজো!"},
+  {div:"খুলনা",name:"মেহেরপুর",icon:"🏛️",loko:"মেহেরপুরের মানুষ! মুজিবনগরের দেশ — স্বাধীনতার মতোই পান্তা মুক্ত!",trans:"মুজিবনগরের দেশ — স্বাধীনতার মতোই পান্তা মুক্ত!"},
+  {div:"খুলনা",name:"নড়াইল",icon:"🎨",loko:"নড়াইলের মানুষ! এস এম সুলতানের জেলা — পান্তার রংও তোমাগো কাছে আর্ট!",trans:"সুলতানের জেলা — পান্তার রংও তোমাদের কাছে আর্ট!"},
+  {div:"খুলনা",name:"ঝিনাইদহ",icon:"🌊",loko:"ঝিনাইদহের মানুষ! নবগঙ্গার পাড়ে বড় হইছো — পান্তায় নদীর কথা মনে করো!",trans:"নবগঙ্গার পাড়ে বড় হয়েছ — পান্তায় নদীর কথা মনে করো!"},
+  {div:"খুলনা",name:"মাগুরা",icon:"🎭",loko:"মাগুরার মানুষ! শান্ত মানুষ তোমরা — পান্তার মতোই ঠান্ডা!",trans:"শান্ত মানুষ তোমরা — পান্তার মতোই ঠান্ডা!"},
+  {div:"খুলনা",name:"চুয়াডাঙ্গা",icon:"🌤️",loko:"চুয়াডাঙ্গার মানুষ! সীমান্তের কাছে থাকো — পান্তায় দেশের গন্ধ নাও!",trans:"সীমান্তের কাছে থাকো — পান্তায় দেশের গন্ধ নাও!"},
+  {div:"বরিশাল",name:"বরিশাল",icon:"⛵",loko:"ওই বরিশাইল্লা! নদীর দেশের মানুষ — ইলিশ তো তোমাগো রক্তে!",trans:"নদীর দেশের মানুষ — ইলিশ তো তোমাদের রক্তে!"},
+  {div:"বরিশাল",name:"পটুয়াখালী",icon:"🏖️",loko:"পটুয়াখালীর মানুষ! কুয়াকাটার পাশে বড় হইছো — সমুদ্র ছাইড়া পান্তা খাও!",trans:"কুয়াকাটার পাশে বড় হয়েছ — সমুদ্র ছেড়ে পান্তা খাও!"},
+  {div:"বরিশাল",name:"ভোলা",icon:"🏝️",loko:"ভোলার মানুষ! দ্বীপের মানুষ তুমি — পান্তায় সাঁতার দাও!",trans:"দ্বীপের মানুষ তুমি — পান্তায় সাঁতার দাও!"},
+  {div:"বরিশাল",name:"ঝালকাঠি",icon:"🌿",loko:"ঝালকাঠির মানুষ! ছোট জেলা কিন্তু দিলটা বড় — পান্তাও বড় সাইজ দিমু!",trans:"ছোট জেলা কিন্তু দিলটা বড় — পান্তাও বড় সাইজ দেব!"},
+  {div:"বরিশাল",name:"পিরোজপুর",icon:"🚣",loko:"পিরোজপুরের মানুষ! নদীতে নৌকা বাইছো সারাজীবন — পান্তার নৌকায় চড়ো!",trans:"নদীতে নৌকা বেয়েছ সারাজীবন — পান্তার নৌকায় চড়ো!"},
+  {div:"বরিশাল",name:"বরগুনা",icon:"🌀",loko:"বরগুনার মানুষ! ঘূর্ণিঝড়ের সাথে যুদ্ধ করো — পান্তা খেতে ভয় পাও না তো?",trans:"ঘূর্ণিঝড়ের সাথে যুদ্ধ করো — পান্তা খেতে ভয় নেই তো?"},
+  {div:"রংপুর",name:"রংপুর",icon:"🌾",loko:"রংপুরের মিয়া ভাই! কনে যাও এ্যালা? এককান পান্তা খাইয়া যাও!",trans:"কোথায় যাও এখন? একটা পান্তা খেয়ে যাও!"},
+  {div:"রংপুর",name:"দিনাজপুর",icon:"🍚",loko:"দিনাজপুরের মানুষ! কাটারিভোগ চালের দেশ — পান্তার চাল তোমাগো কাছ থেকেই আইছে!",trans:"কাটারিভোগ চালের দেশ — পান্তার চাল তোমাদের কাছ থেকে!"},
+  {div:"রংপুর",name:"ঠাকুরগাঁও",icon:"🌅",loko:"ঠাকুরগাঁওয়ের মানুষ! উত্তরের ঠান্ডায় থাকো — পান্তা খাইয়া আরো ঠান্ডা লাইগো না!",trans:"উত্তরের ঠান্ডায় থাকো — পান্তা খেয়ে আরো ঠান্ডা লাগবে না!"},
+  {div:"রংপুর",name:"পঞ্চগড়",icon:"🏔️",loko:"পঞ্চগড়ের মানুষ! হিমালয় দেখা যায় তোমাগো বাড়ি থেকে — পান্তার স্বাদও এভারেস্ট সমান!",trans:"হিমালয় দেখা যায় তোমাদের বাড়ি থেকে!"},
+  {div:"রংপুর",name:"নীলফামারী",icon:"🌤️",loko:"নীলফামারীর মানুষ! নীল আকাশের নিচে বড় হইছো — পান্তার সাদা ভাতে সুখ খোঁজো!",trans:"নীল আকাশের নিচে বড় হয়েছ — পান্তায় সুখ খোঁজো!"},
+  {div:"রংপুর",name:"লালমনিরহাট",icon:"🚂",loko:"লালমনিরহাটের মানুষ! তিস্তার পাড়ে বড় হইছো — পান্তায় তিস্তার স্বাদ খোঁজো!",trans:"তিস্তার পাড়ে বড় হয়েছ — পান্তায় তিস্তার স্বাদ খোঁজো!"},
+  {div:"রংপুর",name:"কুড়িগ্রাম",icon:"🌊",loko:"কুড়িগ্রামের মানুষ! বন্যার সাথে যুদ্ধ করো প্রতিবছর — পান্তা খেতে এত সাহস লাগে না!",trans:"বন্যার সাথে যুদ্ধ করো — পান্তা খেতে এত সাহস লাগে না!"},
+  {div:"রংপুর",name:"গাইবান্ধা",icon:"🌾",loko:"গাইবান্ধার মানুষ! ব্রহ্মপুত্রের পাড়ের মানুষ — পান্তাও ব্রহ্মপুত্রের মতো সুন্দর!",trans:"ব্রহ্মপুত্রের পাড়ের মানুষ — পান্তাও ব্রহ্মপুত্রের মতো সুন্দর!"},
+  {div:"ময়মনসিংহ",name:"ময়মনসিংহ",icon:"🎵",loko:"ময়মনসিংহের মানুষ! গীতিকার দেশ তোমাগো — পান্তার গান গাও এখন!",trans:"গীতিকার দেশ তোমাদের — পান্তার গান গাও এখন!"},
+  {div:"ময়মনসিংহ",name:"নেত্রকোণা",icon:"🌧️",loko:"নেত্রকোণার মানুষ! হাওরের বৃষ্টিতে ভিজছো সারাজীবন — পান্তায় আরেকটু ভেজো!",trans:"হাওরের বৃষ্টিতে ভিজেছ সারাজীবন — পান্তায় আরেকটু ভেজো!"},
+  {div:"ময়মনসিংহ",name:"শেরপুর",icon:"🦁",loko:"শেরপুরের মানুষ! সীমান্তের শেরদের দেশ — পান্তা খাইয়া আরো সাহসী হও!",trans:"সীমান্তের শেরদের দেশ — পান্তা খেয়ে আরো সাহসী হও!"},
+  {div:"ময়মনসিংহ",name:"জামালপুর",icon:"🏺",loko:"জামালপুরের মানুষ! যমুনার পাড়ের মানুষ — পান্তায় যমুনার ঢেউ অনুভব করো!",trans:"যমুনার পাড়ের মানুষ — পান্তায় যমুনার ঢেউ অনুভব করো!"}
+];
+
+function banglaNumber(n){const b=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];return n.toString().split('').map(d=>b[d]).join('');}
+function updateUI(){
+  document.getElementById('upgradeWon').innerHTML=banglaNumber(prizeGiven.upgrade);
+  document.getElementById('ilishWon').innerHTML=banglaNumber(prizeGiven.ilish);
+  document.getElementById('discountWon').innerHTML=banglaNumber(prizeGiven.discount);
+  document.getElementById('chefWon').innerHTML=banglaNumber(prizeGiven.chefVorta);
+  document.getElementById('alurWon').innerHTML=banglaNumber(prizeGiven.alurVorta);
+  document.getElementById('wishWon').innerHTML=banglaNumber(prizeGiven.wish);
+  document.getElementById('customerCounter').innerHTML=`👥 গ্রাহক: ${banglaNumber(customerNumber)}/৩০`;
+  const hot=document.getElementById('hotIndicator');
+  if((selectedPackage==='proja'&&(totalPrizes.upgrade-prizeGiven.upgrade)<=1)||(selectedPackage==='sultani'&&(totalPrizes.ilish-prizeGiven.ilish)<=1)) hot.innerHTML='<span class="hot-indicator">🔥 মাত্র ১ বড় পুরস্কার বাকি! 🔥</span>';
+  else hot.innerHTML='';
+  document.getElementById('totalWinners').innerHTML=`📊 মোট বিজয়ী: ${bigWinners.length} জন`;
+  const wl=document.getElementById('winnersList');
+  wl.innerHTML=bigWinners.slice(0,5).map(w=>`<div class="winner-item"><span class="winner-icon">${w.icon}</span><span class="winner-info">${w.name} - ${w.district}</span><span class="winner-time">${w.timeAgo}</span>${w.isNew?'<span class="winner-new">NEW!</span>':''}</div>`).join('');
+  if(!bigWinners.length) wl.innerHTML='<div style="text-align:center;color:#888;padding:8px;">এখনও কেউ জিতেনি</div>';
+}
+function addBigWinner(type,dist,name){let icon=type==='upgrade'?'👑':'🐟',title=type==='upgrade'?'সুলতানি আপগ্রেড':'ফ্রি ইলিশ';bigWinners.unshift({icon,title,district:dist,timeAgo:'এইমাত্র',isNew:true,winnerName:name});updateUI();setTimeout(()=>{bigWinners.forEach(w=>w.isNew=false);updateUI();},3000);}
+function getRandomPrize(){let avail=[];if(selectedPackage==='proja'){if(prizeGiven.upgrade<totalPrizes.upgrade)for(let i=0;i<totalPrizes.upgrade-prizeGiven.upgrade;i++)avail.push('upgrade');if(prizeGiven.chefVorta<totalPrizes.chefVorta)for(let i=0;i<totalPrizes.chefVorta-prizeGiven.chefVorta;i++)avail.push('chefVorta');if(prizeGiven.alurVorta<totalPrizes.alurVorta)for(let i=0;i<totalPrizes.alurVorta-prizeGiven.alurVorta;i++)avail.push('alurVorta');if(prizeGiven.wish<totalPrizes.wish)for(let i=0;i<totalPrizes.wish-prizeGiven.wish;i++)avail.push('wish');}else{if(prizeGiven.ilish<totalPrizes.ilish)for(let i=0;i<totalPrizes.ilish-prizeGiven.ilish;i++)avail.push('ilish');if(prizeGiven.discount<totalPrizes.discount)for(let i=0;i<totalPrizes.discount-prizeGiven.discount;i++)avail.push('discount');if(prizeGiven.chefVorta<totalPrizes.chefVorta)for(let i=0;i<totalPrizes.chefVorta-prizeGiven.chefVorta;i++)avail.push('chefVorta');if(prizeGiven.alurVorta<totalPrizes.alurVorta)for(let i=0;i<totalPrizes.alurVorta-prizeGiven.alurVorta;i++)avail.push('alurVorta');if(prizeGiven.wish<totalPrizes.wish)for(let i=0;i<totalPrizes.wish-prizeGiven.wish;i++)avail.push('wish');}return avail.length?avail[Math.floor(Math.random()*avail.length)]:'wish';}
+let smallAngle=0;
+function drawSmallWheel(){const c=document.getElementById('smallWheelCanvas');if(!c)return;const ctx=c.getContext('2d'),w=c.width,h=c.height,cx=w/2,cy=h/2,r=w/2-5,n=wheelScenes.length,s=Math.PI*2/n;ctx.clearRect(0,0,w,h);for(let i=0;i<n;i++){const sa=smallAngle+i*s-Math.PI/2,ea=sa+s;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,sa,ea);ctx.closePath();ctx.fillStyle=['#C93A08','#7B5800','#C41E3A','#1E4D2B','#4a2070'][i%5];ctx.fill();ctx.save();ctx.translate(cx,cy);ctx.rotate(sa+s/2);ctx.font=`${w*0.1}px "Segoe UI Emoji"`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='white';ctx.fillText(wheelScenes[i].icon,r*0.65,0);ctx.restore();}smallAngle+=0.015;requestAnimationFrame(drawSmallWheel);}
+function drawLargeWheel(){const c=document.getElementById('lotteryCanvas');if(!c)return;const ctx=c.getContext('2d'),w=c.width,h=c.height,cx=w/2,cy=h/2,r=w/2-8,n=wheelScenes.length,s=Math.PI*2/n;ctx.clearRect(0,0,w,h);for(let i=0;i<n;i++){const sa=lotteryAngle+i*s-Math.PI/2,ea=sa+s;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,sa,ea);ctx.closePath();ctx.fillStyle=['#C93A08','#7B5800','#C41E3A','#1E4D2B','#4a2070'][i%5];ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1.5;ctx.stroke();ctx.save();ctx.translate(cx,cy);ctx.rotate(sa+s/2);ctx.font=`${w*0.12}px "Segoe UI Emoji"`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='white';ctx.fillText(wheelScenes[i].icon,r*0.65,0);ctx.font=`bold ${w*0.03}px "Noto Serif Bengali"`;ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fillText(wheelScenes[i].name,r*0.3,0);ctx.restore();}ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='rgba(232,184,75,0.5)';ctx.lineWidth=3;ctx.stroke();}
+function goToScreen(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));if(n===1)document.getElementById('screen1').classList.add('active');if(n===2){document.getElementById('screen2').classList.add('active');renderDivisionGrid();}if(n===3){document.getElementById('screen3').classList.add('active');renderDistrictGrid();}if(n===4){document.getElementById('screen4').classList.add('active');renderLotteryPage();}}
+function renderDivisionGrid(){const g=document.getElementById('divisionGrid');g.innerHTML=divisions.map(d=>`<div class="div-card" onclick="selectDivision('${d.id}')"><div class="div-card-head" style="background:linear-gradient(135deg,${d.c1},${d.c2})"><div class="div-icon">${d.icon}</div><div class="div-name">${d.name}</div></div><div class="div-card-body"><div class="div-item">${d.item}</div></div></div>`).join('');}
+function selectDivision(id){selectedDivision=divisions.find(d=>d.id===id);goToScreen(3);}
+function renderDistrictGrid(){const f=allDistricts.filter(d=>d.div===selectedDivision.name);const s=document.getElementById('districtScroll');s.innerHTML=f.map(d=>`<div class="dist-card" onclick="selectDistrict('${d.name}')"><div class="dist-card-head" style="background:linear-gradient(135deg,${selectedDivision.c1},${selectedDivision.c2})"><div class="dist-icon">${d.icon}</div><div class="dist-name">${d.name}</div></div><div class="dist-card-body"><div class="dist-preview">"${d.loko.substring(0,35)}…"</div></div></div>`).join('');}
+function selectDistrict(name){const d=allDistricts.find(d=>d.name===name);if(d.name==="নোয়াখালী"){document.getElementById('trapModal').classList.add('active');return;}selectedDistrict=d;goToScreen(4);}
+function closeTrapModal(){document.getElementById('trapModal').classList.remove('active');goToScreen(3);}
+function renderLotteryPage(){document.getElementById('bigDivIcon').innerHTML=selectedDivision.icon;document.getElementById('bigDivName').innerHTML=selectedDivision.name;document.getElementById('bigDivItem').innerHTML=selectedDivision.item;document.getElementById('lokoText').innerHTML='"'+selectedDistrict.loko+'"';document.getElementById('lokoTrans').innerHTML='🔤 '+selectedDistrict.trans;lotteryAngle=0;hasSpun=false;drawLargeWheel();updateUI();}
+function selectPackage(pkg){selectedPackage=pkg;goToScreen(2);}
+function selectPackagePrompt(){if(!selectedPackage){const m=confirm("দয়া করে প্রথমে আপনার সেট নির্বাচন করুন (মাটির স্বাদ €৮ অথবা সুলতানি €১২)");if(m){document.querySelector('.pkg-proja').style.border='2px solid var(--gold)';setTimeout(()=>document.querySelector('.pkg-proja').style.border='',1000);}}}
+function startSpin(){if(!selectedPackage){alert("দয়া করে প্রথমে আপনার সেট নির্বাচন করুন (মাটির স্বাদ €৮ অথবা সুলতানি €১২)");return;}if(lotterySpinning||hasSpun)return;showFortune();}
+function showFortune(){const f=document.getElementById('fortuneOverlay'),ft=document.getElementById('fortuneText'),msgs=["🔮 ভাগ্য গণনা করা হচ্ছে...","✨ তারা দেখে বলা হচ্ছে...","🍃 পান্তার বাটিতে খোঁজা হচ্ছে...","🐟 ইলিশের চোখে দেখা যাচ্ছে..."];let idx=0;f.classList.add('active');let iv=setInterval(()=>{ft.innerHTML=msgs[idx%msgs.length];idx++;},700);setTimeout(()=>{clearInterval(iv);f.classList.remove('active');performSpin();},2200);}
+function performSpin(){if(lotterySpinning)return;lotterySpinning=true;const full=8+Math.random()*4,total=Math.PI*2*full+Math.random()*Math.PI*2,dur=4800,startAng=lotteryAngle,start=performance.now();let tickInt=setInterval(()=>playSpinTick(),150);function frame(now){let t=Math.min(1,(now-start)/dur),ease=1-Math.pow(1-t,3);if(t>0.95){const bounce=Math.sin((t-0.95)*Math.PI*5)*0.04*(1-t);ease=Math.min(1,ease+bounce);}lotteryAngle=startAng+total*ease;drawLargeWheel();if(t<1){requestAnimationFrame(frame);}else{clearInterval(tickInt);lotteryAngle%=(Math.PI*2);drawLargeWheel();if(navigator.vibrate)navigator.vibrate(200);const pt=getRandomPrize();if(pt==='upgrade'){prizeGiven.upgrade++;playDhol();confettiBurst(150,'upgrade');document.getElementById('nameModal').classList.add('active');window.pendingPrize={type:'upgrade',prizeData:{icon:'👑',title:'ফ্রি আপগ্রেড!',msg:'মাটির স্বাদ → সুলতানি সেট বিনামূল্যে! 🎉'}};lotterySpinning=false;return;}else if(pt==='ilish'){prizeGiven.ilish++;playDhol();confettiBurst(150,'ilish');document.getElementById('nameModal').classList.add('active');window.pendingPrize={type:'ilish',prizeData:{icon:'🐟',title:'ফ্রি ইলিশ!',msg:'একটি অতিরিক্ত ইলিশ পিস ফ্রি! 🐟✨'}};lotterySpinning=false;return;}else{let pd;if(pt==='discount'){pd={icon:'💰',title:'২ ইউরো ছাড়!',msg:'পরবর্তী সুলতানি সেটে ২ ইউরো ছাড়! 🎫'};prizeGiven.discount++;playClap();confettiBurst(70,'discount');}else if(pt==='chefVorta'){pd={icon:'👨‍🍳',title:'শেফ স্পেশাল ভর্তা!',msg:'গোপন রেসিপির শেফ স্পেশাল ভর্তা! 🔥'};prizeGiven.chefVorta++;playClap();confettiBurst(70,'chefVorta');}else if(pt==='alurVorta'){pd={icon:'🥔',title:'আলু ভর্তা!',msg:'এক বাটি আলু ভর্তা ফ্রি! 🥔'};prizeGiven.alurVorta++;playClap();confettiBurst(70,'alurVorta');}else{pd={icon:'🌸',title:'শুভেচ্ছা + ছোট চমক!',msg:'শুভ নববর্ষ! 🌸 + পেঁয়াজ/মরিচ'};prizeGiven.wish++;playClap();confettiBurst(50,'wish');}updateUI();hasSpun=true;showPrizePopup(pd);lotterySpinning=false;}}}requestAnimationFrame(frame);}
+function showPrizePopup(pd){document.getElementById('prizeEmoji').innerHTML=pd.icon+' ✨';document.getElementById('prizeTitle').innerHTML=pd.title;document.getElementById('prizeMsg').innerHTML=pd.msg;document.getElementById('prizeLoko').innerHTML=`"প্রজা থেকে সুলতানি হওয়ার মতো ভাগ্য! ${selectedDistrict.name} জেলার জন্য শুভ নববর্ষ!"`;document.getElementById('prizeFullscreen').classList.add('active');}
+function resetToPricePage(){document.getElementById('prizeFullscreen').classList.remove('active');if(customerNumber>=30){alert("🎉 ৩০ জন গ্রাহকের লটারি সম্পন্ন! 'রিসেট' বাটনে ক্লিক করুন।");return;}customerNumber++;hasSpun=false;selectedDivision=null;selectedDistrict=null;lotteryAngle=0;goToScreen(1);updateUI();}
+function saveWinnerName(){const name=document.getElementById('winnerName').value.trim()||'একজন ভাগ্যবান';const prize=window.pendingPrize;if(prize){addBigWinner(prize.type,selectedDistrict.name,name);updateUI();showPrizePopup(prize.prizeData);}document.getElementById('nameModal').classList.remove('active');document.getElementById('winnerName').value='';lotterySpinning=false;}
+function skipName(){saveWinnerName();}
+function confettiBurst(c,t){let cols=['#E8B84B','#C93A08','#F07B1C','#fff'];if(t==='upgrade')cols=['#FFD700','#FFA500','#FF8C00','#FFD700'];if(t==='ilish')cols=['#00CED1','#20B2AA','#008080','#00CED1'];for(let i=0;i<c;i++){const el=document.createElement('div');el.className='confetti-piece';const s=6+Math.random()*12;el.style.cssText=`left:${Math.random()*100}vw;top:0;width:${s}px;height:${s*(0.6+Math.random())}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*0.5}s;animation-duration:${1.5+Math.random()*1.8}s;border-radius:${Math.random()>0.5?'50%':'2px'};`;document.body.appendChild(el);setTimeout(()=>el.remove(),3000);}}
+function showPasswordModal(){document.getElementById('passwordModal').classList.add('active');document.getElementById('resetPassword').value='';}
+function closePasswordModal(){document.getElementById('passwordModal').classList.remove('active');}
+function verifyReset(){if(document.getElementById('resetPassword').value==='1433'){resetStall();closePasswordModal();}else alert('ভুল পাসওয়ার্ড!');}
+function resetStall(){for(let k in prizeGiven)prizeGiven[k]=0;customerNumber=1;hasSpun=false;selectedDivision=null;selectedDistrict=null;lotteryAngle=0;bigWinners=[];updateUI();goToScreen(1);confettiBurst(50,'upgrade');}
+drawSmallWheel();drawLargeWheel();updateUI();
+</script>
+</body>
+</html>
+/* Floating Fish */
+.fish-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.fish {
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  animation: floatFish linear infinite;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+}
+@keyframes floatFish {
+  0% { transform: translateX(-10%) translateY(0px) rotate(0deg); }
+  25% { transform: translateX(5%) translateY(-10px) rotate(5deg); }
+  50% { transform: translateX(10%) translateY(0px) rotate(0deg); }
+  75% { transform: translateX(5%) translateY(10px) rotate(-5deg); }
+  100% { transform: translateX(-10%) translateY(0px) rotate(0deg); }
+}
+.fish.scared {
+  animation: fishScare 0.5s ease forwards;
+}
+@keyframes fishScare {
+  0% { transform: translateX(0) scale(1); opacity: 1; }
+  100% { transform: translateX(200px) scale(0.3); opacity: 0; }
+}
+
+/* Control Buttons */
+.sound-btn, .fullscreen-btn, .reset-btn {
+  position: fixed;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.65rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  font-family: 'Noto Serif Bengali', serif;
+  z-index: 100;
+}
+.sound-btn { bottom: 15px; left: 15px; }
+.fullscreen-btn { bottom: 15px; right: 15px; }
+.reset-btn { top: 15px; right: 15px; }
+.sound-btn:active, .fullscreen-btn:active, .reset-btn:active { transform: scale(0.95); }
+
+.customer-counter {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 30px;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--gold);
+  z-index: 20;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--gold);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  position: relative;
+  z-index: 10;
+}
+.page-header h1 {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--bright-gold), var(--saffron), var(--bright-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-header p {
+  color: rgba(255,220,150,0.6);
+  font-size: 0.65rem;
+  margin-top: 2px;
+}
+.flowers {
+  font-size: 1rem;
+  letter-spacing: 5px;
+  margin-bottom: 3px;
+  animation: sway 3s ease-in-out infinite;
+}
+@keyframes sway {
+  0%,100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.screen {
+  position: relative;
+  display: none;
+  min-height: calc(100vh - 70px);
+  padding: 60px 20px 20px;
+  z-index: 10;
+}
+.screen.active { display: block; }
+
+/* PRICE PAGE - Wheel centered, packages below */
+.price-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+.centered-wheel {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.small-wheel {
+  width: 180px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.small-wheel canvas {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--cardboard), 0 0 0 8px var(--cardboard-dark), 0 10px 25px rgba(0,0,0,0.4);
+}
+.lottery-text {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-top: 10px;
+  letter-spacing: 2px;
+  animation: pulse 1.5s ease infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.packages-row {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.pkg {
+  width: 220px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.pkg:active { transform: scale(0.97); }
+.pkg-proja .pkg-top { background: linear-gradient(135deg, #D4922A, #E8B84B); padding: 15px; text-align: center; }
+.pkg-sultani .pkg-top { background: linear-gradient(135deg, var(--deep-red), #C41E3A, var(--saffron)); padding: 15px; text-align: center; position: relative; }
+.pkg-sultani .pkg-top::after {
+  content: '★ সেরা বাছাই ★';
+  position: absolute;
+  top: -1px; left: 50%; transform: translateX(-50%);
+  background: var(--bright-gold);
+  color: var(--dark);
+  font-size: 0.5rem;
+  padding: 2px 10px;
+  border-radius: 0 0 8px 8px;
+  white-space: nowrap;
+}
+.pkg-icon { font-size: 2rem; }
+.pkg-name { font-family: 'Noto Serif Bengali', serif; font-size: 1.1rem; font-weight: 800; color: #fff; }
+.pkg-price { font-size: 1.5rem; font-weight: 900; color: #fff; }
+.pkg-body { background: var(--cream); padding: 12px; min-height: 150px; }
+.pkg-item { font-size: 0.65rem; color: #555; margin: 4px 0; display: flex; align-items: center; gap: 5px; }
+.pkg-item::before { content: '✓'; color: var(--saffron); font-weight: bold; }
+
+/* 3x3 Division Grid */
+.division-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+.div-card {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+}
+.div-card:active { transform: scale(0.96); }
+.div-card-head { padding: 20px 10px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.div-icon { font-size: 2.5rem; }
+.div-name { font-family: 'Noto Serif Bengali', serif; font-size: 1rem; font-weight: 700; color: #fff; margin-top: 8px; }
+.div-card-body { background: var(--cream); padding: 8px; text-align: center; }
+.div-item { font-size: 0.6rem; color: #7a4a2a; }
+
+/* Horizontal Scroll District Grid */
+.district-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 20px;
+  white-space: nowrap;
+}
+.district-scroll {
+  display: inline-flex;
+  gap: 15px;
+  padding: 10px;
+}
+.dist-card {
+  width: 170px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+  scroll-snap-align: start;
+  display: inline-flex;
+  flex-direction: column;
+  white-space: normal;
+}
+.dist-card:active { transform: scale(0.96); }
+.dist-card-head { padding: 25px 10px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.dist-icon { font-size: 2.5rem; }
+.dist-name { font-family: 'Noto Serif Bengali', serif; font-size: 1rem; font-weight: 700; color: #fff; margin-top: 10px; }
+.dist-card-body { background: var(--cream); padding: 12px; text-align: center; }
+.dist-preview { font-size: 0.65rem; color: #7a4a2a; font-style: italic; line-height: 1.4; }
+.scroll-indicator {
+  text-align: center;
+  padding: 8px;
+  font-size: 0.65rem;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* LOTTERY PAGE */
+.lottery-layout {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.lottery-left {
+  flex: 2;
+  min-width: 180px;
+}
+.lottery-center {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lottery-right {
+  flex: 2;
+  min-width: 200px;
+}
+
+.prize-counter {
+  background: rgba(0,0,0,0.6);
+  border-radius: 20px;
+  padding: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232,184,75,0.3);
+}
+.counter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  margin-bottom: 6px;
+}
+.counter-icon { font-size: 1rem; }
+.counter-label { color: rgba(255,255,255,0.7); width: 70px; }
+.counter-value {
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0 8px;
+  border-radius: 20px;
+  background: rgba(76,175,80,0.3);
+  color: #4CAF50;
+}
+.hot-indicator {
+  background: #ff4444;
+  color: white;
+  font-size: 0.65rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  animation: hotPulse 0.8s ease infinite;
+  display: inline-block;
+  margin-top: 8px;
+  text-align: center;
+}
+@keyframes hotPulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.02); }
+}
+
+.big-division-display {
+  background: linear-gradient(135deg, #C93A08, #F07B1C);
+  border-radius: 20px;
+  padding: 12px 20px;
+  text-align: center;
+  border: 2px solid var(--gold);
+  margin-bottom: 15px;
+  width: 100%;
+}
+.big-division-icon { font-size: 2rem; }
+.big-division-name { font-family: 'Noto Serif Bengali', serif; font-size: 1.1rem; font-weight: 900; color: #fff; }
+.big-division-item { font-size: 0.65rem; color: rgba(255,255,255,0.8); }
+
+.loko-box {
+  background: rgba(201,58,8,0.15);
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.loko-text { font-family: 'Noto Serif Bengali', serif; font-size: 0.8rem; color: var(--gold); font-style: italic; line-height: 1.4; }
+.loko-trans { font-size: 0.6rem; color: rgba(255,255,255,0.4); margin-top: 5px; }
+
+.large-wheel {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+#lotteryCanvas {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px var(--cardboard), 0 0 0 15px var(--cardboard-dark), 0 20px 40px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+#lotteryCanvas.glowing {
+  box-shadow: 0 0 0 8px var(--cardboard), 0 0 0 15px var(--cardboard-dark), 0 0 25px 20px var(--gold);
+}
+.lottery-pointer {
+  position: absolute; top: -18px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+  z-index: 6;
+  animation: pointerBounce 1s ease infinite;
+}
+@keyframes pointerBounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+.lottery-hub {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 60px;
+  background: var(--cardboard);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px var(--cardboard-dark);
+  z-index: 7; cursor: pointer;
+}
+.lottery-hub:active { transform: translate(-50%, -50%) scale(0.94); }
+.lottery-hub-icon { font-size: 1.5rem; }
+
+.spin-btn {
+  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  color: white;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.winners-panel {
+  background: rgba(0,0,0,0.5);
+  border-radius: 16px;
+  padding: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232,184,75,0.25);
+  max-height: 350px;
+  overflow-y: auto;
+}
+.winners-title {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.winners-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.winner-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  padding: 6px 8px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 25px;
+}
+.winner-icon { font-size: 0.9rem; }
+.winner-info { flex: 1; color: rgba(255,255,255,0.8); }
+.winner-time { font-size: 0.55rem; color: rgba(232,184,75,0.6); }
+.total-winners {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(232,184,75,0.3);
+  font-size: 0.7rem;
+  color: var(--gold);
+}
+
+.back-btn {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(232,184,75,0.25);
+  color: var(--gold);
+  padding: 6px 14px;
+  border-radius: 40px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* Prize Fullscreen Popup */
+.prize-fullscreen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.98);
+  backdrop-filter: blur(15px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  animation: popupExpand 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+@keyframes popupExpand {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.prize-fullscreen.active { display: flex; }
+.prize-content {
+  text-align: center;
+  max-width: 500px;
+  width: 85%;
+  background: var(--cream);
+  border-radius: 40px;
+  padding: 40px 30px;
+  border: 4px solid var(--gold);
+}
+.prize-emoji { font-size: 4rem; margin-bottom: 15px; }
+.prize-title { font-family: 'Noto Serif Bengali', serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; }
+.prize-message { font-size: 1rem; line-height: 1.5; color: #555; margin-bottom: 20px; }
+.prize-loko {
+  background: rgba(201,58,8,0.1);
+  border-left: 4px solid var(--gold);
+  border-radius: 16px;
+  padding: 15px;
+  margin: 20px 0;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+.again-btn {
+  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
+  border: none;
+  padding: 14px 30px;
+  border-radius: 50px;
+  color: white;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Fortune Overlay */
+.fortune-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 250;
+  flex-direction: column;
+  gap: 20px;
+}
+.fortune-overlay.active { display: flex; }
+.fortune-text { font-family: 'Noto Serif Bengali', serif; font-size: 1.3rem; color: var(--gold); text-align: center; }
+
+/* Confetti */
+.confetti-piece {
+  position: fixed;
+  animation: cFall ease-in forwards;
+  pointer-events: none;
+  z-index: 1000;
+}
+@keyframes cFall {
+  0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
+
+/* Modals */
+.trap-modal, .password-modal, .name-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.active { display: flex; }
+.modal-content {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 25px;
+  max-width: 320px;
+  text-align: center;
+  border: 3px solid var(--gold);
+}
+.modal-content h3 { font-family: 'Noto Serif Bengali', serif; font-size: 1.1rem; color: var(--deep-red); margin-bottom: 12px; }
+.name-input { padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 200px; text-align: center; font-size: 1rem; }
+.modal-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 15px; }
+.modal-btn { padding: 8px 18px; border-radius: 40px; font-family: 'Noto Serif Bengali', serif; font-weight: bold; cursor: pointer; border: none; }
+.modal-btn-confirm { background: #2E7D32; color: white; }
+.modal-btn-cancel { background: #999; color: white; }
+.password-box input { padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 150px; text-align: center; }
+
+@media (max-width: 700px) {
+  .lottery-layout { flex-direction: column; }
+  .large-wheel { max-width: 320px; }
+  .pkg { width: 180px; }
+}
+</style>
+</head>
+<body>
   <div class="corner top-left">🌸</div>
 <div class="corner top-right">🌺</div>
 <div class="corner bottom-left">🌼</div>
