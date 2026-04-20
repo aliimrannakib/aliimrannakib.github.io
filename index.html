@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plan C — Our Romantic European Journey</title>
+<title>Plan C — Our Romantic European Journey · Hotels & Tickets Included</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100;200;300;400&display=swap" rel="stylesheet">
 <style>
 /* ─── TOKENS ─── */
@@ -35,6 +35,8 @@ body {
   font-weight: 300;
   overflow-x: hidden;
 }
+a { color: var(--gold); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--gold2); text-decoration: underline; }
 
 /* ─── STAR CANVAS ─── */
 #stars { position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5; }
@@ -52,166 +54,80 @@ body {
 .hero::before {
   content:'';
   position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 25% 40%, rgba(214,168,78,.07) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 75% 60%, rgba(196,118,140,.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 25% 40%, rgba(214,168,78,.07) 0%, transparent 70%);
   pointer-events:none;
 }
-.hero-eyebrow {
-  font-size:10px; letter-spacing:.5em; text-transform:uppercase;
-  color:var(--gold); margin-bottom:32px;
-  opacity:0; animation: fadeup .9s ease .3s forwards;
-}
-.hero-title {
-  font-family:'Libre Baskerville', serif;
-  font-size: clamp(44px, 8vw, 96px);
-  font-weight:400; line-height:1.05;
-  color:var(--cream);
-  max-width:820px;
-  opacity:0; animation: fadeup 1s ease .5s forwards;
-}
+.hero-eyebrow { font-size:10px; letter-spacing:.5em; text-transform:uppercase; color:var(--gold); margin-bottom:32px; opacity:0; animation: fadeup .9s ease .3s forwards; }
+.hero-title { font-family:'Libre Baskerville', serif; font-size: clamp(44px, 8vw, 96px); font-weight:400; line-height:1.05; color:var(--cream); max-width:820px; opacity:0; animation: fadeup 1s ease .5s forwards; }
 .hero-title em { font-style:italic; color:var(--gold2); }
 .hero-title .line2 { display:block; font-size:.65em; color:var(--muted); margin-top:12px; }
-.hero-divider {
-  width:1px; height:60px;
-  background:linear-gradient(to bottom, var(--gold), transparent);
-  margin:40px auto;
-  opacity:0; animation: fadeup .8s ease .9s forwards;
-}
-.hero-persons {
-  display:flex; align-items:center; gap:32px;
-  opacity:0; animation: fadeup .8s ease 1.1s forwards;
-  flex-wrap:wrap; justify-content:center;
-}
-.person {
-  text-align:center;
-}
+.hero-divider { width:1px; height:60px; background:linear-gradient(to bottom, var(--gold), transparent); margin:40px auto; opacity:0; animation: fadeup .8s ease .9s forwards; }
+.hero-persons { display:flex; align-items:center; gap:32px; opacity:0; animation: fadeup .8s ease 1.1s forwards; flex-wrap:wrap; justify-content:center; }
+.person { text-align:center; }
 .person-icon { font-size:32px; margin-bottom:8px; }
 .person-label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
 .person-name { font-family:'Libre Baskerville',serif; font-size:17px; color:var(--cream); margin-top:3px; }
 .person-heart { font-size:28px; color:var(--rose); margin-top:8px; }
 
 .route-strip {
-  display:flex; align-items:center; gap:0;
-  margin-top:52px; flex-wrap:wrap; justify-content:center;
+  display:flex; align-items:center; gap:0; margin-top:52px; flex-wrap:wrap; justify-content:center;
   opacity:0; animation:fadeup .8s ease 1.3s forwards;
 }
-.rs-stop {
-  display:flex; flex-direction:column; align-items:center; padding:0 16px;
-  cursor:default;
-}
-.rs-dot {
-  width:8px; height:8px; border-radius:50%;
-  background:var(--lift); border:1px solid var(--gold);
-  margin-bottom:10px; transition:background .3s;
-}
+.rs-stop { display:flex; flex-direction:column; align-items:center; padding:0 16px; cursor:default; }
+.rs-dot { width:8px; height:8px; border-radius:50%; background:var(--lift); border:1px solid var(--gold); margin-bottom:10px; transition:background .3s; }
 .rs-stop:hover .rs-dot { background:var(--gold); }
 .rs-city { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
 .rs-nights { font-size:10px; color:var(--gold); margin-top:2px; }
 .rs-line { width:30px; height:1px; background:var(--border); margin-bottom:19px; }
 
-/* ─── SCROLL HINT ─── */
-.scroll-hint {
-  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:8px;
-  opacity:0; animation:fadeup .8s ease 1.8s forwards;
-}
+.scroll-hint { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; animation:fadeup .8s ease 1.8s forwards; }
 .scroll-hint span { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--muted); }
 .scroll-bar { width:1px; height:36px; background:linear-gradient(to bottom,var(--gold),transparent); animation:pulse 2s ease infinite; }
 
 /* ─── SECTIONS ─── */
 .wrap { max-width:1040px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
-
 .sec-label { font-size:9px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
-.sec-title {
-  font-family:'Libre Baskerville',serif;
-  font-size:clamp(26px,4.5vw,48px); font-weight:400;
-  color:var(--cream); margin-bottom:8px; line-height:1.1;
-}
+.sec-title { font-family:'Libre Baskerville',serif; font-size:clamp(26px,4.5vw,48px); font-weight:400; color:var(--cream); margin-bottom:8px; line-height:1.1; }
 .sec-title em { font-style:italic; }
 .sec-sub { font-size:14px; color:var(--muted); max-width:640px; line-height:1.7; margin-bottom:48px; }
 
 /* ─── STATS BAR ─── */
-.stats-bar {
-  background:var(--deep);
-  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
-  padding:32px 24px; position:relative; z-index:1;
-}
-.stats-inner {
-  max-width:1040px; margin:0 auto;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:24px;
-  text-align:center;
-}
+.stats-bar { background:var(--deep); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:32px 24px; position:relative; z-index:1; }
+.stats-inner { max-width:1040px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:24px; text-align:center; }
 .stat-item label { font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px; }
 .stat-item .sv { font-family:'Libre Baskerville',serif; font-size:24px; color:var(--cream); }
 .stat-item .sn { font-size:11px; color:var(--muted); margin-top:3px; }
 
-/* ─── TRANSPORT BOX ─── */
-.transport-section { padding:80px 0; }
-.transport-2col { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:32px; }
-.tc {
-  background:var(--card); border:1px solid var(--border);
-  padding:36px 32px;
-}
-.tc.gold-tc { border-color:rgba(214,168,78,.3); }
-.tc h3 { font-family:'Libre Baskerville',serif; font-size:22px; font-weight:400; color:var(--cream); margin-bottom:4px; }
-.tc-tag { font-size:9px; letter-spacing:.3em; text-transform:uppercase; margin-bottom:24px; }
-.gold-tc .tc-tag { color:var(--gold); }
-.sage-tc .tc-tag { color:var(--sage); }
-.tc-rows { list-style:none; }
-.tc-rows li { font-size:13px; padding:9px 0; border-bottom:1px solid var(--border); display:flex; gap:10px; align-items:baseline; line-height:1.5; }
-.tc-rows li:last-child { border:none; }
-.tc-rows li::before { content:'→'; flex-shrink:0; }
-.gold-tc .tc-rows li::before { color:var(--gold); }
-.sage-tc .tc-rows li::before { color:var(--sage); }
-.tc-price { font-family:'Libre Baskerville',serif; font-size:36px; color:var(--gold); margin-top:24px; }
-.tc-price small { font-family:'Outfit',sans-serif; font-size:12px; color:var(--muted); }
-.verdict-box {
-  margin-top:18px; padding:16px 20px;
-  background:var(--goldx); border-left:2px solid var(--gold);
-  font-size:13px; color:var(--cream); font-style:italic; line-height:1.7;
-}
+/* ─── HOTEL & TICKET CARDS ─── */
+.hotel-section, .ticket-section { padding: 80px 0; }
+.hotel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px; }
+.hotel-card { background: var(--card); border: 1px solid var(--border); padding: 28px; transition: all 0.3s ease; border-radius: 4px; }
+.hotel-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.hotel-name { font-family: 'Libre Baskerville', serif; font-size: 20px; color: var(--cream); margin-bottom: 8px; }
+.hotel-price { font-size: 13px; color: var(--gold); margin-bottom: 12px; }
+.hotel-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.hotel-link { display: inline-block; background: var(--goldx); border: 1px solid rgba(214,168,78,.3); padding: 8px 18px; font-size: 12px; color: var(--gold); border-radius: 30px; transition: all 0.2s; }
+.hotel-link:hover { background: var(--gold); color: var(--night); text-decoration: none; }
 
-/* ─── DAY PASSES ─── */
-.passes-section { padding:0 0 80px; }
-.passes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:32px; }
-.pass {
-  background:var(--card); border:1px solid var(--border);
-  padding:28px; transition:border-color .3s, transform .3s;
-}
-.pass:hover { border-color:var(--gold); transform:translateY(-3px); }
-.pass-flag { font-size:28px; margin-bottom:14px; }
-.pass h4 { font-family:'Libre Baskerville',serif; font-size:18px; font-weight:400; color:var(--cream); margin-bottom:4px; }
-.pass-price { font-family:'Libre Baskerville',serif; font-size:22px; color:var(--gold); margin-bottom:12px; }
-.pass p { font-size:12.5px; color:var(--muted); line-height:1.7; }
-.pass-covers { font-size:11px; color:var(--sage); margin-top:10px; }
+.ticket-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+.ticket-card { background: var(--card); border: 1px solid var(--border); padding: 24px; transition: all 0.3s ease; }
+.ticket-card:hover { border-color: var(--sage); transform: translateY(-3px); }
+.ticket-name { font-family: 'Libre Baskerville', serif; font-size: 18px; color: var(--cream); margin-bottom: 6px; }
+.ticket-price { font-size: 13px; color: var(--sage); margin-bottom: 10px; }
+.ticket-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.ticket-link { font-size: 12px; color: var(--gold); }
+.ticket-link:hover { color: var(--gold2); }
 
-/* ─── CHAPTER HEADERS ─── */
-.chapter {
-  padding:64px 0 0;
-  position:relative; z-index:1;
-}
-.chapter-header {
-  padding:40px 32px;
-  border:1px solid var(--border);
-  background:var(--deep);
-  margin-bottom:3px;
-  display:flex; align-items:center; gap:32px;
-  overflow:hidden; position:relative;
-}
-.chapter-header::before {
-  content:'';
-  position:absolute; left:0; top:0; bottom:0; width:4px;
-}
+/* ─── CHAPTERS ─── */
+.chapter { padding:64px 0 0; position:relative; z-index:1; }
+.chapter-header { padding:40px 32px; border:1px solid var(--border); background:var(--deep); margin-bottom:3px; display:flex; align-items:center; gap:32px; overflow:hidden; position:relative; }
+.chapter-header::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; }
 .ch-munich::before   { background:linear-gradient(to bottom,#e8b84b,#c4763c); }
 .ch-konigsee::before { background:linear-gradient(to bottom,#4ba8e8,#2d7fa8); }
-.ch-salzburg::before { background:linear-gradient(to bottom,#c47a8c,#8c4a5c); }
-.ch-switzerland::before { background:linear-gradient(to bottom,#7ab87a,#3a7a3a); }
+.ch-zermatt::before { background:linear-gradient(to bottom,#d6a84e,#c4763c); }
+.ch-nendaz::before { background:linear-gradient(to bottom,#7aaa8e,#4a7a5e); }
 .ch-paris::before    { background:linear-gradient(to bottom,#c4a47a,#8c6a3a); }
-.ch-num {
-  font-family:'Libre Baskerville',serif; font-size:72px; font-weight:700;
-  color:rgba(255,255,255,.04); line-height:1; flex-shrink:0; select:none;
-}
+.ch-num { font-family:'Libre Baskerville',serif; font-size:72px; font-weight:700; color:rgba(255,255,255,.04); line-height:1; flex-shrink:0; }
 .ch-info { flex:1; }
 .ch-tag { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
 .ch-city { font-family:'Libre Baskerville',serif; font-size:clamp(24px,4vw,44px); font-weight:400; color:var(--cream); line-height:1.05; }
@@ -222,26 +138,11 @@ body {
 .ch-budget .bv { font-family:'Libre Baskerville',serif; font-size:22px; color:var(--gold); }
 .ch-budget .bn { font-size:11px; color:var(--muted); margin-top:2px; }
 
-/* ─── DAY CARDS ─── */
 .days-wrap { display:flex; flex-direction:column; gap:3px; }
-.day-card {
-  background:var(--card); border:1px solid var(--border);
-  padding:28px 32px;
-  display:grid; grid-template-columns:64px 1fr;
-  gap:24px;
-  opacity:0; transform:translateY(16px);
-  transition:opacity .5s ease, transform .5s ease, border-color .3s;
-}
-.day-card:hover { border-color:var(--lift); }
+.day-card { background:var(--card); border:1px solid var(--border); padding:28px 32px; display:grid; grid-template-columns:64px 1fr; gap:24px; opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease, border-color .3s; }
 .day-card.visible { opacity:1; transform:none; }
 .day-label { padding-top:4px; }
-.day-num {
-  font-family:'Libre Baskerville',serif; font-size:11px; font-weight:700;
-  color:var(--gold); letter-spacing:.1em; text-transform:uppercase;
-  writing-mode:vertical-rl; text-orientation:mixed;
-  white-space:nowrap;
-}
-.day-body {}
+.day-num { font-family:'Libre Baskerville',serif; font-size:11px; font-weight:700; color:var(--gold); letter-spacing:.1em; text-transform:uppercase; writing-mode:vertical-rl; text-orientation:mixed; white-space:nowrap; }
 .day-title { font-family:'Libre Baskerville',serif; font-size:21px; font-weight:400; color:var(--cream); margin-bottom:6px; line-height:1.2; }
 .day-title em { font-style:italic; color:var(--gold2); }
 .day-mood { font-family:'Libre Baskerville',serif; font-style:italic; font-size:14px; color:var(--muted); margin-bottom:18px; line-height:1.65; }
@@ -251,104 +152,21 @@ body {
 .pill.paid { border-color:var(--rose); color:var(--rose); }
 .pill.rom  { border-color:rgba(214,168,78,.4); color:var(--gold); }
 .pill.tip  { border-color:var(--lavender); color:var(--lavender); }
-
-/* transport mini */
-.tr-mini { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:14px; }
-.trm {
-  background:var(--deep); border:1px solid var(--border);
-  padding:12px 16px;
-}
-.trm-label { font-size:9px; letter-spacing:.25em; text-transform:uppercase; margin-bottom:4px; }
-.trm.gold-trm .trm-label { color:var(--gold); }
-.trm.sage-trm .trm-label { color:var(--sage); }
-.trm-route { font-size:12.5px; color:var(--text); line-height:1.4; margin-bottom:3px; }
-.trm-price { font-family:'Libre Baskerville',serif; font-size:19px; }
-.trm.gold-trm .trm-price { color:var(--gold); }
-.trm.sage-trm .trm-price { color:var(--sage); }
-.trm-note { font-size:10.5px; color:var(--muted); margin-top:2px; }
-
-/* romantic note */
-.rom-note {
-  margin-top:16px; padding:13px 18px;
-  background:rgba(214,168,78,.05); border-left:2px solid rgba(214,168,78,.35);
-  font-size:13px; color:var(--cream); font-style:italic; line-height:1.65;
-}
+.rom-note { margin-top:16px; padding:13px 18px; background:rgba(214,168,78,.05); border-left:2px solid rgba(214,168,78,.35); font-size:13px; color:var(--cream); font-style:italic; line-height:1.65; }
 .rom-note::before { content:'♥  '; color:var(--rose); font-style:normal; }
-
-/* stay row */
-.stay-row {
-  margin-top:16px; padding:12px 18px;
-  background:var(--deep); border:1px solid var(--border);
-  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
-}
+.stay-row { margin-top:16px; padding:12px 18px; background:var(--deep); border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
 .stay-row .sl { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
 .stay-row .sn { font-size:13px; color:var(--text); }
 .stay-row .sp { font-family:'Libre Baskerville',serif; font-size:20px; color:var(--rose); }
-.stay-row .snt { font-size:11px; color:var(--muted); }
 
-/* ─── BUDGET TABLE ─── */
-.budget-section { padding:80px 0; }
-.budget-cols { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:40px; }
-.bc { background:var(--card); border:1px solid var(--border); overflow:hidden; }
-.bc-head { padding:18px 28px; display:flex; justify-content:space-between; align-items:center; }
-.bc-head.gold-head { background:rgba(214,168,78,.07); border-bottom:1px solid rgba(214,168,78,.25); }
-.bc-head.sage-head { background:rgba(122,170,142,.07); border-bottom:1px solid rgba(122,170,142,.25); }
-.bc-head h3 { font-family:'Libre Baskerville',serif; font-size:18px; font-weight:400; color:var(--cream); }
-.bc-badge { font-size:9px; padding:3px 11px; border:1px solid; }
-.gold-head .bc-badge { color:var(--gold); border-color:rgba(214,168,78,.4); }
-.sage-head .bc-badge { color:var(--sage); border-color:rgba(122,170,142,.4); }
-table.bt { width:100%; border-collapse:collapse; }
-table.bt td { padding:11px 28px; font-size:12.5px; border-bottom:1px solid var(--border); vertical-align:top; }
-table.bt td:last-child { text-align:right; white-space:nowrap; }
-table.bt tr.cat td { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); background:var(--deep); padding:9px 28px; }
-table.bt tr.total td { font-family:'Libre Baskerville',serif; font-size:18px; border-top:2px solid var(--border); border-bottom:none; color:var(--cream); }
-table.bt tr.total td:last-child { color:var(--gold); }
-.verdict-big {
-  grid-column:1/-1; background:var(--deep); border:1px solid rgba(214,168,78,.25);
-  padding:24px 28px;
-}
-.verdict-big strong { color:var(--gold); }
-.verdict-big p { font-size:13.5px; color:var(--text); line-height:1.8; }
-
-/* ─── TIPS ─── */
-.tips-section { padding:0 0 80px; }
-.tips-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:32px; }
-.tip-card {
-  background:var(--card); border:1px solid var(--border);
-  padding:28px; transition:border-color .3s, transform .3s;
-}
-.tip-card:hover { border-color:var(--lavender); transform:translateY(-3px); }
-.tip-icon { font-size:26px; margin-bottom:14px; }
-.tip-card h4 { font-family:'Libre Baskerville',serif; font-size:17px; font-weight:400; color:var(--cream); margin-bottom:10px; }
-.tip-card p { font-size:12.5px; color:var(--muted); line-height:1.7; }
-
-/* ─── FOOTER ─── */
-footer {
-  background:var(--deep); border-top:1px solid var(--border);
-  padding:48px 24px; text-align:center; position:relative; z-index:1;
-}
+footer { background:var(--deep); border-top:1px solid var(--border); padding:48px 24px; text-align:center; position:relative; z-index:1; }
 footer p { font-family:'Libre Baskerville',serif; font-style:italic; font-size:16px; color:var(--muted); }
 footer .g { color:var(--gold); }
 footer .small { font-family:'Outfit',sans-serif; font-size:11px; margin-top:12px; }
 
-/* ─── KEYFRAMES ─── */
-@keyframes fadeup {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes pulse {
-  0%,100% { opacity:.4; }
-  50%      { opacity:1; }
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width:660px) {
-  .transport-2col, .budget-cols, .tr-mini { grid-template-columns:1fr; }
-  .chapter-header { flex-direction:column; align-items:flex-start; gap:12px; }
-  .ch-budget { text-align:left; }
-  .ch-num { font-size:48px; }
-  .day-card { grid-template-columns:36px 1fr; gap:14px; padding:20px 16px; }
-}
+@keyframes fadeup { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+@media (max-width:660px) { .chapter-header { flex-direction:column; align-items:flex-start; gap:12px; } .ch-budget { text-align:left; } .day-card { grid-template-columns:36px 1fr; gap:14px; padding:20px 16px; } }
 </style>
 </head>
 <body>
@@ -360,795 +178,106 @@ footer .small { font-family:'Outfit',sans-serif; font-size:11px; margin-top:12px
   <div class="hero-eyebrow">Plan C · Oktoberfest Edition · 15 Nights · For Two</div>
   <h1 class="hero-title">
     <em>Our Journey</em> Through<br>the Heart of Europe
-    <span class="line2">Munich · Königssee · Salzburg · Hallstatt · Interlaken · Paris</span>
+    <span class="line2">Munich · Königssee · Zermatt · Nendaz · Paris</span>
   </h1>
   <div class="hero-divider"></div>
   <div class="hero-persons">
-    <div class="person">
-      <div class="person-icon">✈️</div>
-      <div class="person-label">Flying from</div>
-      <div class="person-name">Toronto, Canada</div>
-    </div>
+    <div class="person"><div class="person-icon">✈️</div><div class="person-label">Flying from</div><div class="person-name">Toronto, Canada</div></div>
     <div class="person-heart">♥</div>
-    <div class="person">
-      <div class="person-icon">🏡</div>
-      <div class="person-label">Waiting in</div>
-      <div class="person-name">Germany</div>
-    </div>
+    <div class="person"><div class="person-icon">🏡</div><div class="person-label">Waiting in</div><div class="person-name">Germany</div></div>
   </div>
   <div class="route-strip">
-    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Munich</div><div class="rs-nights">3 nights</div></div>
-    <div class="rs-line"></div>
-    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Königssee</div><div class="rs-nights">2 nights</div></div>
-    <div class="rs-line"></div>
-    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Salzburg</div><div class="rs-nights">3 nights</div></div>
-    <div class="rs-line"></div>
-    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Interlaken</div><div class="rs-nights">2 nights</div></div>
-    <div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Munich</div><div class="rs-nights">3 nights</div></div><div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Königssee</div><div class="rs-nights">2 nights</div></div><div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Zermatt</div><div class="rs-nights">3 nights</div></div><div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Nendaz</div><div class="rs-nights">2 nights</div></div><div class="rs-line"></div>
     <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Paris</div><div class="rs-nights">5 nights</div></div>
   </div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-bar"></div>
-  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-bar"></div></div>
 </section>
 
 <!-- ══ STATS ══ -->
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item"><label>Total Nights</label><div class="sv">15</div><div class="sn">No rush pace</div></div>
-    <div class="stat-item"><label>Destinations</label><div class="sv">6</div><div class="sn">3 countries</div></div>
+    <div class="stat-item"><label>Destinations</label><div class="sv">5</div><div class="sn">3 countries</div></div>
     <div class="stat-item"><label>Flight (Toronto)</label><div class="sv">~C$700</div><div class="sn">Condor/Icelandair</div></div>
-    <div class="stat-item"><label>Total (2 people)</label><div class="sv">~C$6,400</div><div class="sn">Point-to-point</div></div>
-    <div class="stat-item"><label>Per Day Couple</label><div class="sv">€130–170</div><div class="sn">Hotel + food + fun</div></div>
-    <div class="stat-item"><label>Season</label><div class="sv">Sept–Oct</div><div class="sn">Oktoberfest peak</div></div>
+    <div class="stat-item"><label>Total (2 people)</label><div class="sv">~C$8,000</div><div class="sn">With upgrades</div></div>
+    <div class="stat-item"><label>Season</label><div class="sv">Sept–Oct</div><div class="sn">Golden larches</div></div>
   </div>
 </div>
 
-<!-- ══ TRANSPORT ══ -->
-<div class="transport-section">
+<!-- ══ HOTEL RECOMMENDATIONS ══ -->
+<div class="hotel-section">
   <div class="wrap">
-    <div class="sec-label">How to Travel Between Cities</div>
-    <div class="sec-title">With Eurail <em>vs</em> Point-to-Point</div>
-    <p class="sec-sub">For this exact route, point-to-point tickets booked 4–6 weeks ahead beat the Eurail pass by roughly €200 for 2 people. Here's the honest comparison.</p>
-    <div class="transport-2col">
-      <div class="tc gold-tc">
-        <h3>🎫 Eurail Global Pass</h3>
-        <div class="tc-tag">Flexibility · No planning stress</div>
-        <ul class="tc-rows">
-          <li>5-day Flex pass covers all major legs — use days only when needed</li>
-          <li>Germany &amp; Austria: hop on any train, <strong>zero reservation fee</strong></li>
-          <li>Switzerland: covered, no reservation fee on most trains</li>
-          <li>Paris TGV: pass valid, compulsory reservation ~€12 pp extra</li>
-          <li>Jungfraujoch: <strong>25% discount</strong> — saves CHF 55 pp</li>
-          <li>Use Bayern Ticket &amp; Einfach-Raus for short hops, save pass days</li>
-        </ul>
-        <div class="tc-price">€636 <small>for 2 people · 2nd class 5-day flex</small></div>
-        <div class="verdict-box">Worth it if you don't want to plan. The Jungfraujoch discount alone saves CHF 110 for 2 people — partially offsets pass cost.</div>
-      </div>
-      <div class="tc sage-tc">
-        <h3>🎟 Point-to-Point</h3>
-        <div class="tc-tag">Cheapest · Book 4–6 weeks ahead</div>
-        <ul class="tc-rows">
-          <li>Bayern Ticket (Munich → Königssee, Neuschwanstein): <strong>€44 for 2</strong></li>
-          <li>Einfach-Raus-Ticket (Salzburg → Hallstatt day trip): <strong>€36 for 2</strong></li>
-          <li>Berchtesgaden → Salzburg: bus RVO 840 covered by Bayern Ticket</li>
-          <li>Salzburg → Interlaken via Zurich: <strong>from €46 pp</strong> booked early on oebb.at</li>
-          <li>Interlaken → Paris TGV Lyria: <strong>from €110 pp</strong> via Trainline.com</li>
-          <li>Total transport for 2 people: <strong>~€430–500</strong> booked in advance</li>
-        </ul>
-        <div class="tc-price">~€430 <small>for 2 people · all legs booked early</small></div>
-        <div class="verdict-box">Saves ~€200 over Eurail if you commit to dates. Best strategy: day passes for Bavaria &amp; Austria, advance tickets for Switzerland and Paris legs.</div>
-      </div>
+    <div class="sec-label">Where to Stay</div>
+    <div class="sec-title">Romantic <em>Budget-Friendly</em> Hotels</div>
+    <p class="sec-sub">Each hotel is chosen for romance, location, and value. All have private bathrooms and are within walking distance of main attractions or transit.</p>
+    <div class="hotel-grid">
+      <div class="hotel-card"><div class="hotel-name">🏨 Motel One München-Parkstadt Schwabing</div><div class="hotel-price">€70-90 / night · 2 people</div><div class="hotel-desc">Stylish budget design hotel in Munich. Great U-Bahn access to city center and Oktoberfest. Clean, modern, and reliable — perfect base for your first days.</div><a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" rel="noopener" class="hotel-link">Check Availability →</a></div>
+      <div class="hotel-card"><div class="hotel-name">🏔️ Pension Watzmann</div><div class="hotel-price">€60-75 / night · 2 people</div><div class="hotel-desc">Family-run Bavarian guesthouse in Berchtesgaden. Traditional breakfast, mountain views, and warm hospitality. A short bus ride from Königssee.</div><a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" rel="noopener" class="hotel-link">Check Availability →</a></div>
+      <div class="hotel-card"><div class="hotel-name">🏔️ Hotel Matterhornblick</div><div class="hotel-price">CHF 140-170 / night · 2 people</div><div class="hotel-desc">Matterhorn views from your balcony, spa area, central but quiet location in car-free Zermatt. Rated "Fabulous" by guests. [citation:1]</div><a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" rel="noopener" class="hotel-link">Check Availability →</a></div>
+      <div class="hotel-card"><div class="hotel-name">🏡 Apartment Diana E2 by Interhome</div><div class="hotel-price">CHF 100-130 / night · 2 people</div><div class="hotel-desc">Cozy apartment in Nendaz with kitchen, fireplace, and balcony. Perfect for a quiet alpine escape. Rated 9.0 by guests. [citation:2]</div><a href="https://www.booking.com/hotel/ch/diana-e2.html" target="_blank" rel="noopener" class="hotel-link">Check Availability →</a></div>
+      <div class="hotel-card"><div class="hotel-name">🥐 Moxy Paris Bastille</div><div class="hotel-price">€85-110 / night · 2 people</div><div class="hotel-desc">Trendy hotel between Bastille and Le Marais. Fun design, excellent metro access, and vibrant neighborhood. Rated 8.0 by guests. [citation:3]</div><a href="https://www.booking.com/hotel/fr/moxy-paris-bastille.html" target="_blank" rel="noopener" class="hotel-link">Check Availability →</a></div>
     </div>
   </div>
 </div>
 
-<!-- ══ DAY PASSES ══ -->
-<div class="passes-section">
+<!-- ══ TICKETS SECTION ══ -->
+<div class="ticket-section">
   <div class="wrap">
-    <div class="sec-label">Regional Day Passes — Your Secret Weapon</div>
-    <div class="sec-title">The Cross-Border <em>Tickets</em> Nobody Tells You About</div>
-    <div class="passes-grid">
-      <div class="pass">
-        <div class="pass-flag">🇩🇪</div>
-        <h4>Bayern Ticket</h4>
-        <div class="pass-price">€44 for 2</div>
-        <p>All-day unlimited travel on every regional train and bus in Bavaria. Valid from Munich Airport all the way to Salzburg, Austria — that's a cross-border day pass for two people at €22 each.</p>
-        <div class="pass-covers">✓ Munich city ✓ Neuschwanstein ✓ Berchtesgaden ✓ Königssee bus ✓ Salzburg Hbf</div>
-      </div>
-      <div class="pass">
-        <div class="pass-flag">🇦🇹</div>
-        <h4>Einfach-Raus-Ticket</h4>
-        <div class="pass-price">€36 for 2</div>
-        <p>Austrian Railways regional day pass. Valid on all regional trains throughout Austria for a full day. Perfect for the Salzburg → Hallstatt day trip (via Attnang-Puchheim + ferry).</p>
-        <div class="pass-covers">✓ Salzburg → Hallstatt return ✓ All Austrian regional trains all day</div>
-      </div>
-      <div class="pass">
-        <div class="pass-flag">🇨🇭</div>
-        <h4>Swiss Half-Fare Card</h4>
-        <div class="pass-price">CHF 120 each (~€125)</div>
-        <p>One month of 50% off all Swiss trains, boats and many cable cars. For 2 nights in Interlaken it pays for itself. Also gives 25% off Jungfraujoch (~saves CHF 55 pp).</p>
-        <div class="pass-covers">✓ All SBB trains ✓ Lake boats ✓ 50% off mountain railways</div>
-      </div>
-      <div class="pass">
-        <div class="pass-flag">🇫🇷</div>
-        <h4>TGV Lyria Advance Fare</h4>
-        <div class="pass-price">from €110 pp (6 wks ahead)</div>
-        <p>Not a pass — a booking tip. Interlaken → Basel → Paris takes 5h 36min. Book on Trainline.com 4–6 weeks ahead for cheapest fares. Prices double if left to last minute.</p>
-        <div class="pass-covers">✓ Interlaken Ost → Basel SBB → Paris Gare de Lyon · 5h 36min · 1 change</div>
-      </div>
+    <div class="sec-label">Book These in Advance</div>
+    <div class="sec-title">Tickets & <em>Passes</em> You'll Need</div>
+    <p class="sec-sub">Booking these 4-6 weeks ahead locks in prices and guarantees availability. The Swiss Half-Fare Card is essential — it saves 50% on all Swiss transport. [citation:5]</p>
+    <div class="ticket-grid">
+      <div class="ticket-card"><div class="ticket-name">🇨🇭 Swiss Half-Fare Card</div><div class="ticket-price">CHF 150 per person · valid 1 month</div><div class="ticket-desc">50% off all trains, buses, boats, and most cable cars in Switzerland. Pays for itself with Zermatt lifts alone. Buy online before departure. [citation:5]</div><a href="https://www.swissrailways.com/en" target="_blank" rel="noopener" class="ticket-link">Buy Official SBB Card →</a></div>
+      <div class="ticket-card"><div class="ticket-name">🇩🇪 Bayern Ticket</div><div class="ticket-price">€44 per day (2 people)</div><div class="ticket-desc">Unlimited regional trains & buses in Bavaria. Covers Munich → Berchtesgaden, Königssee buses, and even cross-border to Salzburg. Buy at any station machine.</div><a href="https://www.bahn.com/en/offers/regional/day-ticket-bayern-ticket" target="_blank" rel="noopener" class="ticket-link">Buy at Deutsche Bahn →</a></div>
+      <div class="ticket-card"><div class="ticket-name">🇦🇹 Einfach-Raus-Ticket</div><div class="ticket-price">€36 per day (2 people)</div><div class="ticket-desc">Unlimited regional trains in Austria. Use for Salzburg day trips. Buy at ÖBB ticket machines or app.</div><a href="https://www.oebb.at/en/tickets/regionaltickets/einfach-raus-ticket" target="_blank" rel="noopener" class="ticket-link">Buy at ÖBB →</a></div>
+      <div class="ticket-card"><div class="ticket-name">🚠 Jennerbahn Cable Car</div><div class="ticket-price">€28 per person round-trip</div><div class="ticket-desc">The cable car from Königssee to 1,800m. Unforgettable views of the emerald lake and Alps. Buy tickets at the valley station — no advance needed in October.</div><a href="https://www.jennerbahn.de/en" target="_blank" rel="noopener" class="ticket-link">Official Website →</a></div>
+      <div class="ticket-card"><div class="ticket-name">🚠 Gornergrat Railway</div><div class="ticket-price">CHF 80 per person (with Half-Fare Card)</div><div class="ticket-desc">The classic Matterhorn view train to 3,089m. Hike down to Riffelsee for the iconic reflection. Buy at Zermatt station.</div><a href="https://www.gornergratbahn.ch/en/" target="_blank" rel="noopener" class="ticket-link">Official Website →</a></div>
+      <div class="ticket-card"><div class="ticket-name">❄️ Matterhorn Glacier Paradise</div><div class="ticket-price">CHF 80 per person (with Half-Fare Card)</div><div class="ticket-desc">Europe's highest cable car at 3,883m. Includes the Glacier Palace — an ice cave inside the glacier. Unforgettable.</div><a href="https://www.matterhornparadise.ch/en" target="_blank" rel="noopener" class="ticket-link">Official Website →</a></div>
+      <div class="ticket-card"><div class="ticket-name">🚄 TGV Lyria Paris</div><div class="ticket-price">€110-150 per person one-way</div><div class="ticket-desc">Interlaken → Paris in 5.5 hours. Book 4-6 weeks ahead on Trainline. Prices double if left to last minute.</div><a href="https://www.trainline.com" target="_blank" rel="noopener" class="ticket-link">Book on Trainline →</a></div>
+      <div class="ticket-card"><div class="ticket-name">🍂 Nendaz Autumn Break</div><div class="ticket-price">CHF 376 for 2 people (2 nights)</div><div class="ticket-desc">Includes 2 nights hotel + breakfast + cable car + CHF 20 meal voucher. Valid Sept 1 – Oct 26. Best value in Switzerland.</div><a href="https://www.nendaz.ch/en/autumn-break-for-two" target="_blank" rel="noopener" class="ticket-link">Book Package →</a></div>
     </div>
   </div>
 </div>
 
 <!-- ══ CHAPTER 1: MUNICH ══ -->
-<div class="chapter">
-  <div class="wrap">
-    <div class="chapter-header ch-munich">
-      <div class="ch-num">01</div>
-      <div class="ch-info">
-        <div class="ch-tag">🇩🇪 Germany · Days 1–3</div>
-        <div class="ch-city"><em>München</em> — Arrival &amp; Oktoberfest</div>
-        <div class="ch-nights">3 nights · No rushing · Oktoberfest on Day 2</div>
-      </div>
-      <div class="ch-budget">
-        <div class="bl">Hotel / night</div>
-        <div class="bv">€70–90</div>
-        <div class="bn">Budget double · Hauptbahnhof area</div>
-      </div>
-    </div>
-
-    <div class="days-wrap">
-      <!-- Day 1 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 1</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Reunion Day</em> — No Sightseeing Required</div>
-          <div class="day-mood">"After an overnight flight across the Atlantic, the only thing that matters is the hug at arrivals, a long shower, and a quiet dinner somewhere warm."</div>
-          <div class="pills">
-            <span class="pill free">Airport pickup / hotel meetup</span>
-            <span class="pill free">Shower · Nap · Coffee</span>
-            <span class="pill rom">Quiet dinner near hotel</span>
-            <span class="pill tip">No sightseeing — jet lag is real</span>
-          </div>
-          <div class="rom-note">The Canadian arrives on an overnight flight — don't plan anything demanding. A slow walk around the Viktualienmarkt and dinner at a neighbourhood restaurant is the perfect first evening in Europe together.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Munich Hauptbahnhof area — Motel One or A&O Hotel</div></div>
-            <div><div class="sp">€70–90/night</div><div class="snt">Budget double room · central location</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 2 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 2</div></div>
-        <div class="day-body">
-          <div class="day-title">🍺 <em>Oktoberfest</em> — The Relaxed Version</div>
-          <div class="day-mood">"Arrive before 2pm on a weekday. Find a table inside a tent. Order two Masskrüge. The world's greatest party is better when you don't rush it."</div>
-          <div class="pills">
-            <span class="pill tip">Weekday visit before 2pm — far less crowded</span>
-            <span class="pill paid">Oktoberfest — free entry, beer ~€14–16 per Mass</span>
-            <span class="pill free">Stay 3–4 hours, then leave while you can still walk</span>
-            <span class="pill rom">Evening: romantic walk through Maxvorstadt or Haidhausen</span>
-          </div>
-          <div class="rom-note">The secret to Oktoberfest for couples: arrive early, get seats inside a tent (Hofbräu or Augustiner), order a shared Brezn and two beers, people-watch for 3 hours. Leave by 5pm before it gets raucous. The evening neighbourhood walk is the real romance.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Munich (same hotel)</div></div>
-            <div><div class="sp">€70–90/night</div><div class="snt">2nd night</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 3 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 3</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Slow Munich</em> — Parks, Rowboats &amp; Beer Gardens</div>
-          <div class="day-mood">"Sleep in. The English Garden is the world's largest city park — bigger than Central Park. Rent a rowboat. Find a biergarten that isn't Oktoberfest. Breathe."</div>
-          <div class="pills">
-            <span class="pill free">English Garden — morning walk</span>
-            <span class="pill rom">Rowboat on Kleinhesseloher See — €15/hr</span>
-            <span class="pill free">Chinese Tower beer garden — free to sit, cheap beer</span>
-            <span class="pill paid">Optional: Nymphenburg Palace gardens — free to walk</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 With Eurail</div>
-              <div class="trm-route">Optional: Neuschwanstein day trip</div>
-              <div class="trm-price">€0 pass</div>
-              <div class="trm-note">Use a flex day if you want the castle</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 Point-to-Point</div>
-              <div class="trm-route">Bayern Ticket covers Neuschwanstein too</div>
-              <div class="trm-price">€44 for 2</div>
-              <div class="trm-note">One pass covers Munich + Füssen + all buses</div>
-            </div>
-          </div>
-          <div class="rom-note">The rowboat on Kleinhesseloher See is genuinely one of the most romantic things in Munich. €15 for an hour, no crowds, weeping willows, ducks. Better than any restaurant view.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Munich (3rd and final night)</div></div>
-            <div><div class="sp">€70–90/night</div><div class="snt">Check out tomorrow morning</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="chapter"><div class="wrap"><div class="chapter-header ch-munich"><div class="ch-num">01</div><div class="ch-info"><div class="ch-tag">🇩🇪 Germany · Days 1–3</div><div class="ch-city"><em>München</em> — Arrival &amp; Oktoberfest</div><div class="ch-nights">3 nights · No rushing · Oktoberfest on Day 2</div></div><div class="ch-budget"><div class="bl">Hotel / night</div><div class="bv">€70–90</div><div class="bn">Motel One or similar</div></div></div>
+<div class="days-wrap"><div class="day-card"><div class="day-label"><div class="day-num">Day 1</div></div><div class="day-body"><div class="day-title"><em>Reunion Day</em> — No Sightseeing Required</div><div class="day-mood">"After an overnight flight across the Atlantic, the only thing that matters is the hug at arrivals, a long shower, and a quiet dinner somewhere warm."</div><div class="pills"><span class="pill free">Airport pickup / hotel meetup</span><span class="pill free">Shower · Nap · Coffee</span><span class="pill rom">Quiet dinner near hotel</span><span class="pill tip">No sightseeing — jet lag is real</span></div><div class="rom-note">The Canadian arrives on an overnight flight — don't plan anything demanding. A slow walk around the Viktualienmarkt and dinner at a neighbourhood restaurant is the perfect first evening in Europe together.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn"><a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" style="color:var(--gold)">Motel One München-Parkstadt Schwabing</a> · €70-90/night</div></div></div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 2</div></div><div class="day-body"><div class="day-title">🍺 <em>Oktoberfest</em> — The Relaxed Version</div><div class="day-mood">"Arrive before 2pm on a weekday. Find a table inside a tent. Order two Masskrüge. The world's greatest party is better when you don't rush it."</div><div class="pills"><span class="pill tip">Weekday visit before 2pm — far less crowded</span><span class="pill paid">Oktoberfest — free entry, beer ~€14–16 per Mass</span><span class="pill free">Stay 3–4 hours, then leave while you can still walk</span><span class="pill rom">Evening: romantic walk through Maxvorstadt or Haidhausen</span></div><div class="rom-note">The secret to Oktoberfest for couples: arrive early, get seats inside a tent (Hofbräu or Augustiner), order a shared Brezn and two beers, people-watch for 3 hours. Leave by 5pm before it gets raucous. The evening neighbourhood walk is the real romance.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn">Same hotel · 2nd night</div></div></div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 3</div></div><div class="day-body"><div class="day-title"><em>Slow Munich</em> — Parks, Rowboats &amp; Beer Gardens</div><div class="day-mood">"Sleep in. The English Garden is the world's largest city park — bigger than Central Park. Rent a rowboat. Find a biergarten that isn't Oktoberfest. Breathe."</div><div class="pills"><span class="pill free">English Garden — morning walk</span><span class="pill rom">Rowboat on Kleinhesseloher See — €15/hr</span><span class="pill free">Chinese Tower beer garden — free to sit, cheap beer</span></div><div class="rom-note">The rowboat on Kleinhesseloher See is genuinely one of the most romantic things in Munich. €15 for an hour, no crowds, weeping willows, ducks. Better than any restaurant view.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn">Same hotel · 3rd night</div></div></div></div></div></div></div></div>
 
 <!-- ══ CHAPTER 2: KÖNIGSSEE ══ -->
-<div class="chapter">
-  <div class="wrap">
-    <div class="chapter-header ch-konigsee">
-      <div class="ch-num">02</div>
-      <div class="ch-info">
-        <div class="ch-tag">🇩🇪 Bavaria · Days 4–5</div>
-        <div class="ch-city"><em>Königssee</em> — The Emerald Lake</div>
-        <div class="ch-nights">2 nights in Berchtesgaden · One base, no moving</div>
-      </div>
-      <div class="ch-budget">
-        <div class="bl">Hotel / night</div>
-        <div class="bv">€60–75</div>
-        <div class="bn">Guesthouse / Pension</div>
-      </div>
-    </div>
+<div class="chapter"><div class="wrap"><div class="chapter-header ch-konigsee"><div class="ch-num">02</div><div class="ch-info"><div class="ch-tag">🇩🇪 Bavaria · Days 4–5</div><div class="ch-city"><em>Königssee</em> — The Emerald Lake</div><div class="ch-nights">2 nights in Berchtesgaden · One base, no moving</div></div><div class="ch-budget"><div class="bl">Hotel / night</div><div class="bv">€60–75</div><div class="bn">Pension Watzmann</div></div></div>
+<div class="days-wrap"><div class="day-card"><div class="day-label"><div class="day-num">Day 4</div></div><div class="day-body"><div class="day-title">Arrive &amp; <em>The Electric Boat</em></div><div class="day-mood">"A silent electric boat glides between cliffs that plunge two thousand metres straight into emerald water. The boatman stops mid-lake and plays an alphorn — the echo comes back from the cliff face."</div><div class="pills"><span class="pill rom">Electric boat to St. Bartholomä — €20 pp</span><span class="pill free">Malerwinkel (Painter's Corner) viewpoint — free</span><span class="pill rom">Evening Bavarian dinner in Berchtesgaden town</span></div><div class="rom-note">Take the 10am or 11am boat to avoid crowds. Get off at St. Bartholomä — don't take the last boat back immediately. Sit by the church, have a coffee, let the mountains surround you for an hour.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn"><a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" style="color:var(--gold)">Pension Watzmann</a> · €60-75/night</div></div></div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 5</div></div><div class="day-body"><div class="day-title"><em>Jennerbahn</em> Cable Car — Above the World</div><div class="day-mood">"The gondola rises to 1,800 metres above the lake. The Königssee shrinks to a mirror below. The Alps stretch in every direction. You eat lunch at a mountain restaurant with your feet dangling over Bavaria."</div><div class="pills"><span class="pill paid"><a href="https://www.jennerbahn.de/en" target="_blank" style="color:var(--rose)">Jennerbahn cable car</a> — ~€28 pp return</span><span class="pill free">Summit walk (30–45 min gentle trail)</span><span class="pill rom">Lunch at mountain restaurant — €15–20 pp</span></div><div class="rom-note">The Jennerbahn sits directly at the Königssee lakeside — you can look down at the emerald water from 1,800m. On a clear day you see Austria, Germany and what feels like all of creation. This is the highlight of the Königssee stay.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn">Same hotel · 2nd night</div></div></div></div></div></div></div></div>
 
-    <div class="days-wrap">
-      <!-- Day 4 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 4</div></div>
-        <div class="day-body">
-          <div class="day-title">Arrive &amp; <em>The Electric Boat</em></div>
-          <div class="day-mood">"A silent electric boat glides between cliffs that plunge two thousand metres straight into emerald water. The boatman stops mid-lake and plays an alphorn — the echo comes back from the cliff face."</div>
-          <div class="pills">
-            <span class="pill rom">Electric boat to St. Bartholomä — €20 pp</span>
-            <span class="pill free">Walk the lakeshore trail at St. Bartholomä</span>
-            <span class="pill free">Malerwinkel (Painter's Corner) viewpoint — free</span>
-            <span class="pill rom">Evening Bavarian dinner in Berchtesgaden town</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 With Eurail — use 1 pass day</div>
-              <div class="trm-route">Munich → Freilassing → Berchtesgaden + bus 841</div>
-              <div class="trm-price">€0 + €0</div>
-              <div class="trm-note">Regional trains, no reservation needed</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 Bayern Ticket (best value!)</div>
-              <div class="trm-route">Munich → Berchtesgaden + all local buses</div>
-              <div class="trm-price">€44 for 2</div>
-              <div class="trm-note">Covers full day incl. bus 841 to Königssee</div>
-            </div>
-          </div>
-          <div class="rom-note">Take the 10am or 11am boat to avoid crowds. Get off at St. Bartholomä — don't take the last boat back immediately. Sit by the church, have a coffee, let the mountains surround you for an hour.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Berchtesgaden — Pension Watzmann or similar</div></div>
-            <div><div class="sp">€60–75/night</div><div class="snt">Mountain guesthouse with Bavarian breakfast</div></div>
-          </div>
-        </div>
-      </div>
+<!-- ══ CHAPTER 3: ZERMATT ══ -->
+<div class="chapter"><div class="wrap"><div class="chapter-header ch-zermatt"><div class="ch-num">03</div><div class="ch-info"><div class="ch-tag">🇨🇭 Switzerland · Days 6–8</div><div class="ch-city"><em>Zermatt</em> — The Matterhorn</div><div class="ch-nights">3 nights · Car-free village · Ultimate romance</div></div><div class="ch-budget"><div class="bl">Hotel / night</div><div class="bv">CHF 140–170</div><div class="bn">Hotel Matterhornblick</div></div></div>
+<div class="days-wrap"><div class="day-card"><div class="day-label"><div class="day-num">Day 6</div></div><div class="day-body"><div class="day-title">Arrival in <em>Zermatt</em> — First View of the Matterhorn</div><div class="day-mood">"The train winds up from Visp. Then — a gap between the valley walls — and the Matterhorn appears. Sharp. Impossible. Perfect."</div><div class="pills"><span class="pill tip">Travel day: Berchtesgaden → Zermatt (~6-7 hours)</span><span class="pill free">Evening walk through car-free village</span><span class="pill rom">Dinner with Matterhorn view</span></div><div class="rom-note">Zermatt is car-free. Park in Täsch (CHF 15-20/day) and take the shuttle train. Most hotels offer free pickup from Zermatt station between 8:00-19:00. [citation:7]</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn"><a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" style="color:var(--gold)">Hotel Matterhornblick</a> · Matterhorn-view room · CHF 140-170/night [citation:1]</div></div></div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 7</div></div><div class="day-body"><div class="day-title"><em>Gornergrat</em> — The Classic Matterhorn View</div><div class="day-mood">"The cogwheel train climbs to 3,089 metres. The Matterhorn stands alone. You hike down to Riffelsee and see it reflected in the water — the most famous mountain photograph in the world, and it's yours."</div><div class="pills"><span class="pill paid"><a href="https://www.gornergratbahn.ch/en/" target="_blank" style="color:var(--rose)">Gornergrat Railway</a> — CHF 80 pp with Half-Fare Card</span><span class="pill free">Hike down to Riffelsee (1-1.5 hours)</span><span class="pill rom">Lunch at Riffelberg with Matterhorn view</span></div><div class="rom-note">The hike from Gornergrat to Riffelsee is gentle downhill. The lake reflects the Matterhorn perfectly on calm days. Go in the morning for the best light.</div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 8</div></div><div class="day-body"><div class="day-title"><em>Matterhorn Glacier Paradise</em> — Standing Inside a Glacier</div><div class="day-mood">"The highest cable car in Europe takes you to 3,883 metres. Then you walk inside a glacier — ice caves, sculptures, a frozen slide. The view from the top looks into Italy, France, and Switzerland."</div><div class="pills"><span class="pill paid"><a href="https://www.matterhornparadise.ch/en" target="_blank" style="color:var(--rose)">Glacier Paradise + Ice Palace</a> — CHF 80 pp with Half-Fare Card</span><span class="pill rom">Horse-drawn carriage ride at sunset — CHF 50-70</span><span class="pill rom">Fondue dinner for two</span></div><div class="rom-note">The horse-drawn carriage ride through Zermatt at sunset is pure romance. Blankets provided. The clip-clop of hooves on cobblestones with the Matterhorn turning pink — worth every franc.</div></div></div></div></div></div>
 
-      <!-- Day 5 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 5</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Jennerbahn</em> Cable Car — Above the World</div>
-          <div class="day-mood">"The gondola rises to 1,800 metres above the lake. The Königssee shrinks to a mirror below. The Alps stretch in every direction. You eat lunch at a mountain restaurant with your feet dangling over Bavaria."</div>
-          <div class="pills">
-            <span class="pill paid">Jennerbahn cable car — ~€28 pp return</span>
-            <span class="pill free">Summit walk (30–45 min gentle trail)</span>
-            <span class="pill rom">Lunch at mountain restaurant — €15–20 pp</span>
-            <span class="pill free">Afternoon: Berchtesgaden old town</span>
-            <span class="pill rom">Final evening dinner — Gasthof with views</span>
-          </div>
-          <div class="rom-note">The Jennerbahn sits directly at the Königssee lakeside — you can look down at the emerald water from 1,800m. On a clear day you see Austria, Germany and what feels like all of creation. This is the highlight of the Königssee stay.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Berchtesgaden (2nd and final night)</div></div>
-            <div><div class="sp">€60–75/night</div><div class="snt">Tomorrow: bus to Salzburg</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ CHAPTER 3: SALZBURG ══ -->
-<div class="chapter">
-  <div class="wrap">
-    <div class="chapter-header ch-salzburg">
-      <div class="ch-num">03</div>
-      <div class="ch-info">
-        <div class="ch-tag">🇦🇹 Austria · Days 6–8</div>
-        <div class="ch-city"><em>Salzburg</em> + Hallstatt Day Trip</div>
-        <div class="ch-nights">3 nights · Day 7 = Hallstatt · Days 6 &amp; 8 = slow Salzburg</div>
-      </div>
-      <div class="ch-budget">
-        <div class="bl">Hotel / night</div>
-        <div class="bv">€70–95</div>
-        <div class="bn">Old town area · walkable to everything</div>
-      </div>
-    </div>
-
-    <div class="days-wrap">
-      <!-- Day 6 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 6</div></div>
-        <div class="day-body">
-          <div class="day-title">Arrive <em>Salzburg</em> — Mozart &amp; Riverside Magic</div>
-          <div class="day-mood">"A city of baroque domes and a fortress on a hill. The Salzach river glows gold at sunset. Mozart was born here and the streets still feel like an 18th-century stage set."</div>
-          <div class="pills">
-            <span class="pill free">Mirabell Gardens — free, Sound of Music famous</span>
-            <span class="pill free">Getreidegasse — Mozart's birthplace street</span>
-            <span class="pill rom">Salzach riverside walk at sunset</span>
-            <span class="pill rom">Dinner in Steingasse (quiet romantic lane)</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 Eurail or RVO Bus 840</div>
-              <div class="trm-route">Berchtesgaden → Salzburg</div>
-              <div class="trm-price">€0</div>
-              <div class="trm-note">RVO bus 840 takes 50min · scenic · €7 pp or covered by Bayern Ticket on Saturdays/Sundays</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 RVO Bus 840 (cheapest)</div>
-              <div class="trm-route">Berchtesgaden Hbf → Salzburg Hbf</div>
-              <div class="trm-price">~€7 pp</div>
-              <div class="trm-note">50 min · drops you in the Altstadt. No train needed.</div>
-            </div>
-          </div>
-          <div class="rom-note">Salzburg's old town is compact and extraordinarily beautiful. The golden hour on the Staatsbrücke bridge — the fortress above, the river below, the dome of the cathedral glowing — is one of the great romantic views in Europe.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Salzburg Altstadt area — Gästehaus im Priesterseminar or Altstadt Hotel Hofwirt</div></div>
-            <div><div class="sp">€70–95/night</div><div class="snt">Walking distance to everything · breakfast included at many</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 7 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 7</div></div>
-        <div class="day-body">
-          <div class="day-title">🏔 Hallstatt Day Trip — <em>The Most Beautiful Village</em></div>
-          <div class="day-mood">"A ferry carries you across a mirror-still lake to a village of 800 people stacked between the water and a cliff. UNESCO-listed. Incomparably beautiful. Leave before the tour buses at 10am."</div>
-          <div class="pills">
-            <span class="pill rom">Train Salzburg → Attnang-Puchheim → Hallstatt Bahnhof</span>
-            <span class="pill paid">Ferry to village — €4 pp cash only</span>
-            <span class="pill free">Marktplatz walk · Bone Chapel · Lakeside path</span>
-            <span class="pill rom">Rent an electric pedal boat — €20–30/hr</span>
-            <span class="pill free">Hallstatt Skywalk viewpoint — €5 pp</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 Eurail — use 1 pass day</div>
-              <div class="trm-route">Salzburg → Attnang-Puchheim → Hallstatt</div>
-              <div class="trm-price">€0 + ferry €4</div>
-              <div class="trm-note">2h 35min each way. Full day out.</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 Einfach-Raus-Ticket</div>
-              <div class="trm-route">Full day regional Austria travel for 2</div>
-              <div class="trm-price">€36 for 2</div>
-              <div class="trm-note">Covers Salzburg ↔ Hallstatt return + ferry €4 pp cash</div>
-            </div>
-          </div>
-          <div class="rom-note">Take the first morning train to arrive before 9:30am. After 10am, day-tour buses arrive and the tiny village fills up. By 6pm they all leave — if you can stay for the evening ferry, Hallstatt after sunset with the village lights reflected in the black water is incomparable.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Salzburg (2nd night)</div></div>
-            <div><div class="sp">€70–95/night</div><div class="snt">⚠️ Salt Mine funicular closed until late June 2026 — Altaussee shuttle is alternative</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 8 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 8</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Untersberg</em> Cable Car &amp; Fortress Views</div>
-          <div class="day-mood">"The Untersbergbahn cable car reaches 1,776 metres in 10 minutes. The view from the top: Salzburg below, the Bavarian Alps behind, Austria ahead. Then down for a final riverside dinner."</div>
-          <div class="pills">
-            <span class="pill paid">Untersbergbahn cable car — €28 pp return</span>
-            <span class="pill free">Summit walk · panoramic views</span>
-            <span class="pill free">Hohensalzburg Fortress — free to walk to, funicular €15</span>
-            <span class="pill rom">Final Salzach river walk at sunset</span>
-            <span class="pill rom">Farewell Salzburg dinner — schnitzel &amp; wine</span>
-          </div>
-          <div class="rom-note">Walk up to the fortress instead of taking the funicular — the 20-minute climb through Nonnberg Abbey is free, beautiful, and you'll have the path nearly to yourselves. The view from the fortress ramparts over the city is stunning at golden hour.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Salzburg (3rd and final night)</div></div>
-            <div><div class="sp">€70–95/night</div><div class="snt">Tomorrow: long scenic train to Interlaken via Zurich</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ CHAPTER 4: SWITZERLAND ══ -->
-<div class="chapter">
-  <div class="wrap">
-    <div class="chapter-header ch-switzerland">
-      <div class="ch-num">04</div>
-      <div class="ch-info">
-        <div class="ch-tag">🇨🇭 Switzerland · Days 9–10</div>
-        <div class="ch-city"><em>Interlaken</em> — Between Two Lakes &amp; the Alps</div>
-        <div class="ch-nights">2 nights · Skip Jungfraujoch · Do Lauterbrunnen instead — free &amp; more romantic</div>
-      </div>
-      <div class="ch-budget">
-        <div class="bl">Hotel / night</div>
-        <div class="bv">CHF 110–140</div>
-        <div class="bn">~€115–150 · Book early</div>
-      </div>
-    </div>
-
-    <div class="days-wrap">
-      <!-- Day 9 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 9</div></div>
-        <div class="day-body">
-          <div class="day-title">The <em>Long Train Day</em> — Salzburg to Interlaken</div>
-          <div class="day-mood">"Eight hours on a train through three countries. But this is no ordinary train journey — it passes through the Austrian Alps, the Arlberg Pass, Liechtenstein, and the Swiss lakes. The journey is the attraction."</div>
-          <div class="pills">
-            <span class="pill tip">Leave Salzburg by 9am · arrive Interlaken by 5pm</span>
-            <span class="pill free">Arlberg Pass scenery — glaciers from the window</span>
-            <span class="pill rom">Picnic in the train — buy bread &amp; cheese at Salzburg Hbf</span>
-            <span class="pill rom">Arrive: Höheweg promenade with Jungfrau views at sunset</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 Eurail — use 1 pass day</div>
-              <div class="trm-route">Salzburg → Innsbruck → Zurich → Bern → Interlaken</div>
-              <div class="trm-price">€0</div>
-              <div class="trm-note">No reservation fee in Austria or Switzerland. ~7.5h scenic journey.</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 Book on oebb.at + sbb.ch</div>
-              <div class="trm-route">Salzburg → Zurich → Interlaken Ost</div>
-              <div class="trm-price">from €46 pp</div>
-              <div class="trm-note">Book ÖBB Sparschiene early. ~7.5h total. 1–2 changes.</div>
-            </div>
-          </div>
-          <div class="rom-note">This is one of the great train journeys in Europe. Pack snacks, buy a window seat, and let the Alps do the work. The stretch through the Arlberg and then along the Swiss lakes approaching Interlaken is breathtaking.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Interlaken — Balmer's Hostel private room or Hotel Bernerhof</div></div>
-            <div><div class="sp">CHF 110–140/night</div><div class="snt">Hotel guests get free local bus pass · book early for best prices</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 10 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 10</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Lauterbrunnen</em> — 72 Waterfalls &amp; Alpine Silence</div>
-          <div class="day-mood">"A flat-bottomed valley carved by glaciers, walled on both sides by sheer 300-metre cliffs. Seventy-two waterfalls pour off the top. The floor of the valley is carpeted in wildflowers. It costs nothing."</div>
-          <div class="pills">
-            <span class="pill free">Lauterbrunnen valley floor walk — completely free</span>
-            <span class="pill free">Trümmelbach Falls inside the mountain — €11 pp</span>
-            <span class="pill rom">Train to Grindelwald — views of the Eiger face</span>
-            <span class="pill paid">Harder Kulm funicular sunset — CHF 32 pp</span>
-            <span class="pill rom">Fondue dinner for two — CHF 35–45 pp</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 Eurail advantage</div>
-              <div class="trm-route">Interlaken ↔ Lauterbrunnen / Grindelwald</div>
-              <div class="trm-price">€0</div>
-              <div class="trm-note">Fully covered by Eurail. No reservation needed.</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 Swiss Half-Fare Card</div>
-              <div class="trm-route">All day hops — 50% off</div>
-              <div class="trm-price">~CHF 20 total</div>
-              <div class="trm-note">Interlaken ↔ Lauterbrunnen ~CHF 7 pp with Half-Fare</div>
-            </div>
-          </div>
-          <div class="rom-note">Skip Jungfraujoch on a 2-night visit — it's CHF 220 pp and takes a full day. Lauterbrunnen valley is free, more beautiful for a couple, and completely peaceful. Save Jungfraujoch for when you come back for a full Switzerland trip.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Interlaken (2nd and final night)</div></div>
-            <div><div class="sp">CHF 110–140/night</div><div class="snt">Tomorrow: TGV Lyria to Paris — book in advance!</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- ══ CHAPTER 4: NENDAZ ══ -->
+<div class="chapter"><div class="wrap"><div class="chapter-header ch-nendaz"><div class="ch-num">04</div><div class="ch-info"><div class="ch-tag">🇨🇭 Switzerland · Days 9–10</div><div class="ch-city"><em>Nendaz</em> — Golden Larches &amp; Quiet Alps</div><div class="ch-nights">2 nights · The Autumn Break Package</div></div><div class="ch-budget"><div class="bl">Package / 2 nights</div><div class="bv">CHF 376</div><div class="bn">Hotel + cable car + meal</div></div></div>
+<div class="days-wrap"><div class="day-card"><div class="day-label"><div class="day-num">Day 9</div></div><div class="day-body"><div class="day-title">Arrive in <em>Nendaz</em> — The Secret Valley</div><div class="day-mood">"From Zermatt to Nendaz is just 1.5 hours. The crowds disappear. The larch forests are turning gold. You've found a place that feels like a secret."</div><div class="pills"><span class="pill tip">Travel: Zermatt → Visp → Sion → Nendaz (~1.5 hours)</span><span class="pill rom">Walk through Nendaz village</span><span class="pill rom">Quiet dinner at a local restaurant</span></div><div class="rom-note">Book the <a href="https://www.nendaz.ch/en/autumn-break-for-two" target="_blank" style="color:var(--gold)">Autumn Break for Two package</a> (CHF 376). It includes 2 nights hotel with breakfast, a cable car ticket, and a CHF 20 meal voucher. Best value in Switzerland.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn"><a href="https://www.booking.com/hotel/ch/diana-e2.html" target="_blank" style="color:var(--gold)">Apartment Diana E2 by Interhome</a> · CHF 100-130/night [citation:2]</div></div></div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 10</div></div><div class="day-body"><div class="day-title"><em>Golden Larches</em> &amp; Mountain Silence</div><div class="day-mood">"The cable car rises through forests turned gold by autumn. At the top, the Valais Alps spread in every direction. No crowds. No noise. Just the two of you and the mountains."</div><div class="pills"><span class="pill paid">Cable car to Tracouet or Combatseline (included in package)</span><span class="pill free">Walk through golden larch forests</span><span class="pill rom">Lunch with CHF 20 meal voucher</span></div><div class="rom-note">The larch forests of Nendaz turn brilliant gold in late September and early October. This is a phenomenon you won't see anywhere else on your trip — and almost no tourists know about it.</div></div></div></div></div></div>
 
 <!-- ══ CHAPTER 5: PARIS ══ -->
-<div class="chapter">
-  <div class="wrap">
-    <div class="chapter-header ch-paris">
-      <div class="ch-num">05</div>
-      <div class="ch-info">
-        <div class="ch-tag">🇫🇷 France · Days 11–15</div>
-        <div class="ch-city"><em>Paris</em> — The Grand Finale</div>
-        <div class="ch-nights">5 nights · The longest stay · No rushing · Paris belongs to you</div>
-      </div>
-      <div class="ch-budget">
-        <div class="bl">Hotel / night</div>
-        <div class="bv">€85–110</div>
-        <div class="bn">Marais / Montmartre / Bastille · budget double</div>
-      </div>
-    </div>
+<div class="chapter"><div class="wrap"><div class="chapter-header ch-paris"><div class="ch-num">05</div><div class="ch-info"><div class="ch-tag">🇫🇷 France · Days 11–15</div><div class="ch-city"><em>Paris</em> — The Grand Finale</div><div class="ch-nights">5 nights · The longest stay · No rushing</div></div><div class="ch-budget"><div class="bl">Hotel / night</div><div class="bv">€85–110</div><div class="bn">Moxy Paris Bastille</div></div></div>
+<div class="days-wrap">
+<div class="day-card"><div class="day-label"><div class="day-num">Day 11</div></div><div class="day-body"><div class="day-title">Arrive <em>Paris</em> — The City of Light</div><div class="day-mood">"The TGV out of Basel accelerates to 300 km/h across the French plains. Then — after 5.5 hours — the train slows, and suddenly the Eiffel Tower is outside your window."</div><div class="pills"><span class="pill tip">Travel day: Nendaz → Paris (~5 hours via Geneva)</span><span class="pill rom">Evening: Eiffel Tower sparkle from Trocadéro — free</span><span class="pill rom">First Paris dinner — crêpes on a bench near the river</span></div><div class="rom-note">Book your TGV Lyria tickets on <a href="https://www.trainline.com" target="_blank" style="color:var(--gold)">Trainline.com</a> 4-6 weeks ahead. Prices start at €110 per person but double if left to last minute.</div><div class="stay-row"><div><div class="sl">Stay at</div><div class="sn"><a href="https://www.booking.com/hotel/fr/moxy-paris-bastille.html" target="_blank" style="color:var(--gold)">Moxy Paris Bastille</a> · €85-110/night · Between Bastille & Le Marais [citation:3]</div></div></div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 12</div></div><div class="day-body"><div class="day-title"><em>Slow Paris</em> — Seine Walk &amp; Champagne Picnic</div><div class="day-mood">"Sleep until 9. Find a corner café. Order café au lait and a croissant. Then buy a baguette, brie, and a bottle of Crémant. Lay on the Champ de Mars grass. Watch the Tower sparkle at 10pm."</div><div class="pills"><span class="pill free">Pont Neuf → Notre-Dame Seine walk</span><span class="pill rom">Champagne picnic under the Eiffel Tower — €25 total</span><span class="pill free">Eiffel Tower sparkle at 10pm — free from below</span></div><div class="rom-note">Buy a bottle of Crémant de Bourgogne (French sparkling wine, nearly as good as Champagne, half the price) from Monoprix. Add a baguette, brie, and macarons. This picnic costs €25 and is more romantic than any restaurant.</div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 13</div></div><div class="day-body"><div class="day-title"><em>Montmartre</em> at Dawn &amp; Seine Dinner Cruise</div><div class="day-mood">"Set one alarm — just one — for 6:30am. Walk up to Sacré-Cœur as the sun rises over Paris. The city below is rose-gold and almost silent. Then tonight: dinner on the Seine."</div><div class="pills"><span class="pill rom">Sacré-Cœur sunrise — free</span><span class="pill free">Place du Tertre artists' square</span><span class="pill rom">Seine river dinner cruise — €110-150 pp</span></div><div class="rom-note">The Seine dinner cruise is your big splurge. Book a window table at sunset. You'll float past Notre-Dame, the Louvre, and under Pont Alexandre III while the Eiffel Tower sparkles. Worth every euro.</div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 14</div></div><div class="day-body"><div class="day-title"><em>Versailles</em> &amp; A Last Grand Evening</div><div class="day-mood">"The gardens of the Sun King. The Grand Canal stretching to the horizon. Fountains erupting. Then back to Paris for one final dinner in a candlelit bistro."</div><div class="pills"><span class="pill paid">Versailles Palace — €20 pp · book online ahead</span><span class="pill free">Versailles gardens — free on foot</span><span class="pill rom">Final dinner: Saint-Germain bistro</span></div><div class="rom-note">The Versailles gardens are free to walk through. Skip the expensive fountain shows and instead walk the Grand Canal at 5pm when the crowds thin and the light turns golden.</div></div></div>
+<div class="day-card"><div class="day-label"><div class="day-num">Day 15</div></div><div class="day-body"><div class="day-title"><em>Last Morning</em> in Paris — Au Revoir</div><div class="day-mood">"No agenda. A final coffee at the same corner café. A slow walk wherever Paris takes you. Then the RER B to CDG — and the long flight home carrying two weeks of memories."</div><div class="pills"><span class="pill rom">Final Paris breakfast — croissant &amp; café crème</span><span class="pill free">Morning walk — no map, no plan</span><span class="pill tip">RER B to CDG — allow 45min + 2hrs before flight</span></div><div class="rom-note">Walk Paris without a destination on your last morning. The city is most beautiful when you're not trying to see anything. Follow a street that looks interesting. Find a courtyard. Buy a last baguette.</div></div></div>
+</div></div></div>
 
-    <div class="days-wrap">
-      <!-- Day 11 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 11</div></div>
-        <div class="day-body">
-          <div class="day-title">Arrive <em>Paris</em> — The City of Light</div>
-          <div class="day-mood">"The TGV out of Basel accelerates to 300 km/h across the French plains. Then — after 5.5 hours — the train slows, and suddenly the Eiffel Tower is outside your window."</div>
-          <div class="pills">
-            <span class="pill tip">Travel day — arrive Paris Gare de Lyon by 4–5pm</span>
-            <span class="pill rom">Evening: Eiffel Tower sparkle from Trocadéro — free</span>
-            <span class="pill rom">First Paris dinner — crêpes on a bench near the river</span>
-          </div>
-          <div class="tr-mini">
-            <div class="trm gold-trm">
-              <div class="trm-label">🎫 Eurail — use 1 pass day</div>
-              <div class="trm-route">Interlaken → Basel → Paris Gare de Lyon</div>
-              <div class="trm-price">€0 + €12 res</div>
-              <div class="trm-note">TGV Lyria compulsory reservation ~€12 pp</div>
-            </div>
-            <div class="trm sage-trm">
-              <div class="trm-label">🎟 Book Trainline.com 4–6 weeks ahead</div>
-              <div class="trm-route">Interlaken Ost → Basel SBB → Paris Gare de Lyon</div>
-              <div class="trm-price">from €110 pp</div>
-              <div class="trm-note">5h 36min · 1 change at Basel · book early for lowest fare</div>
-            </div>
-          </div>
-          <div class="rom-note">The Eiffel Tower sparkles for 5 minutes on the hour, every hour after dark. Watch it from the Trocadéro Gardens — it's free, the view is perfect, and sharing that moment for the first time together is something you'll remember for the rest of your lives.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Paris — Le Marais, Montmartre or near Bastille for best budget value</div></div>
-            <div><div class="sp">€85–110/night</div><div class="snt">Ibis Styles, Generator Hostel private room, or Airbnb</div></div>
-          </div>
-        </div>
-      </div>
+<footer><p>"The most <span class="g">romantic journeys</span> are never rushed — they're <span class="g">savoured</span>, one slow morning at a time."</p><p class="small">All prices 2026 estimates · Book flights 2-3 months ahead · Train tickets 4-6 weeks ahead · Swiss Half-Fare Card CHF 150 each [citation:5]</p></footer>
 
-      <!-- Day 12 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 12</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Slow Paris</em> — Seine Walk &amp; Île Saint-Louis</div>
-          <div class="day-mood">"Sleep until 9. Find a corner café. Order café au lait and a croissant. Read. Watch Paris wake up. Then walk along the Seine from Pont Neuf to Notre-Dame without a plan."</div>
-          <div class="pills">
-            <span class="pill free">Pont Neuf → Notre-Dame Seine walk</span>
-            <span class="pill rom">Île Saint-Louis — wine &amp; ice cream by the water</span>
-            <span class="pill free">Shakespeare &amp; Company bookshop — free to browse</span>
-            <span class="pill rom">Picnic under the Eiffel Tower — rosé + baguette + brie ~€15 total</span>
-            <span class="pill free">Eiffel Tower sparkle at 10pm — free from below</span>
-          </div>
-          <div class="rom-note">Buy a bottle of Côtes du Rhône, a baguette, a wedge of brie and some cherries from the Monoprix supermarket (€12–15 total). Lay on the Champ de Mars grass. Watch the Tower sparkle. This is Paris at its most romantic — and it costs almost nothing.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Paris (2nd night)</div></div>
-            <div><div class="sp">€85–110/night</div><div class="snt">Same hotel</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 13 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 13</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Montmartre</em> at Dawn &amp; Le Marais by Day</div>
-          <div class="day-mood">"Set one alarm — just one — for 6:30am. Walk up to Sacré-Cœur as the sun rises over Paris. The city below is rose-gold and almost silent. You'll have the steps nearly to yourselves."</div>
-          <div class="pills">
-            <span class="pill rom">Sacré-Cœur sunrise — free</span>
-            <span class="pill free">Place du Tertre artists' square</span>
-            <span class="pill rom">Crêpe breakfast in Montmartre — €8–10</span>
-            <span class="pill free">Le Marais afternoon — Place des Vosges, galleries</span>
-            <span class="pill paid">Optional: Musée d'Orsay — €16 pp · book ahead</span>
-            <span class="pill rom">Evening: Canal Saint-Martin — wine by the canal</span>
-          </div>
-          <div class="rom-note">Place des Vosges in Le Marais is the oldest planned square in Paris. The arcaded galleries, the symmetry, the fountain in the centre — sit on a bench with coffee and watch couples walk past. It's one of the great free pleasures in the city.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Paris (3rd night)</div></div>
-            <div><div class="sp">€85–110/night</div><div class="snt">Same hotel</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 14 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 14</div></div>
-        <div class="day-body">
-          <div class="day-title">Versailles &amp; <em>A Last Grand Evening</em></div>
-          <div class="day-mood">"The gardens of the Sun King. The Grand Canal stretching to the horizon. Fountains erupting on weekends. Then back to Paris for one final dinner in a candlelit bistro where the waiter ignores you beautifully."</div>
-          <div class="pills">
-            <span class="pill paid">Versailles Palace — €20 pp · book online ahead</span>
-            <span class="pill free">Versailles gardens — free on foot (not fountain days)</span>
-            <span class="pill rom">Grand Canal walk — sunset gold over the water</span>
-            <span class="pill rom">Final dinner: Saint-Germain bistro — escargot, duck confit, vin rouge</span>
-          </div>
-          <div class="tr-mini" style="grid-template-columns:1fr">
-            <div class="trm sage-trm">
-              <div class="trm-label">🚇 Paris → Versailles</div>
-              <div class="trm-route">RER C from any Paris station → Versailles Château - Rive Gauche</div>
-              <div class="trm-price">€3.50 pp each way</div>
-              <div class="trm-note">35 min · runs every 15–20 min · covered by Navigo day pass (€8.65)</div>
-            </div>
-          </div>
-          <div class="rom-note">The Versailles gardens are free to walk through. Skip the expensive fountain shows (€10 extra) and instead walk the Grand Canal at 5pm when the crowds thin and the light turns golden. The scale of it — the longest garden vista in the world — is overwhelming in the best way.</div>
-          <div class="stay-row">
-            <div><div class="sl">Sleep in</div><div class="sn">Paris (4th night)</div></div>
-            <div><div class="sp">€85–110/night</div><div class="snt">Penultimate night</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 15 -->
-      <div class="day-card">
-        <div class="day-label"><div class="day-num">Day 15</div></div>
-        <div class="day-body">
-          <div class="day-title"><em>Last Morning</em> in Paris — Au Revoir</div>
-          <div class="day-mood">"No agenda. A final coffee at the same corner café. A slow walk wherever Paris takes you. Then the RER B to CDG — and the long flight home carrying two weeks of memories."</div>
-          <div class="pills">
-            <span class="pill rom">Final Paris breakfast — croissant &amp; café crème</span>
-            <span class="pill free">Morning walk — no map, no plan</span>
-            <span class="pill tip">RER B to CDG — allow 45min + 2hrs before flight</span>
-          </div>
-          <div class="rom-note">Walk Paris without a destination on your last morning. The city is most beautiful when you're not trying to see anything. Follow a street that looks interesting. Find a courtyard. Buy a last baguette. The city will surprise you one final time.</div>
-          <div class="stay-row">
-            <div><div class="sl">Return flight</div><div class="sn">Paris CDG → Toronto (YYZ)</div></div>
-            <div><div class="sp">~C$700</div><div class="snt">Air Transat or Air France · book 2–3 months ahead</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ BUDGET TABLE ══ -->
-<div class="budget-section">
-  <div class="wrap">
-    <div class="sec-label">Full Cost Breakdown · 2 People</div>
-    <div class="sec-title">What It <em>Actually</em> Costs</div>
-    <div class="budget-cols">
-      <!-- WITH EURAIL -->
-      <div class="bc">
-        <div class="bc-head gold-head">
-          <h3>🎫 Option A — With Eurail</h3>
-          <span class="bc-badge">More Flexible</span>
-        </div>
-        <table class="bt">
-          <tr class="cat"><td colspan="2">FLIGHTS · Canadian traveller only</td></tr>
-          <tr><td>Toronto → Munich (one-way · Condor/Icelandair)</td><td>~C$700</td></tr>
-          <tr><td>Paris → Toronto (one-way · Air Transat)</td><td>~C$700</td></tr>
-          <tr class="cat"><td colspan="2">TRANSPORT</td></tr>
-          <tr><td>Eurail Global 5-day Flex × 2 persons</td><td>~€636</td></tr>
-          <tr><td>Bayern Ticket Day 2 (city + Neuschwanstein)</td><td>€44</td></tr>
-          <tr><td>RVO Bus 840 (Berchtesgaden→Salzburg) × 2</td><td>€14</td></tr>
-          <tr><td>TGV Lyria Paris reservation × 2</td><td>€24</td></tr>
-          <tr class="cat"><td colspan="2">ACCOMMODATION · 15 nights</td></tr>
-          <tr><td>Munich × 3 nights (€80/night)</td><td>€240</td></tr>
-          <tr><td>Berchtesgaden × 2 nights (€68/night)</td><td>€136</td></tr>
-          <tr><td>Salzburg × 3 nights (€83/night)</td><td>€249</td></tr>
-          <tr><td>Interlaken × 2 nights (CHF 125/night)</td><td>~€260</td></tr>
-          <tr><td>Paris × 5 nights (€98/night)</td><td>€490</td></tr>
-          <tr class="cat"><td colspan="2">ACTIVITIES · for 2 people</td></tr>
-          <tr><td>Königssee boat, Jennerbahn, cable cars, Hallstatt ferry, palaces</td><td>~€360</td></tr>
-          <tr class="cat"><td colspan="2">FOOD · 15 days · couple</td></tr>
-          <tr><td>Avg €50/day/couple (mix of supermarket + café + 1 restaurant)</td><td>€750</td></tr>
-          <tr class="total"><td><strong>TOTAL ESTIMATE</strong></td><td><strong>~C$6,600</strong></td></tr>
-        </table>
-      </div>
-
-      <!-- WITHOUT EURAIL -->
-      <div class="bc">
-        <div class="bc-head sage-head">
-          <h3>🎟 Option B — Point-to-Point</h3>
-          <span class="bc-badge">Cheapest</span>
-        </div>
-        <table class="bt">
-          <tr class="cat"><td colspan="2">FLIGHTS · Canadian traveller only</td></tr>
-          <tr><td>Toronto → Munich (one-way · Condor/Icelandair)</td><td>~C$700</td></tr>
-          <tr><td>Paris → Toronto (one-way · Air Transat)</td><td>~C$700</td></tr>
-          <tr class="cat"><td colspan="2">TRANSPORT · booked 4–6 weeks ahead</td></tr>
-          <tr><td>Bayern Ticket Day 1+2 (city / Neuschwanstein) × 2 days</td><td>€88</td></tr>
-          <tr><td>Bayern Ticket Day 4 (Munich → Berchtesgaden) × 2</td><td>€44</td></tr>
-          <tr><td>RVO Bus 840 (Berchtesgaden→Salzburg) × 2</td><td>€14</td></tr>
-          <tr><td>Einfach-Raus-Ticket Day 7 (Salzburg↔Hallstatt) × 2</td><td>€36</td></tr>
-          <tr><td>Salzburg → Interlaken (ÖBB advance) × 2</td><td>~€92</td></tr>
-          <tr><td>Interlaken → Paris TGV Lyria (advance) × 2</td><td>~€220</td></tr>
-          <tr class="cat"><td colspan="2">ACCOMMODATION · same hotels</td></tr>
-          <tr><td>Munich + Berchtesgaden + Salzburg + Interlaken + Paris</td><td>same ~€1,375</td></tr>
-          <tr class="cat"><td colspan="2">ACTIVITIES · for 2 people</td></tr>
-          <tr><td>Same as Option A</td><td>~€360</td></tr>
-          <tr class="cat"><td colspan="2">FOOD · 15 days</td></tr>
-          <tr><td>Avg €50/day/couple</td><td>€750</td></tr>
-          <tr class="total"><td><strong>TOTAL ESTIMATE</strong></td><td><strong>~C$6,250</strong></td></tr>
-        </table>
-      </div>
-
-      <div class="verdict-big">
-        <p><strong>Bottom line:</strong> Point-to-point saves roughly <strong>C$350</strong> over Eurail for this specific route — but only if you commit to dates and book train tickets 4–6 weeks ahead. The <strong>single best strategy</strong>: use regional day passes (Bayern Ticket €44, Einfach-Raus €36) for the Bavaria/Austria legs — they beat both Eurail and individual tickets. Book only Salzburg → Interlaken and Interlaken → Paris as advance point-to-point tickets. Total transport cost for 2: around <strong>€494</strong> without Eurail vs <strong>€718</strong> with Eurail. Skip the pass.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ TIPS ══ -->
-<div class="tips-section">
-  <div class="wrap">
-    <div class="sec-label">The Details That Matter</div>
-    <div class="sec-title">Tips That <em>Actually Save</em> Money &amp; Stress</div>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tip-icon">✈️</div>
-        <h4>Fly Condor from Toronto</h4>
-        <p>Condor (German charter airline) consistently has the cheapest YYZ → MUC one-way fares. Check momondo.ca on Sunday mornings — Sunday bookings are 6–13% cheaper. Book 2–3 months ahead. Icelandair is the backup option.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🍺</div>
-        <h4>Oktoberfest Survival Guide</h4>
-        <p>Weekday before 2pm = find a table. Weekend or after 4pm = near impossible without reservations made months ahead. Each Mass (1 litre) is €14–16. Budget €50–60 pp for the full Oktoberfest experience. Wear comfortable shoes — the tents get packed.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🏨</div>
-        <h4>Book Hallstatt Early</h4>
-        <p>Hallstatt has fewer than 800 permanent residents and extremely limited accommodation. If you ever consider staying overnight instead of day-tripping, book 6+ months ahead. For the day trip, just book the first morning train to arrive before 9:30am.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🎟</div>
-        <h4>The Bayern Ticket Secret</h4>
-        <p>€44 covers TWO people for a FULL DAY on every regional train and bus in Bavaria — including the cross-border train to Salzburg, Austria. Buy it at a Munich station machine or online on weekdays before travel. Valid from 9am on weekdays, midnight on weekends.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🥗</div>
-        <h4>Supermarket Picnic Strategy</h4>
-        <p>Germany: Rewe · Austria: Spar or Hofer · Switzerland: Migros or Coop · France: Monoprix or Carrefour. A romantic couple's picnic — baguette, local cheese, charcuterie, a bottle of regional wine — costs €12–18 total and beats any restaurant view.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-icon">🌅</div>
-        <h4>The Golden Hours Rule</h4>
-        <p>Every major sight on this trip is best at dawn or dusk: Königssee before 9am, Hallstatt after 6pm, Salzburg fortress at sunset, Lauterbrunnen valley in morning mist, Paris from Trocadéro at 10pm. Build your days backwards from these moments.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>"The most <span class="g">romantic journeys</span> are never rushed — they're <span class="g">savoured</span>, one slow morning at a time."</p>
-  <p class="small">All prices are 2026 estimates · Book flights 2–3 months ahead · Train tickets 4–6 weeks ahead · Hallstatt accommodation 6+ months ahead</p>
-</footer>
-
-<script>
-/* ── STAR FIELD ── */
-(function(){
-  const c = document.getElementById('stars');
-  const ctx = c.getContext('2d');
-  let W, H, stars=[];
-  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
-  function make(){
-    stars=[];
-    for(let i=0;i<160;i++) stars.push({
-      x:Math.random()*W, y:Math.random()*H,
-      r:Math.random()*1.2+.2,
-      a:Math.random(), da:(Math.random()-.5)*.003
-    });
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    stars.forEach(s=>{
-      s.a=Math.max(.05,Math.min(1,s.a+s.da));
-      if(s.a<=.05||s.a>=1) s.da*=-1;
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(240,220,180,${s.a})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',()=>{ resize(); make(); });
-  resize(); make(); draw();
-})();
-
-/* ── SCROLL REVEAL ── */
-const cards = document.querySelectorAll('.day-card');
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:.08});
-cards.forEach(c=>io.observe(c));
+<script>(function(){const c=document.getElementById('stars');const ctx=c.getContext('2d');let W,H,stars=[];function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}function make(){stars=[];for(let i=0;i<160;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,a:Math.random(),da:(Math.random()-.5)*.003});}function draw(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.a=Math.max(.05,Math.min(1,s.a+s.da));if(s.a<=.05||s.a>=1)s.da*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(240,220,180,${s.a})`;ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',()=>{resize();make();});resize();make();draw();})();
+const cards=document.querySelectorAll('.day-card');const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});cards.forEach(c=>io.observe(c));
 </script>
 </body>
 </html>
