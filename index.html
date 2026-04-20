@@ -1,1166 +1,1154 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>আকবরের ইলিশ স্টল — ষোল আনা পান্তা ১৪৩৩</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan C — Our Romantic European Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100;200;300;400&display=swap" rel="stylesheet">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
+/* ─── TOKENS ─── */
 :root {
-  --saffron: #E8612A;
-  --gold: #F0A500;
-  --bright-gold: #FFD000;
-  --deep-red: #8B0000;
-  --cream: #FFF8E7;
-  --dark: #1A0800;
-  --cardboard: #D4A574;
-  --cardboard-dark: #B8860B;
+  --night:   #080709;
+  --deep:    #100e12;
+  --card:    #16131a;
+  --border:  #231f2a;
+  --lift:    #2a2534;
+  --gold:    #d6a84e;
+  --gold2:   #f0cc7a;
+  --goldx:   rgba(214,168,78,.1);
+  --rose:    #c4768c;
+  --lavender:#9b8ec4;
+  --sage:    #7aaa8e;
+  --sky:     #7aaac4;
+  --cream:   #ede5d8;
+  --muted:   #7a7080;
+  --text:    #e8dece;
 }
 
+/* ─── BASE ─── */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-  background: #0a0500;
-  background-image: radial-gradient(ellipse at 20% 20%, #2a1500 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 80%, #001a0a 0%, transparent 60%);
-  font-family: 'Hind Siliguri', sans-serif;
-  min-height: 100vh;
+  background: var(--night);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* Alpona Background */
-.alpona-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.08;
-}
-.alpona-bg svg {
-  width: 100%;
-  height: 100%;
-}
+/* ─── STAR CANVAS ─── */
+#stars { position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5; }
 
-/* Corner Alpona Decorations */
-.alpona-corner {
-  position: fixed;
-  font-size: 2.5rem;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 5;
-}
-.alpona-tl { top: 10px; left: 10px; transform: rotate(-15deg); }
-.alpona-tr { top: 10px; right: 10px; transform: rotate(15deg); }
-.alpona-bl { bottom: 10px; left: 10px; transform: rotate(15deg); }
-.alpona-br { bottom: 10px; right: 10px; transform: rotate(-15deg); }
-
-/* Customer Counter */
-.customer-counter {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  background: rgba(0,0,0,0.7);
-  border-radius: 40px;
-  padding: 6px 16px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: var(--gold);
-  z-index: 20;
-  backdrop-filter: blur(5px);
-  border: 1px solid var(--gold);
-}
-
-/* Screen Container */
-.screen {
-  position: relative;
-  display: none;
+/* ─── HERO ─── */
+.hero {
   min-height: 100vh;
-  padding: 20px;
-  z-index: 10;
-}
-.screen.active { display: block; }
-
-/* Page Header */
-.page-header {
-  text-align: center;
-  margin-bottom: 30px;
+  display: flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding: 80px 24px 60px;
   position: relative;
-  z-index: 10;
+  z-index:1;
 }
-.page-header h1 {
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--bright-gold), var(--saffron), var(--bright-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 25% 40%, rgba(214,168,78,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 75% 60%, rgba(196,118,140,.06) 0%, transparent 70%);
+  pointer-events:none;
 }
-.page-header p {
-  color: rgba(255,220,150,0.7);
-  font-size: 0.85rem;
-  margin-top: 8px;
-  letter-spacing: 2px;
+.hero-eyebrow {
+  font-size:10px; letter-spacing:.5em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:32px;
+  opacity:0; animation: fadeup .9s ease .3s forwards;
 }
-.flowers {
-  font-size: 1.2rem;
-  letter-spacing: 8px;
-  margin-bottom: 8px;
-  animation: sway 3s ease-in-out infinite;
+.hero-title {
+  font-family:'Libre Baskerville', serif;
+  font-size: clamp(44px, 8vw, 96px);
+  font-weight:400; line-height:1.05;
+  color:var(--cream);
+  max-width:820px;
+  opacity:0; animation: fadeup 1s ease .5s forwards;
 }
-@keyframes sway {
-  0%,100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
+.hero-title em { font-style:italic; color:var(--gold2); }
+.hero-title .line2 { display:block; font-size:.65em; color:var(--muted); margin-top:12px; }
+.hero-divider {
+  width:1px; height:60px;
+  background:linear-gradient(to bottom, var(--gold), transparent);
+  margin:40px auto;
+  opacity:0; animation: fadeup .8s ease .9s forwards;
+}
+.hero-persons {
+  display:flex; align-items:center; gap:32px;
+  opacity:0; animation: fadeup .8s ease 1.1s forwards;
+  flex-wrap:wrap; justify-content:center;
+}
+.person {
+  text-align:center;
+}
+.person-icon { font-size:32px; margin-bottom:8px; }
+.person-label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.person-name { font-family:'Libre Baskerville',serif; font-size:17px; color:var(--cream); margin-top:3px; }
+.person-heart { font-size:28px; color:var(--rose); margin-top:8px; }
+
+.route-strip {
+  display:flex; align-items:center; gap:0;
+  margin-top:52px; flex-wrap:wrap; justify-content:center;
+  opacity:0; animation:fadeup .8s ease 1.3s forwards;
+}
+.rs-stop {
+  display:flex; flex-direction:column; align-items:center; padding:0 16px;
+  cursor:default;
+}
+.rs-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--lift); border:1px solid var(--gold);
+  margin-bottom:10px; transition:background .3s;
+}
+.rs-stop:hover .rs-dot { background:var(--gold); }
+.rs-city { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.rs-nights { font-size:10px; color:var(--gold); margin-top:2px; }
+.rs-line { width:30px; height:1px; background:var(--border); margin-bottom:19px; }
+
+/* ─── SCROLL HINT ─── */
+.scroll-hint {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  opacity:0; animation:fadeup .8s ease 1.8s forwards;
+}
+.scroll-hint span { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--muted); }
+.scroll-bar { width:1px; height:36px; background:linear-gradient(to bottom,var(--gold),transparent); animation:pulse 2s ease infinite; }
+
+/* ─── SECTIONS ─── */
+.wrap { max-width:1040px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+.sec-label { font-size:9px; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.sec-title {
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(26px,4.5vw,48px); font-weight:400;
+  color:var(--cream); margin-bottom:8px; line-height:1.1;
+}
+.sec-title em { font-style:italic; }
+.sec-sub { font-size:14px; color:var(--muted); max-width:640px; line-height:1.7; margin-bottom:48px; }
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background:var(--deep);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:32px 24px; position:relative; z-index:1;
+}
+.stats-inner {
+  max-width:1040px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:24px;
+  text-align:center;
+}
+.stat-item label { font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px; }
+.stat-item .sv { font-family:'Libre Baskerville',serif; font-size:24px; color:var(--cream); }
+.stat-item .sn { font-size:11px; color:var(--muted); margin-top:3px; }
+
+/* ─── TRANSPORT BOX ─── */
+.transport-section { padding:80px 0; }
+.transport-2col { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:32px; }
+.tc {
+  background:var(--card); border:1px solid var(--border);
+  padding:36px 32px;
+}
+.tc.gold-tc { border-color:rgba(214,168,78,.3); }
+.tc h3 { font-family:'Libre Baskerville',serif; font-size:22px; font-weight:400; color:var(--cream); margin-bottom:4px; }
+.tc-tag { font-size:9px; letter-spacing:.3em; text-transform:uppercase; margin-bottom:24px; }
+.gold-tc .tc-tag { color:var(--gold); }
+.sage-tc .tc-tag { color:var(--sage); }
+.tc-rows { list-style:none; }
+.tc-rows li { font-size:13px; padding:9px 0; border-bottom:1px solid var(--border); display:flex; gap:10px; align-items:baseline; line-height:1.5; }
+.tc-rows li:last-child { border:none; }
+.tc-rows li::before { content:'→'; flex-shrink:0; }
+.gold-tc .tc-rows li::before { color:var(--gold); }
+.sage-tc .tc-rows li::before { color:var(--sage); }
+.tc-price { font-family:'Libre Baskerville',serif; font-size:36px; color:var(--gold); margin-top:24px; }
+.tc-price small { font-family:'Outfit',sans-serif; font-size:12px; color:var(--muted); }
+.verdict-box {
+  margin-top:18px; padding:16px 20px;
+  background:var(--goldx); border-left:2px solid var(--gold);
+  font-size:13px; color:var(--cream); font-style:italic; line-height:1.7;
 }
 
-/* First Page Layout */
-.price-layout {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
+/* ─── DAY PASSES ─── */
+.passes-section { padding:0 0 80px; }
+.passes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:32px; }
+.pass {
+  background:var(--card); border:1px solid var(--border);
+  padding:28px; transition:border-color .3s, transform .3s;
 }
-.wheel-section {
-  flex: 1;
-  min-width: 280px;
-  text-align: center;
-}
-.small-wheel {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-}
-.small-wheel canvas {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 0 6px #D4A574, 0 0 0 12px #B8860B, 0 20px 40px rgba(0,0,0,0.4);
-  background: #2a1500;
-}
-.wheel-hint {
-  margin-top: 15px;
-  font-size: 0.8rem;
-  color: rgba(232,184,75,0.6);
-}
-.dish-section {
-  flex: 1;
-  min-width: 320px;
-  background: var(--cream);
-  border-radius: 32px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  border: 2px solid var(--gold);
-}
-.dish-name {
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 900;
-  color: var(--deep-red);
-  text-align: center;
-}
-.dish-price {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 900;
-  color: var(--saffron);
-  text-align: center;
-  margin: 10px 0;
-  padding-bottom: 15px;
-  border-bottom: 2px dashed var(--gold);
-}
-.dish-items {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-.dish-item {
-  background: #fff0e0;
-  padding: 10px 12px;
-  border-radius: 40px;
-  font-size: 0.85rem;
-  color: #5a3a2a;
-  text-align: center;
-}
-.button-section {
-  text-align: center;
-  margin-top: 20px;
-}
-.lottery-start-btn {
-  background: linear-gradient(135deg, var(--deep-red), var(--saffron), var(--gold));
-  border: none;
-  padding: 18px 50px;
-  border-radius: 60px;
-  color: white;
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(212,66,10,0.4);
-  animation: zoomPulse 1.2s ease-in-out infinite;
-  width: 100%;
-  max-width: 400px;
-}
-@keyframes zoomPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-.lottery-start-btn:active { transform: scale(0.97); animation: none; }
+.pass:hover { border-color:var(--gold); transform:translateY(-3px); }
+.pass-flag { font-size:28px; margin-bottom:14px; }
+.pass h4 { font-family:'Libre Baskerville',serif; font-size:18px; font-weight:400; color:var(--cream); margin-bottom:4px; }
+.pass-price { font-family:'Libre Baskerville',serif; font-size:22px; color:var(--gold); margin-bottom:12px; }
+.pass p { font-size:12.5px; color:var(--muted); line-height:1.7; }
+.pass-covers { font-size:11px; color:var(--sage); margin-top:10px; }
 
-/* Division & District Grids */
-.full-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
+/* ─── CHAPTER HEADERS ─── */
+.chapter {
+  padding:64px 0 0;
+  position:relative; z-index:1;
 }
-.div-card, .dist-card {
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  transition: transform 0.2s;
+.chapter-header {
+  padding:40px 32px;
+  border:1px solid var(--border);
+  background:var(--deep);
+  margin-bottom:3px;
+  display:flex; align-items:center; gap:32px;
+  overflow:hidden; position:relative;
 }
-.div-card:active, .dist-card:active { transform: scale(0.96); }
-.div-card-head, .dist-card-head { 
-  padding: 22px 12px; 
-  text-align: center; 
-  background: linear-gradient(135deg, #C93A08, #F07B1C);
-  position: relative;
+.chapter-header::before {
+  content:'';
+  position:absolute; left:0; top:0; bottom:0; width:4px;
 }
-.div-card-head::after, .dist-card-head::after {
-  content: ''; 
-  position: absolute; 
-  bottom: -1px; 
-  left: 0; 
-  right: 0;
-  height: 14px; 
-  background: var(--cream); 
-  clip-path: ellipse(55% 100% at 50% 100%);
+.ch-munich::before   { background:linear-gradient(to bottom,#e8b84b,#c4763c); }
+.ch-konigsee::before { background:linear-gradient(to bottom,#4ba8e8,#2d7fa8); }
+.ch-salzburg::before { background:linear-gradient(to bottom,#c47a8c,#8c4a5c); }
+.ch-switzerland::before { background:linear-gradient(to bottom,#7ab87a,#3a7a3a); }
+.ch-paris::before    { background:linear-gradient(to bottom,#c4a47a,#8c6a3a); }
+.ch-num {
+  font-family:'Libre Baskerville',serif; font-size:72px; font-weight:700;
+  color:rgba(255,255,255,.04); line-height:1; flex-shrink:0; select:none;
 }
-.div-icon, .dist-icon { font-size: 2.5rem; }
-.div-name, .dist-name { 
-  font-family: 'Noto Serif Bengali', serif; 
-  font-size: 1rem; 
-  font-weight: 700; 
-  color: #fff; 
-  margin-top: 10px; 
-}
-.div-card-body, .dist-card-body { 
-  background: var(--cream); 
-  padding: 14px; 
-  text-align: center; 
-}
-.div-item, .dist-preview { 
-  font-size: 0.7rem; 
-  color: #7a4a2a; 
-  font-style: italic; 
-  line-height: 1.5;
-}
+.ch-info { flex:1; }
+.ch-tag { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.ch-city { font-family:'Libre Baskerville',serif; font-size:clamp(24px,4vw,44px); font-weight:400; color:var(--cream); line-height:1.05; }
+.ch-city em { font-style:italic; }
+.ch-nights { font-size:12px; color:var(--muted); margin-top:8px; }
+.ch-budget { text-align:right; flex-shrink:0; }
+.ch-budget .bl { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.ch-budget .bv { font-family:'Libre Baskerville',serif; font-size:22px; color:var(--gold); }
+.ch-budget .bn { font-size:11px; color:var(--muted); margin-top:2px; }
 
-/* Lottery Page Layout */
-.lottery-layout {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  min-height: 550px;
+/* ─── DAY CARDS ─── */
+.days-wrap { display:flex; flex-direction:column; gap:3px; }
+.day-card {
+  background:var(--card); border:1px solid var(--border);
+  padding:28px 32px;
+  display:grid; grid-template-columns:64px 1fr;
+  gap:24px;
+  opacity:0; transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease, border-color .3s;
 }
-.lottery-left {
-  flex: 4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.day-card:hover { border-color:var(--lift); }
+.day-card.visible { opacity:1; transform:none; }
+.day-label { padding-top:4px; }
+.day-num {
+  font-family:'Libre Baskerville',serif; font-size:11px; font-weight:700;
+  color:var(--gold); letter-spacing:.1em; text-transform:uppercase;
+  writing-mode:vertical-rl; text-orientation:mixed;
+  white-space:nowrap;
 }
-.lottery-right {
-  flex: 5;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.large-wheel {
-  position: relative;
-  width: 100%;
-  max-width: 450px;
-  aspect-ratio: 1;
-  margin: 0 auto;
-}
-#lotteryCanvas {
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  box-shadow: 0 0 0 10px #D4A574, 0 0 0 18px #B8860B, 0 25px 50px rgba(0,0,0,0.5);
-  cursor: pointer;
-  background: #2a1500;
-}
-.lottery-pointer {
-  position: absolute; top: -22px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 2.5rem;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-  z-index: 6;
-  animation: pointerBounce 1s ease infinite;
-}
-@keyframes pointerBounce {
-  0%,100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-8px); }
-}
-.lottery-hub {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 65px; height: 65px;
-  background: #D4A574;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 5px #B8860B;
-  z-index: 7; cursor: pointer;
-}
-.lottery-hub:active { transform: translate(-50%, -50%) scale(0.94); }
-.lottery-hub-icon { font-size: 1.6rem; }
+.day-body {}
+.day-title { font-family:'Libre Baskerville',serif; font-size:21px; font-weight:400; color:var(--cream); margin-bottom:6px; line-height:1.2; }
+.day-title em { font-style:italic; color:var(--gold2); }
+.day-mood { font-family:'Libre Baskerville',serif; font-style:italic; font-size:14px; color:var(--muted); margin-bottom:18px; line-height:1.65; }
+.pills { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+.pill { font-size:11.5px; padding:4px 13px; border:1px solid var(--border); color:var(--text); border-radius:0; }
+.pill.free { border-color:var(--sage); color:var(--sage); }
+.pill.paid { border-color:var(--rose); color:var(--rose); }
+.pill.rom  { border-color:rgba(214,168,78,.4); color:var(--gold); }
+.pill.tip  { border-color:var(--lavender); color:var(--lavender); }
 
-.big-division-display {
-  background: linear-gradient(135deg, #C93A08, #F07B1C);
-  border-radius: 20px;
-  padding: 18px;
-  text-align: center;
-  border: 2px solid var(--gold);
+/* transport mini */
+.tr-mini { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:14px; }
+.trm {
+  background:var(--deep); border:1px solid var(--border);
+  padding:12px 16px;
 }
-.big-division-icon { font-size: 2.5rem; }
-.big-division-name { font-family: 'Noto Serif Bengali', serif; font-size: 1.3rem; font-weight: 900; color: #fff; }
-.big-division-item { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
+.trm-label { font-size:9px; letter-spacing:.25em; text-transform:uppercase; margin-bottom:4px; }
+.trm.gold-trm .trm-label { color:var(--gold); }
+.trm.sage-trm .trm-label { color:var(--sage); }
+.trm-route { font-size:12.5px; color:var(--text); line-height:1.4; margin-bottom:3px; }
+.trm-price { font-family:'Libre Baskerville',serif; font-size:19px; }
+.trm.gold-trm .trm-price { color:var(--gold); }
+.trm.sage-trm .trm-price { color:var(--sage); }
+.trm-note { font-size:10.5px; color:var(--muted); margin-top:2px; }
 
-.loko-box {
-  background: rgba(201,58,8,0.15);
-  border-left: 5px solid var(--gold);
-  border-radius: 16px;
-  padding: 15px;
+/* romantic note */
+.rom-note {
+  margin-top:16px; padding:13px 18px;
+  background:rgba(214,168,78,.05); border-left:2px solid rgba(214,168,78,.35);
+  font-size:13px; color:var(--cream); font-style:italic; line-height:1.65;
 }
-.loko-text { font-family: 'Noto Serif Bengali', serif; font-size: 0.9rem; color: var(--gold); font-style: italic; line-height: 1.5; }
-.loko-trans { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 8px; }
+.rom-note::before { content:'♥  '; color:var(--rose); font-style:normal; }
 
-.winners-panel {
-  background: rgba(0,0,0,0.5);
-  border-radius: 20px;
-  padding: 15px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(232,184,75,0.3);
+/* stay row */
+.stay-row {
+  margin-top:16px; padding:12px 18px;
+  background:var(--deep); border:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
 }
-.winners-title {
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: 0.85rem;
-  color: var(--gold);
-  text-align: center;
-  margin-bottom: 12px;
-}
-.winners-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.winner-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.75rem;
-  padding: 8px 12px;
-  background: rgba(0,0,0,0.3);
-  border-radius: 40px;
-}
-.winner-icon { font-size: 1.1rem; }
-.winner-info { flex: 1; color: rgba(255,255,255,0.85); }
-.winner-time { font-size: 0.6rem; color: rgba(232,184,75,0.6); }
+.stay-row .sl { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.stay-row .sn { font-size:13px; color:var(--text); }
+.stay-row .sp { font-family:'Libre Baskerville',serif; font-size:20px; color:var(--rose); }
+.stay-row .snt { font-size:11px; color:var(--muted); }
 
-.spin-btn {
-  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
-  border: none;
-  padding: 16px 25px;
-  border-radius: 60px;
-  color: white;
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
+/* ─── BUDGET TABLE ─── */
+.budget-section { padding:80px 0; }
+.budget-cols { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:40px; }
+.bc { background:var(--card); border:1px solid var(--border); overflow:hidden; }
+.bc-head { padding:18px 28px; display:flex; justify-content:space-between; align-items:center; }
+.bc-head.gold-head { background:rgba(214,168,78,.07); border-bottom:1px solid rgba(214,168,78,.25); }
+.bc-head.sage-head { background:rgba(122,170,142,.07); border-bottom:1px solid rgba(122,170,142,.25); }
+.bc-head h3 { font-family:'Libre Baskerville',serif; font-size:18px; font-weight:400; color:var(--cream); }
+.bc-badge { font-size:9px; padding:3px 11px; border:1px solid; }
+.gold-head .bc-badge { color:var(--gold); border-color:rgba(214,168,78,.4); }
+.sage-head .bc-badge { color:var(--sage); border-color:rgba(122,170,142,.4); }
+table.bt { width:100%; border-collapse:collapse; }
+table.bt td { padding:11px 28px; font-size:12.5px; border-bottom:1px solid var(--border); vertical-align:top; }
+table.bt td:last-child { text-align:right; white-space:nowrap; }
+table.bt tr.cat td { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); background:var(--deep); padding:9px 28px; }
+table.bt tr.total td { font-family:'Libre Baskerville',serif; font-size:18px; border-top:2px solid var(--border); border-bottom:none; color:var(--cream); }
+table.bt tr.total td:last-child { color:var(--gold); }
+.verdict-big {
+  grid-column:1/-1; background:var(--deep); border:1px solid rgba(214,168,78,.25);
+  padding:24px 28px;
+}
+.verdict-big strong { color:var(--gold); }
+.verdict-big p { font-size:13.5px; color:var(--text); line-height:1.8; }
+
+/* ─── TIPS ─── */
+.tips-section { padding:0 0 80px; }
+.tips-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:32px; }
+.tip-card {
+  background:var(--card); border:1px solid var(--border);
+  padding:28px; transition:border-color .3s, transform .3s;
+}
+.tip-card:hover { border-color:var(--lavender); transform:translateY(-3px); }
+.tip-icon { font-size:26px; margin-bottom:14px; }
+.tip-card h4 { font-family:'Libre Baskerville',serif; font-size:17px; font-weight:400; color:var(--cream); margin-bottom:10px; }
+.tip-card p { font-size:12.5px; color:var(--muted); line-height:1.7; }
+
+/* ─── FOOTER ─── */
+footer {
+  background:var(--deep); border-top:1px solid var(--border);
+  padding:48px 24px; text-align:center; position:relative; z-index:1;
+}
+footer p { font-family:'Libre Baskerville',serif; font-style:italic; font-size:16px; color:var(--muted); }
+footer .g { color:var(--gold); }
+footer .small { font-family:'Outfit',sans-serif; font-size:11px; margin-top:12px; }
+
+/* ─── KEYFRAMES ─── */
+@keyframes fadeup {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse {
+  0%,100% { opacity:.4; }
+  50%      { opacity:1; }
 }
 
-.back-btn {
-  background: rgba(0,0,0,0.5);
-  border: 1px solid rgba(232,184,75,0.3);
-  color: var(--gold);
-  padding: 8px 18px;
-  border-radius: 40px;
-  font-size: 0.75rem;
-  cursor: pointer;
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-/* Prize Fullscreen Popup */
-.prize-fullscreen {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.98);
-  backdrop-filter: blur(15px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 300;
-  animation: popupExpand 0.4s cubic-bezier(0.34,1.2,0.64,1);
-}
-@keyframes popupExpand {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-.prize-fullscreen.active { display: flex; }
-.prize-content {
-  text-align: center;
-  max-width: 450px;
-  width: 85%;
-  background: var(--cream);
-  border-radius: 50px;
-  padding: 40px 35px;
-  border: 4px solid var(--gold);
-}
-.prize-emoji { font-size: 4.5rem; margin-bottom: 15px; }
-.prize-title { font-family: 'Noto Serif Bengali', serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; }
-.prize-message { font-size: 1rem; line-height: 1.5; color: #555; margin-bottom: 20px; }
-.prize-loko {
-  background: rgba(201,58,8,0.1);
-  border-left: 5px solid var(--gold);
-  border-radius: 20px;
-  padding: 18px;
-  margin: 20px 0;
-  font-style: italic;
-  font-size: 0.9rem;
-}
-.again-btn {
-  background: linear-gradient(135deg, var(--deep-red), var(--saffron));
-  border: none;
-  padding: 15px 30px;
-  border-radius: 50px;
-  color: white;
-  font-family: 'Noto Serif Bengali', serif;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
-}
-
-/* Fortune Overlay */
-.fortune-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 250;
-  flex-direction: column;
-  gap: 20px;
-}
-.fortune-overlay.active { display: flex; }
-.fortune-text { font-family: 'Noto Serif Bengali', serif; font-size: 1.3rem; color: var(--gold); text-align: center; }
-
-/* Confetti */
-.confetti-piece {
-  position: fixed;
-  animation: cFall ease-in forwards;
-  pointer-events: none;
-  z-index: 1000;
-}
-@keyframes cFall {
-  0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
-}
-
-/* Historical Footer */
-.historical-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.7rem;
-  color: rgba(232,184,75,0.4);
-  border-top: 1px solid rgba(232,184,75,0.15);
-  margin-top: 30px;
-  font-family: 'Noto Serif Bengali', serif;
-}
-
-/* Modals */
-.name-modal, .password-modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(8px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 200;
-}
-.active { display: flex; }
-.modal-content {
-  background: var(--cream);
-  border-radius: 30px;
-  padding: 30px;
-  max-width: 350px;
-  text-align: center;
-  border: 3px solid var(--gold);
-}
-.modal-content h3 { font-family: 'Noto Serif Bengali', serif; font-size: 1.2rem; color: var(--deep-red); margin-bottom: 15px; }
-.name-input { padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 220px; text-align: center; font-size: 1rem; }
-.modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
-.modal-btn { padding: 10px 20px; border-radius: 40px; font-family: 'Noto Serif Bengali', serif; font-weight: bold; cursor: pointer; border: none; }
-.modal-btn-confirm { background: #2E7D32; color: white; }
-.modal-btn-cancel { background: #999; color: white; }
-.password-box input { padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 40px; width: 160px; text-align: center; }
-
-@media (max-width: 800px) {
-  .lottery-layout { flex-direction: column; }
-  .large-wheel { max-width: 320px; }
-  .full-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .price-layout { flex-direction: column; gap: 25px; }
+/* ─── RESPONSIVE ─── */
+@media (max-width:660px) {
+  .transport-2col, .budget-cols, .tr-mini { grid-template-columns:1fr; }
+  .chapter-header { flex-direction:column; align-items:flex-start; gap:12px; }
+  .ch-budget { text-align:left; }
+  .ch-num { font-size:48px; }
+  .day-card { grid-template-columns:36px 1fr; gap:14px; padding:20px 16px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Alpona Background SVG -->
-<div class="alpona-bg">
-  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-    <pattern id="alpona" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M10,0 Q15,5 10,10 Q5,5 10,0Z" fill="#E8B84B" opacity="0.4"/>
-      <path d="M0,10 Q5,15 10,10 Q5,5 0,10Z" fill="#D4420A" opacity="0.3"/>
-      <circle cx="10" cy="10" r="1.5" fill="#FFD000" opacity="0.5"/>
-    </pattern>
-    <rect width="100%" height="100%" fill="url(#alpona)"/>
-  </svg>
-</div>
+<canvas id="stars"></canvas>
 
-<!-- Corner Alpona Decorations -->
-<div class="alpona-corner alpona-tl">🌺</div>
-<div class="alpona-corner alpona-tr">🌸</div>
-<div class="alpona-corner alpona-bl">🌼</div>
-<div class="alpona-corner alpona-br">🌿</div>
-
-<div class="customer-counter" id="customerCounter">👥 গ্রাহক: ১/২৮</div>
-
-<!-- SCREEN 1 - PRICE PAGE -->
-<div class="screen active" id="screen1">
-  <div class="page-header">
-    <div class="flowers">🌸🌺🌼🌺🌸</div>
-    <h1>আকবরের ইলিশ স্টল</h1>
-    <p>ষোল আনা পান্তা · বৈশাখ ১৪৩৩</p>
-  </div>
-  <div class="price-layout">
-    <div class="wheel-section">
-      <div class="small-wheel">
-        <canvas id="smallWheelCanvas" width="400" height="400"></canvas>
-      </div>
-      <div class="wheel-hint">🎡 সৌভাগ্যের চাকা ঘুরছে 🎡</div>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-eyebrow">Plan C · Oktoberfest Edition · 15 Nights · For Two</div>
+  <h1 class="hero-title">
+    <em>Our Journey</em> Through<br>the Heart of Europe
+    <span class="line2">Munich · Königssee · Salzburg · Hallstatt · Interlaken · Paris</span>
+  </h1>
+  <div class="hero-divider"></div>
+  <div class="hero-persons">
+    <div class="person">
+      <div class="person-icon">✈️</div>
+      <div class="person-label">Flying from</div>
+      <div class="person-name">Toronto, Canada</div>
     </div>
-    <div class="dish-section">
-      <div class="dish-name">ষোল আনা পান্তা</div>
-      <div class="dish-price">€১২</div>
-      <div class="dish-items">
-        <span class="dish-item">পান্তা ভাত</span>
-        <span class="dish-item">ইলিশ ভাজা</span>
-        <span class="dish-item">আলু ভর্তা</span>
-        <span class="dish-item">মাছ ভর্তা</span>
-        <span class="dish-item">বেগুন ভাজা</span>
-        <span class="dish-item">ডালের ভর্তা</span>
-        <span class="dish-item">পেঁয়াজ কুচি</span>
-        <span class="dish-item">শুকনা মরিচ</span>
-      </div>
+    <div class="person-heart">♥</div>
+    <div class="person">
+      <div class="person-icon">🏡</div>
+      <div class="person-label">Waiting in</div>
+      <div class="person-name">Germany</div>
     </div>
   </div>
-  <div class="button-section">
-    <button class="lottery-start-btn" onclick="startLotteryFlow()">🎡 লটারি ঘোরান 🎡</button>
+  <div class="route-strip">
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Munich</div><div class="rs-nights">3 nights</div></div>
+    <div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Königssee</div><div class="rs-nights">2 nights</div></div>
+    <div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Salzburg</div><div class="rs-nights">3 nights</div></div>
+    <div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Interlaken</div><div class="rs-nights">2 nights</div></div>
+    <div class="rs-line"></div>
+    <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Paris</div><div class="rs-nights">5 nights</div></div>
   </div>
-  <div class="historical-footer">
-    ✦ আকবরের আমলের ফসলি সন থেকে ১৪৩৩ পর্যন্ত ✦ চারশো বছর ধরে বাঙালির প্রিয় পান্তা ইলিশ ✦
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><label>Total Nights</label><div class="sv">15</div><div class="sn">No rush pace</div></div>
+    <div class="stat-item"><label>Destinations</label><div class="sv">6</div><div class="sn">3 countries</div></div>
+    <div class="stat-item"><label>Flight (Toronto)</label><div class="sv">~C$700</div><div class="sn">Condor/Icelandair</div></div>
+    <div class="stat-item"><label>Total (2 people)</label><div class="sv">~C$6,400</div><div class="sn">Point-to-point</div></div>
+    <div class="stat-item"><label>Per Day Couple</label><div class="sv">€130–170</div><div class="sn">Hotel + food + fun</div></div>
+    <div class="stat-item"><label>Season</label><div class="sv">Sept–Oct</div><div class="sn">Oktoberfest peak</div></div>
   </div>
 </div>
 
-<!-- SCREEN 2 - DIVISION -->
-<div class="screen" id="screen2">
-  <div class="page-header">
-    <div class="flowers">🌸🌺🌼🌺🌸</div>
-    <h1>আকবরের ইলিশ স্টল</h1>
-    <p>আপনার বিভাগ নির্বাচন করুন</p>
-  </div>
-  <button class="back-btn" onclick="goToScreen(1)">◀ পিছনে</button>
-  <div class="full-grid" id="divisionGrid"></div>
-</div>
-
-<!-- SCREEN 3 - DISTRICT -->
-<div class="screen" id="screen3">
-  <div class="page-header">
-    <div class="flowers">🌸🌺🌼🌺🌸</div>
-    <h1>আকবরের ইলিশ স্টল</h1>
-    <p>আপনার জেলা নির্বাচন করুন</p>
-  </div>
-  <button class="back-btn" onclick="goToScreen(2)">◀ পিছনে</button>
-  <div class="full-grid" id="districtGrid"></div>
-</div>
-
-<!-- SCREEN 4 - LOTTERY WHEEL -->
-<div class="screen" id="screen4">
-  <div class="page-header">
-    <div class="flowers">🌸🌺🌼🌺🌸</div>
-    <h1>আকবরের ইলিশ স্টল</h1>
-    <p>ভাগ্য পরীক্ষার সময়</p>
-  </div>
-  <button class="back-btn" onclick="goToScreen(3)">◀ পিছনে</button>
-  <div class="lottery-layout">
-    <div class="lottery-left">
-      <div class="large-wheel">
-        <div class="lottery-pointer">▼</div>
-        <canvas id="lotteryCanvas" width="500" height="500"></canvas>
-        <div class="lottery-hub" onclick="startSpin()"><div class="lottery-hub-icon">🎡</div></div>
+<!-- ══ TRANSPORT ══ -->
+<div class="transport-section">
+  <div class="wrap">
+    <div class="sec-label">How to Travel Between Cities</div>
+    <div class="sec-title">With Eurail <em>vs</em> Point-to-Point</div>
+    <p class="sec-sub">For this exact route, point-to-point tickets booked 4–6 weeks ahead beat the Eurail pass by roughly €200 for 2 people. Here's the honest comparison.</p>
+    <div class="transport-2col">
+      <div class="tc gold-tc">
+        <h3>🎫 Eurail Global Pass</h3>
+        <div class="tc-tag">Flexibility · No planning stress</div>
+        <ul class="tc-rows">
+          <li>5-day Flex pass covers all major legs — use days only when needed</li>
+          <li>Germany &amp; Austria: hop on any train, <strong>zero reservation fee</strong></li>
+          <li>Switzerland: covered, no reservation fee on most trains</li>
+          <li>Paris TGV: pass valid, compulsory reservation ~€12 pp extra</li>
+          <li>Jungfraujoch: <strong>25% discount</strong> — saves CHF 55 pp</li>
+          <li>Use Bayern Ticket &amp; Einfach-Raus for short hops, save pass days</li>
+        </ul>
+        <div class="tc-price">€636 <small>for 2 people · 2nd class 5-day flex</small></div>
+        <div class="verdict-box">Worth it if you don't want to plan. The Jungfraujoch discount alone saves CHF 110 for 2 people — partially offsets pass cost.</div>
+      </div>
+      <div class="tc sage-tc">
+        <h3>🎟 Point-to-Point</h3>
+        <div class="tc-tag">Cheapest · Book 4–6 weeks ahead</div>
+        <ul class="tc-rows">
+          <li>Bayern Ticket (Munich → Königssee, Neuschwanstein): <strong>€44 for 2</strong></li>
+          <li>Einfach-Raus-Ticket (Salzburg → Hallstatt day trip): <strong>€36 for 2</strong></li>
+          <li>Berchtesgaden → Salzburg: bus RVO 840 covered by Bayern Ticket</li>
+          <li>Salzburg → Interlaken via Zurich: <strong>from €46 pp</strong> booked early on oebb.at</li>
+          <li>Interlaken → Paris TGV Lyria: <strong>from €110 pp</strong> via Trainline.com</li>
+          <li>Total transport for 2 people: <strong>~€430–500</strong> booked in advance</li>
+        </ul>
+        <div class="tc-price">~€430 <small>for 2 people · all legs booked early</small></div>
+        <div class="verdict-box">Saves ~€200 over Eurail if you commit to dates. Best strategy: day passes for Bavaria &amp; Austria, advance tickets for Switzerland and Paris legs.</div>
       </div>
     </div>
-    <div class="lottery-right">
-      <div class="big-division-display" id="bigDivisionDisplay">
-        <div class="big-division-icon" id="bigDivIcon">🏙️</div>
-        <div class="big-division-name" id="bigDivName">ঢাকা</div>
-        <div class="big-division-item" id="bigDivItem">🍲 ঢাকাইয়া পান্তা</div>
+  </div>
+</div>
+
+<!-- ══ DAY PASSES ══ -->
+<div class="passes-section">
+  <div class="wrap">
+    <div class="sec-label">Regional Day Passes — Your Secret Weapon</div>
+    <div class="sec-title">The Cross-Border <em>Tickets</em> Nobody Tells You About</div>
+    <div class="passes-grid">
+      <div class="pass">
+        <div class="pass-flag">🇩🇪</div>
+        <h4>Bayern Ticket</h4>
+        <div class="pass-price">€44 for 2</div>
+        <p>All-day unlimited travel on every regional train and bus in Bavaria. Valid from Munich Airport all the way to Salzburg, Austria — that's a cross-border day pass for two people at €22 each.</p>
+        <div class="pass-covers">✓ Munich city ✓ Neuschwanstein ✓ Berchtesgaden ✓ Königssee bus ✓ Salzburg Hbf</div>
       </div>
-      <div class="loko-box">
-        <div class="loko-text" id="lokoText"></div>
-        <div class="loko-trans" id="lokoTrans"></div>
+      <div class="pass">
+        <div class="pass-flag">🇦🇹</div>
+        <h4>Einfach-Raus-Ticket</h4>
+        <div class="pass-price">€36 for 2</div>
+        <p>Austrian Railways regional day pass. Valid on all regional trains throughout Austria for a full day. Perfect for the Salzburg → Hallstatt day trip (via Attnang-Puchheim + ferry).</p>
+        <div class="pass-covers">✓ Salzburg → Hallstatt return ✓ All Austrian regional trains all day</div>
       </div>
-      <div class="winners-panel">
-        <div class="winners-title">🏆 ইলিশের মাথা বিজয়ী</div>
-        <div class="winners-list" id="winnersList"></div>
+      <div class="pass">
+        <div class="pass-flag">🇨🇭</div>
+        <h4>Swiss Half-Fare Card</h4>
+        <div class="pass-price">CHF 120 each (~€125)</div>
+        <p>One month of 50% off all Swiss trains, boats and many cable cars. For 2 nights in Interlaken it pays for itself. Also gives 25% off Jungfraujoch (~saves CHF 55 pp).</p>
+        <div class="pass-covers">✓ All SBB trains ✓ Lake boats ✓ 50% off mountain railways</div>
       </div>
-      <button class="spin-btn" onclick="startSpin()">🎡 চাকা ঘোরান 🎡</button>
+      <div class="pass">
+        <div class="pass-flag">🇫🇷</div>
+        <h4>TGV Lyria Advance Fare</h4>
+        <div class="pass-price">from €110 pp (6 wks ahead)</div>
+        <p>Not a pass — a booking tip. Interlaken → Basel → Paris takes 5h 36min. Book on Trainline.com 4–6 weeks ahead for cheapest fares. Prices double if left to last minute.</p>
+        <div class="pass-covers">✓ Interlaken Ost → Basel SBB → Paris Gare de Lyon · 5h 36min · 1 change</div>
+      </div>
     </div>
   </div>
-  <div class="historical-footer">
-    ✦ আকবরের আমলের ফসলি সন থেকে ১৪৩৩ পর্যন্ত ✦ চারশো বছর ধরে বাঙালির প্রিয় পান্তা ইলিশ ✦
+</div>
+
+<!-- ══ CHAPTER 1: MUNICH ══ -->
+<div class="chapter">
+  <div class="wrap">
+    <div class="chapter-header ch-munich">
+      <div class="ch-num">01</div>
+      <div class="ch-info">
+        <div class="ch-tag">🇩🇪 Germany · Days 1–3</div>
+        <div class="ch-city"><em>München</em> — Arrival &amp; Oktoberfest</div>
+        <div class="ch-nights">3 nights · No rushing · Oktoberfest on Day 2</div>
+      </div>
+      <div class="ch-budget">
+        <div class="bl">Hotel / night</div>
+        <div class="bv">€70–90</div>
+        <div class="bn">Budget double · Hauptbahnhof area</div>
+      </div>
+    </div>
+
+    <div class="days-wrap">
+      <!-- Day 1 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 1</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Reunion Day</em> — No Sightseeing Required</div>
+          <div class="day-mood">"After an overnight flight across the Atlantic, the only thing that matters is the hug at arrivals, a long shower, and a quiet dinner somewhere warm."</div>
+          <div class="pills">
+            <span class="pill free">Airport pickup / hotel meetup</span>
+            <span class="pill free">Shower · Nap · Coffee</span>
+            <span class="pill rom">Quiet dinner near hotel</span>
+            <span class="pill tip">No sightseeing — jet lag is real</span>
+          </div>
+          <div class="rom-note">The Canadian arrives on an overnight flight — don't plan anything demanding. A slow walk around the Viktualienmarkt and dinner at a neighbourhood restaurant is the perfect first evening in Europe together.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Munich Hauptbahnhof area — Motel One or A&O Hotel</div></div>
+            <div><div class="sp">€70–90/night</div><div class="snt">Budget double room · central location</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 2</div></div>
+        <div class="day-body">
+          <div class="day-title">🍺 <em>Oktoberfest</em> — The Relaxed Version</div>
+          <div class="day-mood">"Arrive before 2pm on a weekday. Find a table inside a tent. Order two Masskrüge. The world's greatest party is better when you don't rush it."</div>
+          <div class="pills">
+            <span class="pill tip">Weekday visit before 2pm — far less crowded</span>
+            <span class="pill paid">Oktoberfest — free entry, beer ~€14–16 per Mass</span>
+            <span class="pill free">Stay 3–4 hours, then leave while you can still walk</span>
+            <span class="pill rom">Evening: romantic walk through Maxvorstadt or Haidhausen</span>
+          </div>
+          <div class="rom-note">The secret to Oktoberfest for couples: arrive early, get seats inside a tent (Hofbräu or Augustiner), order a shared Brezn and two beers, people-watch for 3 hours. Leave by 5pm before it gets raucous. The evening neighbourhood walk is the real romance.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Munich (same hotel)</div></div>
+            <div><div class="sp">€70–90/night</div><div class="snt">2nd night</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 3</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Slow Munich</em> — Parks, Rowboats &amp; Beer Gardens</div>
+          <div class="day-mood">"Sleep in. The English Garden is the world's largest city park — bigger than Central Park. Rent a rowboat. Find a biergarten that isn't Oktoberfest. Breathe."</div>
+          <div class="pills">
+            <span class="pill free">English Garden — morning walk</span>
+            <span class="pill rom">Rowboat on Kleinhesseloher See — €15/hr</span>
+            <span class="pill free">Chinese Tower beer garden — free to sit, cheap beer</span>
+            <span class="pill paid">Optional: Nymphenburg Palace gardens — free to walk</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 With Eurail</div>
+              <div class="trm-route">Optional: Neuschwanstein day trip</div>
+              <div class="trm-price">€0 pass</div>
+              <div class="trm-note">Use a flex day if you want the castle</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 Point-to-Point</div>
+              <div class="trm-route">Bayern Ticket covers Neuschwanstein too</div>
+              <div class="trm-price">€44 for 2</div>
+              <div class="trm-note">One pass covers Munich + Füssen + all buses</div>
+            </div>
+          </div>
+          <div class="rom-note">The rowboat on Kleinhesseloher See is genuinely one of the most romantic things in Munich. €15 for an hour, no crowds, weeping willows, ducks. Better than any restaurant view.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Munich (3rd and final night)</div></div>
+            <div><div class="sp">€70–90/night</div><div class="snt">Check out tomorrow morning</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Prize Fullscreen Popup -->
-<div class="prize-fullscreen" id="prizeFullscreen">
-  <div class="prize-content">
-    <div class="prize-emoji" id="prizeEmoji">🎁</div>
-    <div class="prize-title" id="prizeTitle"></div>
-    <div class="prize-message" id="prizeMsg"></div>
-    <div class="prize-loko" id="prizeLoko"></div>
-    <button class="again-btn" onclick="resetToPricePage()">🔄 আবার লটারি করুন</button>
+<!-- ══ CHAPTER 2: KÖNIGSSEE ══ -->
+<div class="chapter">
+  <div class="wrap">
+    <div class="chapter-header ch-konigsee">
+      <div class="ch-num">02</div>
+      <div class="ch-info">
+        <div class="ch-tag">🇩🇪 Bavaria · Days 4–5</div>
+        <div class="ch-city"><em>Königssee</em> — The Emerald Lake</div>
+        <div class="ch-nights">2 nights in Berchtesgaden · One base, no moving</div>
+      </div>
+      <div class="ch-budget">
+        <div class="bl">Hotel / night</div>
+        <div class="bv">€60–75</div>
+        <div class="bn">Guesthouse / Pension</div>
+      </div>
+    </div>
+
+    <div class="days-wrap">
+      <!-- Day 4 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 4</div></div>
+        <div class="day-body">
+          <div class="day-title">Arrive &amp; <em>The Electric Boat</em></div>
+          <div class="day-mood">"A silent electric boat glides between cliffs that plunge two thousand metres straight into emerald water. The boatman stops mid-lake and plays an alphorn — the echo comes back from the cliff face."</div>
+          <div class="pills">
+            <span class="pill rom">Electric boat to St. Bartholomä — €20 pp</span>
+            <span class="pill free">Walk the lakeshore trail at St. Bartholomä</span>
+            <span class="pill free">Malerwinkel (Painter's Corner) viewpoint — free</span>
+            <span class="pill rom">Evening Bavarian dinner in Berchtesgaden town</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 With Eurail — use 1 pass day</div>
+              <div class="trm-route">Munich → Freilassing → Berchtesgaden + bus 841</div>
+              <div class="trm-price">€0 + €0</div>
+              <div class="trm-note">Regional trains, no reservation needed</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 Bayern Ticket (best value!)</div>
+              <div class="trm-route">Munich → Berchtesgaden + all local buses</div>
+              <div class="trm-price">€44 for 2</div>
+              <div class="trm-note">Covers full day incl. bus 841 to Königssee</div>
+            </div>
+          </div>
+          <div class="rom-note">Take the 10am or 11am boat to avoid crowds. Get off at St. Bartholomä — don't take the last boat back immediately. Sit by the church, have a coffee, let the mountains surround you for an hour.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Berchtesgaden — Pension Watzmann or similar</div></div>
+            <div><div class="sp">€60–75/night</div><div class="snt">Mountain guesthouse with Bavarian breakfast</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 5</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Jennerbahn</em> Cable Car — Above the World</div>
+          <div class="day-mood">"The gondola rises to 1,800 metres above the lake. The Königssee shrinks to a mirror below. The Alps stretch in every direction. You eat lunch at a mountain restaurant with your feet dangling over Bavaria."</div>
+          <div class="pills">
+            <span class="pill paid">Jennerbahn cable car — ~€28 pp return</span>
+            <span class="pill free">Summit walk (30–45 min gentle trail)</span>
+            <span class="pill rom">Lunch at mountain restaurant — €15–20 pp</span>
+            <span class="pill free">Afternoon: Berchtesgaden old town</span>
+            <span class="pill rom">Final evening dinner — Gasthof with views</span>
+          </div>
+          <div class="rom-note">The Jennerbahn sits directly at the Königssee lakeside — you can look down at the emerald water from 1,800m. On a clear day you see Austria, Germany and what feels like all of creation. This is the highlight of the Königssee stay.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Berchtesgaden (2nd and final night)</div></div>
+            <div><div class="sp">€60–75/night</div><div class="snt">Tomorrow: bus to Salzburg</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Fortune Overlay -->
-<div class="fortune-overlay" id="fortuneOverlay">
-  <div>🔮</div>
-  <div class="fortune-text" id="fortuneText">ভাগ্য গণনা করা হচ্ছে...</div>
+<!-- ══ CHAPTER 3: SALZBURG ══ -->
+<div class="chapter">
+  <div class="wrap">
+    <div class="chapter-header ch-salzburg">
+      <div class="ch-num">03</div>
+      <div class="ch-info">
+        <div class="ch-tag">🇦🇹 Austria · Days 6–8</div>
+        <div class="ch-city"><em>Salzburg</em> + Hallstatt Day Trip</div>
+        <div class="ch-nights">3 nights · Day 7 = Hallstatt · Days 6 &amp; 8 = slow Salzburg</div>
+      </div>
+      <div class="ch-budget">
+        <div class="bl">Hotel / night</div>
+        <div class="bv">€70–95</div>
+        <div class="bn">Old town area · walkable to everything</div>
+      </div>
+    </div>
+
+    <div class="days-wrap">
+      <!-- Day 6 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 6</div></div>
+        <div class="day-body">
+          <div class="day-title">Arrive <em>Salzburg</em> — Mozart &amp; Riverside Magic</div>
+          <div class="day-mood">"A city of baroque domes and a fortress on a hill. The Salzach river glows gold at sunset. Mozart was born here and the streets still feel like an 18th-century stage set."</div>
+          <div class="pills">
+            <span class="pill free">Mirabell Gardens — free, Sound of Music famous</span>
+            <span class="pill free">Getreidegasse — Mozart's birthplace street</span>
+            <span class="pill rom">Salzach riverside walk at sunset</span>
+            <span class="pill rom">Dinner in Steingasse (quiet romantic lane)</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 Eurail or RVO Bus 840</div>
+              <div class="trm-route">Berchtesgaden → Salzburg</div>
+              <div class="trm-price">€0</div>
+              <div class="trm-note">RVO bus 840 takes 50min · scenic · €7 pp or covered by Bayern Ticket on Saturdays/Sundays</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 RVO Bus 840 (cheapest)</div>
+              <div class="trm-route">Berchtesgaden Hbf → Salzburg Hbf</div>
+              <div class="trm-price">~€7 pp</div>
+              <div class="trm-note">50 min · drops you in the Altstadt. No train needed.</div>
+            </div>
+          </div>
+          <div class="rom-note">Salzburg's old town is compact and extraordinarily beautiful. The golden hour on the Staatsbrücke bridge — the fortress above, the river below, the dome of the cathedral glowing — is one of the great romantic views in Europe.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Salzburg Altstadt area — Gästehaus im Priesterseminar or Altstadt Hotel Hofwirt</div></div>
+            <div><div class="sp">€70–95/night</div><div class="snt">Walking distance to everything · breakfast included at many</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 7</div></div>
+        <div class="day-body">
+          <div class="day-title">🏔 Hallstatt Day Trip — <em>The Most Beautiful Village</em></div>
+          <div class="day-mood">"A ferry carries you across a mirror-still lake to a village of 800 people stacked between the water and a cliff. UNESCO-listed. Incomparably beautiful. Leave before the tour buses at 10am."</div>
+          <div class="pills">
+            <span class="pill rom">Train Salzburg → Attnang-Puchheim → Hallstatt Bahnhof</span>
+            <span class="pill paid">Ferry to village — €4 pp cash only</span>
+            <span class="pill free">Marktplatz walk · Bone Chapel · Lakeside path</span>
+            <span class="pill rom">Rent an electric pedal boat — €20–30/hr</span>
+            <span class="pill free">Hallstatt Skywalk viewpoint — €5 pp</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 Eurail — use 1 pass day</div>
+              <div class="trm-route">Salzburg → Attnang-Puchheim → Hallstatt</div>
+              <div class="trm-price">€0 + ferry €4</div>
+              <div class="trm-note">2h 35min each way. Full day out.</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 Einfach-Raus-Ticket</div>
+              <div class="trm-route">Full day regional Austria travel for 2</div>
+              <div class="trm-price">€36 for 2</div>
+              <div class="trm-note">Covers Salzburg ↔ Hallstatt return + ferry €4 pp cash</div>
+            </div>
+          </div>
+          <div class="rom-note">Take the first morning train to arrive before 9:30am. After 10am, day-tour buses arrive and the tiny village fills up. By 6pm they all leave — if you can stay for the evening ferry, Hallstatt after sunset with the village lights reflected in the black water is incomparable.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Salzburg (2nd night)</div></div>
+            <div><div class="sp">€70–95/night</div><div class="snt">⚠️ Salt Mine funicular closed until late June 2026 — Altaussee shuttle is alternative</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 8 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 8</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Untersberg</em> Cable Car &amp; Fortress Views</div>
+          <div class="day-mood">"The Untersbergbahn cable car reaches 1,776 metres in 10 minutes. The view from the top: Salzburg below, the Bavarian Alps behind, Austria ahead. Then down for a final riverside dinner."</div>
+          <div class="pills">
+            <span class="pill paid">Untersbergbahn cable car — €28 pp return</span>
+            <span class="pill free">Summit walk · panoramic views</span>
+            <span class="pill free">Hohensalzburg Fortress — free to walk to, funicular €15</span>
+            <span class="pill rom">Final Salzach river walk at sunset</span>
+            <span class="pill rom">Farewell Salzburg dinner — schnitzel &amp; wine</span>
+          </div>
+          <div class="rom-note">Walk up to the fortress instead of taking the funicular — the 20-minute climb through Nonnberg Abbey is free, beautiful, and you'll have the path nearly to yourselves. The view from the fortress ramparts over the city is stunning at golden hour.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Salzburg (3rd and final night)</div></div>
+            <div><div class="sp">€70–95/night</div><div class="snt">Tomorrow: long scenic train to Interlaken via Zurich</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Modals -->
-<div class="name-modal" id="nameModal"><div class="modal-content"><h3>🎉 অভিনন্দন! 🎉</h3><p>আপনার নাম জানিয়ে দিন:</p><input type="text" id="winnerName" class="name-input" placeholder="যেমন: রহিম মিয়া"><div class="modal-buttons"><button class="modal-btn modal-btn-confirm" onclick="saveWinnerName()">নিশ্চিত</button><button class="modal-btn modal-btn-cancel" onclick="skipName()">বাদ দিন</button></div></div></div>
-<div class="password-modal" id="passwordModal"><div class="modal-content"><h3>স্টল রিসেট</h3><p>পাসওয়ার্ড দিন:</p><input type="password" id="resetPassword" placeholder="পাসওয়ার্ড"><div class="modal-buttons"><button class="modal-btn modal-btn-cancel" onclick="closePasswordModal()">বাতিল</button><button class="modal-btn modal-btn-confirm" onclick="verifyReset()">নিশ্চিত</button></div></div></div>
+<!-- ══ CHAPTER 4: SWITZERLAND ══ -->
+<div class="chapter">
+  <div class="wrap">
+    <div class="chapter-header ch-switzerland">
+      <div class="ch-num">04</div>
+      <div class="ch-info">
+        <div class="ch-tag">🇨🇭 Switzerland · Days 9–10</div>
+        <div class="ch-city"><em>Interlaken</em> — Between Two Lakes &amp; the Alps</div>
+        <div class="ch-nights">2 nights · Skip Jungfraujoch · Do Lauterbrunnen instead — free &amp; more romantic</div>
+      </div>
+      <div class="ch-budget">
+        <div class="bl">Hotel / night</div>
+        <div class="bv">CHF 110–140</div>
+        <div class="bn">~€115–150 · Book early</div>
+      </div>
+    </div>
 
-<div style="position:fixed; bottom:15px; right:15px; display: flex; gap: 10px; z-index: 20;">
-  <button style="background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; cursor:pointer;" onclick="enableSound()">🔊 সাউন্ড</button>
-  <button style="background:rgba(0,0,0,0.7); color:var(--gold); border:1px solid var(--gold); padding:6px 14px; border-radius:40px; font-size:0.65rem; cursor:pointer;" onclick="showPasswordModal()">🔒 রিসেট</button>
+    <div class="days-wrap">
+      <!-- Day 9 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 9</div></div>
+        <div class="day-body">
+          <div class="day-title">The <em>Long Train Day</em> — Salzburg to Interlaken</div>
+          <div class="day-mood">"Eight hours on a train through three countries. But this is no ordinary train journey — it passes through the Austrian Alps, the Arlberg Pass, Liechtenstein, and the Swiss lakes. The journey is the attraction."</div>
+          <div class="pills">
+            <span class="pill tip">Leave Salzburg by 9am · arrive Interlaken by 5pm</span>
+            <span class="pill free">Arlberg Pass scenery — glaciers from the window</span>
+            <span class="pill rom">Picnic in the train — buy bread &amp; cheese at Salzburg Hbf</span>
+            <span class="pill rom">Arrive: Höheweg promenade with Jungfrau views at sunset</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 Eurail — use 1 pass day</div>
+              <div class="trm-route">Salzburg → Innsbruck → Zurich → Bern → Interlaken</div>
+              <div class="trm-price">€0</div>
+              <div class="trm-note">No reservation fee in Austria or Switzerland. ~7.5h scenic journey.</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 Book on oebb.at + sbb.ch</div>
+              <div class="trm-route">Salzburg → Zurich → Interlaken Ost</div>
+              <div class="trm-price">from €46 pp</div>
+              <div class="trm-note">Book ÖBB Sparschiene early. ~7.5h total. 1–2 changes.</div>
+            </div>
+          </div>
+          <div class="rom-note">This is one of the great train journeys in Europe. Pack snacks, buy a window seat, and let the Alps do the work. The stretch through the Arlberg and then along the Swiss lakes approaching Interlaken is breathtaking.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Interlaken — Balmer's Hostel private room or Hotel Bernerhof</div></div>
+            <div><div class="sp">CHF 110–140/night</div><div class="snt">Hotel guests get free local bus pass · book early for best prices</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 10 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 10</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Lauterbrunnen</em> — 72 Waterfalls &amp; Alpine Silence</div>
+          <div class="day-mood">"A flat-bottomed valley carved by glaciers, walled on both sides by sheer 300-metre cliffs. Seventy-two waterfalls pour off the top. The floor of the valley is carpeted in wildflowers. It costs nothing."</div>
+          <div class="pills">
+            <span class="pill free">Lauterbrunnen valley floor walk — completely free</span>
+            <span class="pill free">Trümmelbach Falls inside the mountain — €11 pp</span>
+            <span class="pill rom">Train to Grindelwald — views of the Eiger face</span>
+            <span class="pill paid">Harder Kulm funicular sunset — CHF 32 pp</span>
+            <span class="pill rom">Fondue dinner for two — CHF 35–45 pp</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 Eurail advantage</div>
+              <div class="trm-route">Interlaken ↔ Lauterbrunnen / Grindelwald</div>
+              <div class="trm-price">€0</div>
+              <div class="trm-note">Fully covered by Eurail. No reservation needed.</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 Swiss Half-Fare Card</div>
+              <div class="trm-route">All day hops — 50% off</div>
+              <div class="trm-price">~CHF 20 total</div>
+              <div class="trm-note">Interlaken ↔ Lauterbrunnen ~CHF 7 pp with Half-Fare</div>
+            </div>
+          </div>
+          <div class="rom-note">Skip Jungfraujoch on a 2-night visit — it's CHF 220 pp and takes a full day. Lauterbrunnen valley is free, more beautiful for a couple, and completely peaceful. Save Jungfraujoch for when you come back for a full Switzerland trip.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Interlaken (2nd and final night)</div></div>
+            <div><div class="sp">CHF 110–140/night</div><div class="snt">Tomorrow: TGV Lyria to Paris — book in advance!</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- ══ CHAPTER 5: PARIS ══ -->
+<div class="chapter">
+  <div class="wrap">
+    <div class="chapter-header ch-paris">
+      <div class="ch-num">05</div>
+      <div class="ch-info">
+        <div class="ch-tag">🇫🇷 France · Days 11–15</div>
+        <div class="ch-city"><em>Paris</em> — The Grand Finale</div>
+        <div class="ch-nights">5 nights · The longest stay · No rushing · Paris belongs to you</div>
+      </div>
+      <div class="ch-budget">
+        <div class="bl">Hotel / night</div>
+        <div class="bv">€85–110</div>
+        <div class="bn">Marais / Montmartre / Bastille · budget double</div>
+      </div>
+    </div>
+
+    <div class="days-wrap">
+      <!-- Day 11 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 11</div></div>
+        <div class="day-body">
+          <div class="day-title">Arrive <em>Paris</em> — The City of Light</div>
+          <div class="day-mood">"The TGV out of Basel accelerates to 300 km/h across the French plains. Then — after 5.5 hours — the train slows, and suddenly the Eiffel Tower is outside your window."</div>
+          <div class="pills">
+            <span class="pill tip">Travel day — arrive Paris Gare de Lyon by 4–5pm</span>
+            <span class="pill rom">Evening: Eiffel Tower sparkle from Trocadéro — free</span>
+            <span class="pill rom">First Paris dinner — crêpes on a bench near the river</span>
+          </div>
+          <div class="tr-mini">
+            <div class="trm gold-trm">
+              <div class="trm-label">🎫 Eurail — use 1 pass day</div>
+              <div class="trm-route">Interlaken → Basel → Paris Gare de Lyon</div>
+              <div class="trm-price">€0 + €12 res</div>
+              <div class="trm-note">TGV Lyria compulsory reservation ~€12 pp</div>
+            </div>
+            <div class="trm sage-trm">
+              <div class="trm-label">🎟 Book Trainline.com 4–6 weeks ahead</div>
+              <div class="trm-route">Interlaken Ost → Basel SBB → Paris Gare de Lyon</div>
+              <div class="trm-price">from €110 pp</div>
+              <div class="trm-note">5h 36min · 1 change at Basel · book early for lowest fare</div>
+            </div>
+          </div>
+          <div class="rom-note">The Eiffel Tower sparkles for 5 minutes on the hour, every hour after dark. Watch it from the Trocadéro Gardens — it's free, the view is perfect, and sharing that moment for the first time together is something you'll remember for the rest of your lives.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Paris — Le Marais, Montmartre or near Bastille for best budget value</div></div>
+            <div><div class="sp">€85–110/night</div><div class="snt">Ibis Styles, Generator Hostel private room, or Airbnb</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 12 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 12</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Slow Paris</em> — Seine Walk &amp; Île Saint-Louis</div>
+          <div class="day-mood">"Sleep until 9. Find a corner café. Order café au lait and a croissant. Read. Watch Paris wake up. Then walk along the Seine from Pont Neuf to Notre-Dame without a plan."</div>
+          <div class="pills">
+            <span class="pill free">Pont Neuf → Notre-Dame Seine walk</span>
+            <span class="pill rom">Île Saint-Louis — wine &amp; ice cream by the water</span>
+            <span class="pill free">Shakespeare &amp; Company bookshop — free to browse</span>
+            <span class="pill rom">Picnic under the Eiffel Tower — rosé + baguette + brie ~€15 total</span>
+            <span class="pill free">Eiffel Tower sparkle at 10pm — free from below</span>
+          </div>
+          <div class="rom-note">Buy a bottle of Côtes du Rhône, a baguette, a wedge of brie and some cherries from the Monoprix supermarket (€12–15 total). Lay on the Champ de Mars grass. Watch the Tower sparkle. This is Paris at its most romantic — and it costs almost nothing.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Paris (2nd night)</div></div>
+            <div><div class="sp">€85–110/night</div><div class="snt">Same hotel</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 13 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 13</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Montmartre</em> at Dawn &amp; Le Marais by Day</div>
+          <div class="day-mood">"Set one alarm — just one — for 6:30am. Walk up to Sacré-Cœur as the sun rises over Paris. The city below is rose-gold and almost silent. You'll have the steps nearly to yourselves."</div>
+          <div class="pills">
+            <span class="pill rom">Sacré-Cœur sunrise — free</span>
+            <span class="pill free">Place du Tertre artists' square</span>
+            <span class="pill rom">Crêpe breakfast in Montmartre — €8–10</span>
+            <span class="pill free">Le Marais afternoon — Place des Vosges, galleries</span>
+            <span class="pill paid">Optional: Musée d'Orsay — €16 pp · book ahead</span>
+            <span class="pill rom">Evening: Canal Saint-Martin — wine by the canal</span>
+          </div>
+          <div class="rom-note">Place des Vosges in Le Marais is the oldest planned square in Paris. The arcaded galleries, the symmetry, the fountain in the centre — sit on a bench with coffee and watch couples walk past. It's one of the great free pleasures in the city.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Paris (3rd night)</div></div>
+            <div><div class="sp">€85–110/night</div><div class="snt">Same hotel</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 14 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 14</div></div>
+        <div class="day-body">
+          <div class="day-title">Versailles &amp; <em>A Last Grand Evening</em></div>
+          <div class="day-mood">"The gardens of the Sun King. The Grand Canal stretching to the horizon. Fountains erupting on weekends. Then back to Paris for one final dinner in a candlelit bistro where the waiter ignores you beautifully."</div>
+          <div class="pills">
+            <span class="pill paid">Versailles Palace — €20 pp · book online ahead</span>
+            <span class="pill free">Versailles gardens — free on foot (not fountain days)</span>
+            <span class="pill rom">Grand Canal walk — sunset gold over the water</span>
+            <span class="pill rom">Final dinner: Saint-Germain bistro — escargot, duck confit, vin rouge</span>
+          </div>
+          <div class="tr-mini" style="grid-template-columns:1fr">
+            <div class="trm sage-trm">
+              <div class="trm-label">🚇 Paris → Versailles</div>
+              <div class="trm-route">RER C from any Paris station → Versailles Château - Rive Gauche</div>
+              <div class="trm-price">€3.50 pp each way</div>
+              <div class="trm-note">35 min · runs every 15–20 min · covered by Navigo day pass (€8.65)</div>
+            </div>
+          </div>
+          <div class="rom-note">The Versailles gardens are free to walk through. Skip the expensive fountain shows (€10 extra) and instead walk the Grand Canal at 5pm when the crowds thin and the light turns golden. The scale of it — the longest garden vista in the world — is overwhelming in the best way.</div>
+          <div class="stay-row">
+            <div><div class="sl">Sleep in</div><div class="sn">Paris (4th night)</div></div>
+            <div><div class="sp">€85–110/night</div><div class="snt">Penultimate night</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 15 -->
+      <div class="day-card">
+        <div class="day-label"><div class="day-num">Day 15</div></div>
+        <div class="day-body">
+          <div class="day-title"><em>Last Morning</em> in Paris — Au Revoir</div>
+          <div class="day-mood">"No agenda. A final coffee at the same corner café. A slow walk wherever Paris takes you. Then the RER B to CDG — and the long flight home carrying two weeks of memories."</div>
+          <div class="pills">
+            <span class="pill rom">Final Paris breakfast — croissant &amp; café crème</span>
+            <span class="pill free">Morning walk — no map, no plan</span>
+            <span class="pill tip">RER B to CDG — allow 45min + 2hrs before flight</span>
+          </div>
+          <div class="rom-note">Walk Paris without a destination on your last morning. The city is most beautiful when you're not trying to see anything. Follow a street that looks interesting. Find a courtyard. Buy a last baguette. The city will surprise you one final time.</div>
+          <div class="stay-row">
+            <div><div class="sl">Return flight</div><div class="sn">Paris CDG → Toronto (YYZ)</div></div>
+            <div><div class="sp">~C$700</div><div class="snt">Air Transat or Air France · book 2–3 months ahead</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BUDGET TABLE ══ -->
+<div class="budget-section">
+  <div class="wrap">
+    <div class="sec-label">Full Cost Breakdown · 2 People</div>
+    <div class="sec-title">What It <em>Actually</em> Costs</div>
+    <div class="budget-cols">
+      <!-- WITH EURAIL -->
+      <div class="bc">
+        <div class="bc-head gold-head">
+          <h3>🎫 Option A — With Eurail</h3>
+          <span class="bc-badge">More Flexible</span>
+        </div>
+        <table class="bt">
+          <tr class="cat"><td colspan="2">FLIGHTS · Canadian traveller only</td></tr>
+          <tr><td>Toronto → Munich (one-way · Condor/Icelandair)</td><td>~C$700</td></tr>
+          <tr><td>Paris → Toronto (one-way · Air Transat)</td><td>~C$700</td></tr>
+          <tr class="cat"><td colspan="2">TRANSPORT</td></tr>
+          <tr><td>Eurail Global 5-day Flex × 2 persons</td><td>~€636</td></tr>
+          <tr><td>Bayern Ticket Day 2 (city + Neuschwanstein)</td><td>€44</td></tr>
+          <tr><td>RVO Bus 840 (Berchtesgaden→Salzburg) × 2</td><td>€14</td></tr>
+          <tr><td>TGV Lyria Paris reservation × 2</td><td>€24</td></tr>
+          <tr class="cat"><td colspan="2">ACCOMMODATION · 15 nights</td></tr>
+          <tr><td>Munich × 3 nights (€80/night)</td><td>€240</td></tr>
+          <tr><td>Berchtesgaden × 2 nights (€68/night)</td><td>€136</td></tr>
+          <tr><td>Salzburg × 3 nights (€83/night)</td><td>€249</td></tr>
+          <tr><td>Interlaken × 2 nights (CHF 125/night)</td><td>~€260</td></tr>
+          <tr><td>Paris × 5 nights (€98/night)</td><td>€490</td></tr>
+          <tr class="cat"><td colspan="2">ACTIVITIES · for 2 people</td></tr>
+          <tr><td>Königssee boat, Jennerbahn, cable cars, Hallstatt ferry, palaces</td><td>~€360</td></tr>
+          <tr class="cat"><td colspan="2">FOOD · 15 days · couple</td></tr>
+          <tr><td>Avg €50/day/couple (mix of supermarket + café + 1 restaurant)</td><td>€750</td></tr>
+          <tr class="total"><td><strong>TOTAL ESTIMATE</strong></td><td><strong>~C$6,600</strong></td></tr>
+        </table>
+      </div>
+
+      <!-- WITHOUT EURAIL -->
+      <div class="bc">
+        <div class="bc-head sage-head">
+          <h3>🎟 Option B — Point-to-Point</h3>
+          <span class="bc-badge">Cheapest</span>
+        </div>
+        <table class="bt">
+          <tr class="cat"><td colspan="2">FLIGHTS · Canadian traveller only</td></tr>
+          <tr><td>Toronto → Munich (one-way · Condor/Icelandair)</td><td>~C$700</td></tr>
+          <tr><td>Paris → Toronto (one-way · Air Transat)</td><td>~C$700</td></tr>
+          <tr class="cat"><td colspan="2">TRANSPORT · booked 4–6 weeks ahead</td></tr>
+          <tr><td>Bayern Ticket Day 1+2 (city / Neuschwanstein) × 2 days</td><td>€88</td></tr>
+          <tr><td>Bayern Ticket Day 4 (Munich → Berchtesgaden) × 2</td><td>€44</td></tr>
+          <tr><td>RVO Bus 840 (Berchtesgaden→Salzburg) × 2</td><td>€14</td></tr>
+          <tr><td>Einfach-Raus-Ticket Day 7 (Salzburg↔Hallstatt) × 2</td><td>€36</td></tr>
+          <tr><td>Salzburg → Interlaken (ÖBB advance) × 2</td><td>~€92</td></tr>
+          <tr><td>Interlaken → Paris TGV Lyria (advance) × 2</td><td>~€220</td></tr>
+          <tr class="cat"><td colspan="2">ACCOMMODATION · same hotels</td></tr>
+          <tr><td>Munich + Berchtesgaden + Salzburg + Interlaken + Paris</td><td>same ~€1,375</td></tr>
+          <tr class="cat"><td colspan="2">ACTIVITIES · for 2 people</td></tr>
+          <tr><td>Same as Option A</td><td>~€360</td></tr>
+          <tr class="cat"><td colspan="2">FOOD · 15 days</td></tr>
+          <tr><td>Avg €50/day/couple</td><td>€750</td></tr>
+          <tr class="total"><td><strong>TOTAL ESTIMATE</strong></td><td><strong>~C$6,250</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="verdict-big">
+        <p><strong>Bottom line:</strong> Point-to-point saves roughly <strong>C$350</strong> over Eurail for this specific route — but only if you commit to dates and book train tickets 4–6 weeks ahead. The <strong>single best strategy</strong>: use regional day passes (Bayern Ticket €44, Einfach-Raus €36) for the Bavaria/Austria legs — they beat both Eurail and individual tickets. Book only Salzburg → Interlaken and Interlaken → Paris as advance point-to-point tickets. Total transport cost for 2: around <strong>€494</strong> without Eurail vs <strong>€718</strong> with Eurail. Skip the pass.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TIPS ══ -->
+<div class="tips-section">
+  <div class="wrap">
+    <div class="sec-label">The Details That Matter</div>
+    <div class="sec-title">Tips That <em>Actually Save</em> Money &amp; Stress</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">✈️</div>
+        <h4>Fly Condor from Toronto</h4>
+        <p>Condor (German charter airline) consistently has the cheapest YYZ → MUC one-way fares. Check momondo.ca on Sunday mornings — Sunday bookings are 6–13% cheaper. Book 2–3 months ahead. Icelandair is the backup option.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🍺</div>
+        <h4>Oktoberfest Survival Guide</h4>
+        <p>Weekday before 2pm = find a table. Weekend or after 4pm = near impossible without reservations made months ahead. Each Mass (1 litre) is €14–16. Budget €50–60 pp for the full Oktoberfest experience. Wear comfortable shoes — the tents get packed.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🏨</div>
+        <h4>Book Hallstatt Early</h4>
+        <p>Hallstatt has fewer than 800 permanent residents and extremely limited accommodation. If you ever consider staying overnight instead of day-tripping, book 6+ months ahead. For the day trip, just book the first morning train to arrive before 9:30am.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🎟</div>
+        <h4>The Bayern Ticket Secret</h4>
+        <p>€44 covers TWO people for a FULL DAY on every regional train and bus in Bavaria — including the cross-border train to Salzburg, Austria. Buy it at a Munich station machine or online on weekdays before travel. Valid from 9am on weekdays, midnight on weekends.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🥗</div>
+        <h4>Supermarket Picnic Strategy</h4>
+        <p>Germany: Rewe · Austria: Spar or Hofer · Switzerland: Migros or Coop · France: Monoprix or Carrefour. A romantic couple's picnic — baguette, local cheese, charcuterie, a bottle of regional wine — costs €12–18 total and beats any restaurant view.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🌅</div>
+        <h4>The Golden Hours Rule</h4>
+        <p>Every major sight on this trip is best at dawn or dusk: Königssee before 9am, Hallstatt after 6pm, Salzburg fortress at sunset, Lauterbrunnen valley in morning mist, Paris from Trocadéro at 10pm. Build your days backwards from these moments.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>"The most <span class="g">romantic journeys</span> are never rushed — they're <span class="g">savoured</span>, one slow morning at a time."</p>
+  <p class="small">All prices are 2026 estimates · Book flights 2–3 months ahead · Train tickets 4–6 weeks ahead · Hallstatt accommodation 6+ months ahead</p>
+</footer>
 
 <script>
-// ============ AUDIO ============
-let audioEnabled = false;
-let audioCtx = null;
-
-function enableSound() {
-  if (audioEnabled) { playBeep(); return; }
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  audioCtx.resume().then(() => {
-    audioEnabled = true;
-    playBeep();
-  });
-}
-
-function playBeep() {
-  if (!audioEnabled || !audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.frequency.value = 800;
-  gain.gain.value = 0.1;
-  osc.start();
-  gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.2);
-  osc.stop(audioCtx.currentTime + 0.2);
-}
-
-function playSpinTick() {
-  if (!audioEnabled || !audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.frequency.value = 400 + Math.random() * 100;
-  gain.gain.value = 0.05;
-  osc.start();
-  gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.05);
-  osc.stop(audioCtx.currentTime + 0.05);
-}
-
-function playBigWinSound() {
-  if (!audioEnabled || !audioCtx) return;
-  for (let i = 0; i < 6; i++) {
-    setTimeout(() => {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.frequency.value = 150;
-      gain.gain.value = 0.2;
-      osc.start();
-      gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.2);
-      osc.stop(audioCtx.currentTime + 0.2);
-    }, i * 150);
+/* ── STAR FIELD ── */
+(function(){
+  const c = document.getElementById('stars');
+  const ctx = c.getContext('2d');
+  let W, H, stars=[];
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
+  function make(){
+    stars=[];
+    for(let i=0;i<160;i++) stars.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.2+.2,
+      a:Math.random(), da:(Math.random()-.5)*.003
+    });
   }
-}
-
-function playSmallWinSound() {
-  if (!audioEnabled || !audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.frequency.value = 880;
-  gain.gain.value = 0.12;
-  osc.start();
-  gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
-  osc.stop(audioCtx.currentTime + 0.3);
-}
-
-// ============ STATE ============
-let customerNumber = 1;
-let selectedDivision = null;
-let selectedDistrict = null;
-let lotteryAngle = 0, lotterySpinning = false;
-let hasSpun = false;
-let bigWinners = [];
-const SPECIAL_WINNERS = [9, 23];
-const TOTAL_CUSTOMERS = 28;
-
-// Wheel Scenes
-const wheelScenes = [
-  { icon: "🏝️", name: "সেন্ট মার্টিন" },
-  { icon: "🌊", name: "কক্সবাজার" },
-  { icon: "🐅", name: "সুন্দরবন" },
-  { icon: "🚣", name: "রূপসা নদী" },
-  { icon: "⛰️", name: "সাজেক ভ্যালি" }
-];
-
-// Divisions
-const divisions = [
-  { id:"dhaka", name:"ঢাকা", icon:"🏙️", item:"🍲 ঢাকাইয়া পান্তা", c1:"#C93A08", c2:"#F07B1C" },
-  { id:"chattogram", name:"চট্টগ্রাম", icon:"🌊", item:"🐟 মেইজবান ইলিশ", c1:"#004E6E", c2:"#008DB4" },
-  { id:"cumilla", name:"কুমিল্লা", icon:"🍮", item:"🍬 রসমালাই পান্তা", c1:"#C41E3A", c2:"#E8505B" },
-  { id:"sylhet", name:"সিলেট", icon:"🍃", item:"🍵 চা-পান্তা", c1:"#1A5C1A", c2:"#3A9A3A" },
-  { id:"rajshahi", name:"রাজশাহী", icon:"🥭", item:"🥭 আমের পান্তা", c1:"#8B4500", c2:"#D48000" },
-  { id:"khulna", name:"খুলনা", icon:"🌿", item:"🦀 সুন্দরবন পান্তা", c1:"#1E5C2E", c2:"#3A9A52" },
-  { id:"barisal", name:"বরিশাল", icon:"⛵", item:"🚣 নদীর পান্তা", c1:"#003A7A", c2:"#1870D0" },
-  { id:"rangpur", name:"রংপুর", icon:"🌾", item:"🍚 কাটারিভোগ পান্তা", c1:"#7A5200", c2:"#C89A00" },
-  { id:"mymensingh", name:"ময়মনসিংহ", icon:"🎵", item:"🥛 গীতিকার পান্তা", c1:"#6A1A00", c2:"#B04020" }
-];
-
-// ALL 64 DISTRICTS with Full Loko Kotha
-const allDistricts = [
-  { div:"ঢাকা", name:"ঢাকা", icon:"🏙️", loko:"ঢাকাইয়ারা পান্তা না খাইলে কি বৈশাখ হয় নাকি?", trans:"ঢাকাইয়ারা পান্তা না খেলে কি বৈশাখ হয়?" },
-  { div:"ঢাকা", name:"গাজীপুর", icon:"🏗️", loko:"গাজীপুরের ভাই! ফ্যাক্টরি ছাইড়া আইসো, একখান পান্তা মারো!", trans:"ফ্যাক্টরি ছেড়ে এসো, একটা পান্তা মারো!" },
-  { div:"ঢাকা", name:"নারায়ণগঞ্জ", icon:"🏭", loko:"নারায়ণগঞ্জের মানুষ! কাপড়ের লগে পান্তাও টপ কোয়ালিটি লইবা!", trans:"কাপড়ের সাথে পান্তাও টপ কোয়ালিটি নেবে!" },
-  { div:"ঢাকা", name:"টাঙ্গাইল", icon:"🧵", loko:"টাঙ্গাইলের মানুষ! শাড়ির মতোই জীবন সুন্দর — পান্তা খাইয়া আরো সুন্দর করো!", trans:"শাড়ির মতোই জীবন সুন্দর — পান্তা খেয়ে আরো সুন্দর করো!" },
-  { div:"ঢাকা", name:"কিশোরগঞ্জ", icon:"🎵", loko:"কিশোরগঞ্জের মানুষ! হাওরের মাছ খাইছো অনেক, আইজ পান্তা-ইলিশ চেইখো!", trans:"হাওরের মাছ খেয়েছ অনেক, আজ পান্তা-ইলিশ চেখে দেখো!" },
-  { div:"ঢাকা", name:"মানিকগঞ্জ", icon:"🌊", loko:"মানিকগঞ্জের মানুষ! পদ্মার পাড়ের মানুষ ইলিশ চেনে সবচেয়ে বেশি!", trans:"পদ্মার পাড়ের মানুষ ইলিশ চেনে সবচেয়ে বেশি!" },
-  { div:"ঢাকা", name:"মুন্সীগঞ্জ", icon:"🎓", loko:"মুন্সীগঞ্জের আলু বিখ্যাত, কিন্তু আইজকা পান্তা-ইলিশ আরো বিখ্যাত!", trans:"আলু বিখ্যাত, কিন্তু আজকে পান্তা-ইলিশ আরো বিখ্যাত!" },
-  { div:"ঢাকা", name:"রাজবাড়ী", icon:"🏰", loko:"রাজবাড়ীর মানুষ! রাজার মতোই পান্তা খাইবা — সুলতানি সেট নিবা!", trans:"রাজার মতোই পান্তা খাবে — সুলতানি সেট নেবে!" },
-  { div:"ঢাকা", name:"মাদারীপুর", icon:"🌿", loko:"মাদারীপুরের ভাই! ইলিশ ভাজার গন্ধে মনে পড়তেছে না দেশের কথা?", trans:"ইলিশ ভাজার গন্ধে মনে পড়ছে না দেশের কথা?" },
-  { div:"ঢাকা", name:"শরীয়তপুর", icon:"🕌", loko:"শরীয়তপুরের মানুষ! পদ্মার ইলিশ আর আমাগো পান্তা — পারফেক্ট কম্বো!", trans:"পদ্মার ইলিশ আর আমাদের পান্তা — পারফেক্ট কম্বো!" },
-  { div:"ঢাকা", name:"গোপালগঞ্জ", icon:"⭐", loko:"গোপালগঞ্জের মানুষ! বঙ্গবন্ধুর জেলা — পান্তা খান, গর্বিত হন!", trans:"বঙ্গবন্ধুর জেলা — পান্তা খান, গর্বিত হন!" },
-  { div:"ঢাকা", name:"ফরিদপুর", icon:"🌾", loko:"ফরিদপুরের মানুষ! বড় বড় কথা কম, পান্তা বেশি খাও!", trans:"বড় বড় কথা কম, পান্তা বেশি খাও!" },
-  { div:"ঢাকা", name:"নরসিংদী", icon:"🌺", loko:"নরসিংদীর ভাই! কাঁঠাল খাও বেশি জানি, আইজ পান্তা খাও একটু!", trans:"কাঁঠাল খাও বেশি জানি, আজ পান্তা খাও একটু!" },
-  { div:"চট্টগ্রাম", name:"চট্টগ্রাম", icon:"🌊", loko:"আঁরার চাটগাঁর মানুষ! ইলিশ মাছর ভাজি দেইখলে আঁরার পেডে লাথি মারে!", trans:"আমাদের চট্টগ্রামের মানুষ! ইলিশ দেখলে পেটে লাথি মারে!" },
-  { div:"চট্টগ্রাম", name:"কক্সবাজার", icon:"🏖️", loko:"কক্সবাজারের মানুষ! সমুদ্র ছাইড়া আইছো, পান্তায় সমুদ্রের স্বাদ পাইবা!", trans:"সমুদ্র ছেড়ে এসেছ, পান্তায় সমুদ্রের স্বাদ পাবে!" },
-  { div:"চট্টগ্রাম", name:"রাঙ্গামাটি", icon:"⛰️", loko:"রাঙ্গামাটির মানুষ! পাহাড় থেকে সমতলে আইছো — পান্তায় স্বাগতম!", trans:"পাহাড় থেকে সমতলে এসেছ — পান্তায় স্বাগতম!" },
-  { div:"চট্টগ্রাম", name:"বান্দরবান", icon:"🏔️", loko:"বান্দরবানের মানুষ! মেঘের উপরে থাকো, পান্তায় মাটির স্বাদ নাও!", trans:"মেঘের উপরে থাকো, পান্তায় মাটির স্বাদ নাও!" },
-  { div:"চট্টগ্রাম", name:"খাগড়াছড়ি", icon:"🌿", loko:"খাগড়াছড়ির মানুষ! পাহাড়ি টেস্ট আলাদা জানি, কিন্তু পান্তা-ইলিশ একবার খাও!", trans:"পাহাড়ি টেস্ট আলাদা জানি, কিন্তু পান্তা-ইলিশ একবার খাও!" },
-  { div:"কুমিল্লা", name:"কুমিল্লা", icon:"🍮", loko:"কুমিল্লার মানুষ! রসমালাই বিখ্যাত তোমাগো, আইজকা পান্তা ট্রাই দাও!", trans:"রসমালাই বিখ্যাত তোমাদের, আজকে পান্তা ট্রাই দাও!" },
-  { div:"কুমিল্লা", name:"ব্রাহ্মণবাড়িয়া", icon:"🎶", loko:"ব্রাহ্মণবাড়িয়ার মানুষ! ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!", trans:"ওস্তাদের জেলা — পান্তার সুরও কিন্তু মিষ্টি!" },
-  { div:"কুমিল্লা", name:"চাঁদপুর", icon:"🐟", loko:"চাঁদপুরের মানুষ! ইলিশের রাজধানী থেকে আইছো — আমাগো ইলিশ কেমন দেখো!", trans:"ইলিশের রাজধানী থেকে এসেছ — আমাদের ইলিশ কেমন দেখো!" },
-  { div:"কুমিল্লা", name:"নোয়াখালী", icon:"🌴", loko:"ওই নোয়াখাইল্যা মিয়া! হগলতে আইয়া পড়ো, পান্তা-ইলিশ মিস কইরো না!", trans:"সবাই এসে পড়ো, পান্তা-ইলিশ মিস করো না!" },
-  { div:"কুমিল্লা", name:"ফেনী", icon:"🌸", loko:"ফেনীর মানুষ! ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!", trans:"ফেনী নদীর মতো পান্তার স্বাদও বয়ে যাবে!" },
-  { div:"কুমিল্লা", name:"লক্ষ্মীপুর", icon:"⚓", loko:"লক্ষ্মীপুরের মানুষ! মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!", trans:"মেঘনার পাড়ের মানুষ — ইলিশ তো চেনোই!" },
-  { div:"সিলেট", name:"সিলেট", icon:"🍃", loko:"আরে সিলেটি বেডা! চা বাগানের মানুষ, পান্তা না খাইলে বইশাখ নাই!", trans:"চা বাগানের মানুষ, পান্তা না খেলে বৈশাখ নেই!" },
-  { div:"সিলেট", name:"মৌলভীবাজার", icon:"🍵", loko:"মৌলভীবাজারের মানুষ! চায়ের দেশ থেকে আইছো — পান্তা খাইয়া রিফ্রেশ হও!", trans:"চায়ের দেশ থেকে এসেছ — পান্তা খেয়ে রিফ্রেশ হও!" },
-  { div:"সিলেট", name:"হবিগঞ্জ", icon:"🌲", loko:"হবিগঞ্জের মানুষ! হাওরের কথা মনে পড়তেছে? পান্তায় একটু ভুলো!", trans:"হাওরের কথা মনে পড়ছে? পান্তায় একটু ভুলো!" },
-  { div:"সিলেট", name:"সুনামগঞ্জ", icon:"🚣", loko:"সুনামগঞ্জের মানুষ! হাওরে নাও বাইছো সারাজীবন — আইজ পান্তা বাইও!", trans:"হাওরে নৌকা বেয়েছ সারাজীবন — আজ পান্তা বাও!" },
-  { div:"রাজশাহী", name:"রাজশাহী", icon:"🥭", loko:"রাজশাহীর দোস্ত! আম খাইছো সারাজীবন, আইজ পান্তা-ইলিশ খাও!", trans:"আম খেয়েছ সারাজীবন, আজ পান্তা-ইলিশ খাও!" },
-  { div:"রাজশাহী", name:"চাঁপাইনবাবগঞ্জ", icon:"🥭", loko:"চাঁপাইনবাবগঞ্জের মানুষ! আমের রাজধানী থেকে আইছো — পান্তা-ইলিশও রাজকীয়!", trans:"আমের রাজধানী থেকে এসেছ — পান্তা-ইলিশও রাজকীয়!" },
-  { div:"রাজশাহী", name:"নওগাঁ", icon:"🌾", loko:"নওগাঁর মানুষ! ধানের জেলা তোমাগো — পান্তার চাল তোমাগো অবদান!", trans:"ধানের জেলা তোমাদের — পান্তার চাল তোমাদের অবদান!" },
-  { div:"রাজশাহী", name:"নাটোর", icon:"🍬", loko:"নাটোরের মানুষ! কাঁচাগোল্লার জেলা — পান্তাও মিষ্টি মনে হবে!", trans:"কাঁচাগোল্লার জেলা — পান্তাও মিষ্টি মনে হবে!" },
-  { div:"রাজশাহী", name:"পাবনা", icon:"🥛", loko:"পাবনার মানুষ! দুধের জেলা তোমাগো — পান্তায় দুধ নাই কিন্তু ইলিশ আছে!", trans:"দুধের জেলা তোমাদের — পান্তায় দুধ নেই কিন্তু ইলিশ আছে!" },
-  { div:"রাজশাহী", name:"বগুড়া", icon:"🏺", loko:"বগুড়ার মানুষ! দইয়ের জেলার মানুষ — পান্তা খাইয়া দই ভুলো!", trans:"দইয়ের জেলার মানুষ — পান্তা খেয়ে দই ভুলো!" },
-  { div:"রাজশাহী", name:"সিরাজগঞ্জ", icon:"🧵", loko:"সিরাজগঞ্জের মানুষ! তাঁত বুনো সারাদিন — পান্তা খাও এখন!", trans:"তাঁত বুনো সারাদিন — পান্তা খাও এখন!" },
-  { div:"রাজশাহী", name:"জয়পুরহাট", icon:"⛏️", loko:"জয়পুরহাটের মানুষ! চিনি কলের জেলা তোমাগো — পান্তায় মিষ্টি না থাকলেও হাসি আছে!", trans:"চিনি কলের জেলা — পান্তায় মিষ্টি না থাকলেও হাসি আছে!" },
-  { div:"খুলনা", name:"খুলনা", icon:"🌿", loko:"খুলনার ভাই! সুন্দরবনের বাঘ তোমাগো পাড়ায় — পান্তায় কোনো ভয় নাই!", trans:"সুন্দরবনের বাঘ তোমাদের পাড়ায় — পান্তায় কোনো ভয় নেই!" },
-  { div:"খুলনা", name:"যশোর", icon:"🌹", loko:"যশোরের মানুষ! ফুলের শহর তোমাগো — পান্তা খাইয়া আরো ফুটো!", trans:"ফুলের শহর তোমাদের — পান্তা খেয়ে আরো ফুটো!" },
-  { div:"খুলনা", name:"সাতক্ষীরা", icon:"🍯", loko:"সাতক্ষীরার মানুষ! চিংড়ির দেশ থেকে আইছো — ইলিশও কিন্তু কম যায় না!", trans:"চিংড়ির দেশ থেকে এসেছ — ইলিশও কম যায় না!" },
-  { div:"খুলনা", name:"বাগেরহাট", icon:"🦌", loko:"বাগেরহাটের মানুষ! ষাট গম্বুজের পাশে বড় হইছো — মহৎ মানুষ মহৎ পান্তা খাও!", trans:"ষাট গম্বুজের পাশে বড় হয়েছ — মহৎ মানুষ মহৎ পান্তা খাও!" },
-  { div:"খুলনা", name:"কুষ্টিয়া", icon:"🎸", loko:"কুষ্টিয়ার মানুষ! লালনের দেশ তোমাগো — পান্তায় দেহতত্ত্ব খোঁজো!", trans:"লালনের দেশ তোমাদের — পান্তায় দেহতত্ত্ব খোঁজো!" },
-  { div:"খুলনা", name:"মেহেরপুর", icon:"🏛️", loko:"মেহেরপুরের মানুষ! মুজিবনগরের দেশ — স্বাধীনতার মতোই পান্তা মুক্ত!", trans:"মুজিবনগরের দেশ — স্বাধীনতার মতোই পান্তা মুক্ত!" },
-  { div:"খুলনা", name:"নড়াইল", icon:"🎨", loko:"নড়াইলের মানুষ! এস এম সুলতানের জেলা — পান্তার রংও তোমাগো কাছে আর্ট!", trans:"সুলতানের জেলা — পান্তার রংও তোমাদের কাছে আর্ট!" },
-  { div:"খুলনা", name:"ঝিনাইদহ", icon:"🌊", loko:"ঝিনাইদহের মানুষ! নবগঙ্গার পাড়ে বড় হইছো — পান্তায় নদীর কথা মনে করো!", trans:"নবগঙ্গার পাড়ে বড় হয়েছ — পান্তায় নদীর কথা মনে করো!" },
-  { div:"খুলনা", name:"মাগুরা", icon:"🎭", loko:"মাগুরার মানুষ! শান্ত মানুষ তোমরা — পান্তার মতোই ঠান্ডা!", trans:"শান্ত মানুষ তোমরা — পান্তার মতোই ঠান্ডা!" },
-  { div:"খুলনা", name:"চুয়াডাঙ্গা", icon:"🌤️", loko:"চুয়াডাঙ্গার মানুষ! সীমান্তের কাছে থাকো — পান্তায় দেশের গন্ধ নাও!", trans:"সীমান্তের কাছে থাকো — পান্তায় দেশের গন্ধ নাও!" },
-  { div:"বরিশাল", name:"বরিশাল", icon:"⛵", loko:"ওই বরিশাইল্লা! নদীর দেশের মানুষ — ইলিশ তো তোমাগো রক্তে!", trans:"নদীর দেশের মানুষ — ইলিশ তো তোমাদের রক্তে!" },
-  { div:"বরিশাল", name:"পটুয়াখালী", icon:"🏖️", loko:"পটুয়াখালীর মানুষ! কুয়াকাটার পাশে বড় হইছো — সমুদ্র ছাইড়া পান্তা খাও!", trans:"কুয়াকাটার পাশে বড় হয়েছ — সমুদ্র ছেড়ে পান্তা খাও!" },
-  { div:"বরিশাল", name:"ভোলা", icon:"🏝️", loko:"ভোলার মানুষ! দ্বীপের মানুষ তুমি — পান্তায় সাঁতার দাও!", trans:"দ্বীপের মানুষ তুমি — পান্তায় সাঁতার দাও!" },
-  { div:"বরিশাল", name:"ঝালকাঠি", icon:"🌿", loko:"ঝালকাঠির মানুষ! ছোট জেলা কিন্তু দিলটা বড় — পান্তাও বড় সাইজ দিমু!", trans:"ছোট জেলা কিন্তু দিলটা বড় — পান্তাও বড় সাইজ দেব!" },
-  { div:"বরিশাল", name:"পিরোজপুর", icon:"🚣", loko:"পিরোজপুরের মানুষ! নদীতে নৌকা বাইছো সারাজীবন — পান্তার নৌকায় চড়ো!", trans:"নদীতে নৌকা বেয়েছ সারাজীবন — পান্তার নৌকায় চড়ো!" },
-  { div:"বরিশাল", name:"বরগুনা", icon:"🌀", loko:"বরগুনার মানুষ! ঘূর্ণিঝড়ের সাথে যুদ্ধ করো — পান্তা খেতে ভয় পাও না তো?", trans:"ঘূর্ণিঝড়ের সাথে যুদ্ধ করো — পান্তা খেতে ভয় নেই তো?" },
-  { div:"রংপুর", name:"রংপুর", icon:"🌾", loko:"রংপুরের মিয়া ভাই! কনে যাও এ্যালা? এককান পান্তা খাইয়া যাও!", trans:"কোথায় যাও এখন? একটা পান্তা খেয়ে যাও!" },
-  { div:"রংপুর", name:"দিনাজপুর", icon:"🍚", loko:"দিনাজপুরের মানুষ! কাটারিভোগ চালের দেশ — পান্তার চাল তোমাগো কাছ থেকেই আইছে!", trans:"কাটারিভোগ চালের দেশ — পান্তার চাল তোমাদের কাছ থেকে!" },
-  { div:"রংপুর", name:"ঠাকুরগাঁও", icon:"🌅", loko:"ঠাকুরগাঁওয়ের মানুষ! উত্তরের ঠান্ডায় থাকো — পান্তা খাইয়া আরো ঠান্ডা লাইগো না!", trans:"উত্তরের ঠান্ডায় থাকো — পান্তা খেয়ে আরো ঠান্ডা লাগবে না!" },
-  { div:"রংপুর", name:"পঞ্চগড়", icon:"🏔️", loko:"পঞ্চগড়ের মানুষ! হিমালয় দেখা যায় তোমাগো বাড়ি থেকে — পান্তার স্বাদও এভারেস্ট সমান!", trans:"হিমালয় দেখা যায় তোমাদের বাড়ি থেকে!" },
-  { div:"রংপুর", name:"নীলফামারী", icon:"🌤️", loko:"নীলফামারীর মানুষ! নীল আকাশের নিচে বড় হইছো — পান্তার সাদা ভাতে সুখ খোঁজো!", trans:"নীল আকাশের নিচে বড় হয়েছ — পান্তায় সুখ খোঁজো!" },
-  { div:"রংপুর", name:"লালমনিরহাট", icon:"🚂", loko:"লালমনিরহাটের মানুষ! তিস্তার পাড়ে বড় হইছো — পান্তায় তিস্তার স্বাদ খোঁজো!", trans:"তিস্তার পাড়ে বড় হয়েছ — পান্তায় তিস্তার স্বাদ খোঁজো!" },
-  { div:"রংপুর", name:"কুড়িগ্রাম", icon:"🌊", loko:"কুড়িগ্রামের মানুষ! বন্যার সাথে যুদ্ধ করো প্রতিবছর — পান্তা খেতে এত সাহস লাগে না!", trans:"বন্যার সাথে যুদ্ধ করো — পান্তা খেতে এত সাহস লাগে না!" },
-  { div:"রংপুর", name:"গাইবান্ধা", icon:"🌾", loko:"গাইবান্ধার মানুষ! ব্রহ্মপুত্রের পাড়ের মানুষ — পান্তাও ব্রহ্মপুত্রের মতো সুন্দর!", trans:"ব্রহ্মপুত্রের পাড়ের মানুষ — পান্তাও ব্রহ্মপুত্রের মতো সুন্দর!" },
-  { div:"ময়মনসিংহ", name:"ময়মনসিংহ", icon:"🎵", loko:"ময়মনসিংহের মানুষ! গীতিকার দেশ তোমাগো — পান্তার গান গাও এখন!", trans:"গীতিকার দেশ তোমাদের — পান্তার গান গাও এখন!" },
-  { div:"ময়মনসিংহ", name:"নেত্রকোণা", icon:"🌧️", loko:"নেত্রকোণার মানুষ! হাওরের বৃষ্টিতে ভিজছো সারাজীবন — পান্তায় আরেকটু ভেজো!", trans:"হাওরের বৃষ্টিতে ভিজেছ সারাজীবন — পান্তায় আরেকটু ভেজো!" },
-  { div:"ময়মনসিংহ", name:"শেরপুর", icon:"🦁", loko:"শেরপুরের মানুষ! সীমান্তের শেরদের দেশ — পান্তা খাইয়া আরো সাহসী হও!", trans:"সীমান্তের শেরদের দেশ — পান্তা খেয়ে আরো সাহসী হও!" },
-  { div:"ময়মনসিংহ", name:"জামালপুর", icon:"🏺", loko:"জামালপুরের মানুষ! যমুনার পাড়ের মানুষ — পান্তায় যমুনার ঢেউ অনুভব করো!", trans:"যমুনার পাড়ের মানুষ — পান্তায় যমুনার ঢেউ অনুভব করো!" }
-];
-
-function banglaNumber(num) { const b = ['০','১','২','৩','৪','৫','৬','৭','৮','৯']; return num.toString().split('').map(d=>b[d]).join(''); }
-
-function updateCustomerDisplay() {
-  document.getElementById('customerCounter').innerHTML = `👥 গ্রাহক: ${banglaNumber(customerNumber)}/${banglaNumber(TOTAL_CUSTOMERS)}`;
-  updateWinnersList();
-}
-
-function updateWinnersList() {
-  const container = document.getElementById('winnersList');
-  if (!container) return;
-  if (bigWinners.length === 0) {
-    container.innerHTML = '<div style="text-align:center;color:#888;padding:10px;">এখনও কেউ জিতেনি</div>';
-  } else {
-    container.innerHTML = bigWinners.map(w => `
-      <div class="winner-item">
-        <span class="winner-icon">🐟</span>
-        <span class="winner-info">${w.name} - ${w.district}</span>
-        <span class="winner-time">${w.timeAgo}</span>
-      </div>
-    `).join('');
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{
+      s.a=Math.max(.05,Math.min(1,s.a+s.da));
+      if(s.a<=.05||s.a>=1) s.da*=-1;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(240,220,180,${s.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
   }
-}
+  window.addEventListener('resize',()=>{ resize(); make(); });
+  resize(); make(); draw();
+})();
 
-function addBigWinner(districtName, winnerName) {
-  bigWinners.unshift({ name: winnerName, district: districtName, timeAgo: 'এইমাত্র' });
-  if (bigWinners.length > 5) bigWinners.pop();
-  updateWinnersList();
-}
-
-function getPrizeLoko(district) {
-  return `"${district.loko}" — ${district.trans}`;
-}
-
-function showPrizeFullscreen(isSpecial, district) {
-  if (isSpecial) {
-    document.getElementById('prizeEmoji').innerHTML = '🐟✨🐟';
-    document.getElementById('prizeTitle').innerHTML = 'ইলিশের মাথা জিতেছেন!';
-    document.getElementById('prizeMsg').innerHTML = 'অভিনন্দন! আপনি ১ পিস ইলিশের মাথা পেয়েছেন! 🎉';
-    document.getElementById('prizeLoko').innerHTML = getPrizeLoko(district);
-  } else {
-    document.getElementById('prizeEmoji').innerHTML = '🌸';
-    document.getElementById('prizeTitle').innerHTML = 'শুভ নববর্ষ ১৪৩৩';
-    document.getElementById('prizeMsg').innerHTML = 'আপনার জন্য শুভেচ্ছা + ছোট চমক (পেঁয়াজ/শুকনা মরিচ)';
-    document.getElementById('prizeLoko').innerHTML = getPrizeLoko(district);
-  }
-  document.getElementById('prizeFullscreen').classList.add('active');
-}
-
-// Draw Functions
-let smallAngle = 0;
-function drawSmallWheel() {
-  const canvas = document.getElementById('smallWheelCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = w/2 - 8;
-  const n = wheelScenes.length, slice = (Math.PI * 2) / n;
-  ctx.clearRect(0,0,w,h);
-  for(let i=0;i<n;i++){
-    const sa = smallAngle + i*slice - Math.PI/2;
-    const ea = sa + slice;
-    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,sa,ea); ctx.closePath();
-    const colors = ['#C93A08', '#7B5800', '#C41E3A', '#1E4D2B', '#4a2070'];
-    ctx.fillStyle = colors[i % colors.length];
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.25)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    ctx.save(); ctx.translate(cx,cy); ctx.rotate(sa+slice/2);
-    ctx.font = `${w*0.12}px "Segoe UI Emoji"`;
-    ctx.textAlign="center"; ctx.textBaseline="middle";
-    ctx.shadowBlur = 4;
-    ctx.fillStyle="white";
-    ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
-    ctx.restore();
-  }
-  ctx.beginPath(); ctx.arc(cx,cy,35,0,Math.PI*2);
-  ctx.fillStyle = '#D4A574';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(232,184,75,0.6)';
-  ctx.lineWidth = 3;
-  ctx.stroke();
-  ctx.font = `bold ${w*0.06}px "Noto Serif Bengali"`;
-  ctx.fillStyle = "#fff";
-  ctx.shadowBlur = 0;
-  ctx.fillText("🎡", cx, cy);
-  smallAngle += 0.008;
-  requestAnimationFrame(drawSmallWheel);
-}
-
-function drawLargeWheel() {
-  const canvas = document.getElementById('lotteryCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = w/2 - 8;
-  const n = wheelScenes.length, slice = (Math.PI * 2) / n;
-  ctx.clearRect(0,0,w,h);
-  for(let i=0;i<n;i++){
-    const sa = lotteryAngle + i*slice - Math.PI/2;
-    const ea = sa + slice;
-    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,sa,ea); ctx.closePath();
-    const colors = ['#C93A08', '#7B5800', '#C41E3A', '#1E4D2B', '#4a2070'];
-    ctx.fillStyle = colors[i % colors.length];
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    ctx.save(); ctx.translate(cx,cy); ctx.rotate(sa+slice/2);
-    ctx.font = `${w*0.12}px "Segoe UI Emoji"`;
-    ctx.textAlign="center"; ctx.textBaseline="middle";
-    ctx.fillStyle="white";
-    ctx.fillText(wheelScenes[i].icon, r*0.65, 0);
-    ctx.font = `bold ${w*0.03}px "Noto Serif Bengali"`;
-    ctx.fillStyle="rgba(255,255,255,0.8)";
-    ctx.fillText(wheelScenes[i].name, r*0.3, 0);
-    ctx.restore();
-  }
-  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
-  ctx.strokeStyle='rgba(232,184,75,0.5)';
-  ctx.lineWidth=3;
-  ctx.stroke();
-}
-
-// Navigation
-function goToScreen(n) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  if(n===1) document.getElementById('screen1').classList.add('active');
-  if(n===2) { document.getElementById('screen2').classList.add('active'); renderDivisionGrid(); }
-  if(n===3) { document.getElementById('screen3').classList.add('active'); renderDistrictGrid(); }
-  if(n===4) { document.getElementById('screen4').classList.add('active'); renderLotteryPage(); }
-}
-
-function renderDivisionGrid() {
-  const grid = document.getElementById('divisionGrid');
-  grid.innerHTML = divisions.map(d => `
-    <div class="div-card" onclick="selectDivision('${d.id}')">
-      <div class="div-card-head" style="background:linear-gradient(135deg,${d.c1},${d.c2})">
-        <div class="div-icon">${d.icon}</div>
-        <div class="div-name">${d.name}</div>
-      </div>
-      <div class="div-card-body"><div class="div-item">${d.item}</div></div>
-    </div>
-  `).join('');
-}
-
-function selectDivision(divisionId) {
-  selectedDivision = divisions.find(d => d.id === divisionId);
-  goToScreen(3);
-}
-
-function renderDistrictGrid() {
-  const filtered = allDistricts.filter(d => d.div === selectedDivision.name);
-  const grid = document.getElementById('districtGrid');
-  grid.innerHTML = filtered.map(d => `
-    <div class="dist-card" onclick="selectDistrict('${d.name}')">
-      <div class="dist-card-head" style="background:linear-gradient(135deg,${selectedDivision.c1},${selectedDivision.c2})">
-        <div class="dist-icon">${d.icon}</div>
-        <div class="dist-name">${d.name}</div>
-      </div>
-      <div class="dist-card-body"><div class="dist-preview">"${d.loko}"</div></div>
-    </div>
-  `).join('');
-}
-
-function selectDistrict(districtName) {
-  selectedDistrict = allDistricts.find(d => d.name === districtName);
-  goToScreen(4);
-}
-
-function renderLotteryPage() {
-  document.getElementById('bigDivIcon').innerHTML = selectedDivision.icon;
-  document.getElementById('bigDivName').innerHTML = selectedDivision.name;
-  document.getElementById('bigDivItem').innerHTML = selectedDivision.item;
-  document.getElementById('lokoText').innerHTML = '"' + selectedDistrict.loko + '"';
-  document.getElementById('lokoTrans').innerHTML = '🔤 ' + selectedDistrict.trans;
-  lotteryAngle = 0;
-  hasSpun = false;
-  drawLargeWheel();
-  updateCustomerDisplay();
-}
-
-function startLotteryFlow() {
-  goToScreen(2);
-}
-
-function startSpin() {
-  if (lotterySpinning || hasSpun) return;
-  showFortuneTelling();
-}
-
-function showFortuneTelling() {
-  const fortuneDiv = document.getElementById('fortuneOverlay');
-  const fortuneText = document.getElementById('fortuneText');
-  const messages = ["🔮 ভাগ্য গণনা করা হচ্ছে...", "✨ তারা দেখে বলা হচ্ছে...", "🍃 পান্তার বাটিতে খোঁজা হচ্ছে...", "🐟 ইলিশের চোখে দেখা যাচ্ছে..."];
-  let idx = 0;
-  fortuneDiv.classList.add('active');
-  let interval = setInterval(() => {
-    fortuneText.innerHTML = messages[idx % messages.length];
-    idx++;
-  }, 700);
-  setTimeout(() => {
-    clearInterval(interval);
-    fortuneDiv.classList.remove('active');
-    performSpin();
-  }, 2200);
-}
-
-function performSpin() {
-  if (lotterySpinning) return;
-  lotterySpinning = true;
-  const fullRotations = 8 + Math.random() * 4;
-  const totalSpin = (Math.PI * 2) * fullRotations + Math.random() * (Math.PI * 2);
-  const duration = 4800;
-  const startAngle = lotteryAngle;
-  const start = performance.now();
-  let tickInterval = setInterval(() => playSpinTick(), 150);
-  
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-  
-  function frame(now) {
-    const elapsed = now - start;
-    let t = Math.min(1, elapsed / duration);
-    let eased = easeOutCubic(t);
-    if (t > 0.95) {
-      const bounce = Math.sin((t - 0.95) * Math.PI * 5) * 0.04 * (1 - t);
-      eased = Math.min(1, eased + bounce);
-    }
-    lotteryAngle = startAngle + totalSpin * eased;
-    drawLargeWheel();
-    if (t < 1) {
-      requestAnimationFrame(frame);
-    } else {
-      clearInterval(tickInterval);
-      lotteryAngle %= (Math.PI * 2);
-      drawLargeWheel();
-      if (navigator.vibrate) navigator.vibrate(200);
-      const isSpecial = SPECIAL_WINNERS.includes(customerNumber);
-      if (isSpecial) {
-        playBigWinSound();
-        confettiBurst(150);
-        document.getElementById('nameModal').classList.add('active');
-        window.pendingSpecial = true;
-        lotterySpinning = false;
-        return;
-      } else {
-        playSmallWinSound();
-        confettiBurst(50);
-        showPrizeFullscreen(false, selectedDistrict);
-        hasSpun = true;
-        lotterySpinning = false;
-      }
-    }
-  }
-  requestAnimationFrame(frame);
-}
-
-function saveWinnerName() {
-  const name = document.getElementById('winnerName').value.trim() || 'একজন ভাগ্যবান';
-  if (window.pendingSpecial) {
-    addBigWinner(selectedDistrict.name, name);
-    showPrizeFullscreen(true, selectedDistrict);
-    window.pendingSpecial = false;
-  }
-  document.getElementById('nameModal').classList.remove('active');
-  document.getElementById('winnerName').value = '';
-  hasSpun = true;
-  lotterySpinning = false;
-}
-
-function skipName() { saveWinnerName(); }
-
-function resetToPricePage() {
-  document.getElementById('prizeFullscreen').classList.remove('active');
-  if (customerNumber >= TOTAL_CUSTOMERS) {
-    alert("🎉 সকল গ্রাহকের লটারি সম্পন্ন! 'রিসেট' বাটনে ক্লিক করুন। 🎉");
-    return;
-  }
-  customerNumber++;
-  hasSpun = false;
-  selectedDivision = null;
-  selectedDistrict = null;
-  lotteryAngle = 0;
-  goToScreen(1);
-  updateCustomerDisplay();
-}
-
-function confettiBurst(count) {
-  const colors = ['#FFD700', '#E8B84B', '#F0A500', '#fff', '#FFA500'];
-  for (let i = 0; i < count; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    const s = 6 + Math.random() * 12;
-    el.style.cssText = `left:${Math.random()*100}vw;top:0;width:${s}px;height:${s*(0.6+Math.random())}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*0.5}s;animation-duration:${1.5+Math.random()*1.8}s;border-radius:${Math.random()>0.5?'50%':'2px'};`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 3000);
-  }
-}
-
-function showPasswordModal() { document.getElementById('passwordModal').classList.add('active'); document.getElementById('resetPassword').value=''; }
-function closePasswordModal() { document.getElementById('passwordModal').classList.remove('active'); }
-function verifyReset() { if(document.getElementById('resetPassword').value === '1433'){ resetStall(); closePasswordModal(); } else { alert('ভুল পাসওয়ার্ড!'); } }
-function resetStall() {
-  customerNumber = 1;
-  hasSpun = false;
-  selectedDivision = null;
-  selectedDistrict = null;
-  lotteryAngle = 0;
-  bigWinners = [];
-  updateCustomerDisplay();
-  goToScreen(1);
-  confettiBurst(30);
-}
-
-drawSmallWheel();
-drawLargeWheel();
-updateCustomerDisplay();
+/* ── SCROLL REVEAL ── */
+const cards = document.querySelectorAll('.day-card');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.08});
+cards.forEach(c=>io.observe(c));
 </script>
 </body>
 </html>
