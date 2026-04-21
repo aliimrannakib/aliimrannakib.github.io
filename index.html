@@ -2,843 +2,1160 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Timtim's Heavenly Romantic Journey · Europe · Sept 25 - Oct 10, 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timtim's Heavenly Romantic Journey · Europe · Sept 25 – Oct 10, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
-  --night: #0a0a12;
-  --deep: #12121a;
-  --card: #1a1a24;
-  --border: #2a2a35;
-  --gold: #e8c97a;
-  --gold2: #f5e2b0;
-  --goldx: rgba(232, 201, 122, 0.12);
-  --rose: #e8a0b4;
-  --cream: #f5efe6;
-  --muted: #9a8e8a;
-  --text: #e8dfd5;
-  --critical: #e74c3c;
-  --warning: #f39c12;
-  --sage: #a8c9b5;
-}
-
-body {
-  background: linear-gradient(145deg, #0a0a12 0%, #141420 100%);
-  color: var(--text);
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-}
-
-/* Heaven Background Effects */
-.heaven-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-/* Floating Hearts - SLOWER */
-.heart {
-  position: absolute;
-  font-size: 20px;
-  opacity: 0;
-  animation: floatHeart 16s ease-in infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes floatHeart {
-  0% { bottom: -50px; opacity: 0; transform: scale(0.5) rotate(0deg); }
-  15% { opacity: 0.6; }
-  85% { opacity: 0.4; }
-  100% { bottom: 110%; opacity: 0; transform: scale(1.1) rotate(12deg); }
-}
-
-/* Flying Birds - SLOWER */
-.bird {
-  position: absolute;
-  font-size: 24px;
-  opacity: 0.25;
-  animation: flyBird 40s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes flyBird {
-  0% { left: -50px; top: 20%; transform: scaleX(1); }
-  49% { transform: scaleX(1); }
-  50% { left: 110%; top: 25%; transform: scaleX(-1); }
-  100% { left: -50px; top: 20%; transform: scaleX(1); }
-}
-
-.glow-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at 50% 30%, rgba(232, 201, 122, 0.06), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 60px 24px 80px;
-  position: relative;
-  min-height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hero-eyebrow {
-  font-size: 11px;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin-bottom: 24px;
-  animation: fadeInUp 0.8s ease;
-}
-
-.hero-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(42px, 7vw, 88px);
-  font-weight: 400;
-  line-height: 1.1;
-  color: var(--cream);
-  max-width: 900px;
-  margin: 0 auto;
-  animation: fadeInUp 0.8s ease 0.1s backwards;
-}
-
-.hero-title em {
-  font-style: italic;
-  color: var(--gold2);
-  text-shadow: 0 0 20px rgba(232, 201, 122, 0.3);
-}
-
-.hero-quote {
-  font-family: 'Libre Baskerville', serif;
-  font-style: italic;
-  font-size: 18px;
-  color: var(--gold);
-  margin: 32px auto 24px;
-  max-width: 550px;
-  line-height: 1.6;
-  animation: fadeInUp 0.8s ease 0.2s backwards;
-}
-
-.hero-divider {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--rose), var(--gold), var(--rose), transparent);
-  margin: 32px auto;
-  animation: fadeInUp 0.8s ease 0.3s backwards;
-}
-
-/* Countdown */
-.countdown-container {
-  background: rgba(26, 26, 36, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(232, 201, 122, 0.2);
-  border-radius: 60px;
-  padding: 12px 28px;
-  display: inline-flex;
-  gap: 24px;
-  margin: 24px auto;
-  flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeInUp 0.8s ease 0.4s backwards;
-}
-
-.countdown-item {
-  text-align: center;
-}
-
-.countdown-number {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--gold);
-  line-height: 1;
-}
-
-.countdown-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 4px;
-}
-
-.hero-persons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  margin-top: 48px;
-  flex-wrap: wrap;
-  animation: fadeInUp 0.8s ease 0.5s backwards;
-}
-
-.person {
-  text-align: center;
-}
-
-.person-icon {
-  font-size: 32px;
-  margin-bottom: 8px;
-}
-
-.person-label {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.person-name {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 16px;
-  color: var(--cream);
-  margin-top: 4px;
-}
-
-.person-heart {
-  font-size: 28px;
-  color: var(--rose);
-  animation: pulse 1.5s ease infinite;
-}
-
-/* Route Strip */
-.route-strip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 52px;
-  gap: 8px;
-  animation: fadeInUp 0.8s ease 0.6s backwards;
-}
-
-.rs-stop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 12px;
-}
-
-.rs-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
-  margin-bottom: 10px;
-}
-
-.rs-city {
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--cream);
-  font-weight: 400;
-}
-
-.rs-nights {
-  font-size: 10px;
-  color: var(--rose);
-  margin-top: 3px;
-}
-
-.rs-heart {
-  font-size: 12px;
-  color: var(--rose);
-  margin-bottom: 19px;
-}
-
-/* Sections */
-section {
-  padding: 60px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.sec-label {
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--rose);
-  margin-bottom: 16px;
-}
-
-.sec-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(26px, 4vw, 42px);
-  font-weight: 400;
-  color: var(--cream);
-  margin-bottom: 16px;
-}
-
-.sec-title em {
-  font-style: italic;
-  color: var(--gold2);
-}
-
-/* Badges */
-.badge {
-  display: inline-block;
-  padding: 4px 12px;
-  font-size: 10px;
-  border-radius: 30px;
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
-.badge-critical {
-  background: rgba(231, 76, 60, 0.15);
-  color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.3);
-}
-
-.badge-warning {
-  background: rgba(243, 156, 18, 0.15);
-  color: #f39c12;
-  border: 1px solid rgba(243, 156, 18, 0.3);
-}
-
-.badge-success {
-  background: rgba(168, 201, 181, 0.15);
-  color: var(--sage);
-  border: 1px solid rgba(168, 201, 181, 0.3);
-}
-
-/* Grids */
-.ticket-grid, .hotel-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin: 32px 0;
-}
-
-.card {
-  background: rgba(26, 26, 36, 0.7);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--border);
-  padding: 24px;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  border-color: var(--gold);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -20px rgba(232, 201, 122, 0.2);
-}
-
-.card-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 18px;
-  color: var(--cream);
-  margin-bottom: 8px;
-}
-
-.card-price {
-  font-size: 20px;
-  color: var(--gold);
-  margin: 8px 0;
-}
-
-.card-detail {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
-.btn-link {
-  display: inline-block;
-  background: var(--goldx);
-  border: 1px solid rgba(232, 201, 122, 0.3);
-  padding: 8px 18px;
-  font-size: 12px;
-  color: var(--gold);
-  border-radius: 30px;
-  transition: all 0.2s;
-  margin-right: 8px;
-  margin-top: 6px;
-}
-
-.btn-link:hover {
-  background: var(--gold);
-  color: var(--night);
-  text-decoration: none;
-}
-
-/* City Dropdown Cards */
-.city-card {
-  background: rgba(26, 26, 36, 0.5);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  margin-bottom: 24px;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
-.city-card:hover {
-  border-color: rgba(232, 201, 122, 0.3);
-}
-
-.city-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 28px;
-  cursor: pointer;
-  background: rgba(18, 18, 26, 0.6);
-  transition: background 0.2s;
-}
-
-.city-header:hover {
-  background: rgba(232, 201, 122, 0.05);
-}
-
-.city-title h2 {
-  margin: 0;
-  font-size: 24px;
-  font-family: 'Libre Baskerville', serif;
-  font-weight: 400;
-}
-
-.city-title p {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 6px;
-}
-
-.city-weather {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.weather-icon {
-  font-size: 28px;
-}
-
-.weather-text {
-  font-size: 12px;
-  color: var(--gold);
-}
-
-.dropdown-arrow {
-  font-size: 22px;
-  color: var(--gold);
-  transition: transform 0.3s;
-}
-
-.city-days {
-  display: none;
-  padding: 0 28px 28px 28px;
-  border-top: 1px solid var(--border);
-}
-
-.day-item {
-  background: rgba(10, 10, 18, 0.6);
-  margin: 20px 0;
-  padding: 22px;
-  border-radius: 16px;
-  border-left: 3px solid var(--rose);
-  transition: all 0.3s;
-}
-
-.day-item:hover {
-  background: rgba(10, 10, 18, 0.8);
-  box-shadow: 0 0 20px rgba(232, 201, 122, 0.05);
-}
-
-.day-date {
-  font-size: 11px;
-  color: var(--rose);
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-}
-
-.day-title {
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--cream);
-  margin-bottom: 14px;
-  font-family: 'Libre Baskerville', serif;
-}
-
-.day-activities {
-  list-style: none;
-  margin: 14px 0;
-}
-
-.day-activities li {
-  padding: 6px 0;
-  font-size: 13px;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.spending {
-  background: rgba(232, 201, 122, 0.08);
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  color: var(--gold);
-  margin-top: 12px;
-  display: inline-block;
-}
-
-.restaurant-tip {
-  background: rgba(168, 201, 181, 0.08);
-  padding: 10px 14px;
-  border-radius: 10px;
-  margin-top: 12px;
-  font-size: 12px;
-  color: var(--sage);
-  border-left: 2px solid var(--sage);
-}
-
-.romantic-moment {
-  background: var(--goldx);
-  padding: 14px 16px;
-  border-radius: 12px;
-  margin-top: 14px;
-  font-style: italic;
-  font-size: 13px;
-  color: var(--cream);
-}
-
-.romantic-moment::before {
-  content: '♥ ';
-  color: var(--rose);
-  font-style: normal;
-  font-size: 14px;
-}
-
-.hotel-info {
-  background: rgba(18, 18, 26, 0.8);
-  padding: 12px 16px;
-  border-radius: 12px;
-  margin-top: 14px;
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 48px 24px;
-  color: var(--muted);
-  font-size: 12px;
-  border-top: 1px solid var(--border);
-  margin-top: 40px;
-}
-
-footer .heart {
-  color: var(--rose);
-  animation: pulse 1s ease infinite;
-  display: inline-block;
-  font-size: 14px;
-  position: static;
-  opacity: 1;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.8; }
-}
-
-@media (max-width: 700px) {
-  .city-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .countdown-container { gap: 12px; padding: 10px 18px; }
-  .countdown-number { font-size: 20px; }
-  .hero-quote { font-size: 14px; }
-  .day-item { padding: 16px; }
+  --bg:     #07060f;
+  --deep:   #0e0c1a;
+  --card:   #15122a;
+  --border: #2a2545;
+  --lift:   #3a3460;
+  --gold:   #e8c87a;
+  --gold2:  #f8e4b0;
+  --goldx:  rgba(232,200,122,.1);
+  --rose:   #f0a0b8;
+  --rose2:  rgba(240,160,184,.15);
+  --lav:    #b8a8e8;
+  --sage:   #90c8a8;
+  --cream:  #f5ede0;
+  --muted:  #8880a8;
+  --text:   #ddd5f0;
+  --ok:     #7ac88c;
+  --warn:   #f0c060;
+  --crit:   #f07878;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ── CANVAS ── */
+canvas#sky{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+/* ── HEAVEN LAYER ── */
+#heaven{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.fheart{
+  position:absolute;
+  opacity:0;
+  animation:floatUp linear infinite;
+  font-size:18px;
+  bottom:-40px;
+}
+@keyframes floatUp{
+  0%  {opacity:0;transform:translateY(0) scale(.6) rotate(0deg);}
+  15% {opacity:.55;}
+  85% {opacity:.3;}
+  100%{opacity:0;transform:translateY(-110vh) scale(1.1) rotate(15deg);}
+}
+.petal{
+  position:absolute;
+  width:8px;height:8px;
+  border-radius:60% 40% 60% 40%;
+  opacity:0;
+  animation:petalFall linear infinite;
+}
+@keyframes petalFall{
+  0%  {opacity:0;transform:translateY(-20px) rotate(0deg);}
+  10% {opacity:.5;}
+  90% {opacity:.2;}
+  100%{opacity:0;transform:translateY(110vh) rotate(540deg);}
+}
+
+/* ── GLOW ── */
+.glow{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%,rgba(232,200,122,.07),transparent 70%),
+    radial-gradient(ellipse 40% 50% at 80% 60%,rgba(176,128,220,.05),transparent 70%);
+}
+
+/* ── WRAP ── */
+.w{max-width:1120px;margin:0 auto;padding:0 24px;position:relative;z-index:3;}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 24px 60px;
+  position:relative;z-index:3;
+}
+.eyebrow{
+  font-size:10px;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--rose);margin-bottom:28px;
+  animation:fadeUp .8s ease .2s backwards;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(44px,8vw,96px);
+  font-weight:300;line-height:1.05;
+  color:var(--cream);max-width:860px;
+  animation:fadeUp .9s ease .35s backwards;
+}
+.hero-title em{font-style:italic;color:var(--gold2);text-shadow:0 0 30px rgba(232,200,122,.3);}
+.hero-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:19px;color:var(--gold);
+  margin:28px auto 0;max-width:520px;line-height:1.65;
+  animation:fadeUp .8s ease .5s backwards;
+}
+.divider-line{
+  width:80px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--rose),var(--gold),var(--rose),transparent);
+  margin:32px auto;
+  animation:fadeUp .8s ease .6s backwards;
+}
+
+/* countdown */
+.countdown{
+  display:inline-flex;gap:0;
+  background:rgba(21,18,42,.7);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(232,200,122,.2);
+  padding:16px 32px;gap:28px;
+  flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s ease .7s backwards;
+}
+.cd-item{text-align:center;}
+.cd-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:34px;font-weight:400;color:var(--gold);line-height:1;
+}
+.cd-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:5px;}
+
+/* persons */
+.persons{
+  display:flex;align-items:center;justify-content:center;gap:36px;
+  margin-top:44px;flex-wrap:wrap;
+  animation:fadeUp .8s ease .9s backwards;
+}
+.person{text-align:center;}
+.person-icon{font-size:30px;margin-bottom:8px;}
+.person-lbl{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.person-name{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);margin-top:4px;}
+.heart-beat{font-size:30px;color:var(--rose);animation:hbeat 1.4s ease infinite;}
+@keyframes hbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+
+/* route strip */
+.route-strip{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:4px;margin-top:48px;
+  animation:fadeUp .8s ease 1.1s backwards;
+}
+.rs{display:flex;flex-direction:column;align-items:center;padding:0 14px;}
+.rs-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--card);border:2px solid var(--gold);
+  margin-bottom:10px;box-shadow:0 0 8px rgba(232,200,122,.4);
+  transition:background .3s;
+}
+.rs:hover .rs-dot{background:var(--gold);}
+.rs-city{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);font-weight:400;}
+.rs-nights{font-size:10px;color:var(--rose);margin-top:3px;}
+.rs-link{width:28px;height:1px;background:var(--border);margin-bottom:19px;}
+.rs-heart{font-size:13px;color:var(--rose);margin-bottom:19px;line-height:1;}
+
+/* scroll hint */
+.scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:fadeUp .8s ease 1.5s backwards;
+}
+.scroll-hint span{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.scroll-bar{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:spulse 2s ease infinite;}
+@keyframes spulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* ══ SECTION COMMONS ══ */
+.section{padding:64px 0;border-bottom:1px solid var(--border);position:relative;z-index:3;}
+.sec-label{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--rose);margin-bottom:14px;}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(24px,4vw,42px);font-weight:300;
+  color:var(--cream);margin-bottom:12px;line-height:1.1;
+}
+.sec-title em{font-style:italic;color:var(--gold2);}
+.sec-sub{font-size:13.5px;color:var(--muted);max-width:620px;line-height:1.75;margin-bottom:40px;}
+
+/* ══ HOTELS ══ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-top:32px;}
+.hcard{
+  background:var(--card);border:1px solid var(--border);
+  padding:24px;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.hcard:hover{transform:translateY(-4px);border-color:rgba(232,200,122,.35);box-shadow:0 16px 36px -16px rgba(232,200,122,.15);}
+.hcard-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--cream);margin-bottom:6px;}
+.hcard-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-bottom:10px;}
+.hcard-desc{font-size:12.5px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
+.btn{
+  display:inline-block;
+  background:var(--goldx);
+  border:1px solid rgba(232,200,122,.3);
+  padding:7px 18px;font-size:11.5px;
+  color:var(--gold);
+  text-decoration:none;
+  transition:all .2s;margin-right:6px;margin-top:4px;
+}
+.btn:hover{background:var(--gold);color:var(--bg);}
+.btn.rose-btn{background:rgba(240,160,184,.08);border-color:rgba(240,160,184,.3);color:var(--rose);}
+.btn.rose-btn:hover{background:var(--rose);color:var(--bg);}
+
+/* badges */
+.badge{
+  display:inline-block;padding:3px 11px;font-size:10px;
+  margin-bottom:10px;
+}
+.b-ok{background:rgba(122,200,140,.1);color:var(--ok);border:1px solid rgba(122,200,140,.3);}
+.b-warn{background:rgba(240,192,96,.1);color:var(--warn);border:1px solid rgba(240,192,96,.3);}
+.b-crit{background:rgba(240,120,120,.1);color:var(--crit);border:1px solid rgba(240,120,120,.3);}
+
+/* ══ TRANSPORT ══ */
+.transport-cols{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:36px;}
+.tc{background:var(--card);border:1px solid var(--border);padding:32px;}
+.tc.gold-tc{border-color:rgba(232,200,122,.25);}
+.tc.sage-tc{border-color:rgba(144,200,168,.2);}
+.tc h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--cream);margin-bottom:4px;}
+.tc-sub{font-size:9px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:22px;}
+.gold-tc .tc-sub{color:var(--gold);}
+.sage-tc .tc-sub{color:var(--sage);}
+.tc ul{list-style:none;}
+.tc ul li{font-size:13px;padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;line-height:1.5;}
+.tc ul li:last-child{border:none;}
+.gold-tc ul li::before{content:'→';color:var(--gold);flex-shrink:0;}
+.sage-tc ul li::before{content:'→';color:var(--sage);flex-shrink:0;}
+.tc-total{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);margin-top:22px;}
+.tc-total small{font-family:'Jost',sans-serif;font-size:11px;color:var(--muted);}
+.verdict{margin-top:16px;padding:14px 18px;background:var(--goldx);border-left:2px solid var(--gold);font-size:13px;color:var(--cream);font-style:italic;line-height:1.65;}
+
+/* passes row */
+.passes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:28px;}
+.pass{background:var(--card);border:1px solid var(--border);padding:24px;transition:border-color .3s,transform .3s;}
+.pass:hover{border-color:rgba(232,200,122,.3);transform:translateY(-3px);}
+.pass-flag{font-size:26px;margin-bottom:12px;}
+.pass h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--cream);margin-bottom:4px;}
+.pass-price{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--gold);margin-bottom:10px;}
+.pass p{font-size:12.5px;color:var(--muted);line-height:1.7;}
+.pass-covers{font-size:11px;color:var(--sage);margin-top:8px;}
+
+/* ══ ITINERARY ══ */
+.city-block{
+  background:rgba(21,18,42,.5);
+  border:1px solid var(--border);
+  margin-bottom:3px;
+  overflow:hidden;
+  transition:border-color .3s;
+}
+.city-block:hover{border-color:rgba(232,200,122,.2);}
+.city-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 28px;cursor:pointer;
+  background:rgba(14,12,26,.6);
+  transition:background .2s;
+  gap:16px;flex-wrap:wrap;
+}
+.city-header:hover{background:rgba(232,200,122,.04);}
+.city-left{display:flex;align-items:center;gap:20px;flex:1;flex-wrap:wrap;}
+.city-flag{font-size:30px;}
+.city-title-wrap h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,3vw,28px);font-weight:300;color:var(--cream);
+}
+.city-title-wrap p{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.05em;}
+.city-right{display:flex;align-items:center;gap:16px;}
+.city-weather{font-size:12px;color:var(--gold);text-align:right;}
+.city-weather-icon{font-size:24px;margin-bottom:4px;}
+.city-arrow{font-size:18px;color:var(--gold);transition:transform .3s;flex-shrink:0;}
+.city-arrow.open{transform:rotate(180deg);}
+
+.city-days{display:none;padding:0 28px 28px;border-top:1px solid var(--border);}
+
+.day-item{
+  background:rgba(7,6,15,.5);
+  margin:18px 0;padding:22px;
+  border-left:3px solid var(--rose);
+  transition:all .3s;
+}
+.day-item:hover{background:rgba(7,6,15,.8);box-shadow:0 0 24px rgba(232,200,122,.04);}
+.day-date{font-size:10px;color:var(--rose);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;}
+.day-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;color:var(--cream);margin-bottom:16px;
+}
+.day-title em{font-style:italic;color:var(--gold2);}
+.day-acts{list-style:none;margin:14px 0;}
+.day-acts li{
+  padding:7px 0;font-size:13px;color:var(--text);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:baseline;gap:10px;line-height:1.5;
+}
+.day-acts li:last-child{border:none;}
+
+/* transport mini */
+.tr-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:14px;}
+.trm{background:rgba(14,12,26,.8);border:1px solid var(--border);padding:12px 16px;}
+.trm-lbl{font-size:9px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:4px;}
+.trm.g .trm-lbl{color:var(--gold);}
+.trm.s .trm-lbl{color:var(--sage);}
+.trm-route{font-size:12.5px;color:var(--text);line-height:1.4;margin-bottom:3px;}
+.trm-price{font-family:'Cormorant Garamond',serif;font-size:20px;}
+.trm.g .trm-price{color:var(--gold);}
+.trm.s .trm-price{color:var(--sage);}
+.trm-note{font-size:10.5px;color:var(--muted);margin-top:2px;}
+
+/* boxes */
+.rom-box{
+  margin-top:14px;padding:13px 18px;
+  background:rgba(232,200,122,.05);border-left:2px solid rgba(232,200,122,.3);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:15px;color:var(--cream);line-height:1.65;
+}
+.rom-box::before{content:'♥  ';color:var(--rose);font-style:normal;}
+.spend-box{
+  display:inline-block;
+  background:var(--goldx);padding:7px 14px;
+  font-size:12px;color:var(--gold);margin-top:12px;
+}
+.eat-box{
+  background:rgba(144,200,168,.07);padding:10px 14px;
+  border-left:2px solid var(--sage);
+  font-size:12.5px;color:var(--sage);margin-top:12px;line-height:1.65;
+}
+.hotel-row{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;
+  background:rgba(14,12,26,.8);padding:12px 16px;
+  margin-top:14px;font-size:12.5px;
+}
+.hotel-row a{color:var(--gold);text-decoration:none;font-size:12px;}
+.hotel-row a:hover{color:var(--gold2);}
+
+/* ══ BUDGET TABLE ══ */
+.budget-cols{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:36px;}
+.bc{background:var(--card);border:1px solid var(--border);overflow:hidden;}
+.bc-head{padding:16px 26px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.bc-head.g{background:rgba(232,200,122,.06);border-bottom-color:rgba(232,200,122,.2);}
+.bc-head.s{background:rgba(144,200,168,.06);border-bottom-color:rgba(144,200,168,.2);}
+.bc-head h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);}
+table.bt{width:100%;border-collapse:collapse;}
+table.bt td{padding:10px 26px;font-size:12.5px;border-bottom:1px solid var(--border);vertical-align:top;}
+table.bt td:last-child{text-align:right;white-space:nowrap;}
+table.bt tr.cat td{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:var(--deep);padding:8px 26px;}
+table.bt tr.tot td{
+  font-family:'Cormorant Garamond',serif;font-size:18px;
+  border-top:2px solid var(--border);border-bottom:none;color:var(--cream);
+}
+table.bt tr.tot td:last-child{color:var(--gold);}
+.verdict-full{
+  grid-column:1/-1;background:var(--deep);border:1px solid rgba(232,200,122,.2);
+  padding:24px 28px;
+}
+.verdict-full p{font-size:13.5px;color:var(--text);line-height:1.8;}
+.verdict-full strong{color:var(--gold);}
+
+/* ══ PACKING ══ */
+.pack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px;}
+.pack{background:var(--card);border:1px solid var(--border);padding:22px;}
+.pack-flag{font-size:22px;margin-bottom:10px;}
+.pack h4{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;color:var(--cream);margin-bottom:8px;}
+.pack p{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ══ FOOTER ══ */
+footer{
+  text-align:center;padding:52px 24px;
+  border-top:1px solid var(--border);
+  position:relative;z-index:3;
+}
+footer p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--muted);}
+footer .g{color:var(--gold);}
+footer .r{color:var(--rose);}
+footer .small{font-family:'Jost',sans-serif;font-size:11px;margin-top:10px;color:var(--border);}
+
+/* animations */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* responsive */
+@media(max-width:660px){
+  .transport-cols,.budget-cols,.tr-mini{grid-template-columns:1fr;}
+  .city-header{flex-direction:column;align-items:flex-start;}
+  .city-right{width:100%;}
+  .day-item{padding:16px;}
 }
 </style>
 </head>
 <body>
 
-<div class="heaven-bg" id="heavenBg"></div>
-<div class="glow-overlay"></div>
+<canvas id="sky"></canvas>
+<div id="heaven"></div>
+<div class="glow"></div>
 
-<div class="wrap">
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-eyebrow">✦ SEPTEMBER 25 — OCTOBER 10, 2026 ✦</div>
-    <h1 class="hero-title"><em>Timtim's</em> Journey<br>Through the Heart of Europe</h1>
-    <div class="hero-quote">"Wherever we go, it becomes our story.<br>Let's make this chapter unforgettable."</div>
-    <div class="hero-divider"></div>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="eyebrow">✦ September 25 — October 10, 2026 · 15 Nights ✦</div>
+  <h1 class="hero-title"><em>Timtim's</em> Heavenly<br>Journey Through Europe</h1>
+  <p class="hero-quote">"Wherever we go, it becomes our story.<br>Let's make this chapter unforgettable."</p>
+  <div class="divider-line"></div>
 
-    <!-- Countdown Timer -->
-    <div class="countdown-container" id="countdown">
-      <div class="countdown-item"><div class="countdown-number" id="days">--</div><div class="countdown-label">DAYS</div></div>
-      <div class="countdown-item"><div class="countdown-number" id="hours">--</div><div class="countdown-label">HOURS</div></div>
-      <div class="countdown-item"><div class="countdown-number" id="minutes">--</div><div class="countdown-label">MINUTES</div></div>
-      <div class="countdown-item"><div class="countdown-number" id="seconds">--</div><div class="countdown-label">SECONDS</div></div>
+  <div class="countdown" id="countdown">
+    <div class="cd-item"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Days</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-hrs">--</div><div class="cd-label">Hours</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-min">--</div><div class="cd-label">Minutes</div></div>
+    <div class="cd-item"><div class="cd-num" id="cd-sec">--</div><div class="cd-label">Seconds</div></div>
+  </div>
+
+  <div class="persons">
+    <div class="person">
+      <div class="person-icon">✈️</div>
+      <div class="person-lbl">Flying From</div>
+      <div class="person-name">Toronto, Canada</div>
     </div>
-
-    <div class="hero-persons">
-      <div class="person"><div class="person-icon">✈️</div><div class="person-label">FLYING FROM</div><div class="person-name">Toronto, Canada</div></div>
-      <div class="person-heart">♥</div>
-      <div class="person"><div class="person-icon">🏡</div><div class="person-label">WAITING IN</div><div class="person-name">Germany</div></div>
-    </div>
-
-    <div class="route-strip">
-      <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Munich</div><div class="rs-nights">3 nights</div></div>
-      <div class="rs-heart">♥</div>
-      <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Königssee</div><div class="rs-nights">2 nights</div></div>
-      <div class="rs-heart">♥</div>
-      <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Zermatt</div><div class="rs-nights">4 nights</div></div>
-      <div class="rs-heart">♥</div>
-      <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Paris</div><div class="rs-nights">4 nights</div></div>
-      <div class="rs-heart">♥</div>
-      <div class="rs-stop"><div class="rs-dot"></div><div class="rs-city">Amsterdam</div><div class="rs-nights">2 nights</div></div>
+    <div class="heart-beat">♥</div>
+    <div class="person">
+      <div class="person-icon">🏡</div>
+      <div class="person-lbl">Waiting In</div>
+      <div class="person-name">Germany</div>
     </div>
   </div>
 
-  <!-- HOTELS -->
-  <section>
-    <div class="sec-label">✦ WHERE YOU'LL STAY ✦</div>
-    <div class="sec-title"> Hotels</div>
-    <div class="hotel-grid">
-      <div class="card"><div class="card-title">🇩🇪 Munich · Motel One München-Parkstadt Schwabing</div><div class="card-price">€70-90 / night</div><div class="card-detail">Stylish, quiet neighborhood, perfect for jet lag recovery.</div><a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" class="btn-link">Book on Booking.com →</a></div>
-      <div class="card"><div class="card-title">🏔️ Berchtesgaden · Pension Watzmann</div><div class="card-price">€60-75 / night</div><div class="card-detail">Family-run guesthouse with mountain views & traditional breakfast.</div><a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" class="btn-link">Book on Booking.com →</a></div>
-      <div class="card"><div class="card-title">🏔️ Zermatt · Hotel Matterhornblick</div><div class="card-price">CHF 140-170 / night</div><div class="card-detail">Matterhorn-view balcony, spa area. The most romantic room.</div><a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" class="btn-link">Book on Booking.com →</a></div>
-      <div class="card"><div class="card-title">🥐 Paris · Moxy Paris Bastille</div><div class="card-price">€85-110 / night</div><div class="card-detail">Trendy hotel in Le Marais, great metro access.</div><a href="https://www.booking.com/hotel/fr/moxy-paris-bastille.html" target="_blank" class="btn-link">Book on Booking.com →</a></div>
-      <div class="card"><div class="card-title">🚲 Amsterdam · Hotel van Onna (Jordaan)</div><div class="card-price">€100-140 / night</div><div class="card-detail">Quiet family-run hotel in the charming Jordaan district.</div><a href="https://www.booking.com/hotel/nl/van-onna.html" target="_blank" class="btn-link">Book on Booking.com →</a></div>
-    </div>
-  </section>
+  <div class="route-strip">
+    <div class="rs"><div class="rs-dot"></div><div class="rs-city">Munich</div><div class="rs-nights">3 nights</div></div>
+    <div class="rs-heart">♥</div>
+    <div class="rs"><div class="rs-dot"></div><div class="rs-city">Königssee</div><div class="rs-nights">2 nights</div></div>
+    <div class="rs-heart">♥</div>
+    <div class="rs"><div class="rs-dot"></div><div class="rs-city">Zermatt</div><div class="rs-nights">2 nights</div></div>
+    <div class="rs-heart">♥</div>
+    <div class="rs"><div class="rs-dot"></div><div class="rs-city">Lucerne</div><div class="rs-nights">2 nights</div></div>
+    <div class="rs-heart">♥</div>
+    <div class="rs"><div class="rs-dot"></div><div class="rs-city">Paris</div><div class="rs-nights">5 nights</div></div>
+  </div>
 
-  <!-- TICKETS & PASSES -->
-  <section>
-    <div class="sec-label">✦ BOOK THESE IN ADVANCE ✦</div>
-    <div class="sec-title">Tickets & <em>Passes</em> You'll Need</div>
-    <div class="ticket-grid">
-      <div class="card"><div class="card-title">🇨🇭 Swiss Half-Fare Card</div><div class="card-price">CHF 150 per person</div><span class="badge badge-success">🟢 Buy anytime</span><div class="card-detail">50% off all Swiss transport & cable cars. Pays for itself.</div><a href="https://www.swissrailways.com/en" target="_blank" class="btn-link">Buy Official SBB Card →</a></div>
-      <div class="card"><div class="card-title">🇨🇭 Saver Day Pass (Oct 4)</div><div class="card-price">CHF 52-76 per person</div><span class="badge badge-warning">🟡 Book 2 months ahead — price increases</span><div class="card-detail">Unlimited Swiss travel for one day.</div><a href="https://www.sbb.ch/en/tickets-offers/tickets/day-passes/saver-day-pass.html" target="_blank" class="btn-link">Buy at SBB →</a></div>
-      <div class="card"><div class="card-title">🇩🇪 Bayern Ticket</div><div class="card-price">€44 for 2 people</div><span class="badge badge-success">🟢 Buy day before</span><div class="card-detail">Unlimited regional trains in Bavaria.</div><a href="https://www.bahn.com/en/offers/regional/day-ticket-bayern-ticket" target="_blank" class="btn-link">Buy at Deutsche Bahn →</a></div>
-      <div class="card"><div class="card-title">🚠 Jennerbahn Cable Car</div><div class="card-price">€28 per person</div><span class="badge badge-success">🟢 Buy day of at station</span><div class="card-detail">From Königssee to 1,800m. Unforgettable views.</div><a href="https://www.jennerbahn.de/en" target="_blank" class="btn-link">Official Website →</a></div>
-      <div class="card"><div class="card-title">🚠 Gornergrat Railway</div><div class="card-price">CHF 63 per person (with Half-Fare)</div><span class="badge badge-success">🟢 Buy day of at station</span><div class="card-detail">Classic Matterhorn view train to 3,089m.</div><a href="https://www.gornergratbahn.ch/en/" target="_blank" class="btn-link">Official Website →</a></div>
-      <div class="card"><div class="card-title">❄️ Matterhorn Glacier Paradise</div><div class="card-price">CHF 60 per person (with Half-Fare)</div><span class="badge badge-success">🟢 Buy day of</span><div class="card-detail">Highest cable car in Europe + Glacier Palace ice cave.</div><a href="https://www.matterhornparadise.ch/en" target="_blank" class="btn-link">Official Website →</a></div>
-      <div class="card"><div class="card-title">🇫🇷 TGV Lyria Basel→Paris (Oct 4)</div><div class="card-price">~€35-55 per person</div><span class="badge badge-critical">🔴 CRITICAL — Book 4-6 weeks ahead</span><div class="card-detail">Compulsory reservation. Price doubles last minute.</div><a href="https://www.trainline.com" target="_blank" class="btn-link">Book on Trainline →</a></div>
-      <div class="card"><div class="card-title">🇫🇷→🇳🇱 Eurostar Paris→Amsterdam (Oct 8)</div><div class="card-price">~€35-50 per person</div><span class="badge badge-critical">🔴 CRITICAL — Book 4-6 weeks ahead</span><div class="card-detail">Compulsory reservation. Book early for best price.</div><a href="https://www.eurostar.com" target="_blank" class="btn-link">Book on Eurostar →</a></div>
-      <div class="card"><div class="card-title">🍽️ Seine Dinner Cruise (Paris)</div><div class="card-price">€70-100 per person</div><span class="badge badge-warning">🟡 Book 2-4 weeks ahead</span><div class="card-detail">The splurge — dinner on the Seine with Eiffel Tower views.</div><a href="https://www.bateauxparisiens.com" target="_blank" class="btn-link">Book Bateaux Parisiens →</a></div>
-      <div class="card"><div class="card-title">🚲 I amsterdam City Card (48h)</div><div class="card-price">€90 per person</div><span class="badge badge-success">🟢 Buy at airport or online</span><div class="card-detail">Unlimited GVB transport + canal cruise + Rijksmuseum + Hortus. <strong>⚠️ Airport train NOT included (€4.90 extra).</strong></div><a href="https://www.iamsterdam.com/en/i-amsterdam-city-card" target="_blank" class="btn-link">Buy Official Card →</a></div>
-      <div class="card"><div class="card-title">🧖 Watzmann Therme (Berchtesgaden)</div><div class="card-price">€12-15 per person</div><span class="badge badge-success">🟢 No reservation needed</span><div class="card-detail">Saltwater thermal baths. Perfect after Jennerbahn.</div><a href="https://www.watzmann-therme.de/en/" target="_blank" class="btn-link">Official Website →</a></div>
-      <div class="card"><div class="card-title">🧖 Zermatt Public Thermal Baths</div><div class="card-price">CHF 30-40 per person</div><span class="badge badge-success">🟢 Walk-in or book 1 day ahead</span><div class="card-detail">Sunset soak with Matterhorn views. The most romantic moment.</div><a href="https://www.zermatt.ch/en/Media/Attractions/Pool-and-spa" target="_blank" class="btn-link">Official Website →</a></div>
-    </div>
-  </section>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
 
-  <!-- DROPDOWN ITINERARY -->
-  <section>
-    <div class="sec-label">✦ YOUR LOVE STORY, DAY BY DAY ✦</div>
-    <div class="sec-title">The <em>Romantic</em> Itinerary</div>
-
-    <!-- Munich -->
-    <div class="city-card">
-      <div class="city-header" onclick="toggleCity('munich')">
-        <div class="city-title"><h2>🇩🇪 Munich</h2><p>September 25-28, 2026 · 3 nights</p></div>
-        <div class="city-weather"><span class="weather-icon">🌤️</span><span class="weather-text">12-18°C · Sunny</span><span class="dropdown-arrow">▼</span></div>
-      </div>
-      <div id="munich-days" class="city-days">
-        <div class="day-item"><div class="day-date">DAY 1 · FRIDAY, SEPTEMBER 25, 2026</div><div class="day-title">Arrival & Reunion Day</div><ul class="day-activities"><li>🛬 Flight from Toronto arrives Munich</li><li>🏨 Check-in at Motel One</li><li>😴 Nap, shower, recover from jet lag</li><li>🚶 Light walk around Viktualienmarkt</li><li>🍽️ Quiet dinner near hotel</li></ul><div class="spending">💰 Estimated spending: €60-80 per person</div><div class="restaurant-tip">🍽️ Budget dinner: Augustiner Keller biergarten — traditional Bavarian, €12-18 mains</div><div class="romantic-moment">The first embrace at arrivals. Nothing else matters today.</div><div class="hotel-info"><span>🏨 Motel One</span><a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" style="color:var(--gold)">Booking link →</a></div></div>
-        <div class="day-item"><div class="day-date">DAY 2 · SATURDAY, SEPTEMBER 26, 2026</div><div class="day-title">🍺 Oktoberfest — The Relaxed Version</div><ul class="day-activities"><li>😴 Sleep in, late breakfast</li><li>🕚 11:00 AM: Arrive at Oktoberfest</li><li>🍻 Find a table, share a Brezn and two Mass beers</li><li>🚶 Leave by 4:00 PM before crowds get rowdy</li><li>🌙 Evening walk through Maxvorstadt</li></ul><div class="spending">💰 Estimated spending: €40-50 per person</div><div class="restaurant-tip">🍽️ Inside Oktoberfest: Half chicken (€15) or share Schweinshaxe (€20)</div><div class="romantic-moment">The shared Mass beer, the laughter, the people-watching — pure joy.</div></div>
-        <div class="day-item"><div class="day-date">DAY 3 · SUNDAY, SEPTEMBER 27, 2026</div><div class="day-title">Slow Munich — Rowboats & Beer Gardens</div><ul class="day-activities"><li>😴 Sleep in until 10am</li><li>🌳 English Garden walk</li><li>🚣 Rowboat on Kleinhesseloher See (€15/hour)</li><li>🍺 Chinese Tower beer garden dinner</li></ul><div class="spending">💰 Estimated spending: €35-50 per person</div><div class="restaurant-tip">🍽️ Chinese Tower: Pretzel (€3) and Obazda cheese (€5)</div><div class="romantic-moment">The rowboat — quiet, private, surrounded by weeping willows.</div></div>
-      </div>
+<!-- ══ HOTELS ══ -->
+<div class="section">
+<div class="w">
+  <div class="sec-label">✦ Where You'll Stay ✦</div>
+  <div class="sec-title">Romantic <em>Budget Hotels</em> — Curated for Two</div>
+  <div class="cards-grid">
+    <div class="hcard">
+      <div class="hcard-title">🇩🇪 Munich · Motel One Parkstadt Schwabing</div>
+      <div class="hcard-price">€70–90 / night</div>
+      <div class="hcard-desc">Stylish design hotel in a quiet residential neighbourhood. Perfect for jet-lag recovery. 10min to English Garden.</div>
+      <a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" rel="noopener" class="btn">Book on Booking.com →</a>
     </div>
-
-    <!-- Königssee -->
-    <div class="city-card">
-      <div class="city-header" onclick="toggleCity('konigsee')">
-        <div class="city-title"><h2>🏔️ Königssee / Berchtesgaden</h2><p>September 28-30, 2026 · 2 nights</p></div>
-        <div class="city-weather"><span class="weather-icon">☀️</span><span class="weather-text">8-16°C · Clear skies</span><span class="dropdown-arrow">▼</span></div>
-      </div>
-      <div id="konigsee-days" class="city-days">
-        <div class="day-item"><div class="day-date">DAY 4 · MONDAY, SEPTEMBER 28, 2026</div><div class="day-title">The Electric Boat & Alphorn Echo</div><ul class="day-activities"><li>🕘 9:00 AM: Checkout Munich</li><li>🚆 Train to Berchtesgaden (Bayern Ticket)</li><li>🏨 Check-in at Pension Watzmann</li><li>🛶 Electric boat to St. Bartholomä (€20 pp — buy at dock)</li><li>🎺 Alphorn echo across the lake</li></ul><div class="spending">💰 Estimated spending: €35-45 per person</div><div class="restaurant-tip">🍽️ St. Bartholomä: Fresh trout from the lake (€18-22)</div><div class="romantic-moment">The alphorn echo bouncing off the cliffs. You will never forget this sound.</div><div class="hotel-info"><span>🏨 Pension Watzmann</span><a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" style="color:var(--gold)">Booking link →</a></div></div>
-        <div class="day-item"><div class="day-date">DAY 5 · TUESDAY, SEPTEMBER 29, 2026</div><div class="day-title">Jennerbahn Cable Car + Spa Afternoon</div><ul class="day-activities"><li>🚠 <a href="https://www.jennerbahn.de/en" target="_blank" style="color:var(--gold)">Jennerbahn cable car</a> to 1,800m (€28 pp)</li><li>🥾 Summit walk (30-45 min)</li><li>🍽️ Lunch at mountain restaurant</li><li>🕓 4:00 PM: <a href="https://www.watzmann-therme.de/en/" target="_blank" style="color:var(--gold)">Watzmann Therme spa</a> (€12-15 pp)</li></ul><div class="spending">💰 Estimated spending: €45-55 per person</div><div class="restaurant-tip">🍽️ Mountain restaurant: Käsespätzle (€12) or soup (€6)</div><div class="romantic-moment">Soaking in warm saltwater after a day in the Alps. Pure heaven.</div></div>
-      </div>
+    <div class="hcard">
+      <div class="hcard-title">🏔️ Berchtesgaden · Pension Watzmann</div>
+      <div class="hcard-price">€60–75 / night</div>
+      <div class="hcard-desc">Family-run mountain guesthouse with traditional Bavarian breakfast and views of the Watzmann peak.</div>
+      <a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" rel="noopener" class="btn">Book on Booking.com →</a>
     </div>
-
-    <!-- Zermatt -->
-    <div class="city-card">
-      <div class="city-header" onclick="toggleCity('zermatt')">
-        <div class="city-title"><h2>🏔️ Zermatt — The Matterhorn</h2><p>September 30 - October 4, 2026 · 4 nights</p></div>
-        <div class="city-weather"><span class="weather-icon">🌄</span><span class="weather-text">1-18°C · Golden larches · Sunny</span><span class="dropdown-arrow">▼</span></div>
-      </div>
-      <div id="zermatt-days" class="city-days">
-        <div class="day-item"><div class="day-date">DAY 6 · WEDNESDAY, SEPTEMBER 30, 2026</div><div class="day-title">First View of the Matterhorn</div><ul class="day-activities"><li>🚆 Long train: Berchtesgaden → Zermatt</li><li>🏨 Check-in at Hotel Matterhornblick</li><li>🚶 Walk through car-free village</li><li>🍽️ Dinner with Matterhorn view</li></ul><div class="spending">💰 Estimated spending: €50-60 per person</div><div class="restaurant-tip">🍽️ Budget dinner: Takeaway pizza (CHF 12-15) on a bench watching the mountain</div><div class="romantic-moment">The first glimpse of the Matterhorn from the train window.</div><div class="hotel-info"><span>🏨 Hotel Matterhornblick</span><a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" style="color:var(--gold)">Booking link →</a></div></div>
-        <div class="day-item"><div class="day-date">DAY 7 · THURSDAY, OCTOBER 1, 2026</div><div class="day-title">Gornergrat — Matterhorn Reflection</div><ul class="day-activities"><li>🚂 <a href="https://www.gornergratbahn.ch/en/" target="_blank" style="color:var(--gold)">Gornergrat railway</a> to 3,089m (CHF 63 with Half-Fare)</li><li>🥾 Hike down to Riffelsee</li><li>📸 Matterhorn reflection in the lake</li><li>🍽️ Lunch at Riffelberg</li></ul><div class="spending">💰 Estimated spending: CHF 70-85 per person</div><div class="restaurant-tip">🍽️ Riffelberg: Röstis (CHF 18-25) — Swiss comfort food</div><div class="romantic-moment">The Matterhorn reflected in Riffelsee. The most famous mountain photograph in the world.</div></div>
-        <div class="day-item"><div class="day-date">DAY 8 · FRIDAY, OCTOBER 2, 2026</div><div class="day-title">The Ultimate Romantic Day — Sunset Spa</div><ul class="day-activities"><li>😴 Morning: Sleep in, coffee on balcony</li><li>🕑 2:00 PM: Horse-drawn carriage ride</li><li>🕕 6:00 PM: <a href="https://www.zermatt.ch/en/Media/Attractions/Pool-and-spa" target="_blank" style="color:var(--gold)">Public thermal baths</a> at SUNSET (CHF 30-40 pp)</li><li>🌄 Matterhorn turns pink from warm water</li><li>🍽️ Fondue dinner for two</li></ul><div class="spending">💰 Estimated spending: CHF 70-90 per person</div><div class="restaurant-tip">🍽️ Fondue: Whymper-Stube (CHF 45-55 per person) — the classic</div><div class="romantic-moment">The sunset spa. Warm water. Pink mountain. Just the two of you. This is why you came.</div></div>
-        <div class="day-item"><div class="day-date">DAY 9 · SATURDAY, OCTOBER 3, 2026</div><div class="day-title">Glacier Paradise — Inside a Glacier</div><ul class="day-activities"><li>🚠 <a href="https://www.matterhornparadise.ch/en" target="_blank" style="color:var(--gold)">Cable car to Klein Matterhorn</a> (3,883m) (CHF 60 with Half-Fare)</li><li>❄️ Glacier Palace — ice cave inside the glacier</li><li>👀 Views into Italy, France, Switzerland</li><li>🍽️ Final Zermatt dinner</li></ul><div class="spending">💰 Estimated spending: CHF 60-75 per person</div><div class="restaurant-tip">🍽️ Last dinner: Pizzeria Ristorante Grampi's (CHF 20-30)</div><div class="romantic-moment">Walking hand-in-hand through an ice cave carved inside a glacier. Unforgettable.</div></div>
-      </div>
+    <div class="hcard">
+      <div class="hcard-title">🏔️ Zermatt · Hotel Matterhornblick</div>
+      <div class="hcard-price">CHF 140–170 / night</div>
+      <div class="hcard-desc">Matterhorn-view balcony. The most romantic room in Zermatt. Spa area included. Car-free village magic.</div>
+      <a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" rel="noopener" class="btn">Book on Booking.com →</a>
     </div>
-
-    <!-- Paris -->
-    <div class="city-card">
-      <div class="city-header" onclick="toggleCity('paris')">
-        <div class="city-title"><h2>🥐 Paris — City of Light</h2><p>October 4-8, 2026 · 4 nights</p></div>
-        <div class="city-weather"><span class="weather-icon">🌥️</span><span class="weather-text">11-19°C · Mild, mostly dry</span><span class="dropdown-arrow">▼</span></div>
-      </div>
-      <div id="paris-days" class="city-days">
-        <div class="day-item"><div class="day-date">DAY 10 · SUNDAY, OCTOBER 4, 2026</div><div class="day-title">Arrive Paris — Eiffel Tower Sparkle</div><ul class="day-activities"><li>🚆 TGV Lyria: Zermatt → Paris</li><li>🏨 Check-in at Moxy Paris Bastille</li><li>🗼 Eiffel Tower sparkle from Trocadéro</li><li>🍽️ First Paris dinner — crêpes by the river</li></ul><div class="spending">💰 Estimated spending: €45-60 per person</div><div class="restaurant-tip">🍽️ Cheap crêpes: Crêperie Genia (€5-8) near Eiffel Tower</div><div class="romantic-moment">The Eiffel Tower sparkling on the hour. Watch it together for the first time.</div><div class="hotel-info"><span>🏨 Moxy Paris Bastille</span><a href="https://www.booking.com/hotel/fr/moxy-paris-bastille.html" target="_blank" style="color:var(--gold)">Booking link →</a></div></div>
-        <div class="day-item"><div class="day-date">DAY 11 · MONDAY, OCTOBER 5, 2026</div><div class="day-title">Champagne Picnic & Seine Walk</div><ul class="day-activities"><li>😴 Sleep in, café breakfast</li><li>🚶 Seine walk: Pont Neuf to Notre-Dame</li><li>🧺 Champagne picnic under the Eiffel Tower (€25 total)</li><li>🥖 Baguette, brie, Crémant, macarons from Monoprix</li></ul><div class="spending">💰 Estimated spending: €35-50 per person</div><div class="restaurant-tip">🍽️ Picnic supplies: Monoprix — baguette €1, brie €3, Crémant €8</div><div class="romantic-moment">A champagne picnic on the grass, looking up at the tower. Costs €25. More romantic than any restaurant.</div></div>
-        <div class="day-item"><div class="day-date">DAY 12 · TUESDAY, OCTOBER 6, 2026</div><div class="day-title">Montmartre Sunrise + Seine Dinner Cruise</div><ul class="day-activities"><li>🕡 6:30 AM: Sacré-Cœur sunrise</li><li>🎨 Place du Tertre artists' square</li><li>🕑 Afternoon: Free time</li><li>🕖 7:00 PM: <a href="https://www.bateauxparisiens.com" target="_blank" style="color:var(--gold)">Seine river dinner cruise</a> (€70-100 pp)</li></ul><div class="spending">💰 Estimated spending: €80-120 per person (dinner cruise is the splurge)</div><div class="restaurant-tip">🍽️ Dinner cruise: Bateaux Parisiens — book window table at sunset</div><div class="romantic-moment">Sunrise at Sacré-Cœur with almost no tourists. Then floating past Notre-Dame at sunset.</div></div>
-        <div class="day-item"><div class="day-date">DAY 13 · WEDNESDAY, OCTOBER 7, 2026</div><div class="day-title">Flex Day — No Plans, Pure Romance</div><ul class="day-activities"><li>😴 Sleep as late as you want</li><li>☕ Find a corner café, watch Paris wake up</li><li>🌸 Options: Luxembourg Gardens, Musée d'Orsay, Le Marais shopping</li></ul><div class="spending">💰 Estimated spending: €40-60 per person</div><div class="restaurant-tip">🍽️ Cheap eats: Breizh Café (crêpes €8-12) or boulangerie sandwich (€5-7)</div><div class="romantic-moment">The day with no agenda. This is the secret to real romance.</div></div>
-      </div>
+    <div class="hcard">
+      <div class="hcard-title">🌊 Lucerne · Hotel des Alpes (Old Town)</div>
+      <div class="hcard-price">CHF 110–150 / night</div>
+      <div class="hcard-desc">Right on the Reuss river, overlooking the Chapel Bridge. The most romantic location in Lucerne. Book a river-view room.</div>
+      <a href="https://www.booking.com/hotel/ch/des-alpes-luzern.html" target="_blank" rel="noopener" class="btn">Book on Booking.com →</a>
     </div>
-
-    <!-- Amsterdam -->
-    <div class="city-card">
-      <div class="city-header" onclick="toggleCity('amsterdam')">
-        <div class="city-title"><h2>🚲 Amsterdam — Golden Canals</h2><p>October 8-10, 2026 · 2 nights</p></div>
-        <div class="city-weather"><span class="weather-icon">🌦️</span><span class="weather-text">9-14°C · Pack layers</span><span class="dropdown-arrow">▼</span></div>
-      </div>
-      <div id="amsterdam-days" class="city-days">
-        <div class="day-item"><div class="day-date">DAY 14 · THURSDAY, OCTOBER 8, 2026</div><div class="day-title">Canal Cruise at Sunset</div><ul class="day-activities"><li>🚆 Eurostar: Paris → Amsterdam</li><li>🏨 Check-in at Hotel van Onna</li><li>🚆 Airport train: Schiphol → Centraal (€4.90 — NOT included in I amsterdam Card)</li><li>🛶 Canal cruise at sunset (included in I amsterdam Card)</li><li>🍽️ Dinner in Jordaan</li></ul><div class="spending">💰 Estimated spending: €50-70 per person</div><div class="restaurant-tip">🍽️ Budget Jordaan: Café de Tuin (€15-25 mains)</div><div class="romantic-moment">Floating under Amsterdam's bridges as the city lights up at sunset.</div><div class="hotel-info"><span>🏨 Hotel van Onna</span><a href="https://www.booking.com/hotel/nl/van-onna.html" target="_blank" style="color:var(--gold)">Booking link →</a></div></div>
-        <div class="day-item"><div class="day-date">DAY 15 · FRIDAY, OCTOBER 9, 2026</div><div class="day-title">Rijksmuseum & Hortus Botanicus</div><ul class="day-activities"><li>🖼️ Rijksmuseum (free with I amsterdam Card)</li><li>🌿 Hortus Botanicus (free with I amsterdam Card)</li><li>🌉 Magere Brug — make a wish together</li><li>🍽️ Final dinner at Cafe Bern</li></ul><div class="spending">💰 Estimated spending: €35-50 per person (card covers museums + transport)</div><div class="restaurant-tip">🍽️ Cafe Bern: Fondue for two (€25-30) — cozy and romantic</div><div class="romantic-moment">Whispering together in the Rijksmuseum library. A secret shared in a silent, ancient room.</div></div>
-        <div class="day-item"><div class="day-date">DAY 16 · SATURDAY, OCTOBER 10, 2026</div><div class="day-title">Last Morning & Flight Home</div><ul class="day-activities"><li>☕ Final coffee at Latei on Zeedijk</li><li>🚶 Last canal walk — no map, no plan</li><li>🚆 Train to Schiphol Airport (€4.90)</li><li>🛫 Flight Amsterdam → Toronto</li></ul><div class="spending">💰 Estimated spending: €15-25 per person</div><div class="restaurant-tip">🍽️ Last coffee: Latei (Zeedijk) — "the cutest interior and best coffee in Amsterdam"</div><div class="romantic-moment">The last walk without a destination. This is how you say goodbye.</div></div>
-      </div>
+    <div class="hcard">
+      <div class="hcard-title">🥐 Paris · Moxy Paris Bastille</div>
+      <div class="hcard-price">€85–110 / night</div>
+      <div class="hcard-desc">Trendy design hotel in Le Marais. Great metro access, close to the Seine, lively neighbourhood.</div>
+      <a href="https://www.booking.com/hotel/fr/moxy-paris-bastille.html" target="_blank" rel="noopener" class="btn">Book on Booking.com →</a>
     </div>
-  </section>
-
-  <!-- PACKING TIPS -->
-  <section>
-    <div class="sec-label">✦ DON'T FORGET ✦</div>
-    <div class="sec-title">Packing <em>Reminders</em></div>
-    <div class="ticket-grid">
-      <div class="card"><div class="card-title">🇩🇪 Munich</div><div class="card-detail">Layers, comfortable walking shoes, rain jacket</div></div>
-      <div class="card"><div class="card-title">🏔️ Königssee</div><div class="card-detail">Hiking shoes, warm jacket for cable car, swimwear for spa</div></div>
-      <div class="card"><div class="card-title">🏔️ Zermatt</div><div class="card-detail">Warm layers, gloves, hat, swimwear for thermal baths</div></div>
-      <div class="card"><div class="card-title">🥐 Paris</div><div class="card-detail">Scarf, comfortable city shoes, light jacket, umbrella</div></div>
-      <div class="card"><div class="card-title">🚲 Amsterdam</div><div class="card-detail">Waterproof jacket, layers, comfortable walking shoes</div></div>
-    </div>
-  </section>
+  </div>
+</div>
 </div>
 
+<!-- ══ TICKETS ══ -->
+<div class="section">
+<div class="w">
+  <div class="sec-label">✦ Book These in Advance ✦</div>
+  <div class="sec-title">Tickets &amp; <em>Passes</em> You'll Need</div>
+  <div class="cards-grid">
+    <div class="hcard">
+      <div class="hcard-title">🇩🇪 Bayern Ticket</div>
+      <div class="hcard-price">€44 for 2 people</div>
+      <span class="badge b-ok">🟢 Buy day before at DB machine</span>
+      <div class="hcard-desc">All-day unlimited regional trains &amp; buses in Bavaria. Covers Munich → Berchtesgaden + Königssee bus. Valid weekdays 9am+.</div>
+      <a href="https://www.bahn.com/en/offers/regional/day-ticket-bayern-ticket" target="_blank" rel="noopener" class="btn">Buy at Deutsche Bahn →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🚠 Jennerbahn Cable Car</div>
+      <div class="hcard-price">€28 per person</div>
+      <span class="badge b-ok">🟢 Buy at station day of</span>
+      <div class="hcard-desc">Rides to 1,800m above Königssee. The highlight of Berchtesgaden. Open daily in autumn — 1 Oct larches turn gold.</div>
+      <a href="https://www.jennerbahn.de/en" target="_blank" rel="noopener" class="btn">Official Jennerbahn →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🧖 Watzmann Therme Spa</div>
+      <div class="hcard-price">€12–15 per person</div>
+      <span class="badge b-ok">🟢 No reservation needed</span>
+      <div class="hcard-desc">Alpine saltwater thermal baths in Berchtesgaden. Perfect romantic evening after the cable car. Loved by locals.</div>
+      <a href="https://www.watzmann-therme.de/en/" target="_blank" rel="noopener" class="btn">Official Website →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🇨🇭 Swiss Half-Fare Card</div>
+      <div class="hcard-price">CHF 120 per person (~€125)</div>
+      <span class="badge b-ok">🟢 Buy anytime on SBB.ch</span>
+      <div class="hcard-desc">1 month of 50% off all Swiss trains, boats and cable cars. For 4 nights in Switzerland it pays for itself. Also 25% off Gornergrat.</div>
+      <a href="https://www.sbb.ch/en/tickets-offers/tickets/visitors/swiss-half-fare-card.html" target="_blank" rel="noopener" class="btn">Buy at SBB.ch →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🚂 Gornergrat Railway (Zermatt)</div>
+      <div class="hcard-price">CHF 63 pp (with Half-Fare)</div>
+      <span class="badge b-ok">🟢 Buy at Zermatt station</span>
+      <div class="hcard-desc">World-famous rack railway to 3,089m. Matterhorn reflection in Riffelsee. The single most iconic Swiss experience.</div>
+      <a href="https://www.gornergratbahn.ch/en/" target="_blank" rel="noopener" class="btn">Official Gornergrat →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🧖 Zermatt Thermal Spa — Alpenbad</div>
+      <div class="hcard-price">CHF 30–40 per person</div>
+      <span class="badge b-ok">🟢 Walk-in or book 1 day ahead</span>
+      <div class="hcard-desc">Outdoor thermal pool at sunset with the Matterhorn above you. The most romantic moment of the entire trip. Do not skip this.</div>
+      <a href="https://www.zermatt.ch/en/Media/Attractions/Pool-and-spa" target="_blank" rel="noopener" class="btn">Official Zermatt →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🌊 Lake Lucerne Boat Cruise (SGV)</div>
+      <div class="hcard-price">From CHF 32 pp (50% off with Half-Fare)</div>
+      <span class="badge b-ok">🟢 Buy at Lucerne pier</span>
+      <div class="hcard-desc">Classic paddle steamers and modern boats on one of Europe's most beautiful lakes. Half-Fare Card gives 50% off all SGV boats.</div>
+      <a href="https://www.lakelucerne.ch/en/" target="_blank" rel="noopener" class="btn">SGV Official →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🇫🇷 Lucerne → Paris TGV Lyria</div>
+      <div class="hcard-price">from €39 pp advance / ~€80–120 standard</div>
+      <span class="badge b-crit">🔴 CRITICAL — Book 4–8 weeks ahead</span>
+      <div class="hcard-desc">Lucerne → Basel SBB → Paris Gare de Lyon. <strong>4h 41min on fastest service.</strong> Price doubles last minute. Compulsory reservation.</div>
+      <a href="https://www.thetrainline.com" target="_blank" rel="noopener" class="btn">Book Trainline →</a>
+      <a href="https://www.tgv-lyria.com" target="_blank" rel="noopener" class="btn rose-btn">TGV Lyria Official →</a>
+    </div>
+    <div class="hcard">
+      <div class="hcard-title">🍽️ Seine River Dinner Cruise (Paris)</div>
+      <div class="hcard-price">€70–100 per person</div>
+      <span class="badge b-warn">🟡 Book 2–4 weeks ahead</span>
+      <div class="hcard-desc">The trip's ultimate splurge — dinner on the Seine with Eiffel Tower views. Request a window table at sunset when booking.</div>
+      <a href="https://www.bateauxparisiens.com/en.html" target="_blank" rel="noopener" class="btn">Bateaux Parisiens →</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ TRANSPORT EXPLAINER ══ -->
+<div class="section">
+<div class="w">
+  <div class="sec-label">✦ How to Get Between Cities ✦</div>
+  <div class="sec-title">Eurail Pass <em>vs</em> Point-to-Point — Honest Comparison</div>
+  <div class="transport-cols">
+    <div class="tc gold-tc">
+      <h3>🎫 With Eurail Pass</h3>
+      <div class="tc-sub">Flexibility · Zero Planning Stress</div>
+      <ul>
+        <li>Eurail Global 5-day Flex — covers all major legs</li>
+        <li>Germany &amp; Switzerland: hop on any train, <strong>no reservation fee</strong></li>
+        <li>Paris TGV: compulsory reservation ~€12 pp on top</li>
+        <li>Gornergrat &amp; Swiss mountain railways: <strong>25% discount</strong></li>
+        <li>Use Bayern Ticket for Bavaria — save your flex days</li>
+        <li>Best if you want to change plans spontaneously</li>
+      </ul>
+      <div class="tc-total">€636 <small>for 2 people · 2nd class · 5-day flex</small></div>
+      <div class="verdict">Worth it if you want zero planning. The 25% Gornergrat discount saves CHF ~30 for 2 — partially offsets cost.</div>
+    </div>
+    <div class="tc sage-tc">
+      <h3>🎟 Point-to-Point (Recommended)</h3>
+      <div class="tc-sub">Cheapest · Book 4–6 Weeks Ahead</div>
+      <ul>
+        <li>Bayern Ticket (Munich + Berchtesgaden legs): <strong>€44 for 2</strong></li>
+        <li>Berchtesgaden → Zermatt via Zurich (ÖBB + SBB advance): <strong>~€90–120 for 2</strong></li>
+        <li>Zermatt → Lucerne (SBB advance, book on sbb.ch): <strong>~€50–80 for 2</strong></li>
+        <li>Lucerne → Paris TGV Lyria (book on trainline.com): <strong>~€80–140 for 2</strong></li>
+        <li>Swiss Half-Fare Card covers 50% off all Swiss legs</li>
+        <li>Total transport ~€400–500 for 2 · saves ~€140 vs Eurail</li>
+      </ul>
+      <div class="tc-total">~€450 <small>for 2 people · all legs booked 4–6 wks ahead</small></div>
+      <div class="verdict">Best strategy: Bayern Ticket for Bavaria, advance P2P for long legs, Swiss Half-Fare for Switzerland. Skip Eurail entirely and save €140–200 for the couple.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:52px">
+    <div class="sec-label">✦ Regional Day Passes ✦</div>
+    <div class="sec-title">The <em>Secret Weapon</em> Tickets</div>
+    <div class="passes-grid">
+      <div class="pass">
+        <div class="pass-flag">🇩🇪</div>
+        <h4>Bayern Ticket</h4>
+        <div class="pass-price">€44 for 2</div>
+        <p>Unlimited regional trains &amp; buses in Bavaria for one day. Covers Munich city, Neuschwanstein, Berchtesgaden, Königssee buses — all for €22 per person.</p>
+        <div class="pass-covers">✓ Munich → Berchtesgaden → Königssee bus 841</div>
+      </div>
+      <div class="pass">
+        <div class="pass-flag">🇨🇭</div>
+        <h4>Swiss Half-Fare Card</h4>
+        <div class="pass-price">CHF 120 each (~€125)</div>
+        <p>1 month of 50% off all SBB trains, SGV lake boats and many mountain railways. For 4 nights of Swiss rail use it pays for itself immediately.</p>
+        <div class="pass-covers">✓ All SBB trains ✓ Lake Lucerne boats ✓ 25% Gornergrat</div>
+      </div>
+      <div class="pass">
+        <div class="pass-flag">🚅</div>
+        <h4>TGV Lyria Advance Fare</h4>
+        <div class="pass-price">from €39 pp (booked early)</div>
+        <p>Lucerne to Paris in 4h 41min via Basel. Book on Trainline.com or tgv-lyria.com 4–8 weeks ahead. Prices increase significantly closer to departure.</p>
+        <div class="pass-covers">✓ Lucerne → Basel SBB → Paris Gare de Lyon · 4h 41min</div>
+      </div>
+      <div class="pass">
+        <div class="pass-flag">🇫🇷</div>
+        <h4>Paris Navigo Day Pass</h4>
+        <div class="pass-price">€8.65 per person / day</div>
+        <p>Unlimited metro, bus and RER in Paris for one day. Covers airport transfer (RER B), Versailles day trip (RER C) and all city transport. Buy at any metro station.</p>
+        <div class="pass-covers">✓ All Paris metro + bus ✓ RER B to CDG ✓ RER C to Versailles</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ ITINERARY ══ -->
+<div class="section">
+<div class="w">
+  <div class="sec-label">✦ Your Love Story, Day by Day ✦</div>
+  <div class="sec-title">The <em>Romantic</em> Itinerary</div>
+
+  <!-- MUNICH -->
+  <div class="city-block" id="blk-munich">
+    <div class="city-header" onclick="toggle('munich')">
+      <div class="city-left">
+        <div class="city-flag">🇩🇪</div>
+        <div class="city-title-wrap">
+          <h2>Munich — Oktoberfest &amp; Recovery</h2>
+          <p>September 25–28, 2026 · 3 nights · Bavaria, Germany</p>
+        </div>
+      </div>
+      <div class="city-right">
+        <div class="city-weather"><div class="city-weather-icon">🌤️</div>12–18°C · Sunny</div>
+        <div class="city-arrow" id="arr-munich">▼</div>
+      </div>
+    </div>
+    <div class="city-days" id="days-munich">
+
+      <div class="day-item">
+        <div class="day-date">Day 1 · Friday, September 25</div>
+        <div class="day-title"><em>Reunion Day</em> — No Plans Required</div>
+        <ul class="day-acts">
+          <li>✈️ Toronto → Munich overnight flight arrives morning</li>
+          <li>🏨 Check-in at Motel One · shower · nap · recover</li>
+          <li>☕ Late afternoon: slow walk to Viktualienmarkt</li>
+          <li>🍽️ Quiet dinner near the hotel — no Oktoberfest yet</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €50–70 per person</div>
+        <div class="eat-box">🍽️ Budget dinner: Augustiner Keller biergarten — Schweinshaxe €18, Weissbier €5. Old-Munich atmosphere, no tourist chaos.</div>
+        <div class="rom-box">The first real embrace after all the distance. Nothing else matters today. Everything else is a bonus.</div>
+        <div class="hotel-row"><span>🏨 Motel One Parkstadt Schwabing</span><a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 2 · Saturday, September 26</div>
+        <div class="day-title">🍺 <em>Oktoberfest</em> — The Relaxed Version</div>
+        <ul class="day-acts">
+          <li>😴 Sleep in · late breakfast</li>
+          <li>🕚 Arrive Oktoberfest before 11am — easiest to find seats</li>
+          <li>🍻 Order 2 Mass beers (€14–16 each), share a Brezn + Obazda</li>
+          <li>📸 Stay 3–4 hours — leave by 3pm before it gets rowdy</li>
+          <li>🌙 Evening: romantic walk through Maxvorstadt or Haidhausen</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €45–55 per person (beer + food inside)</div>
+        <div class="eat-box">🍽️ Inside tents: Hofbräu tent — half roast chicken €15, Schweinshaxe €20. Share dishes to save money.</div>
+        <div class="rom-box">The shared Mass beer. The laughter. The people-watching at the world's greatest party — but leaving while you still love each other.</div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 3 · Sunday, September 27</div>
+        <div class="day-title">Rowboats, <em>Beer Gardens</em> &amp; Pure Munich</div>
+        <ul class="day-acts">
+          <li>😴 Sleep until 10am — no alarm</li>
+          <li>🌳 English Garden slow walk — world's largest urban park</li>
+          <li>🚣 Rowboat on Kleinhesseloher See — €15/hour · deeply romantic</li>
+          <li>🍺 Chinese Tower biergarten — pretzels, Obazda, cold beer</li>
+          <li>🌙 Optional: Nymphenburg Palace evening walk (free grounds)</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €30–45 per person</div>
+        <div class="eat-box">🍽️ Chinese Tower: Pretzel €3, Obazda cheese €5, Masskrug €6 · total lunch under €20 per person.</div>
+        <div class="rom-box">The rowboat on Kleinhesseloher See, weeping willows overhead, no crowds. You will talk about this afternoon for years.</div>
+        <div class="hotel-row"><span>🏨 Motel One (check out tomorrow)</span><a href="https://www.booking.com/hotel/de/motel-one-munchen-parkstadt-schwabing.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- KÖNIGSSEE -->
+  <div class="city-block" id="blk-konigsee">
+    <div class="city-header" onclick="toggle('konigsee')">
+      <div class="city-left">
+        <div class="city-flag">🏔️</div>
+        <div class="city-title-wrap">
+          <h2>Königssee — The Emerald Lake</h2>
+          <p>September 28–30, 2026 · 2 nights · Berchtesgaden, Bavaria</p>
+        </div>
+      </div>
+      <div class="city-right">
+        <div class="city-weather"><div class="city-weather-icon">☀️</div>8–16°C · Clear Alpine sky</div>
+        <div class="city-arrow" id="arr-konigsee">▼</div>
+      </div>
+    </div>
+    <div class="city-days" id="days-konigsee">
+
+      <div class="day-item">
+        <div class="day-date">Day 4 · Monday, September 28</div>
+        <div class="day-title">The <em>Electric Boat</em> &amp; the Alphorn Echo</div>
+        <ul class="day-acts">
+          <li>🚆 Morning train Munich → Berchtesgaden (Bayern Ticket)</li>
+          <li>🏨 Check-in at Pension Watzmann · drop bags</li>
+          <li>🛶 Bus 841 to Königssee · electric boat to St. Bartholomä — €20 pp</li>
+          <li>🎺 The boatman stops mid-lake and plays the alphorn — echo off the cliffs</li>
+          <li>🥾 Walk the lakeshore at St. Bartholomä · have lunch at the Gasthaus</li>
+          <li>🍽️ Back to Berchtesgaden for Bavarian dinner</li>
+        </ul>
+        <div class="tr-mini">
+          <div class="trm g"><div class="trm-lbl">🎫 With Eurail — use 1 flex day</div><div class="trm-route">Munich Hbf → Freilassing → Berchtesgaden + bus 841</div><div class="trm-price">€0 + €0</div><div class="trm-note">Regional trains, no reservation needed</div></div>
+          <div class="trm s"><div class="trm-lbl">🎟 Bayern Ticket (best value)</div><div class="trm-route">Munich → Berchtesgaden + all local buses all day</div><div class="trm-price">€44 for 2</div><div class="trm-note">Covers entire day incl. bus 841 to Königssee</div></div>
+        </div>
+        <div class="spend-box">💰 Est. spend: €35–50 per person (excl. transport)</div>
+        <div class="eat-box">🍽️ Gasthaus at St. Bartholomä: Fresh Königssee-caught trout €18–22 — the freshest fish you'll ever eat.</div>
+        <div class="rom-box">The alphorn echo bouncing off 2,000m cliffs above emerald water. You will never forget that sound. It's the most ancient sound in Europe.</div>
+        <div class="hotel-row"><span>🏨 Pension Watzmann, Berchtesgaden</span><a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 5 · Tuesday, September 29</div>
+        <div class="day-title"><em>Jennerbahn</em> Cable Car + Alpine Spa Evening</div>
+        <ul class="day-acts">
+          <li>🚠 <a href="https://www.jennerbahn.de/en" target="_blank" rel="noopener" style="color:var(--gold)">Jennerbahn cable car</a> to 1,800m — €28 pp · buy at station</li>
+          <li>👀 Summit views: Königssee below, Austria ahead, Bavaria behind</li>
+          <li>🥾 Gentle summit walk (30–40 min) · October larches turning gold</li>
+          <li>🍽️ Lunch at mountain restaurant Jenner</li>
+          <li>🕓 Afternoon: <a href="https://www.watzmann-therme.de/en/" target="_blank" rel="noopener" style="color:var(--gold)">Watzmann Therme spa</a> — €12–15 pp · no reservation</li>
+          <li>🌙 Final Berchtesgaden dinner · pack for Zermatt tomorrow</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €50–65 per person</div>
+        <div class="eat-box">🍽️ Mountain restaurant Jenner: Käsespätzle (cheese noodles) €12 · Suppe €6 · warm, filling, alpine.</div>
+        <div class="rom-box">Soaking in warm saltwater in the early evening, bodies tired from the mountain. The steam rising. Outside: Bavarian village quiet. Pure heaven.</div>
+        <div class="hotel-row"><span>🏨 Pension Watzmann (final night)</span><a href="https://www.booking.com/hotel/de/pension-watzmann-berchtesgaden.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ZERMATT -->
+  <div class="city-block" id="blk-zermatt">
+    <div class="city-header" onclick="toggle('zermatt')">
+      <div class="city-left">
+        <div class="city-flag">🇨🇭</div>
+        <div class="city-title-wrap">
+          <h2>Zermatt — The Matterhorn</h2>
+          <p>September 30 – October 2, 2026 · 2 nights · Valais, Switzerland</p>
+        </div>
+      </div>
+      <div class="city-right">
+        <div class="city-weather"><div class="city-weather-icon">🌄</div>2–18°C · Golden larches · Sunny</div>
+        <div class="city-arrow" id="arr-zermatt">▼</div>
+      </div>
+    </div>
+    <div class="city-days" id="days-zermatt">
+
+      <div class="day-item">
+        <div class="day-date">Day 6 · Wednesday, September 30</div>
+        <div class="day-title">First View of the <em>Matterhorn</em></div>
+        <ul class="day-acts">
+          <li>🚆 Train: Berchtesgaden → Munich → Zurich → Visp → Zermatt (~6.5h, scenic)</li>
+          <li>🏔️ First glimpse of the Matterhorn as the train arrives — you'll gasp</li>
+          <li>🏨 Check-in at Hotel Matterhornblick · step onto the balcony</li>
+          <li>🚶 Evening walk through the car-free village (no cars — electric taxis only)</li>
+          <li>🍕 Budget dinner: takeaway pizza on a bench watching the mountain at sunset</li>
+        </ul>
+        <div class="tr-mini">
+          <div class="trm g"><div class="trm-lbl">🎫 With Eurail — use 1 flex day</div><div class="trm-route">Berchtesgaden → Munich → Zurich → Visp → Zermatt</div><div class="trm-price">€0 + €0</div><div class="trm-note">~6.5h · scenic · no reservation fees in CH</div></div>
+          <div class="trm s"><div class="trm-lbl">🎟 Book ÖBB + SBB advance</div><div class="trm-route">Berchtesgaden → Munich (Bayern Ticket) + Munich → Zurich → Zermatt</div><div class="trm-price">~€50–70 pp</div><div class="trm-note">Book ÖBB Sparschiene + SBB Supersaver 6 weeks ahead on omio.com</div></div>
+        </div>
+        <div class="spend-box">💰 Est. spend: €30–45 per person (travel day)</div>
+        <div class="eat-box">🍽️ Zermatt budget tip: Brown Cow pub — wood-fired pizza CHF 15–20. Best value in town.</div>
+        <div class="rom-box">The Matterhorn at your first sunset. That perfect pyramid against an October sky turning rose-gold. Nothing prepares you for the first real sight of it.</div>
+        <div class="hotel-row"><span>🏨 Hotel Matterhornblick, Zermatt</span><a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 7 · Thursday, October 1</div>
+        <div class="day-title"><em>Gornergrat</em> + Sunset Thermal Spa</div>
+        <ul class="day-acts">
+          <li>🚂 <a href="https://www.gornergratbahn.ch/en/" target="_blank" rel="noopener" style="color:var(--gold)">Gornergrat railway</a> to 3,089m — CHF 63 pp with Half-Fare (buy at station)</li>
+          <li>🏔️ Hike down to Riffelsee — the famous Matterhorn reflection in the lake</li>
+          <li>🍽️ Lunch at Riffelberg (CHF 20–30) · mountain views in every direction</li>
+          <li>🏘️ Afternoon: wander the village · explore Zermatt's tiny laneways</li>
+          <li>🌅 6pm: <a href="https://www.zermatt.ch/en/Media/Attractions/Pool-and-spa" target="_blank" rel="noopener" style="color:var(--gold)">Outdoor thermal spa</a> at sunset — CHF 30–40 pp</li>
+          <li>🍽️ Fondue dinner for two — the night's centrepiece</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: CHF 120–150 per person (splurge day — worth every franc)</div>
+        <div class="eat-box">🍽️ Fondue: Whymper-Stube restaurant — the classic Zermatt fondue, CHF 45–55 pp. Reserve by phone same day: +41 27 967 22 96.</div>
+        <div class="rom-box">The sunset thermal spa. Warm water. The Matterhorn turning pink then purple above you. Just the two of you. This is the moment the whole trip was built for.</div>
+        <div class="hotel-row"><span>🏨 Hotel Matterhornblick (final night)</span><a href="https://www.booking.com/hotel/ch/matterhornblick.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LUCERNE -->
+  <div class="city-block" id="blk-lucerne">
+    <div class="city-header" onclick="toggle('lucerne')">
+      <div class="city-left">
+        <div class="city-flag">🌊</div>
+        <div class="city-title-wrap">
+          <h2>Lucerne — Chapel Bridge &amp; Swan Lake</h2>
+          <p>October 2–4, 2026 · 2 nights · Central Switzerland</p>
+        </div>
+      </div>
+      <div class="city-right">
+        <div class="city-weather"><div class="city-weather-icon">🌥️</div>8–16°C · Crisp &amp; clear</div>
+        <div class="city-arrow" id="arr-lucerne">▼</div>
+      </div>
+    </div>
+    <div class="city-days" id="days-lucerne">
+
+      <div class="day-item">
+        <div class="day-date">Day 8 · Friday, October 2</div>
+        <div class="day-title">Arrive <em>Lucerne</em> — The Most Beautiful Swiss City</div>
+        <ul class="day-acts">
+          <li>🚆 Train Zermatt → Visp → Bern → Lucerne (~3h 24min · book advance)</li>
+          <li>🏨 Check-in at Hotel des Alpes — ask for a river-view room</li>
+          <li>🌉 Walk across the Kapellbrücke (Chapel Bridge) at golden hour — free</li>
+          <li>🦢 Swans on the Reuss river · old town wander · painted buildings</li>
+          <li>🍷 Wine at a riverside terrace as the bridge lights reflect on the water</li>
+        </ul>
+        <div class="tr-mini">
+          <div class="trm g"><div class="trm-lbl">🎫 With Eurail — use 1 flex day</div><div class="trm-route">Zermatt → Visp → Bern → Lucerne</div><div class="trm-price">€0 + €0</div><div class="trm-note">No reservation fee. ~3h 24min.</div></div>
+          <div class="trm s"><div class="trm-lbl">🎟 SBB Supersaver (buy early)</div><div class="trm-route">Zermatt → Lucerne (with Half-Fare Card)</div><div class="trm-price">from ~CHF 25 pp</div><div class="trm-note">Book on sbb.ch 6 weeks ahead. Half-Fare gives 50% off.</div></div>
+        </div>
+        <div class="spend-box">💰 Est. spend: CHF 50–70 per person</div>
+        <div class="eat-box">🍽️ Old Town dinner: Wirtshaus Taube — traditional Swiss, CHF 20–35 mains. Cosy wooden interior, locals crowd.</div>
+        <div class="rom-box">The Kapellbrücke at dusk. 700 years old. The river below it gold. The mountains behind it blue. You walk across it together for the first time — this is what Switzerland actually looks like.</div>
+        <div class="hotel-row"><span>🏨 Hotel des Alpes, Lucerne Old Town</span><a href="https://www.booking.com/hotel/ch/des-alpes-luzern.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 9 · Saturday, October 3</div>
+        <div class="day-title">Lake Lucerne <em>Boat Cruise</em> + Mount Pilatus</div>
+        <ul class="day-acts">
+          <li>⛴️ Morning: <a href="https://www.lakelucerne.ch/en/" target="_blank" rel="noopener" style="color:var(--gold)">Lake Lucerne paddle steamer cruise</a> — from CHF 16 pp (50% off with Half-Fare)</li>
+          <li>🏔️ Optional: Mount Pilatus cogwheel railway — CHF 41 pp with Half-Fare (1h each way)</li>
+          <li>🦁 Lion Monument (free) — the most moving sculpture in Switzerland</li>
+          <li>🛍️ Old Town wander · chocolate shops · watch bridge from below</li>
+          <li>🌆 Sunset from Musegg Wall towers — free, panoramic city views</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: CHF 60–90 per person</div>
+        <div class="eat-box">🍽️ Cheap lunch: Bäckerei Heini — Swiss pastries, sandwiches, coffee under CHF 15 total. Perfect picnic by the lake.</div>
+        <div class="rom-box">The Lion Monument. Carved into the cliff face, it depicts a dying lion — said to be the saddest piece of stone in the world. Stand before it together in silence. It will mean something.</div>
+        <div class="hotel-row"><span>🏨 Hotel des Alpes (final night · TGV tomorrow)</span><a href="https://www.booking.com/hotel/ch/des-alpes-luzern.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PARIS -->
+  <div class="city-block" id="blk-paris">
+    <div class="city-header" onclick="toggle('paris')">
+      <div class="city-left">
+        <div class="city-flag">🥐</div>
+        <div class="city-title-wrap">
+          <h2>Paris — The Grand Finale</h2>
+          <p>October 4–10, 2026 · 5 nights · France</p>
+        </div>
+      </div>
+      <div class="city-right">
+        <div class="city-weather"><div class="city-weather-icon">🌥️</div>10–18°C · Mild, mostly dry</div>
+        <div class="city-arrow" id="arr-paris">▼</div>
+      </div>
+    </div>
+    <div class="city-days" id="days-paris">
+
+      <div class="day-item">
+        <div class="day-date">Day 10 · Sunday, October 4</div>
+        <div class="day-title">Arrive <em>Paris</em> — Eiffel Tower Sparkle Night</div>
+        <ul class="day-acts">
+          <li>🚆 TGV Lyria: Lucerne → Basel SBB → Paris Gare de Lyon (<strong>4h 41min</strong>)</li>
+          <li>🏨 Check-in at Moxy Paris Bastille</li>
+          <li>🗼 Evening: Eiffel Tower sparkle from Trocadéro — free, every hour on the hour</li>
+          <li>🥐 First Paris dinner — crêpes on a bench by the river</li>
+        </ul>
+        <div class="tr-mini">
+          <div class="trm g"><div class="trm-lbl">🎫 With Eurail — use 1 flex day</div><div class="trm-route">Lucerne → Basel SBB → Paris Gare de Lyon</div><div class="trm-price">€0 + ~€12 res</div><div class="trm-note">Compulsory TGV reservation ~€12 pp. Book at eurail.com.</div></div>
+          <div class="trm s"><div class="trm-lbl">🎟 Book Trainline.com 4–8 wks ahead</div><div class="trm-route">Lucerne → Basel → Paris Gare de Lyon · 4h 41min</div><div class="trm-price">from €39 pp</div><div class="trm-note">Cheapest if booked early. Book at thetrainline.com or tgv-lyria.com</div></div>
+        </div>
+        <div class="spend-box">💰 Est. spend: €30–45 per person</div>
+        <div class="eat-box">🍽️ Near Trocadéro: Crêperie du Village — galette + sweet crêpe + cidre ~€15 pp. Sit outside if the night is warm.</div>
+        <div class="rom-box">The Eiffel Tower sparkles for 5 minutes on the hour after dark. Watch it for the very first time together from Trocadéro. This moment is free. This moment is everything.</div>
+        <div class="hotel-row"><span>🏨 Moxy Paris Bastille · Le Marais</span><a href="https://www.booking.com/hotel/fr/moxy-paris-bastille.html" target="_blank" rel="noopener">Booking.com →</a></div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 11 · Monday, October 5</div>
+        <div class="day-title">Slow <em>Paris</em> — Seine Walk &amp; Champagne Picnic</div>
+        <ul class="day-acts">
+          <li>😴 Sleep until 9am — no alarm</li>
+          <li>☕ Corner café breakfast — café au lait + croissant</li>
+          <li>🚶 Walk: Pont Neuf → Notre-Dame → Île Saint-Louis</li>
+          <li>🥂 Champagne picnic on Champ de Mars under the Eiffel Tower (~€20 total)</li>
+          <li>📚 Shakespeare &amp; Company bookshop — browse free, buy something small</li>
+          <li>🌉 Evening: Île de la Cité at dusk · Notre-Dame illuminated</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €40–55 per person</div>
+        <div class="eat-box">🍽️ Picnic from Monoprix: baguette €1 · brie €3 · Crémant d'Alsace €8 · macarons €4. Total under €20 for two. More romantic than any restaurant.</div>
+        <div class="rom-box">The Champagne picnic. Lying on the Champ de Mars grass, looking up at the Tower, the Crémant cold, the baguette fresh. This €20 picnic beats any €200 dinner.</div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 12 · Tuesday, October 6</div>
+        <div class="day-title"><em>Montmartre</em> Dawn + Seine Dinner Cruise</div>
+        <ul class="day-acts">
+          <li>🌅 6:30am: walk up to Sacré-Cœur for sunrise — almost no tourists</li>
+          <li>🎨 Place du Tertre artists · crêpe breakfast in the village square</li>
+          <li>😴 Afternoon: nap, rest, free time</li>
+          <li>🌊 7pm: <a href="https://www.bateauxparisiens.com/en.html" target="_blank" rel="noopener" style="color:var(--gold)">Seine river dinner cruise</a> — €70–100 pp · book 2–4 weeks ahead</li>
+          <li>🗼 Float past Notre-Dame, Eiffel Tower, Louvre — all lit at night</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €80–120 per person (dinner cruise is the splurge)</div>
+        <div class="eat-box">🍽️ Dinner cruise: Bateaux Parisiens — request a window table on the upper deck at sunset booking. Course menu + wine included.</div>
+        <div class="rom-box">Sunrise at Sacré-Cœur — Paris below you, rose-gold and quiet, virtually alone. Then 15 hours later, floating past the same city all lit and golden. One day, two magic moments.</div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 13 · Wednesday, October 7</div>
+        <div class="day-title">Versailles &amp; <em>Le Marais</em> by Day</div>
+        <ul class="day-acts">
+          <li>🚆 RER C → Versailles Château Rive Gauche (35min · €3.50 pp or Navigo day pass)</li>
+          <li>🏰 Versailles Palace — €20 pp · book ahead at chateauversailles.fr</li>
+          <li>🌳 Grand Canal walk — sunset gold over the fountain pools, free after 5pm</li>
+          <li>🕌 Le Marais: Place des Vosges · galleries · hidden courtyards</li>
+          <li>🍷 Canal Saint-Martin evening — wine on the canal bank, very local</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €45–60 per person</div>
+        <div class="eat-box">🍽️ Le Marais: L'As du Fallafel (Rue des Rosiers) — best falafel in Paris, €7 pp. Or Breizh Café (galettes) — €12–18. Queue at l'As is worth it.</div>
+        <div class="rom-box">The Versailles gardens are free on foot — walk the Grand Canal at 4pm when tour groups leave. The Sun King's grand axis stretching to the horizon. It is overwhelming.</div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 14 · Thursday, October 8</div>
+        <div class="day-title">Slow <em>Flex Day</em> — Paris Belongs to You</div>
+        <ul class="day-acts">
+          <li>😴 Sleep until whenever</li>
+          <li>☕ The same corner café · the same table · different conversation</li>
+          <li>🌸 Choose your adventure: Luxembourg Gardens · Musée d'Orsay (€16 pp) · Sainte-Chapelle (€11 pp) · just walk</li>
+          <li>🌙 Final romantic dinner — Saint-Germain-des-Prés bistro</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €45–70 per person</div>
+        <div class="eat-box">🍽️ Final dinner: Brasserie Lipp (Saint-Germain) — classic French brasserie, escargot + duck confit + carafe of Bordeaux. ~€45 pp. Book same morning.</div>
+        <div class="rom-box">The day with no agenda. In 14 years you will remember this day more than any itinerary day. The café. The walk that went nowhere. The hour on a bench watching Paris happen.</div>
+      </div>
+
+      <div class="day-item">
+        <div class="day-date">Day 15 · Friday, October 9</div>
+        <div class="day-title"><em>Last Morning</em> — Au Revoir, Paris</div>
+        <ul class="day-acts">
+          <li>☕ Final café au lait and croissant at the corner café</li>
+          <li>🚶 Morning walk with no map, no destination · let Paris surprise you one last time</li>
+          <li>🚆 RER B from any central station to Paris CDG Terminal 2 — €11.80 pp · 35min</li>
+          <li>✈️ Paris CDG → Toronto YYZ (Air Transat or Air France)</li>
+        </ul>
+        <div class="spend-box">💰 Est. spend: €20–30 per person</div>
+        <div class="rom-box">Walk Paris without a purpose on your last morning. The city is most beautiful when you aren't trying to see anything. Follow a street you haven't walked. You will find something.</div>
+        <div class="hotel-row"><span>✈️ Return flight: Paris CDG → Toronto YYZ</span><a href="https://www.google.com/flights" target="_blank" rel="noopener">Search Google Flights →</a></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ BUDGET TABLE ══ -->
+<div class="section">
+<div class="w">
+  <div class="sec-label">✦ Full Cost Breakdown ✦</div>
+  <div class="sec-title">What It <em>Actually</em> Costs — 2 People</div>
+  <div class="budget-cols">
+    <div class="bc">
+      <div class="bc-head g"><h3>🎫 Option A — With Eurail</h3><span class="badge b-ok">Flexible</span></div>
+      <table class="bt">
+        <tr class="cat"><td colspan="2">FLIGHTS · Canadian traveller only</td></tr>
+        <tr><td>Toronto → Munich (Condor / Icelandair · one-way)</td><td>~C$700</td></tr>
+        <tr><td>Paris CDG → Toronto (Air Transat · one-way)</td><td>~C$700</td></tr>
+        <tr class="cat"><td colspan="2">TRANSPORT</td></tr>
+        <tr><td>Eurail Global 5-day Flex Pass × 2 persons</td><td>~€636</td></tr>
+        <tr><td>Bayern Ticket (Day 2 Munich activities)</td><td>€44</td></tr>
+        <tr><td>TGV Lyria compulsory reservation × 2</td><td>€24</td></tr>
+        <tr class="cat"><td colspan="2">ACCOMMODATION · 14 nights</td></tr>
+        <tr><td>Munich × 3 nights (€80/night)</td><td>€240</td></tr>
+        <tr><td>Berchtesgaden × 2 nights (€68/night)</td><td>€136</td></tr>
+        <tr><td>Zermatt × 2 nights (CHF 155/night)</td><td>~€320</td></tr>
+        <tr><td>Lucerne × 2 nights (CHF 130/night)</td><td>~€270</td></tr>
+        <tr><td>Paris × 5 nights (€98/night)</td><td>€490</td></tr>
+        <tr class="cat"><td colspan="2">ACTIVITIES · for 2 people</td></tr>
+        <tr><td>Boats, cable cars, Watzmann spa, Versailles, Dinner Cruise etc.</td><td>~€600</td></tr>
+        <tr class="cat"><td colspan="2">FOOD · 15 days · couple</td></tr>
+        <tr><td>Avg €52/day/couple (markets + café + 1 restaurant)</td><td>~€780</td></tr>
+        <tr class="tot"><td><strong>TOTAL ESTIMATE (2 people)</strong></td><td><strong>~C$6,800</strong></td></tr>
+      </table>
+    </div>
+    <div class="bc">
+      <div class="bc-head s"><h3>🎟 Option B — Point-to-Point</h3><span class="badge b-sage" style="background:rgba(144,200,168,.1);color:var(--sage);border:1px solid rgba(144,200,168,.3);padding:3px 11px;font-size:10px;">Cheapest</span></div>
+      <table class="bt">
+        <tr class="cat"><td colspan="2">FLIGHTS · Canadian traveller only</td></tr>
+        <tr><td>Toronto → Munich (Condor / Icelandair · one-way)</td><td>~C$700</td></tr>
+        <tr><td>Paris CDG → Toronto (Air Transat · one-way)</td><td>~C$700</td></tr>
+        <tr class="cat"><td colspan="2">TRANSPORT · all booked 4–6 weeks ahead</td></tr>
+        <tr><td>Bayern Ticket × 2 days (Day 2 Munich + Day 4 Berchtesgaden)</td><td>€88</td></tr>
+        <tr><td>Swiss Half-Fare Card × 2 persons (CHF 120 each)</td><td>~€250</td></tr>
+        <tr><td>Berchtesgaden → Zermatt (ÖBB + SBB advance) × 2</td><td>~€100–120</td></tr>
+        <tr><td>Zermatt → Lucerne (SBB Supersaver with Half-Fare) × 2</td><td>~€50</td></tr>
+        <tr><td>Lucerne → Paris TGV Lyria (advance, trainline.com) × 2</td><td>~€80–140</td></tr>
+        <tr class="cat"><td colspan="2">ACCOMMODATION · same hotels as Option A</td></tr>
+        <tr><td>All 14 nights · same properties</td><td>same ~€1,456</td></tr>
+        <tr class="cat"><td colspan="2">ACTIVITIES + FOOD · same</td></tr>
+        <tr><td>Same activities + food budget</td><td>~€1,380</td></tr>
+        <tr class="tot"><td><strong>TOTAL ESTIMATE (2 people)</strong></td><td><strong>~C$6,400</strong></td></tr>
+      </table>
+    </div>
+    <div class="verdict-full">
+      <p><strong>Bottom line:</strong> Point-to-point saves roughly <strong>C$400</strong> for this specific 15-night route if you commit to dates and book 4–6 weeks ahead. <strong>The single best strategy:</strong> use Bayern Ticket for all Bavaria legs (€44/day), buy the Swiss Half-Fare Card (CHF 120 each — pays for itself in 2 Swiss train rides), and book the Lucerne → Paris TGV Lyria well ahead on <a href="https://www.tgv-lyria.com" target="_blank" rel="noopener" style="color:var(--gold)">tgv-lyria.com</a> or <a href="https://www.thetrainline.com" target="_blank" rel="noopener" style="color:var(--gold)">trainline.com</a>. Skip the Eurail pass entirely. <strong>Book Zermatt hotel first</strong> — it sells out months ahead in October.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PACKING ══ -->
+<div class="section">
+<div class="w">
+  <div class="sec-label">✦ Don't Forget ✦</div>
+  <div class="sec-title">Packing <em>Reminders</em> by City</div>
+  <div class="pack-grid">
+    <div class="pack"><div class="pack-flag">🇩🇪</div><h4>Munich</h4><p>Layers · comfortable city shoes · light jacket · Oktoberfest: wear something you can spill beer on guilt-free</p></div>
+    <div class="pack"><div class="pack-flag">🏔️</div><h4>Königssee</h4><p>Hiking shoes (not trainers) · warm jacket · swimwear for Watzmann Therme spa · small day pack</p></div>
+    <div class="pack"><div class="pack-flag">🇨🇭</div><h4>Zermatt</h4><p>Very warm layers · gloves + hat for summit · swimwear for thermal spa · camera (Matterhorn deserves it)</p></div>
+    <div class="pack"><div class="pack-flag">🌊</div><h4>Lucerne</h4><p>Light layers · comfortable walking shoes · small umbrella · scarf for the lake breeze</p></div>
+    <div class="pack"><div class="pack-flag">🥐</div><h4>Paris</h4><p>Smart casual dinner outfit (dinner cruise!) · comfortable shoes · light coat · scarf · small day bag</p></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ FOOTER ══ -->
 <footer>
-  <p>"The most <span style="color: var(--gold);">romantic journeys</span> are never rushed — they're <span style="color: var(--gold);">savoured</span>, one slow morning at a time."</p>
-  <p style="margin-top: 12px; font-size: 11px;">All prices 2026 estimates · Book flights 2-3 months ahead · Train tickets 4-6 weeks ahead</p>
-  <p style="margin-top: 16px;"><span class="heart">♥</span> For Timtim, with all my love <span class="heart">♥</span></p>
+  <p>"The most <span class="g">romantic journeys</span> are never rushed —<br>they're <span class="g">savoured</span>, one slow morning at a time."</p>
+  <p style="margin-top:20px;font-size:18px;font-family:'Cormorant Garamond',serif;color:var(--rose);">
+    <span class="heart-beat" style="font-size:16px;">♥</span>
+    &nbsp;For Timtim, with all my love&nbsp;
+    <span class="heart-beat" style="font-size:16px;">♥</span>
+  </p>
+  <p class="small">All prices are 2026 estimates · Book flights 2–3 months ahead · Train tickets 4–6 weeks ahead · Zermatt hotel ASAP</p>
 </footer>
 
 <script>
-function toggleCity(cityId) {
-  const daysDiv = document.getElementById(cityId + '-days');
-  const arrow = document.querySelector(`.city-header[onclick="toggleCity('${cityId}')"] .dropdown-arrow`);
-  if (daysDiv.style.display === 'none' || !daysDiv.style.display) {
-    daysDiv.style.display = 'block';
-    if (arrow) arrow.style.transform = 'rotate(180deg)';
-  } else {
-    daysDiv.style.display = 'none';
-    if (arrow) arrow.style.transform = 'rotate(0deg)';
-  }
-}
-
-window.onload = function() {
-  const allDays = document.querySelectorAll('.city-days');
-  allDays.forEach(day => day.style.display = 'none');
-  startCountdown();
-  createHeavenEffects();
-}
-
-function startCountdown() {
-  const targetDate = new Date(2026, 8, 25, 0, 0, 0);
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-    if (diff <= 0) {
-      document.getElementById('days').innerText = '00';
-      document.getElementById('hours').innerText = '00';
-      document.getElementById('minutes').innerText = '00';
-      document.getElementById('seconds').innerText = '00';
-      return;
+/* ── STARFIELD ── */
+(function(){
+  const c=document.getElementById('sky');
+  const ctx=c.getContext('2d');
+  let W,H,stars=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function make(){
+    stars=[];
+    for(let i=0;i<200;i++){
+      stars.push({x:Math.random()*W,y:Math.random()*H,
+        r:.2+Math.random()*1.3,a:Math.random(),
+        da:(Math.random()-.5)*.004,
+        col:Math.random()>.7?'rgba(240,200,240,':'rgba(200,210,255,'});
     }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    document.getElementById('days').innerText = days.toString().padStart(2, '0');
-    document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{
+      s.a=Math.max(.05,Math.min(1,s.a+s.da));
+      if(s.a<=.06||s.a>=.99)s.da*=-1;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.col+s.a+')';ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();make();});
+  resize();make();draw();
+})();
+
+/* ── HEAVEN EFFECTS ── */
+(function(){
+  const h=document.getElementById('heaven');
+  const hearts=['♥','❤️','💖','💗','💕'];
+  const petalColors=['#f0a0b8','#e8c87a','#b8a8e8','#f5c8d8','#d0e8d0'];
+  
+  for(let i=0;i<28;i++){
+    const el=document.createElement('div');
+    el.className='fheart';
+    el.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    el.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*18}px;animation-delay:${Math.random()*18}s;animation-duration:${13+Math.random()*10}s;`;
+    h.appendChild(el);
+  }
+  for(let i=0;i<40;i++){
+    const el=document.createElement('div');
+    el.className='petal';
+    el.style.cssText=`left:${Math.random()*100}%;top:-10px;background:${petalColors[Math.floor(Math.random()*petalColors.length)]};animation-delay:${Math.random()*20}s;animation-duration:${8+Math.random()*12}s;opacity:.4;`;
+    h.appendChild(el);
+  }
+})();
+
+/* ── COUNTDOWN ── */
+(function(){
+  const target=new Date('2026-09-25T00:00:00');
+  function update(){
+    const now=new Date();
+    const diff=target-now;
+    if(diff<=0){['cd-days','cd-hrs','cd-min','cd-sec'].forEach(id=>document.getElementById(id).textContent='00');return;}
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor((diff%86400000)/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+    document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+    document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+  }
+  update();setInterval(update,1000);
+})();
+
+/* ── CITY DROPDOWNS ── */
+function toggle(id){
+  const days=document.getElementById('days-'+id);
+  const arr=document.getElementById('arr-'+id);
+  const open=days.style.display==='block';
+  days.style.display=open?'none':'block';
+  arr.classList.toggle('open',!open);
 }
 
-function createHeavenEffects() {
-  const container = document.getElementById('heavenBg');
-  
-  // Floating hearts - SLOWER and fewer (25 hearts)
-  const heartSymbols = ['♥', '❤️', '💖', '💗', '💓'];
-  for (let i = 0; i < 25; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-    heart.style.left = Math.random() * 100 + '%';
-    heart.style.animationDelay = Math.random() * 20 + 's';
-    heart.style.animationDuration = 14 + Math.random() * 8 + 's';
-    heart.style.fontSize = 16 + Math.random() * 22 + 'px';
-    heart.style.opacity = 0.25 + Math.random() * 0.4;
-    container.appendChild(heart);
-  }
-  
-  // Flying birds - SLOWER and fewer (6 birds)
-  const birds = ['🕊️', '🐦', '🕊️', '🦜'];
-  for (let i = 0; i < 6; i++) {
-    const bird = document.createElement('div');
-    bird.className = 'bird';
-    bird.innerHTML = birds[Math.floor(Math.random() * birds.length)];
-    bird.style.top = 15 + Math.random() * 50 + '%';
-    bird.style.animationDelay = Math.random() * 30 + 's';
-    bird.style.animationDuration = 35 + Math.random() * 15 + 's';
-    bird.style.fontSize = 20 + Math.random() * 14 + 'px';
-    container.appendChild(bird);
-  }
-}
+/* ── INIT ── */
+window.addEventListener('load',function(){
+  document.querySelectorAll('.city-days').forEach(d=>d.style.display='none');
+});
 </script>
 </body>
 </html>
