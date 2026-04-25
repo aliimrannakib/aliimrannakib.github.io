@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Tim's Romantic Europe · 18‑day dream itinerary</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <title>For You – A Romantic European Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,166 +12,227 @@
       box-sizing: border-box;
     }
     body {
-      background: #0b0b12;
-      color: #e2e2ea;
+      background: #0a0a12;
+      color: #e8e8f0;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
     canvas#stars {
       position: fixed;
       inset: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
+    }
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: #e8c878;
+      opacity: 0.6;
+      animation: floatHeart linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(20deg);
+        opacity: 0;
+      }
     }
     .glow {
       position: fixed;
       inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(224,200,120,0.06), transparent 70%);
       pointer-events: none;
       z-index: 0;
-      background: radial-gradient(ellipse at 50% 30%, rgba(224,200,120,0.05), transparent 70%);
     }
     .container {
-      max-width: 1120px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 400;
-      color: #f0edea;
-      margin-bottom: 0.5rem;
-      border-left: 4px solid #e0c878;
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: #f5f0e6;
+      border-left: 5px solid #e8c878;
       padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
     }
     .subhead {
-      color: #a8a0b8;
+      color: #a8a0c0;
       margin-bottom: 2rem;
       font-size: 0.9rem;
+      padding-left: 1.7rem;
     }
-    .countdown {
-      display: inline-flex;
-      gap: 1.5rem;
-      background: rgba(20,20,30,0.6);
+    .countdown-box {
+      display: flex;
+      gap: 1rem;
+      background: rgba(30, 30, 45, 0.6);
       backdrop-filter: blur(8px);
+      padding: 0.8rem 1.8rem;
       border-radius: 60px;
-      padding: 0.6rem 1.8rem;
-      margin: 1rem 0 2rem;
-      border: 1px solid rgba(224,200,120,0.2);
+      width: fit-content;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(232,200,120,0.25);
     }
     .cd-item {
       text-align: center;
+      min-width: 70px;
     }
-    .cd-num {
+    .cd-number {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
-      font-weight: 400;
-      color: #e0c878;
+      font-weight: 500;
+      color: #e8c878;
       line-height: 1;
     }
     .cd-label {
-      font-size: 0.6rem;
+      font-size: 0.65rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: #9088a8;
+      color: #a8a0c0;
     }
-    .city-card {
-      background: rgba(21,21,30,0.5);
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #e8c878;
+      margin: 2rem 0 1rem;
+      border-bottom: 1px solid #2a2a35;
+      padding-bottom: 0.3rem;
+    }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #f5f0e6;
+      margin-top: 1rem;
+    }
+    .day-card {
+      background: rgba(25, 25, 35, 0.7);
       backdrop-filter: blur(4px);
-      border: 1px solid #2a2a38;
+      border: 1px solid #2a2a35;
       border-radius: 24px;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       overflow: hidden;
-      transition: border 0.2s;
+      transition: all 0.2s;
     }
-    .city-card:hover {
-      border-color: rgba(224,200,120,0.4);
+    .day-card:hover {
+      border-color: rgba(232,200,120,0.6);
+      background: rgba(30, 30, 45, 0.85);
+      transform: scale(1.01);
     }
-    .city-header {
+    .day-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 1.8rem;
+      padding: 1rem 1.5rem;
       cursor: pointer;
-      background: rgba(26,26,38,0.6);
-      transition: background 0.2s;
-    }
-    .city-header:hover {
-      background: rgba(224,200,120,0.05);
-    }
-    .city-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: #f0edea;
-    }
-    .city-date {
-      font-size: 0.75rem;
-      color: #a8a0b8;
-      margin-top: 4px;
-    }
-    .city-arrow {
-      font-size: 1.5rem;
-      color: #e0c878;
-      transition: transform 0.2s;
-    }
-    .city-days {
-      display: none;
-      padding: 1.5rem;
-      border-top: 1px solid #2a2a38;
-    }
-    .day-card {
-      background: #0f0f16;
-      border-radius: 20px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-left: 3px solid #e0c878;
-    }
-    .day-date {
-      font-size: 0.7rem;
-      letter-spacing: 1px;
-      color: #e0c878;
-      margin-bottom: 0.3rem;
+      background: rgba(20, 20, 30, 0.5);
     }
     .day-title {
       font-size: 1.2rem;
       font-weight: 500;
-      margin-bottom: 0.5rem;
+      color: #f5f0e6;
     }
-    .day-list {
+    .day-date {
+      font-size: 0.8rem;
+      color: #e8c878;
+    }
+    .day-arrow {
+      font-size: 1.2rem;
+      color: #e8c878;
+      transition: transform 0.2s;
+    }
+    .day-details {
+      display: none;
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid #2a2a35;
+    }
+    .task-list {
       list-style: none;
-      margin: 0.6rem 0;
+      margin: 0.5rem 0;
     }
-    .day-list li {
-      padding: 0.2rem 0;
-      font-size: 0.85rem;
+    .task-list li {
+      padding: 0.4rem 0;
       display: flex;
-      gap: 0.5rem;
-      border-bottom: 1px solid #2a2a38;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #2a2a35;
     }
-    .info-block {
-      background: #1a1a24;
-      padding: 0.8rem 1rem;
-      border-radius: 16px;
-      margin: 0.7rem 0;
-      font-size: 0.85rem;
+    .task-list li:last-child {
+      border-bottom: none;
     }
     .badge {
       display: inline-block;
-      background: #e0c87820;
-      color: #e0c878;
+      background: rgba(232,200,120,0.15);
+      color: #e8c878;
       border-radius: 30px;
       padding: 0.2rem 0.7rem;
       font-size: 0.7rem;
+      font-weight: 500;
       margin-left: 0.5rem;
     }
-    .critical {
+    .hotel-list, .ticket-list {
+      list-style: none;
+    }
+    .hotel-list li, .ticket-list li {
+      background: #15151f;
+      margin: 0.6rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 16px;
+      border-left: 4px solid #e8c878;
+    }
+    .note {
+      background: #1e2a20;
+      border-left: 4px solid #78c88c;
+      padding: 1rem;
+      border-radius: 16px;
+      margin: 1rem 0;
+    }
+    .warning {
       background: #2a1e1e;
-      border-left: 3px solid #f07878;
+      border-left: 4px solid #f07878;
+    }
+    .btn-print {
+      background: #e8c878;
+      color: #0a0a12;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
     }
     table {
       width: 100%;
@@ -180,260 +241,531 @@
       font-size: 0.85rem;
     }
     th, td {
-      border: 1px solid #2a2a38;
+      border: 1px solid #2a2a35;
       padding: 0.6rem;
       text-align: left;
     }
     th {
       background: #1e1e2a;
-      color: #e0c878;
-    }
-    .print-button {
-      background: #e0c878;
-      color: #0b0b12;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      cursor: pointer;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      display: inline-block;
+      color: #e8c878;
     }
     footer {
-      margin-top: 2rem;
       text-align: center;
-      font-size: 0.7rem;
-      color: #666;
-      border-top: 1px solid #2a2a38;
+      margin-top: 2rem;
       padding-top: 1.5rem;
+      border-top: 1px solid #2a2a35;
+      font-size: 0.7rem;
+      color: #888;
+    }
+    a {
+      color: #e8c878;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     @media print {
       body { background: white; color: black; }
-      .container { background: white; padding: 0.5rem; }
-      .print-button, canvas, .glow { display: none; }
-      .city-card { break-inside: avoid; border: 1px solid #ccc; }
-      .city-header { background: #f5f5f5; color: black; }
-      .city-name, .day-title { color: black; }
+      .container { background: white; }
+      .btn-print, canvas, .glow { display: none; }
+      .day-card { break-inside: avoid; border: 1px solid #ccc; }
+      .note, .warning { background: #f5f5f5; }
+      a { color: black; text-decoration: underline; }
     }
   </style>
 </head>
 <body>
 <canvas id="stars"></canvas>
+<div class="floating-hearts" id="heartsContainer"></div>
 <div class="glow"></div>
 <div class="container">
-  <button class="print-button" onclick="window.print();">📄 Save as PDF / Print itinerary</button>
-  <h1>Tim's European Journey</h1>
-  <div class="subhead">September 24 – October 11, 2026 · 17 nights · 6 countries</div>
-  <div class="countdown" id="countdown">
-    <div class="cd-item"><div class="cd-num" id="days">--</div><div class="cd-label">Days</div></div>
-    <div class="cd-item"><div class="cd-num" id="hours">--</div><div class="cd-label">Hrs</div></div>
-    <div class="cd-item"><div class="cd-num" id="minutes">--</div><div class="cd-label">Mins</div></div>
-    <div class="cd-item"><div class="cd-num" id="seconds">--</div><div class="cd-label">Secs</div></div>
+  <button class="btn-print" onclick="window.print();">📖 Print as PDF / Save</button>
+  <h1>✨ For You – A European Journey</h1>
+  <div class="subhead">September 24 – October 12, 2026 · 19 days · 6 countries</div>
+
+  <div class="countdown-box" id="countdown">
+    <div class="cd-item"><div class="cd-number" id="cd-days">--</div><div class="cd-label">Days</div></div>
+    <div class="cd-item"><div class="cd-number" id="cd-hours">--</div><div class="cd-label">Hours</div></div>
+    <div class="cd-item"><div class="cd-number" id="cd-minutes">--</div><div class="cd-label">Min</div></div>
+    <div class="cd-item"><div class="cd-number" id="cd-seconds">--</div><div class="cd-label">Sec</div></div>
   </div>
 
-  <!-- BUDGET SUMMARY -->
-  <div class="info-block">💰 Total budget (2 people) ≈ <strong>$8,035 CAD</strong> – flights, hotels, trains, activities, food & misc – under $9k.</div>
-
-  <!-- ========= DROPDOWN ITINERARY ========= -->
-
-  <!-- 1. BERTESGADEN -->
-  <div class="city-card">
-    <div class="city-header" onclick="toggleCity('berch')">
-      <div><span class="city-name">🏔️ Berchtesgaden & Bavarian Alps</span><div class="city-date">Sep 24 – Sep 28 · 4 nights · budget guesthouse, breakfast incl.</div></div>
-      <div class="city-arrow" id="arrow-berch">▼</div>
-    </div>
-    <div class="city-days" id="days-berch">
-      <div class="day-card"><div class="day-date">Day 1 · Thu Sep 24</div><div class="day-title">Arrival</div><ul class="day-list"><li>✈️ Toronto → Munich (Condor / Air Transat), train to Berchtesgaden (Bayern Ticket)</li><li>🏨 Check‑in Gästehaus Meisl – free Guest Card included</li><li>🍽️ Dinner at Gasthof Neuhaus</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 2 · Fri Sep 25</div><div class="day-title">Oktoberfest day trip</div><ul class="day-list"><li>🚆 Bayern Ticket to Munich, U‑Bahn to Theresienwiese</li><li>🍻 Shared Maß, half chicken, pretzel – leave early afternoon</li><li>🌙 Walk Maxvorstadt, return to Berchtesgaden</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 3 · Sat Sep 26</div><div class="day-title">Königssee & Jennerbahn</div><ul class="day-list"><li>🛶 Electric boat to St. Bartholomä (€22‑29 pp)</li><li>🚡 Jennerbahn cable car (€28 pp) – 1,800m views</li><li>🧖 Evening: Watzmann Therme spa (€12‑15 pp)</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 4 · Sun Sep 27</div><div class="day-title">Salzburg day trip (free with Guest Card)</div><ul class="day-list"><li>🚆 RE5 train to Salzburg Hbf – 50 min, covered</li><li>🏛️ Mirabell Gardens, Getreidegasse, Mozart birthplace</li><li>🍽️ Market lunch, optional fortress funicular</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 5 · Mon Sep 28</div><div class="day-title">Travel to Venice</div><ul class="day-list"><li>🌄 Alpine morning, then train Berchtesgaden → Venice (Nightjet, book early)</li></ul></div>
-      <div class="info-block">🏨 Hotel: Gästehaus Meisl · ~$75/night · breakfast included · free Guest Card for local transport & Salzburg train</div>
-    </div>
+  <!-- CURRENCY & PAYMENT TIPS -->
+  <div class="note">
+    <strong>💶 Currency & payment tips – to keep your budget on track</strong><br>
+    • <strong>Cash is king for small purchases</strong> – gondola (€80‑100), market stalls, bakeries, small cafés.<br>
+    • <strong>Cards are widely accepted</strong> in hotels, large restaurants, supermarkets (Lidl, Aldi, Coop, Monoprix), and for train tickets.<br>
+    • <strong>Best way to get cash</strong> – withdraw locally from a bank ATM (avoid Euronet / independent ATMs with high fees).<br>
+    • <strong>Typical cash needed per day</strong> – €20‑30 per person for small expenses (coffee, gelato, tips, bus tickets where card isn't accepted).<br>
+    • <strong>Always have some coins</strong> for public toilets (€0.50‑1) and small tips.<br>
+    • <strong>Notify your bank</strong> before travel to avoid card being blocked.
   </div>
 
-  <!-- 2. VENICE -->
-  <div class="city-card">
-    <div class="city-header" onclick="toggleCity('venice')">
-      <div><span class="city-name">🛶 Venice</span><div class="city-date">Sep 28 – Oct 1 · 3 nights · 2 nights canal‑view + 1 night budget</div></div>
-      <div class="city-arrow" id="arrow-venice">▼</div>
+  <!-- ======================== DAILY ITINERARY ======================== -->
+  <h2>🗺️ Your Romantic Journey – Day by Day</h2>
+
+  <!-- Day 1 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(1)">
+      <div><span class="day-title">🇩🇪 Berchtesgaden – Arrival</span><br><span class="day-date">Thursday, Sep 24, 2026</span></div>
+      <div class="day-arrow" id="arrow-1">▼</div>
     </div>
-    <div class="city-days" id="days-venice">
-      <div class="day-card"><div class="day-date">Day 6 · Mon Sep 28</div><div class="day-title">Arrival & first evening</div><ul class="day-list"><li>🚆 Nightjet arrival, water bus to Hotel Antiche Figure (canal view)</li><li>🌉 Sunset at Rialto Bridge, dinner in Cannaregio</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 7 · Tue Sep 29</div><div class="day-title">Classic Venice</div><ul class="day-list"><li>🏛️ St. Mark’s Square, Basilica, Doge’s Palace (optional)</li><li>🚤 Gondola ride (30 min, ~€80‑100)</li><li>🌙 Evening walk from Rialto to Accademia</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 8 · Wed Sep 30</div><div class="day-title">Murano & Burano</div><ul class="day-list"><li>🟡 ACTV day pass (€20 pp) → ferry to Murano (glass demo) then Burano</li><li>🍽️ Lunch on Burano, return to Venice late afternoon</li></ul></div>
-      <div class="info-block">🏨 Hotel Antiche Figure (2 nights) · ~$165/night · Grand Canal view<br>🏨 Hotel Adua (1 night) · ~$85/night · near station</div>
+    <div class="day-details" id="details-1">
+      <ul class="task-list">
+        <li>✈️ Fly from Toronto (YYZ) to Munich (MUC) – book 2‑3 months ahead</li>
+        <li>🚆 Buy Bayern Ticket (€44 for 2) at Munich airport – covers train to Berchtesgaden</li>
+        <li>🚆 Train from Munich to Berchtesgaden (RE5, approx. 2.5h)</li>
+        <li>🏨 Check in at <strong>Gästehaus Meisl</strong> – free Guest Card included (breakfast ✅)</li>
+        <li>🍽️ <strong>Dinner:</strong> Gasthof Neuhaus (Bavarian) – mains €12‑18, traditional atmosphere</li>
+      </ul>
     </div>
   </div>
 
-  <!-- 3. WENGEN -->
-  <div class="city-card">
-    <div class="city-header" onclick="toggleCity('wengen')">
-      <div><span class="city-name">🏔️ Wengen – Swiss Alps</span><div class="city-date">Oct 1 – Oct 3 · 2 nights · budget private room (Backpackers Villa)</div></div>
-      <div class="city-arrow" id="arrow-wengen">▼</div>
+  <!-- Day 2 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(2)">
+      <div><span class="day-title">🍻 Oktoberfest – Munich day trip</span><br><span class="day-date">Friday, Sep 25, 2026</span></div>
+      <div class="day-arrow" id="arrow-2">▼</div>
     </div>
-    <div class="city-days" id="days-wengen">
-      <div class="day-card"><div class="day-date">Day 9 · Thu Oct 1</div><div class="day-title">Travel Venice → Wengen</div><ul class="day-list"><li>🚆 Venice → Milan → Spiez → Lauterbrunnen → Wengen (≈7h)</li><li>🌄 Arrive car‑free village, evening walk with valley views</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 10 · Fri Oct 2</div><div class="day-title">Männlichen & Panorama Trail</div><ul class="day-list"><li>🚡 Cable car Wengen–Männlichen (50% discount with Swiss Half‑Fare Card)</li><li>🥾 Panorama Trail to Kleine Scheidegg – easy, 1.5h, iconic Eiger view</li><li>🚞 Train back to Wengen, fondue dinner</li></ul></div>
-      <div class="info-block">🏨 Backpackers Villa Sonnenhof · ~$100/night · private double room<br>🎫 Swiss Half‑Fare Card – buy online (SBB) 1 month before trip</div>
-    </div>
-  </div>
-
-  <!-- 4. PARIS -->
-  <div class="city-card">
-    <div class="city-header" onclick="toggleCity('paris')">
-      <div><span class="city-name">🗼 Paris</span><div class="city-date">Oct 3 – Oct 7 · 4 nights · 3 nights budget + 1 night Eiffel view</div></div>
-      <div class="city-arrow" id="arrow-paris">▼</div>
-    </div>
-    <div class="city-days" id="days-paris">
-      <div class="day-card"><div class="day-date">Day 11 · Sat Oct 3</div><div class="day-title">TGV to Paris & Montmartre</div><ul class="day-list"><li>🚆 TGV Lyria Interlaken → Paris (book 4‑8 weeks ahead, ~€80 pp)</li><li>🌅 Evening: Sacré‑Cœur, Place du Tertre</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 12 · Sun Oct 4</div><div class="day-title">Louvre & Seine dinner cruise</div><ul class="day-list"><li>🖼️ Louvre Museum (timed entry, €22 pp)</li><li>🚢 Seine dinner cruise (Bateaux Parisiens, book 2‑4 weeks ahead)</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 13 · Mon Oct 5</div><div class="day-title">Disneyland Paris</div><ul class="day-list"><li>🎢 RER A to Marne‑la‑Vallée (Paris Visite or single ticket)</li><li>🏰 2‑Park ticket, new Frozen World, fireworks at close</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 14 · Tue Oct 6</div><div class="day-title">Eiffel Tower & Latin Quarter</div><ul class="day-list"><li>🗼 Trocadéro viewpoint (free), Champs‑Élysées, Latin Quarter dinner</li><li>🌟 Overnight: Eiffel Tower view room</li></ul></div>
-      <div class="info-block">🏨 Ibis Budget Paris Porte d'Orléans (3 nights) · ~$80/night<br>🏨 Hôtel Le Cercle Tour Eiffel (1 night) · ~$210/night · Eiffel view</div>
+    <div class="day-details" id="details-2">
+      <ul class="task-list">
+        <li>🚆 Take Bayern Ticket (already bought) to Munich Hbf</li>
+        <li>🚶 U‑Bahn to Theresienwiese (Oktoberfest grounds)</li>
+        <li>🍺 11:00 AM – find a table, share a Maß (€14‑16) and half chicken</li>
+        <li>🌙 Leave by 4:00 PM, walk through Maxvorstadt, return to Berchtesgaden</li>
+        <li>🍽️ <strong>Dinner:</strong> takeaway pizza (€10‑15) or Würstl stand in Berchtesgaden (~€8‑12)</li>
+      </ul>
     </div>
   </div>
 
-  <!-- 5. BRUGES -->
-  <div class="city-card">
-    <div class="city-header" onclick="toggleCity('bruges')">
-      <div><span class="city-name">⛲ Bruges</span><div class="city-date">Oct 7 – Oct 9 · 2 nights · Ibis Budget Centrum</div></div>
-      <div class="city-arrow" id="arrow-bruges">▼</div>
+  <!-- Day 3 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(3)">
+      <div><span class="day-title">⛰️ Königssee & Jennerbahn</span><br><span class="day-date">Saturday, Sep 26, 2026</span></div>
+      <div class="day-arrow" id="arrow-3">▼</div>
     </div>
-    <div class="city-days" id="days-bruges">
-      <div class="day-card"><div class="day-date">Day 15 · Wed Oct 7</div><div class="day-title">Train to Bruges</div><ul class="day-list"><li>🚆 Eurostar / Thalys Paris → Bruges (book 4‑6 weeks ahead, ~€40 pp)</li><li>🛶 Afternoon canal boat tour, Markt square, Belfry tower</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 16 · Thu Oct 8</div><div class="day-title">Fairytale Bruges</div><ul class="day-list"><li>🍫 Chocolate shops, Bonifacius Bridge, quiet cobblestone walks</li><li>🌙 Evening lights on the canals</li></ul></div>
-      <div class="info-block">🏨 Ibis Budget Brugge Centrum Station · ~$75/night</div>
-    </div>
-  </div>
-
-  <!-- 6. AMSTERDAM -->
-  <div class="city-card">
-    <div class="city-header" onclick="toggleCity('ams')">
-      <div><span class="city-name">🚲 Amsterdam</span><div class="city-date">Oct 9 – Oct 11 · 2 nights · easyHotel City Centre</div></div>
-      <div class="city-arrow" id="arrow-ams">▼</div>
-    </div>
-    <div class="city-days" id="days-ams">
-      <div class="day-card"><div class="day-date">Day 17 · Fri Oct 9</div><div class="day-title">Bruges → Amsterdam</div><ul class="day-list"><li>🚆 Intercity train (book 4‑6 weeks ahead, ~€30‑40 pp)</li><li>🖼️ Rijksmuseum (timed entry, €22.50 pp)</li><li>🛶 Evening canal cruise (optional)</li></ul></div>
-      <div class="day-card"><div class="day-date">Day 18 · Sat Oct 10</div><div class="day-title">Free morning & flight home</div><ul class="day-list"><li>☕ Jordaan district, last canal walk</li><li>✈️ Train to Schiphol, flight AMS → YYZ (Air Transat / KLM, book early)</li></ul></div>
-      <div class="info-block">🏨 easyHotel City Centre · ~$90/night</div>
+    <div class="day-details" id="details-3">
+      <ul class="task-list">
+        <li>🛶 Morning: electric boat to St. Bartholomä (€45 for 2, buy at dock)</li>
+        <li>🎺 Boatman plays alphorn – echo off the cliffs</li>
+        <li>🚡 Afternoon: Jennerbahn cable car (€85 for 2) – 1,800m views</li>
+        <li>🧖 Evening: Watzmann Therme spa (€35 for 2) – Guest Card gives small discount</li>
+        <li>🍽️ <strong>Dinner:</strong> Gasthof Neuhaus (again) or Gaststätte Purzlbaum – traditional Bavarian, mains €12‑18</li>
+      </ul>
     </div>
   </div>
 
-  <!-- TICKETS & CRITICAL BOOKINGS -->
-  <div class="info-block critical">
-    🔴 <strong>Early booking is essential</strong><br>
-    • TGV Lyria (Interlaken → Paris) – 4‑8 weeks ahead (price doubles later)<br>
-    • Disneyland Paris – as soon as 2026 tickets are released (late 2025)<br>
-    • Nightjet Berchtesgaden → Venice – 2‑3 months ahead (sleeper sells out)<br>
-    • Paris → Bruges & Bruges → Amsterdam trains – 4‑6 weeks ahead
+  <!-- Day 4 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(4)">
+      <div><span class="day-title">🎶 Salzburg day trip</span><br><span class="day-date">Sunday, Sep 27, 2026</span></div>
+      <div class="day-arrow" id="arrow-4">▼</div>
+    </div>
+    <div class="day-details" id="details-4">
+      <ul class="task-list">
+        <li>🚆 Free train to Salzburg (RE5) with Berchtesgaden Guest Card</li>
+        <li>🏛️ Mirabell Gardens, Getreidegasse, Mozart birthplace (free)</li>
+        <li>🏰 Optional: Hohensalzburg Fortress funicular (€30 for 2)</li>
+        <li>🍽️ Lunch at market stalls (€15‑20 for 2), return to Berchtesgaden evening</li>
+        <li>🍽️ <strong>Dinner:</strong> Gasthaus Achental – cosy beer garden, mains €12‑16</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="info-block">
-    🎟️ <strong>Key tickets & passes – when to buy</strong><br>
-    ✅ Berchtesgaden Guest Card – free from hotel (bus & train to Salzburg)<br>
-    ✅ Bayern Ticket – day before (DB Navigator) · €44 for 2 (Oktoberfest day)<br>
-    ✅ Swiss Half‑Fare Card – online SBB · CHF 120 each (1 month before trip)<br>
-    ✅ Seine dinner cruise – Bateaux Parisiens, 2‑4 weeks ahead<br>
-    ✅ Rijksmuseum – timed entry, 2‑4 weeks ahead
+  <!-- Day 5 – extra day -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(5)">
+      <div><span class="day-title">🌿 Relax & hike – extra alpine day</span><br><span class="day-date">Monday, Sep 28, 2026</span></div>
+      <div class="day-arrow" id="arrow-5">▼</div>
+    </div>
+    <div class="day-details" id="details-5">
+      <ul class="task-list">
+        <li>🚶 Free bus (Guest Card) to Obersalzberg or Ramsau church</li>
+        <li>🥾 Easy hike, picnic by the river, or second visit to Watzmann Therme</li>
+        <li>🍽️ <strong>Dinner:</strong> Berggasthof Oberkälberstein – traditional, good portions, mains €13‑18</li>
+        <li>🌙 Pack for Venice – Nightjet tomorrow</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- FLIGHTS & BUDGET TABLE -->
-  <div class="info-block">
-    ✈️ <strong>Flights (2 people, CAD)</strong><br>
-    Toronto → Munich ≈ $1,200 · Munich → Venice ≈ $280 · Amsterdam → Toronto ≈ $1,000<br>
-    <strong>Total flights ≈ $2,480</strong>
+  <!-- Day 6 – Nightjet -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(6)">
+      <div><span class="day-title">🌙 Nightjet – Salzburg → Venice</span><br><span class="day-date">Tuesday, Sep 29, 2026</span></div>
+      <div class="day-arrow" id="arrow-6">▼</div>
+    </div>
+    <div class="day-details" id="details-6">
+      <ul class="task-list">
+        <li>🚆 Evening bus from Berchtesgaden to Salzburg Hbf (free with Guest Card)</li>
+        <li>🌙 Board <strong>Nightjet</strong> (private double sleeper) – book 2‑3 months ahead</li>
+        <li>🛌 Sleep on the train – saves one hotel night</li>
+        <li>💡 Booking: nightjet.com – select “Sleeping car – private double cabin (Comfort Plus)”</li>
+        <li>🍽️ <strong>Dinner:</strong> takeaway meal at Salzburg Hbf (sandwiches, salads) – €10‑15 for two</li>
+      </ul>
+    </div>
   </div>
 
+  <!-- Day 7 – Venice arrival -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(7)">
+      <div><span class="day-title">🛶 Venice – first evening</span><br><span class="day-date">Wednesday, Sep 30, 2026</span></div>
+      <div class="day-arrow" id="arrow-7">▼</div>
+    </div>
+    <div class="day-details" id="details-7">
+      <ul class="task-list">
+        <li>🚆 Arrive Venezia S. Lucia ~14:14</li>
+        <li>🏨 Check in at <strong>Hotel Antiche Figure</strong> (Grand Canal view, 2 nights)</li>
+        <li>🚤 Gondola ride (€80‑100, cash) – negotiate first</li>
+        <li>🌉 Sunset at Rialto Bridge</li>
+        <li>🍽️ <strong>Dinner:</strong> Trattoria alla Madonna (near Rialto) – Venetian classics, €15‑20 per dish</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 8 – Venice -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(8)">
+      <div><span class="day-title">🏛️ St. Mark’s & Murano</span><br><span class="day-date">Thursday, Oct 1, 2026</span></div>
+      <div class="day-arrow" id="arrow-8">▼</div>
+    </div>
+    <div class="day-details" id="details-8">
+      <ul class="task-list">
+        <li>🏛️ St. Mark’s Square, Basilica (free, skip‑the‑line €3 pp)</li>
+        <li>🟡 ACTV day pass (€20 pp) – ferry to Murano (glass demo) and Burano</li>
+        <li>🍽️ Lunch on Burano</li>
+        <li>🍽️ <strong>Dinner:</strong> Cicchetti in Cannaregio (Al Mercà or Cantina Do Mori) – €2‑5 each, very budget friendly</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 9 – Venice → Wengen -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(9)">
+      <div><span class="day-title">🏔️ Travel to Swiss Alps – Wengen</span><br><span class="day-date">Friday, Oct 2, 2026</span></div>
+      <div class="day-arrow" id="arrow-9">▼</div>
+    </div>
+    <div class="day-details" id="details-9">
+      <ul class="task-list">
+        <li>🚆 Day train Venice → Milan → Spiez → Lauterbrunnen → Wengen (≈7h)</li>
+        <li>🏨 Check in at <strong>Backpackers Villa Sonnenhof</strong> (private double, 2 nights)</li>
+        <li>🌄 Evening walk in car‑free village, valley views</li>
+        <li>💡 Swiss Half Fare Card – <a href="https://www.swissrailways.com/en" target="_blank">buy online (SBB.ch)</a> 1 month ahead, CHF 150 each</li>
+        <li>🎟️ Border‑to‑border strategy: Venice → Domodossola (full price, Trenitalia) → Interlaken (half price, SBB)</li>
+        <li>🍽️ <strong>Dinner:</strong> Restaurant Chez Pierre's (Wengen) – affordable Swiss/German, mains CHF 18‑25</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 10 – Wengen -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(10)">
+      <div><span class="day-title">🚡 Männlichen & Panorama Trail</span><br><span class="day-date">Saturday, Oct 3, 2026</span></div>
+      <div class="day-arrow" id="arrow-10">▼</div>
+    </div>
+    <div class="day-details" id="details-10">
+      <ul class="task-list">
+        <li>🚡 Cable car Wengen–Männlichen (50% off with Half Fare Card)</li>
+        <li>🥾 Panorama Trail to Kleine Scheidegg – easy, 1.5h, iconic Eiger view</li>
+        <li>🍽️ Lunch at mountain restaurant</li>
+        <li>🍽️ <strong>Dinner:</strong> Hotel Alpenrose Wengen – Swiss fondue, CHF 25‑35 per person</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 11 – Wengen → Paris -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(11)">
+      <div><span class="day-title">🗼 TGV to Paris & Montmartre</span><br><span class="day-date">Sunday, Oct 4, 2026</span></div>
+      <div class="day-arrow" id="arrow-11">▼</div>
+    </div>
+    <div class="day-details" id="details-11">
+      <ul class="task-list">
+        <li>🚆 Train Wengen → Basel (half fare ticket), then <strong>TGV Lyria</strong> Basel → Paris (4‑8 weeks ahead, ~€70‑100 total for two)</li>
+        <li>🏨 Check in at <strong>Ibis Budget Paris Porte d'Orléans</strong> (3 nights)</li>
+        <li>🌅 Evening: Sacré‑Cœur, Place du Tertre, Montmartre</li>
+        <li>💡 <strong>Paris Visite 5‑day pass (zones 1‑5)</strong> – €78 each, buy on arrival (RATP app or CDG airport). Covers CDG, Disneyland, Versailles, all metro.</li>
+        <li>⚠️ Paris Visite pass is NOT valid on the TGV Lyria from Basel to Paris – you need a separate ticket (Trainline/SNCF).</li>
+        <li>🍽️ <strong>Dinner:</strong> Crêperie Genia (near Eiffel Tower) – savoury galettes €8‑12, budget friendly</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 12 – Paris -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(12)">
+      <div><span class="day-title">🎨 Louvre & Seine dinner cruise</span><br><span class="day-date">Monday, Oct 5, 2026</span></div>
+      <div class="day-arrow" id="arrow-12">▼</div>
+    </div>
+    <div class="day-details" id="details-12">
+      <ul class="task-list">
+        <li>🖼️ Louvre Museum (€22 pp, book timed entry)</li>
+        <li>🚢 Seine dinner cruise (Bateaux Parisiens, book 2‑4 weeks ahead, €80‑100 pp)</li>
+        <li>🍽️ <strong>Dinner:</strong> included in Seine cruise (splurge, but fits budget)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 13 – Disneyland -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(13)">
+      <div><span class="day-title">🏰 Disneyland Paris – full day</span><br><span class="day-date">Tuesday, Oct 6, 2026</span></div>
+      <div class="day-arrow" id="arrow-13">▼</div>
+    </div>
+    <div class="day-details" id="details-13">
+      <ul class="task-list">
+        <li>🎢 RER A to Marne‑la‑Vallée (covered by Paris Visite pass)</li>
+        <li>🏰 2‑Park ticket (book as soon as 2026 tickets released, ~€110‑120 pp)</li>
+        <li>📌 Tuesday is a low‑crowd day – arrive early for rope drop</li>
+        <li>🎆 Evening fireworks at Sleeping Beauty Castle</li>
+        <li>🍽️ <strong>Dinner:</strong> Annette's Diner (Disney Village) – burgers €12‑15, or pack sandwiches</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 14 – Eiffel view night -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(14)">
+      <div><span class="day-title">🗼 Eiffel Tower & Montmartre</span><br><span class="day-date">Wednesday, Oct 7, 2026</span></div>
+      <div class="day-arrow" id="arrow-14">▼</div>
+    </div>
+    <div class="day-details" id="details-14">
+      <ul class="task-list">
+        <li>🏨 Switch to <strong>Hôtel Le Cercle Tour Eiffel</strong> (1 night, Eiffel view)</li>
+        <li>🗼 Trocadéro viewpoint (free), Champs‑Élysées, Latin Quarter</li>
+        <li>🌟 Watch the Eiffel Tower sparkle from your hotel room</li>
+        <li>🍽️ <strong>Dinner:</strong> Bouillon Chartier (Le Marais) – classic French, very affordable, mains €10‑15</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 15 – Paris → Bruges -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(15)">
+      <div><span class="day-title">⛲ Bruges – fairytale canals</span><br><span class="day-date">Thursday, Oct 8, 2026</span></div>
+      <div class="day-arrow" id="arrow-15">▼</div>
+    </div>
+    <div class="day-details" id="details-15">
+      <ul class="task-list">
+        <li>🚆 Eurostar / Thalys Paris → Bruges (direct train, book 4‑6 weeks ahead, ~€40‑60 pp)</li>
+        <li>🔴 Cheap fares sell out – book early</li>
+        <li>🏨 Check in at <strong>Ibis Budget Brugge Centrum Station</strong> (2 nights)</li>
+        <li>🛶 Canal boat tour, Markt square, Belfry tower</li>
+        <li>🍽️ <strong>Dinner:</strong> 't Klein Genoegen (Bruges) – local Belgian, mains €15‑20, very cosy</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 16 – Bruges -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(16)">
+      <div><span class="day-title">🍫 Full day in Bruges</span><br><span class="day-date">Friday, Oct 9, 2026</span></div>
+      <div class="day-arrow" id="arrow-16">▼</div>
+    </div>
+    <div class="day-details" id="details-16">
+      <ul class="task-list">
+        <li>🍫 Chocolate shops, Bonifacius Bridge, quiet cobblestone walks</li>
+        <li>🌙 Evening lights on the canals – very romantic</li>
+        <li>🍽️ <strong>Dinner:</strong> Brasserie Cambrinus – Belgian beer and stew, mains €16‑22</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 17 – Bruges → Amsterdam -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(17)">
+      <div><span class="day-title">🚲 Amsterdam – first evening</span><br><span class="day-date">Saturday, Oct 10, 2026</span></div>
+      <div class="day-arrow" id="arrow-17">▼</div>
+    </div>
+    <div class="day-details" id="details-17">
+      <ul class="task-list">
+        <li>🚆 Intercity train Bruges → Amsterdam (book 4‑6 weeks ahead, ~€30‑50 pp)</li>
+        <li>🏨 Check in at <strong>easyHotel City Centre</strong> (2 nights)</li>
+        <li>🌙 Evening walk in Jordaan district</li>
+        <li>🍽️ <strong>Dinner:</strong> Café de Prins (Jordaan) – Dutch classics, mains €15‑20</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 18 – Amsterdam -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(18)">
+      <div><span class="day-title">🖼️ Rijksmuseum & canal cruise</span><br><span class="day-date">Sunday, Oct 11, 2026</span></div>
+      <div class="day-arrow" id="arrow-18">▼</div>
+    </div>
+    <div class="day-details" id="details-18">
+      <ul class="task-list">
+        <li>🖼️ Rijksmuseum (timed entry, €22.50 pp, book 2‑4 weeks ahead)</li>
+        <li>🛶 Canal cruise (€15‑20 pp)</li>
+        <li>🍽️ <strong>Dinner:</strong> Pancake Bakery Amsterdam (Prinsengracht) – savoury or sweet pancakes €10‑15</li>
+        <li>📦 Pack for flight</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 19 – Departure -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(19)">
+      <div><span class="day-title">✈️ Fly home – Amsterdam → Toronto</span><br><span class="day-date">Monday, Oct 12, 2026</span></div>
+      <div class="day-arrow" id="arrow-19">▼</div>
+    </div>
+    <div class="day-details" id="details-19">
+      <ul class="task-list">
+        <li>☕ Final coffee, last canal walk</li>
+        <li>🚆 Train from Amsterdam Centraal to Schiphol Airport (15‑20 min)</li>
+        <li>✈️ Flight AMS → YYZ (Air Transat / KLM, book 2‑3 months ahead)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ======================== HOTELS ======================== -->
+  <h2>🏨 Where You’ll Stay – Your Preferences, fully respected</h2>
+  <ul class="hotel-list">
+    <li><strong>Berchtesgaden (5 nights)</strong> – Gästehaus Meisl · ~$75/night · ✅ breakfast · free Guest Card · budget</li>
+    <li><strong>Venice (2 nights)</strong> – Hotel Antiche Figure · ~$165/night · ⭐ Grand Canal view · splurge</li>
+    <li><strong>Wengen (2 nights)</strong> – Backpackers Villa Sonnenhof · ~$100/night · private double · budget</li>
+    <li><strong>Paris – budget (3 nights)</strong> – Ibis Budget Paris Porte d'Orléans · ~$80/night</li>
+    <li><strong>Paris – Eiffel view (1 night)</strong> – Hôtel Le Cercle Tour Eiffel · ~$210/night · ⭐ splurge</li>
+    <li><strong>Bruges (2 nights)</strong> – Ibis Budget Centrum Station · ~$75/night · budget</li>
+    <li><strong>Amsterdam (2 nights)</strong> – easyHotel City Centre · ~$90/night · budget</li>
+  </ul>
+  <p><strong>Total accommodation (17 nights, one night on Nightjet) ≈ $1,685 CAD</strong> – well inside your budget.</p>
+
+  <!-- ======================== TICKETS ======================== -->
+  <h2>🎟️ Tickets & Passes – What to Buy, When & Where</h2>
   <table>
-    <tr><th>Category</th><th>Cost (CAD)</th></tr>
-    <tr><td>Flights</td><td>$2,480</td></tr>
-    <tr><td>Hotels (17 nights)</td><td>$1,695</td></tr>
-    <tr><td>Activities & tickets</td><td>$1,670</td></tr>
-    <tr><td>Inter‑city trains</td><td>$640</td></tr>
-    <tr><td>Food & drinks</td><td>$1,190</td></tr>
-    <tr><td>Insurance / misc</td><td>$360</td></tr>
-    <tr style="background:#1e1e2a;"><th>GRAND TOTAL</th><th>$8,035 CAD</th></tr>
+    <thead><tr><th>Item</th><th>Booking link</th><th>When to book</th><th>Price (2 people)</th> </thead>
+    <tbody>
+      <tr><td><strong>Nightjet (Salzburg → Venice) private double</strong></td><td><a href="https://www.nightjet.com" target="_blank">nightjet.com</a></td><td><span class="badge">🔴 2‑3 months ahead</span></td><td>€200‑400</td></tr>
+      <tr><td>Bayern Ticket (Munich ↔ Berchtesgaden)</td><td><a href="https://www.bahn.com/en" target="_blank">DB Navigator</a></td><td>day before</td><td>€44</td></tr>
+      <tr><td>Swiss Half Fare Card (1 month)</td><td><a href="https://www.swissrailways.com/en" target="_blank">swissrailways.com</a></td><td>1 month ahead</td><td>CHF 300</td></tr>
+      <tr><td>TGV Lyria (Basel → Paris)</td><td><a href="https://www.trainline.com" target="_blank">Trainline</a></td><td><span class="badge">🔴 4‑8 weeks ahead</span></td><td>€70‑100 total</td></tr>
+      <tr><td>Paris Visite 5‑day pass (zones 1‑5)</td><td><a href="https://www.ratp.fr/en/paris-visite" target="_blank">RATP / Bonjour RATP app</a></td><td>on arrival</td><td>€78 each</td></tr>
+      <tr><td>Disneyland Paris (1d/2p)</td><td><a href="https://www.disneylandparis.com" target="_blank">official site</a></td><td><span class="badge">🔴 as soon as 2026 tickets released</span></td><td>€220‑240</td></tr>
+      <tr><td>Paris → Bruges / Bruges → Amsterdam</td><td><a href="https://www.trainline.com" target="_blank">Trainline</a></td><td>4‑6 weeks ahead</td><td>€100‑160</td></tr>
+    </tbody>
   </table>
 
+  <!-- ======================== BUDGET ======================== -->
+  <h2>💰 Final Budget (2 people, CAD)</h2>
+  <table>
+    <tr><th>Category</th><th>Cost</th> </tr>
+    <tr><td>Flights (YYZ→MUC, MUC→VCE, AMS→YYZ)</td><td>$2,500</td></tr>
+    <tr><td>Hotels (17 nights, budget + 2 scenic nights)</td><td>$1,685</td></tr>
+    <tr><td>Activities & tickets (boats, cable cars, Disney, Seine, etc.)</td><td>$1,670</td></tr>
+    <tr><td>Inter‑city trains (incl. Nightjet & Swiss Half Fare)</td><td>$880</td></tr>
+    <tr><td>Food & drinks (€65/day × 19 days)</td><td>$1,330</td></tr>
+    <tr><td>Travel insurance / eSIM / misc</td><td>$360</td></tr>
+    <tr style="background:#1e1e2a; font-weight:bold;"><td>GRAND TOTAL</td><td>$8,425 CAD</td></tr>
+  </table>
+  <div class="note">✅ Under $9,000 – includes all passes, the Nightjet sleeper, Disneyland, Seine cruise, and two view splurges (Venice canal + Paris Eiffel Tower).</div>
+
+  <!-- VISA TIP -->
+  <div class="warning">
+    <strong>🛂 Visa appointment reminder</strong><br>
+    No slots right now? Mark <strong>14th–15th</strong> and <strong>30th–31st of each month</strong>. Check VFS portal daily (morning + evening). Slots open regularly. Have all documents ready.
+  </div>
+
   <footer>
-    🕊️ Designed for slow, romantic travel · all prices are estimates 2026.  
-    Always check visa requirements, exchange rates, and official websites before booking.
+    💛 Every detail is planned with love – for you. <br>
+    All prices are 2026 estimates. Always reconfirm train/flight schedules before booking.
   </footer>
 </div>
 
 <script>
-  function toggleCity(cityId) {
-    const daysDiv = document.getElementById('days-' + cityId);
-    const arrow = document.getElementById('arrow-' + cityId);
-    if (daysDiv.style.display === 'none' || !daysDiv.style.display) {
-      daysDiv.style.display = 'block';
+  function toggleDay(dayNum) {
+    const details = document.getElementById('details-' + dayNum);
+    const arrow = document.getElementById('arrow-' + dayNum);
+    if (details.style.display === 'none' || !details.style.display) {
+      details.style.display = 'block';
       arrow.style.transform = 'rotate(180deg)';
     } else {
-      daysDiv.style.display = 'none';
+      details.style.display = 'none';
       arrow.style.transform = 'rotate(0deg)';
     }
   }
 
-  // Countdown to Sep 24, 2026
+  for (let i = 1; i <= 19; i++) {
+    const el = document.getElementById('details-' + i);
+    if (el) el.style.display = 'none';
+  }
+
+  // Countdown
   function startCountdown() {
     const target = new Date(2026, 8, 24, 0, 0, 0);
     function update() {
       const now = new Date();
       const diff = target - now;
       if (diff <= 0) {
-        document.getElementById('days').innerText = '00';
-        document.getElementById('hours').innerText = '00';
-        document.getElementById('minutes').innerText = '00';
-        document.getElementById('seconds').innerText = '00';
+        document.getElementById('cd-days').innerText = '00';
+        document.getElementById('cd-hours').innerText = '00';
+        document.getElementById('cd-minutes').innerText = '00';
+        document.getElementById('cd-seconds').innerText = '00';
         return;
       }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (86400000)) / 3600000);
       const mins = Math.floor((diff % 3600000) / 60000);
       const secs = Math.floor((diff % 60000) / 1000);
-      document.getElementById('days').innerText = String(days).padStart(2,'0');
-      document.getElementById('hours').innerText = String(hours).padStart(2,'0');
-      document.getElementById('minutes').innerText = String(mins).padStart(2,'0');
-      document.getElementById('seconds').innerText = String(secs).padStart(2,'0');
+      document.getElementById('cd-days').innerText = String(days).padStart(2,'0');
+      document.getElementById('cd-hours').innerText = String(hours).padStart(2,'0');
+      document.getElementById('cd-minutes').innerText = String(mins).padStart(2,'0');
+      document.getElementById('cd-seconds').innerText = String(secs).padStart(2,'0');
     }
     update();
     setInterval(update, 1000);
   }
 
-  window.onload = () => {
-    document.querySelectorAll('.city-days').forEach(d => d.style.display = 'none');
-    startCountdown();
-    // starry background
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    const stars = [];
-    for (let i = 0; i < 250; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5,
-        alpha: Math.random()
-      });
-    }
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(s => {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 230, 200, ${s.alpha * 0.5})`;
-        ctx.fill();
-      });
-      requestAnimationFrame(drawStars);
-    }
-    drawStars();
-  };
+  // Starfield
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  const stars = [];
+  for (let i = 0; i < 300; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5,
+      alpha: Math.random()
+    });
+  }
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 245, 210, ${s.alpha * 0.4})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+
+  // Floating hearts
+  const heartsContainer = document.getElementById('heartsContainer');
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '♥';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.width = Math.random() * 20 + 12 + 'px';
+    heart.style.height = heart.style.width;
+    heart.style.fontSize = (Math.random() * 20 + 14) + 'px';
+    heart.style.animationDuration = Math.random() * 8 + 6 + 's';
+    heart.style.animationDelay = Math.random() * 5 + 's';
+    heart.style.opacity = Math.random() * 0.4 + 0.3;
+    heartsContainer.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 14000);
+  }
+  setInterval(createHeart, 800);
+
+  window.onload = startCountdown;
 </script>
 </body>
 </html>
